@@ -41,7 +41,7 @@
 </script>
 </head>
 <body>
-<form name = "insertstock" action="insertstock.do" method="post" enctype="multipart/form-data">
+<form name = "insertstock" action="stockinsert" method="post" enctype="multipart/form-data">
 <table width="600" cellpadding="3">
 	<tr>
 		<th width="270">품명</th>

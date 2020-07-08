@@ -8,39 +8,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table width="600" cellpadding="3">
+<h3>발주</h3>
+<table >
 	<tr>
-		<th width="50">원료코드</th>
-		<th width="270">품명</th>
-		<th width="500">상세명</th>
-		<th width="120">규격</th>
-		<th width="500">금액</th>
-		<th width="300">이미지</th>
+		<th width="100"></th>
+		<th width="50">품명</th>
+		<th width="100">상세명</th>
+		<th width="50">규격</th>
+		<th width="100">금액</th>
+		<th width="100">이미지</th>
+		<th width="80">수량</th>
 
 	</tr>	
 
 <c:forEach var="b" items="${list}">
 
 	<tr>
-		<td>${b.stock_code}</td>
+		<td><input type="hidden" name="stock_code" value="${b.stock_code}"></td>
 		<td>${b.stock_productname}</td>
 		<td>${b.stock_detailname}</td>
 		<td>${b.stock_standard}</td>
 		<td align="right">${b.stock_price}</td>
 <%-- 		<td align="right"><img alt="제품" src="./resources/img/${b.stock_image}" height="50" width="60"></td> --%>
-		<td align="right"><img alt="제품" src="./resources/img/${b.stock_image}" height="50" width="60"></td>
+		<td align="center"><img alt="제품" src="./resources/img/${b.stock_image}" height="50" width="60"></td>
 		<td>
-		<input type="button" value="삭제" onclick="location.href='stockdelete?stock_code=${b.stock_code}&pg=${pg}'"/>
+		<input type="text" value="0" size="5"/>
 		</td>
 		<td>
-		<input type="button" value="수정" onclick="location.href='stockupdateform?stock_code=${b.stock_code}&pg=${pg}'"/>
+		<input type="button" value="품목담기"/>
 		</td>
 	</tr>
 </c:forEach>
 	
 	<tr>
 		<td>
-		<input type="button" value="제품등록" onclick="location.href='stockinsert'"/>
+		<input type="button" value="발주확인" />
 		</td>
 	</tr>
 </table>

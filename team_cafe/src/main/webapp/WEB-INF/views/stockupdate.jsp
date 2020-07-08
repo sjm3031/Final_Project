@@ -40,7 +40,7 @@
 </script>
 </head>
 <body>
-<form name = "updatestock" action="updatestock.do" method="post">
+<form name = "updatestock" action="stockupdate" method="post">
 <table width="600" cellpadding="3">
 	<tr>
 		<th width="220">코드</th>

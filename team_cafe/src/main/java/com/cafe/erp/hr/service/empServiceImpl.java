@@ -44,12 +44,21 @@ public class empServiceImpl implements empService {
 		
 		return dao.updateEmp(dto);
 	}
+	
+	
+//	@Override
+//	public int deleteEmp(empDTO dto) {
+//		empDAO dao = sqlSession.getMapper(empDAO.class);
+//		
+//		return dao.deleteEmp(dto);
+//	}
 
 	@Override
-	public int deleteEmp(empDTO dto) {
+	public int updateEmp2(empDTO dto) {
+		
 		empDAO dao = sqlSession.getMapper(empDAO.class);
 		
-		return dao.deleteEmp(dto);
+		return dao.updateEmp2(dto);
 	}
 
 	@Override

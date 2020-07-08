@@ -14,8 +14,9 @@ public interface empService {
 	public empDTO getEmp(int num);
 
 	public int updateEmp(empDTO dto);
-
-	public int deleteEmp(empDTO dto);
+	
+	public int updateEmp2(empDTO dto);
+//	public int deleteEmp(empDTO dto);
 
 	public int getEmpCount();
 }

@@ -6,8 +6,8 @@ public class empDTO {
 	
 	private int employee_code;
     private String employee_name, employee_jumin, employee_phone,employee_address,employee_jobname,
-    employee_bank,employee_bankaddress;
-    private Date employee_startdate;
+    employee_bank,employee_bankaddress,employee_endyn;
+    private Date employee_startdate , employee_enddate;
     
 	public int getEmployee_code() {
 		return employee_code;
@@ -63,6 +63,18 @@ public class empDTO {
 	}
 	public void setEmployee_jobname(String employee_jobname) {
 		this.employee_jobname = employee_jobname;
+	}
+	public Date getEmployee_enddate() {
+		return employee_enddate;
+	}
+	public void setEmployee_enddate(Date employee_enddate) {
+		this.employee_enddate = employee_enddate;
+	}
+	public String getEmployee_endyn() {
+		return employee_endyn;
+	}
+	public void setEmployee_endyn(String employee_endyn) {
+		this.employee_endyn = employee_endyn;
 	}
 	
 	

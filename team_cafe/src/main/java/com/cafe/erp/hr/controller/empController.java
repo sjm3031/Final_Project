@@ -79,15 +79,15 @@ public class empController {
 		return "empListForm";
 	}
 
-//	@RequestMapping("/empRead.cafe")
-//	public String empRead(int num, int pg, Model model) {
-//
-//		empDTO dto = empService.getEmp(num);
-//		model.addAttribute("emp", dto);
-//		model.addAttribute("pg", pg);
-//		model.addAttribute("num", num);
-//		return "empReadForm";
-//	}
+	@RequestMapping("/empRead.cafe")
+	public String empRead(int num, int pg, Model model) {
+
+		empDTO dto = empService.getEmp(num);
+		model.addAttribute("emp", dto);
+		model.addAttribute("pg", pg);
+		model.addAttribute("num", num);
+		return "empReadForm";
+	}
 
 	@RequestMapping("/empUpdateForm.cafe")
 	public String empUpdateForm(int num, int pg, Model model) {
@@ -115,18 +115,31 @@ public class empController {
 
 	}
 	
-	
-	@RequestMapping("/empDelete.cafe")
-	public String delete(empDTO dto,int pg) {
+	@RequestMapping("/empUpdate2.cafe")
+	public String empUpdate2(empDTO dto,int pg) {
 		
-		int result = empService.deleteEmp(dto);
 		System.out.println(dto.getEmployee_code());
-		String res = "redirect:/empList.cafe?pg=" +pg;
+		System.out.println(dto.getEmployee_name());
+		int result = empService.updateEmp2(dto);
+		String res = "redirect:/empList.cafe?pg=" + pg;
 		
 		if (result == 0) {
 			res = "fail";
 		}
-		System.out.println(pg);
 		return res;
+
 	}
+//	@RequestMapping("/empDelete.cafe")
+//	public String delete(empDTO dto,int pg) {
+//		
+//		int result = empService.deleteEmp(dto);
+//		System.out.println(dto.getEmployee_code());
+//		String res = "redirect:/empList.cafe?pg=" +pg;
+//		
+//		if (result == 0) {
+//			res = "fail";
+//		}
+//		System.out.println(pg);
+//		return res;
+//	}
 }

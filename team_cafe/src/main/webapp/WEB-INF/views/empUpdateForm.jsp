@@ -66,12 +66,7 @@
 			<input type="text" name="employee_address" value="${emp.employee_address}" />
 		</td>
 	</tr>
-	<tr>
-		<th>입사날짜</th>
-		<td>
-			<input type="text" name="employee_startdate" value="${emp.employee_startdate}" readonly="readonly"/>
-		</td>
-	</tr>
+	
 	<tr>
 		<th>은행</th>
 		<td>

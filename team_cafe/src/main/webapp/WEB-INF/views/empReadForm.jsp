@@ -16,36 +16,45 @@ function emp_update(){
 	
 	
 }
-function emp_delete(){
-	//alert("삭제");
-	location.href="empDelete.cafe?num=${emp.employee_code}&pg=${pg}";
+
+function emp_update2(){
+	
+	location.href="empUpdate2.cafe?employee_code=${emp.employee_code}&pg=${pg}"
 }
+// function emp_delete(){
+// 	//alert("삭제");
+// 	location.href="empDelete.cafe?num=${emp.employee_code}&pg=${pg}";
+// }
 
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글 읽기</title>
+<title>직원 상세보기</title>
 </head>
 <body>
-<h1>글 읽기</h1>
+<h1>직원 상세보기</h1>
 
-<a href="empList.cafe?pg=${pg}"> 리스트 </a>
-<table width="500">
-
-	<tr>		
-				<tr><td><input type="text" name="employee_code" value=${emp.employee_code }></td></tr>
-				<tr><td><input type="text" name="employee_name"  value="${emp.employee_name}"></td><tr>
-				<tr><td><input type="password" name="employee_jumin" value="${emp.employee_jumin }"></td><tr>
-				<tr><td><input type="text" name="employee_phone"  value="${emp.employee_phone}"></td><tr>
-				<tr><td><input type="text" name="employee_address" value="${emp.employee_address}"></td><tr>
-				<tr><td><input type="text" name="employee_startdate" value="${emp.employee_startdate}"></td><tr>
-				<tr><td><input type="text" name="employee_bank" value="${emp.employee_bank}"></td><tr>
-				<tr><td><input type="text" name="employee_bankaddress" value="${emp.employee_bankaddress}"></td><tr>
-				<tr><td><input type="text" name="employee_jobname" value="${emp.employee_jobname}"> </td><tr>
+<a href="empList.cafe?pg=${pg}"> 직원리스트 </a>
+<table width="500" cellspacing="30" border="1">		
+				<tr><td>직원코드 : </td><td>${emp.employee_code }</td></tr>
+				<tr><td>이름 : </td><td>${emp.employee_name}</td><tr>
+				<tr><td>주민번호 : </td><td>${emp.employee_jumin }</td><tr>
+				<tr><td>핸드폰번호 :<td>${emp.employee_phone}</td><tr>
+				<tr><td>주소 : </td><td>${emp.employee_address}</td><tr>
+				<tr><td>입사날짜 : </td><td>${emp.employee_startdate}</td><tr>
+				<tr><td>퇴사여부 : </td><td>${emp.employee_endyn }</td></tr>
+				<tr>
+				<td>퇴사날짜 : </td>
+				<td>${emp.employee_enddate}</td>
+				<td><input type="button" value="퇴사처리" onclick="emp_update2()"></td>
+				</tr>
+				<tr><td>은행 : </td><td>${emp.employee_bank}</td><tr>
+				<tr><td>계좌번호 : <td>${emp.employee_bankaddress}</td><tr>
+				<tr><td>직급 : </td><td>${emp.employee_jobname}</td><tr>
 			</tr>
 	<tr>
-		<td colspan="4" align="right">
+		<td colspan="2" align="center">
 			<input type="button" value="직원정보수정" onclick="emp_update()"/>
-			<input type="button" value="직원퇴사" onclick="emp_delete()"/>
+<!-- 			<input type="button" value="직원퇴사" onclick="emp_delete()"/> -->
 			
 		</td>
 	</tr>

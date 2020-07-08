@@ -4,8 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
-		
+			
 	<!-- DB 연결 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
@@ -14,13 +13,22 @@
 		<property name="password" value="oracle"/>
 	</bean>
 	
-	<!-- 트랜잭션 설정 -->	
-	<bean id="" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<!-- SqlSessionFactory 객체 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" 
+			value="classpath:com/cafe/erp/**/mapper/*Mapper.xml"/>
 	</bean>
 	
+	<!-- SqlSessionTemplate Bean 설정 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
 	
-	
-		
+	<!-- 트랜잭션 설정 -->	
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
 		
 </beans>

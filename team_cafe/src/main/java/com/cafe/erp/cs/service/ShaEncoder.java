@@ -5,9 +5,10 @@ import javax.annotation.Resource;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service //service bean으로 등록
 public class ShaEncoder {
 	
+	// security-context.xml에 선언된 passwordEncoder bean 주입
 	@Resource(name="passwordEncoder")
 	ShaPasswordEncoder encoder;
 	

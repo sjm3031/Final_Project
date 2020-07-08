@@ -17,9 +17,12 @@
 		-> authentication-failure-url : 로그인 실패시 이동할 컨트롤러 주소
 		-> default-target-url : 로그인 성공시 호출할 주소
 -->
-		<security:form-login login-page="/user/login"
-			authentication-failure-url="/user/loginFailure" 
-			default-target-url="/" />
+		<security:form-login login-page="/customer/login"
+			login-processing-url="/customer/login_check" 
+			authentication-success-handler-ref=""
+			
+			
+			/>
 
 <!-- 
 	<session-management> - 세션 관리
@@ -39,11 +42,32 @@
 		</security:session-management>
 	</security:http>
 
+	<bean id="customerAuthenticationService" 
+		class="com.cafe.erp.cs.service.CustomerAuthenticationService">
+		
+		<constructor-arg name="sqlSession" ref="sqlSession"/>
+	</bean>
+
+	<bean id="customerDeniedHandler" 
+		class="com.cafe.erp.cs.service.CustomerDeniedHandler"/>
+
+	<bean id="customerLoginSuccessHandler"
+		class="com.cafe.erp.cs.service.CustomerLoginSuccessHandler"/>
+	
+	<bean id="customerLoginFailureHandler"
+		class="com.cafe.erp.cs.service.CustomerLoginFailureHandler"/>
+	
+	<bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+		
+		<constructor-arg name="strength" value="256"/>
+	</bean>
+
 	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="" authorities="" />
-			</security:user-service>
+		<security:authentication-provider user-service-ref="customerAuthenticationService">
+			<security:password-encoder ref="passwordEncoder">
+				<security:salt-source user-property="username"/>
+			</security:password-encoder>
 		</security:authentication-provider>
 	</security:authentication-manager>
 

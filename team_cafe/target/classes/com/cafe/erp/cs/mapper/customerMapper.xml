@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="customer">
+	<!-- 데이터 베이스 체크 후 수정 -->
+	<insert id="insertCustomer">
+		insert into users
+		values (
+			#{customer_id}, #{customer_pwd}, #{customer_name},
+			#{customer_phone}, #{customer_birth}, #{customer_gender},
+			1, #{authority}
+		)
+	</insert>
+	
+	<select id="selectCustomer" resultType="java.util.Map">
+		select customer_id as username, customer_pwd as password,
+			customer_name, customer_phone, customer_birth,
+			customer_gender, enabled, authority
+		from users
+		where customer_id=#{customer_id}
+	</select>
+</mapper>

@@ -18,8 +18,8 @@ KOSTA 200기 3팀 파이널 프로젝트
 1. CustomerDTO, CustomerDAO, CustomerDAOImpl 생성
 
 ### Service
-1. CustomerAuthenticationService 로그인 인증 구현 서비스
-2. CustomerDeniedHandler 접근 제한 핸들러
-3. CustomerLoginFailureHandler 로그인 실패 시 핸들링
-4. CustomerLoginSuccessHandler 로그인 성공 시 핸들링
-5. ShaEncoder Sha-256 방식의 암호화 클래스
+1. CustomerAuthenticationService - 로그인 인증 구현 서비스
+2. CustomerDeniedHandler - 접근 제한 핸들러
+3. CustomerLoginFailureHandler - 로그인 실패 시 핸들링
+4. CustomerLoginSuccessHandler - 로그인 성공 시 핸들링
+5. ShaEncoder - Sha-256 방식의 암호화 클래스

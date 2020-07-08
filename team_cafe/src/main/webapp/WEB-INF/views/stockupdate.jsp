@@ -13,41 +13,42 @@
 // 			document.insertstock.stock_code.focus();
 // 		}
 // 		else 
-		if(document.updatestock.stock_productname.value==""){
+		if(document.stockupdate.stock_productname.value==""){
 			alert("품명을 입력해주세요");
-			document.updatestock.stock_productname.focus();
+			document.stockupdate.stock_productname.focus();
 		}
-		else if(document.updatestock.stock_detailname.value==""){
+		else if(document.stockupdate.stock_detailname.value==""){
 			alert("상세명을 입력해주세요");
-			document.insertstock.stock_detailname.focus();
+			document.stockupdate.stock_detailname.focus();
 		}
-		else if(document.updatestock.stock_standard.value==""){
+		else if(document.stockupdate.stock_standard.value==""){
 			alert("규격을 입력해주세요");
-			document.updatestock.stock_standard.focus();
+			document.stockupdate.stock_standard.focus();
 		}
-		else if(document.updatestock.stock_price.value==""){
+		else if(document.stockupdate.stock_price.value==""){
 			alert("금액을 입력해주세요");
-			document.updatestock.stock_price.focus();
+			document.stockupdate.stock_price.focus();
 		}
-// 		else if(document.insertstock.stock_image.value==""){
-// 			alert("내용을 입력해주세요");
-// 			document.insertstock.stock_image.focus();
-// 		}
+		else if(document.stockupdate.delivery_number.value==""){
+			alert("내용을 입력해주세요");
+			document.stockupdate.delivery_number.focus();
+		}
 		else{
-			document.updatestock.submit(); //전송
+			document.stockupdate.submit(); //전송
 		}
 	}
 </script>
 </head>
 <body>
-<form name = "updatestock" action="stockupdate" method="post">
-<table width="600" cellpadding="3">
+<form name = "stockupdate" action="stockupdate" method="post">
+<table>
 	<tr>
-		<th width="220">코드</th>
-		<th width="270">품명</th>
-		<th width="100">상세명</th>
+		<th width="120">코드</th>
+		<th width="120">품명</th>
+		<th width="120">상세명</th>
 		<th width="120">규격</th>
 		<th width="120">금액</th>
+		<th width="120">사업자 번호</th>
 		<th width="120">이미지 등록</th>
 
 	</tr>	
@@ -64,6 +65,7 @@
 		<td><input type="text" id="stock_detailname" name="stock_detailname" value="${b.stock_detailname}"/></td>
 		<td><input type="text" id="stock_standard" name="stock_standard" value="${b.stock_standard}"/></td>
 		<td><input type="text" id="stock_price" name="stock_price" value="${b.stock_price}"/></td>
+		<td><input type="text" id="delivery_number" name="delivery_number" value="${b.delivery_number}"/></td>
 		<td><input type="file" id="stock_image" name="stock_image"/></td>
 	</tr>
 	
@@ -72,6 +74,7 @@
 		<td></td>
 		<td></td>
 		<td></td>	
+		<td></td>
 		<td></td>
 		<td></td>
 		<td>

@@ -8,27 +8,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table width="600" cellpadding="3">
+<table>
 	<tr>
 		<th width="50">원료코드</th>
-		<th width="270">품명</th>
-		<th width="500">상세명</th>
+		<th width="120">품명</th>
+		<th width="120">상세명</th>
 		<th width="120">규격</th>
-		<th width="500">금액</th>
-		<th width="300">이미지</th>
+		<th width="120">금액</th>
+		<th width="120">사업자 번호</th>
+		<th width="120">이미지</th>
 
 	</tr>	
 
 <c:forEach var="b" items="${list}">
 
 	<tr>
-		<td>${b.stock_code}</td>
-		<td>${b.stock_productname}</td>
-		<td>${b.stock_detailname}</td>
-		<td>${b.stock_standard}</td>
-		<td align="right">${b.stock_price}</td>
-<%-- 		<td align="right"><img alt="제품" src="./resources/img/${b.stock_image}" height="50" width="60"></td> --%>
-		<td align="right"><img alt="제품" src="./resources/img/${b.stock_image}" height="50" width="60"></td>
+		<td align="center">${b.stock_code}</td>
+		<td align="center">${b.stock_productname}</td>
+		<td align="center">${b.stock_detailname}</td>
+		<td align="center">${b.stock_standard}</td>
+		<td align="center">${b.stock_price}</td>
+		<td align="center">${b.delivery_number}</td>
+		<td align="center"><img alt="" src="./resources/img/${b.stock_image}" height="50" width="60"></td>
 		<td>
 		<input type="button" value="삭제" onclick="location.href='stockdelete?stock_code=${b.stock_code}&pg=${pg}'"/>
 		</td>

@@ -9,6 +9,7 @@
 </head>
 <body>
 <h3>발주</h3>
+<form action="">
 <table >
 	<tr>
 		<th width="100"></th>
@@ -83,5 +84,6 @@
 	</td>
 </tr>
 </table>
+</form>
 </body>
 </html>

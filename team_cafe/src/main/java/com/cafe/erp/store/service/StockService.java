@@ -3,6 +3,8 @@ package com.cafe.erp.store.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.cafe.erp.store.model.StockDTO;
 
 public interface StockService {
@@ -12,6 +14,5 @@ public interface StockService {
 	public int getStockCount();
 	public int updateStock(StockDTO dto); 
 	public int deleteStock(StockDTO dto);
-	void insertStock(StockDTO dto); 
-	
+	public void insertStock(StockDTO dto); 
 }

@@ -1,9 +1,12 @@
 package com.cafe.erp.store.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class StockDTO {
 	private int stock_code;
-	private String stock_productname, stock_detailname, stock_standard, stock_price, stock_image;
-
+	private String stock_productname, stock_detailname, stock_standard, stock_price;
+	private String stock_image;
+	
 	public int getStock_code() {
 		return stock_code;
 	}
@@ -40,4 +43,5 @@ public class StockDTO {
 	public void setStock_image(String stock_image) {
 		this.stock_image = stock_image;
 	}
+	
 }

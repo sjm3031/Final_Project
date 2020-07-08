@@ -13,19 +13,19 @@
 // 			document.insertstock.stock_code.focus();
 // 		}
 		if(document.insertstock.stock_productname.value==""){
-			alert("비밀번호을 입력해주세요");
+			alert("품명을 입력해주세요");
 			document.insertstock.stock_productname.focus();
 		}
 		else if(document.insertstock.stock_detailname.value==""){
-			alert("이메일을 입력해주세요");
+			alert("상세명을 입력해주세요");
 			document.insertstock.stock_detailname.focus();
 		}
 		else if(document.insertstock.stock_standard.value==""){
-			alert("제목을 입력해주세요");
+			alert("규격을 입력해주세요");
 			document.insertstock.stock_standard.focus();
 		}
 		else if(document.insertstock.stock_price.value==""){
-			alert("내용을 입력해주세요");
+			alert("금액을 입력해주세요");
 			document.insertstock.stock_price.focus();
 		}
 // 		else if(document.insertstock.stock_image.value==""){
@@ -41,7 +41,7 @@
 </script>
 </head>
 <body>
-<form name = "insertstock" action="insertstock.do" method="post">
+<form name = "insertstock" action="insertstock.do" method="post" enctype="multipart/form-data">
 <table width="600" cellpadding="3">
 	<tr>
 		<th width="270">품명</th>
@@ -59,7 +59,7 @@
 		<td><input type="text" id="stock_standard" name="stock_standard" maxlength="5" size="12"/></td>
 		<td><input type="text" id="stock_price" name="stock_price" maxlength="5" size="12"/></td>
 		<td>
-		<input type="file" id="stock_image" name="stock_image" />
+		<input type="file" id="stock_upimage" name="stock_upimage" />
 		</td>
 	</tr>
 	

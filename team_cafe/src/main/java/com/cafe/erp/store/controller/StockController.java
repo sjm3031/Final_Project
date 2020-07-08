@@ -7,14 +7,18 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe.erp.store.model.StockDTO;
+import com.cafe.erp.store.service.FileUploadService;
 import com.cafe.erp.store.service.StockService;
 
 @Controller
@@ -23,6 +27,9 @@ public class StockController {
 	@Resource
 	private StockService stockService;
 
+	@Resource
+	private FileUploadService fileUploadService;
+	
 	private StockDTO dto;
 
 	@RequestMapping(value = "/insertstock.do", method = RequestMethod.GET)
@@ -31,13 +38,17 @@ public class StockController {
 	}
 
 	@RequestMapping(value = "/insertstock.do", method = RequestMethod.POST)
-	public String insertstock(StockDTO dto) {
-//		dto.setStock_code(Integer.parseInt(stock_code));
+	public String insertstock(StockDTO dto, @RequestParam("stock_upimage") MultipartFile stock_upimage ) {
+		String stock_image = stock_upimage.getOriginalFilename();
+		System.out.println(stock_image);
+		dto.setStock_image(stock_image);
 		System.out.println("insert controller 진입");
 		stockService.insertStock(dto);
+		fileUploadService.restore(stock_upimage);
 		System.out.println("insert 완료");
 		return "redirect:stocklist.do";
 	}
+	
 
 	@RequestMapping("/stocklist.do")
 	public String showlist(HttpServletRequest req) {

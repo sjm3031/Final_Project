@@ -10,7 +10,7 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-		<property name="username" value="c##yoon"/>
+		<property name="username" value="c##sjm"/>
 		<property name="password" value="oracle"/>
 	</bean>
 	
@@ -19,6 +19,16 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
+		 <!-- SqlSessionFactoryBean 설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->
+		<property name="mapperLocations" value="classpath:com/cafe/erp/store/mapper/*.xml" />
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
 	
 	
 		

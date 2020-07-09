@@ -13,11 +13,9 @@ KOSTA 200기 3팀 파이널 프로젝트
 -customerDB
 
 create table CAFE_CUSTOMER(                    
-    customer_code number PRIMARY key,     
-    customer_name varchar2(30),      
-    customer_phone varchar2(50), 
-    customer_birth varchar2(30),   
-    customer_gender varchar2(10)
+    customer_phone varchar(30) PRIMARY key,     
+    customer_name varchar2(40),      
+    customer_stamp number
 );  
 
 

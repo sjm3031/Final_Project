@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,11 +31,15 @@ function stock_insert(){
 		alert("금액을 입력해주세요");
 		document.stockinsert.stock_price.focus();
 	}
-	else if(document.stockinsert.delivery_number.value==""){
+	else if(document.stockinsert.account_number.value==""){
 		alert("내용을 입력해주세요");
-		document.stockinsert.delivery_number.focus();
+		document.stockinsert.account_number.focus();
 	}
 	else{
+// 		var acode = document.getElementById("account_number");
+// 		var array = acode.value.split("/");
+// 		alert(array[0]);
+// 		document.getElementById("split").setAttribute("value", array[0]);
 		document.stockinsert.submit(); //전송
 	}
 }
@@ -49,7 +54,7 @@ function stock_insert(){
 		<th width="120">상세명</th>
 		<th width="120">규격</th>
 		<th width="120">금액</th>
-		<th width="120">사업자 번호</th>
+		<th width="150">사업자 번호/회사명</th>
 		<th width="120">이미지 등록</th>
 		
 
@@ -61,7 +66,14 @@ function stock_insert(){
 		<td><input type="text" id="stock_detailname" name="stock_detailname" maxlength="10" size="12"/></td>
 		<td><input type="text" id="stock_standard" name="stock_standard" maxlength="10" size="12"/></td>
 		<td><input type="text" id="stock_price" name="stock_price" maxlength="10" size="12"/></td>
-		<td><input type="text" id="delivery_number" name="delivery_number" maxlength="10" size="12" /></td>
+		<td>
+		<select name="account_number" id="account_number">
+			<option>선택하세요</option>
+			<c:forEach var="get" items="${account_list}">
+			<option value="${get.account_number}">${get.account_name}</option>
+			</c:forEach>
+		</select>
+		</td>
 		<td>
 		<input type="file" id="stock_upimage" name="stock_upimage" />
 		</td>

@@ -9,5 +9,6 @@
 <body>
 	<a href="stocklist">품목리스트</a>
 	<a href="stockorder">발주하기</a>
+	<a href="accountinsertform">거래처 등록</a>
 </body>
 </html>

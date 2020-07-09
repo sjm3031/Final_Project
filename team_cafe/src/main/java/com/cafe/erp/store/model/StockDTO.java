@@ -3,7 +3,7 @@ package com.cafe.erp.store.model;
 import org.springframework.web.multipart.MultipartFile;
 
 public class StockDTO {
-	private int stock_code, delivery_number ;
+	private int stock_code, account_number ;
 	private String stock_productname, stock_detailname, stock_standard, stock_price;
 	private String stock_image;
 	
@@ -43,11 +43,11 @@ public class StockDTO {
 	public void setStock_image(String stock_image) {
 		this.stock_image = stock_image;
 	}
-	public int getDelivery_number() {
-		return delivery_number;
+	public int getAccount_number() {
+		return account_number;
 	}
-	public void setDelivery_number(int delivery_number) {
-		this.delivery_number = delivery_number;
+	public void setAccount_number(int delivery_number) {
+		this.account_number = delivery_number;
 	}
 	
 }

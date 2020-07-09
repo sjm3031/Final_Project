@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cafe.erp.store.model.AccountDTO;
 import com.cafe.erp.store.model.StockDTO;
 import com.cafe.erp.store.service.StockService;
 
@@ -29,13 +30,18 @@ public class StockController {
 	private StockDTO dto;
 
 	@RequestMapping(value = "/stockinsert", method = RequestMethod.GET)
-	public String insertstockform(StockDTO dto) {
+	public String insertstockform(StockDTO dto, HttpServletRequest req) {
+		HashMap map = new HashMap();
+		List<AccountDTO> account_list = stockService.getAccountList(map);
+		req.setAttribute("account_list", account_list);
+		
 		return "stockinsert";
 	}
 
 	@RequestMapping(value = "/stockinsert", method = RequestMethod.POST)
 	public String insertstock(StockDTO dto, @RequestParam("stock_upimage") MultipartFile stock_upimage, HttpServletRequest request ) throws Exception {
 		String stock_image = stock_upimage.getOriginalFilename();
+		System.out.println(dto.getAccount_number());
 		System.out.println(stock_image);
 		dto.setStock_image(stock_image);
 		
@@ -111,7 +117,7 @@ public class StockController {
 	}
 
 	@RequestMapping("/stockdelete")
-	public String detailstock(StockDTO dto, int pg) {
+	public String detelestock(StockDTO dto, int pg) {
 		System.out.println("delete controller 진입");
 		System.out.println("code : " + dto.getStock_code());
 		int result = stockService.deleteStock(dto);
@@ -125,10 +131,12 @@ public class StockController {
 
 	@RequestMapping("/stockupdateform")
 	public String updatestockform(int stock_code, int pg, Model model) {
-
+		HashMap map = new HashMap();
+		List<AccountDTO> account_list = stockService.getAccountList(map);
 		StockDTO dto = stockService.getStock(stock_code);
 		System.out.println("code : " + stock_code);
 		System.out.println("dto : " + dto);
+		model.addAttribute("account_list", account_list);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
 		return "stockupdate";

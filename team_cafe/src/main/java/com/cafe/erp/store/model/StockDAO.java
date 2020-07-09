@@ -13,4 +13,5 @@ public interface StockDAO {
 	public int getStockCount();
 	public int updateStock(StockDTO dto); 
 	public int deleteStock(StockDTO dto); 
+	public List<AccountDTO> getAccountList(HashMap map);
 }

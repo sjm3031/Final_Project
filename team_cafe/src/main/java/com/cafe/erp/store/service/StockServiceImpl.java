@@ -1,16 +1,13 @@
 package com.cafe.erp.store.service;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.cafe.erp.store.model.AccountDTO;
 import com.cafe.erp.store.model.StockDAO;
 import com.cafe.erp.store.model.StockDTO;
 
@@ -63,6 +60,14 @@ public class StockServiceImpl implements StockService {
 	public int getStockCount() {
 		StockDAO stockDAO = sqlSession.getMapper(StockDAO.class);
 		return stockDAO.getStockCount();
+	}
+
+
+	@Override
+	public List<AccountDTO> getAccountList(HashMap map) {
+		StockDAO stockDAO = sqlSession.getMapper(StockDAO.class);
+		
+		return stockDAO.getAccountList(map);
 	}
 
 }

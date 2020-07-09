@@ -41,11 +41,11 @@ public class empTnaServiceImpl implements empTnaService {
 	}
 
 	@Override
-	public empTnaDTO getEmpTna(int num) {
+	public empTnaDTO getEmpTna(int enptna_empcode) {
 		
 		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
 		
-		return dao.getEmpTna(num);
+		return dao.getEmpTna(enptna_empcode);
 	}
 
 	@Override

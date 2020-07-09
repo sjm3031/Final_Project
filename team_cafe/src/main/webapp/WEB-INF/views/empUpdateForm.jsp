@@ -90,7 +90,7 @@
 		
 		<td colspan="2">
 			<input type="button" value="수정" onclick="emp_update()"/>
-			<input type="reset" value="취소" />
+			<input type="reset" value="취소" onclick="location.href='empList.cafe'" />
 		</td>
 	</tr>
 	

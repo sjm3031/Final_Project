@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,20 +67,22 @@ th {
 			<tr>
 				<th>직급</th>
 				<td>
-				<select name="employee_jobname">
-						<option>선택하세요</option>
-						<option  value="아르바이트">아르바이트</option>
-						<option  value="매니저">매니저</option>
-						
-				</select>
-<!-- 				<input type="text" name="employee_jobname" > -->
+				
+				<select name="employee_jobname"> -->
+						<option>선택하세요</option> -->
+					<c:forEach var="emp" items="${list}">
+						<option  value="${emp.job_name}">${emp.job_name}</option>
+					</c:forEach>
+ 				</select>
+				
 				
 				</td>
 			</tr>
 			<tr>
 
-				<td colspan="2"><input type="button" value="등록하기"
-					onclick="emp_insert()" /> <input type="reset" value="취소" /></td>
+				<td colspan="2">
+				<input type="button" value="등록하기" onclick="emp_insert()" /> 
+				<input type="reset" value="취소" onclick="location.href='empList.cafe'"/></td>
 			</tr>
 
 

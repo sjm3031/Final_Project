@@ -55,7 +55,7 @@ function emp_update2(){
 		<td colspan="2" align="center">
 			<input type="button" value="직원정보수정" onclick="emp_update()"/>
 <!-- 			<input type="button" value="직원퇴사" onclick="emp_delete()"/> -->
-			
+			<input type="reset" value="취소" onclick="location.href='empList.cafe'"/>
 		</td>
 	</tr>
 	

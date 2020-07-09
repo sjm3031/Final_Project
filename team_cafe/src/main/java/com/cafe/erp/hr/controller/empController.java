@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe.erp.hr.model.empDTO;
+import com.cafe.erp.hr.model.jobDTO;
 import com.cafe.erp.hr.service.empService;
+import com.cafe.erp.hr.service.jobService;
 
 
 
@@ -20,14 +23,20 @@ public class empController {
 
 	@Resource
 	private empService empService;
-
-	@RequestMapping("/empInsertForm.cafe")
-	public String empInsertForm() {
-
+	@Resource
+	private jobService jobService;
+	
+	@RequestMapping(value="/empInsert.cafe",method=RequestMethod.GET)
+	public String empInsertForm(Model model) {
+		
+		List<jobDTO> list = jobService.getJobList();
+		
+		model.addAttribute("list", list);
+		
 		return "empInsertForm";
 	}
 
-	@RequestMapping("/empInsert.cafe")
+	@RequestMapping(value="/empInsert.cafe",method=RequestMethod.POST)
 	public String empInsert(empDTO dto) {
 		empService.insertEmp(dto);
 			

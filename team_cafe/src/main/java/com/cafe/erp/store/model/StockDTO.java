@@ -6,6 +6,7 @@ public class StockDTO {
 	private int stock_code, account_number ;
 	private String stock_productname, stock_detailname, stock_standard, stock_price;
 	private String stock_image;
+	private String account_name;
 	
 	public int getStock_code() {
 		return stock_code;
@@ -48,6 +49,12 @@ public class StockDTO {
 	}
 	public void setAccount_number(int delivery_number) {
 		this.account_number = delivery_number;
+	}
+	public String getAccount_name() {
+		return account_name;
+	}
+	public void setAccount_name(String account_name) {
+		this.account_name = account_name;
 	}
 	
 }

@@ -31,9 +31,9 @@ function stock_insert(){
 		alert("금액을 입력해주세요");
 		document.stockinsert.stock_price.focus();
 	}
-	else if(document.stockinsert.account_number.value==""){
-		alert("내용을 입력해주세요");
-		document.stockinsert.account_number.focus();
+	else if(document.stockinsert.account_number.value=="선택하세요"){
+		alert("회사명을 선택해주세요");
+		
 	}
 	else{
 // 		var acode = document.getElementById("account_number");
@@ -54,7 +54,7 @@ function stock_insert(){
 		<th width="120">상세명</th>
 		<th width="120">규격</th>
 		<th width="120">금액</th>
-		<th width="150">사업자 번호/회사명</th>
+		<th width="150">회사명</th>
 		<th width="120">이미지 등록</th>
 		
 

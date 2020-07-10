@@ -28,11 +28,7 @@
 		<td align="center">${b.stock_detailname}</td>
 		<td align="center">${b.stock_standard}</td>
 		<td align="center">${b.stock_price}</td>
-		<td align="center">
-		<c:if test="">
-		${b.account_number}
-		</c:if>
-		</td>
+		<td align="center">${b.account_name}</td>
 		<td align="center"><img alt="" src="./resources/img/${b.stock_image}" height="50" width="60"></td>
 		<td>
 		<input type="button" value="삭제" onclick="location.href='stockdelete?stock_code=${b.stock_code}&pg=${pg}'"/>

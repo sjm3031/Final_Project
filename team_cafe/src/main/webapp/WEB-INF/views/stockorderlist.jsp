@@ -8,40 +8,33 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3>발주한 목록</h3>
 <table>
 	<tr>
-		<th width="50">원료코드</th>
+		<th width="50">번호</th>
 		<th width="120">품명</th>
 		<th width="120">상세명</th>
-		<th width="120">규격</th>
-		<th width="120">금액(원)</th>
-		<th width="120">회사명</th>
-		<th width="120">이미지</th>
+		<th width="120">금액</th>
+		<th width="120">수량</th>
 
 	</tr>	
 
-<c:forEach var="b" items="${list}">
+<c:forEach var="c" items="${order_list}">
 
 	<tr>
-		<td align="center">${b.stock_code}</td>
-		<td align="center">${b.stock_productname}</td>
-		<td align="center">${b.stock_detailname}</td>
-		<td align="center">${b.stock_standard}</td>
-		<td align="center">${b.stock_price}</td>
-		<td align="center">${b.account_name}</td>
-		<td align="center"><img alt="" src="./resources/img/${b.stock_image}" height="50" width="60"></td>
-		<td>
-		<input type="button" value="삭제" onclick="location.href='stockdelete?stock_code=${b.stock_code}&pg=${pg}'"/>
-		</td>
-		<td>
-		<input type="button" value="수정" onclick="location.href='stockupdateform?stock_code=${b.stock_code}&pg=${pg}'"/>
-		</td>
+		<td align="center">${c.cart_number}</td>
+		<td align="center">${c.cart_stock_productname}</td>
+		<td align="center">${c.cart_stock_detailname}</td>
+		<td align="center">${c.cart_stock_price}</td>
+		<td align="center">${c.cart_stock_quantity}</td>
+		<td><input type="button" value="수정" onclick=""/></td>
+		<td><input type="button" value="삭제" onclick=""/></td>
 	</tr>
 </c:forEach>
 	
 	<tr>
 		<td>
-		<input type="button" value="제품등록" onclick="location.href='stockinsert'"/>
+		<input type="button" value="발주신청" onclick="location.href='accountinsert'"/>
 		</td>
 	</tr>
 </table>
@@ -51,8 +44,8 @@
 	<td align="center">
 		<!-- 처음 이전 링크 -->
 		<c:if test="${pg>block}">  <!-- 5>10 : false / 15>10 : true -->
-			[<a href="stocklist?pg=1">◀◀</a>]
-			[<a href="stocklist?pg=${fromPage-1}">◀</a>]		
+			[<a href="accountlist?pg=1">◀◀</a>]
+			[<a href="accountlist?pg=${fromPage-1}">◀</a>]		
 		</c:if>
 		<c:if test="${pg<=block}"> <!-- 5<=10 :true / 15<=10:false -->
 			[<span style="color:gray">◀◀</span>]	
@@ -63,14 +56,14 @@
 		<c:forEach begin="${fromPage}" end="${toPage}" var="i">
 			<c:if test="${i==pg}">[${i}]</c:if>
 			<c:if test="${i!=pg}">
-				[<a href="stocklist?pg=${i}">${i}</a>]
+				[<a href="accountlist?pg=${i}">${i}</a>]
 			</c:if>
 		</c:forEach>
 		
 		<!-- 다음, 이후 -->
 		<c:if test="${toPage<allPage}"> <!-- 20<21 : true -->
-				[<a href="stocklist?pg=${toPage+1}">▶</a>]
-				[<a href="stocklist?pg=${allPage}">▶▶</a>]
+				[<a href="accountlist?pg=${toPage+1}">▶</a>]
+				[<a href="accountlist?pg=${allPage}">▶▶</a>]
 		
 		</c:if>	
 		<c:if test="${toPage>=allPage}"> <!-- 21>=21 :true -->

@@ -44,7 +44,7 @@ function account_insert(){
 <body>
 <h3>거래처 등록</h3>
 
-<form name = "accountinsert" action="accountinsert" method="post" enctype="multipart/form-data">
+<form name = "accountinsert" action="accountinsert" method="post">
 <table>
 	<tr>
 		<th width="120">사업자 번호</th>

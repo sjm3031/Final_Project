@@ -15,9 +15,9 @@ function stock_insert(){
 //			document.insertstock.stock_code.focus();
 //		}
 //		else 
-	if(document.stockinsert.stock_productname.value==""){
-		alert("품명을 입력해주세요");
-		document.stockinsert.stock_productname.focus();
+	if(document.stockinsert.stock_productname.value=="선택하세요"){
+		alert("품명을 선택해주세요");
+		
 	}
 	else if(document.stockinsert.stock_detailname.value==""){
 		alert("상세명을 입력해주세요");
@@ -53,7 +53,7 @@ function stock_insert(){
 		<th width="120">품명</th>
 		<th width="120">상세명</th>
 		<th width="120">규격</th>
-		<th width="120">금액</th>
+		<th width="120">금액(원)</th>
 		<th width="150">회사명</th>
 		<th width="120">이미지 등록</th>
 		
@@ -62,7 +62,16 @@ function stock_insert(){
 
 
 	<tr>
-		<td><input type="text" id="stock_productname" name="stock_productname" maxlength="10" size="12"/></td>
+<!-- 		<td><input type="text" id="stock_productname" name="stock_productname" maxlength="10" size="12"/></td> -->
+		<td>
+			<select name="stock_productname" id="stock_productname">
+				<option>선택하세요</option>
+				<option>음료</option>
+				<option>원두</option>
+				<option>재과</option>
+				<option>기타</option>
+			</select>
+		</td>
 		<td><input type="text" id="stock_detailname" name="stock_detailname" maxlength="10" size="12"/></td>
 		<td><input type="text" id="stock_standard" name="stock_standard" maxlength="10" size="12"/></td>
 		<td><input type="text" id="stock_price" name="stock_price" maxlength="10" size="12"/></td>

@@ -30,7 +30,7 @@ function stock_update(){
 		alert("금액을 입력해주세요");
 		document.stockupdate.stock_price.focus();
 	}
-	else if(document.stockinsert.account_number.value=="선택하세요"){
+	else if(document.stockupdate.account_number.value=="선택하세요"){
 		alert("회사명을 선택해주세요");
 	}
 	else{
@@ -47,7 +47,7 @@ function stock_update(){
 		<th width="100">품명</th>
 		<th width="100">상세명</th>
 		<th width="100">규격</th>
-		<th width="100">금액</th>
+		<th width="100">금액(원)</th>
 		<th width="100">회사명</th>
 		<th width="100">이미지 등록</th>
 

@@ -9,7 +9,6 @@
 </head>
 <body>
 <h3>발주</h3>
-<form action="">
 <table >
 	<tr>
 		<th width="100"></th>
@@ -24,26 +23,45 @@
 
 <c:forEach var="b" items="${list}">
 
+		<form action="ordercartinsert" name="ordercartinsert" method="post">
 	<tr>
-		<td><input type="hidden" name="stock_code" value="${b.stock_code}"></td>
-		<td>${b.stock_productname}</td>
-		<td>${b.stock_detailname}</td>
-		<td>${b.stock_standard}</td>
-		<td align="right">${b.stock_price}</td>
-<%-- 		<td align="right"><img alt="제품" src="./resources/img/${b.stock_image}" height="50" width="60"></td> --%>
-		<td align="center"><img alt="제품" src="./resources/img/${b.stock_image}" height="50" width="60"></td>
+		<td><%-- <input type="hidden" name="stock_code" value="${b.stock_code}"> --%></td>
+		
 		<td>
-		<input type="text" value="0" size="5"/>
+		${b.stock_productname}
+		<input type="hidden" name="cart_stock_productname" id="cart_stock_productname" value="${b.stock_productname}"/>
 		</td>
+		
 		<td>
-		<input type="button" value="품목담기"/>
+		${b.stock_detailname}
+		<input type="hidden" name="cart_stock_detailname" id="cart_stock_detailname" value="${b.stock_detailname}"/>
+		</td>
+		
+		<td>${b.stock_standard}</td>
+		
+		<td align="right">
+		${b.stock_price}
+		<input type="hidden" name="cart_stock_price" id="cart_stock_price" value="${b.stock_price}"/>
+		</td>
+		
+<%-- 	<td align="right"><img alt="제품" src="./resources/img/${b.stock_image}" height="50" width="60"></td> --%>
+		<td align="center"><img alt="제품" src="./resources/img/${b.stock_image}" height="50" width="60"></td>
+		
+		<td>
+		<input type="hidden" name="stock_code" value="${b.stock_code}">
+		<input type="text" value="0" size="5" id="cart_stock_quantity" name="cart_stock_quantity"/>
+		</td>
+		
+		<td>
+		<input type="submit" value="품목담기"/>
 		</td>
 	</tr>
+		</form>
 </c:forEach>
 	
 	<tr>
 		<td>
-		<input type="button" value="발주확인" />
+		<input type="button" value="발주목록보기" onclick="location.href='stockorderlist'"/>
 		</td>
 	</tr>
 </table>
@@ -84,6 +102,5 @@
 	</td>
 </tr>
 </table>
-</form>
 </body>
 </html>

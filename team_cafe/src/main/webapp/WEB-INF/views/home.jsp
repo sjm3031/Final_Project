@@ -1,17 +1,59 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<%@ include file="include/header.jsp" %>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-
-정상작동!
-
+	<h2>Welcome!</h2>
+	<h2>${msg}</h2>
+	
+	<table>
+		<tr>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>전화번호</th>
+			<th>생일</th>
+			<th>성별</th>
+		</tr>
+		<tr>
+			<td>${dto.customer_id }</td>
+			<td>${dto.customer_name }</td>
+			<td>${dto.customer_phone }</td>
+			<td>${dto.customer_birth }</td>
+			<td>${dto.customer_gender }</td>
+		</tr>
+	</table>
+	
+	<a href="${path}/admin/">관리자 페이지</a><br>
+	<a href="${path}/cs/logout">로그아웃</a>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

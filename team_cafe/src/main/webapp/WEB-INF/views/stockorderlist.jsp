@@ -9,6 +9,7 @@
 </head>
 <body>
 <h3>발주한 목록</h3>
+<form action="orderinsert" method="post">
 <table>
 	<tr>
 		<th width="50">번호</th>
@@ -22,11 +23,28 @@
 <c:forEach var="c" items="${order_list}">
 
 	<tr>
-		<td align="center">${c.cart_number}</td>
-		<td align="center">${c.cart_stock_productname}</td>
-		<td align="center">${c.cart_stock_detailname}</td>
-		<td align="center">${c.cart_stock_price}</td>
-		<td align="center">${c.cart_stock_quantity}</td>
+		<td align="center">
+		${c.cart_number}(${c.stock_code})
+		<input type="hidden" name="cart_number" id="cart_number" value="${c.cart_number}"/>
+		<input type="hidden" name="stock_code" id="stock_code" value="${c.stock_code}"/>
+		</td>
+		<td align="center">
+		${c.cart_stock_productname}
+		<input type="hidden" name="cart_stock_productname" id="cart_stock_productname" value="${c.cart_stock_productname}"/>
+		</td>
+		<td align="center">
+		<input type="hidden" name="cart_stock_detailname" id="cart_stock_detailname" value="${c.cart_stock_detailname}"/>
+		${c.cart_stock_detailname}
+		</td>
+		<td align="center">
+		<input type="hidden" name="cart_stock_price" id="cart_stock_price" value="${c.cart_stock_price}"/>
+		${c.cart_stock_price}
+		</td>
+		<td align="center">
+		<input type="hidden" name="productOrderList_count" id="productOrderList_count" value="${c.cart_stock_quantity}"/>
+		<input type="hidden" name="cart_stock_quantity" id="cart_stock_quantity" value="${c.cart_stock_quantity}"/>
+		${c.cart_stock_quantity}
+		</td>
 		<td>
 		<input type="button" value="수정" onclick="location.href='stockorderupdateform?cart_number=${c.cart_number}&pg=${pg}'"/>
 		<input type="button" value="삭제" onclick="location.href='stockorderdelete?cart_number=${c.cart_number}&pg=${pg}'"/>
@@ -39,20 +57,24 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td>총 금액 : ${cart_total}</td>
 		<td>
-		<input type="button" value="발주신청" onclick="location.href='orderinsert'"/>
+<%-- 		<input type="text" name="prodectOrder_total" id="prodectOrder_total" value="총 금액 : ${cart_total}" disabled="disabled"/> --%>
+		총 금액 : ${cart_total}
+		<input type="hidden" name="prodectOrder_total" id="prodectOrder_total" value="${cart_total}"/>
+		</td>
+		<td>
+		<input type="submit" value="발주신청" "/>
 		</td>
 	</tr>
 </table>
-
+</form>
 <table width="600">
 <tr>
 	<td align="center">
 		<!-- 처음 이전 링크 -->
 		<c:if test="${pg>block}">  <!-- 5>10 : false / 15>10 : true -->
-			[<a href="accountlist?pg=1">◀◀</a>]
-			[<a href="accountlist?pg=${fromPage-1}">◀</a>]		
+			[<a href="stockorderlist?pg=1">◀◀</a>]
+			[<a href="stockorderlist?pg=${fromPage-1}">◀</a>]		
 		</c:if>
 		<c:if test="${pg<=block}"> <!-- 5<=10 :true / 15<=10:false -->
 			[<span style="color:gray">◀◀</span>]	
@@ -63,14 +85,14 @@
 		<c:forEach begin="${fromPage}" end="${toPage}" var="i">
 			<c:if test="${i==pg}">[${i}]</c:if>
 			<c:if test="${i!=pg}">
-				[<a href="accountlist?pg=${i}">${i}</a>]
+				[<a href="stockorderlist?pg=${i}">${i}</a>]
 			</c:if>
 		</c:forEach>
 		
 		<!-- 다음, 이후 -->
 		<c:if test="${toPage<allPage}"> <!-- 20<21 : true -->
-				[<a href="accountlist?pg=${toPage+1}">▶</a>]
-				[<a href="accountlist?pg=${allPage}">▶▶</a>]
+				[<a href="stockorderlist?pg=${toPage+1}">▶</a>]
+				[<a href="stockorderlist?pg=${allPage}">▶▶</a>]
 		
 		</c:if>	
 		<c:if test="${toPage>=allPage}"> <!-- 21>=21 :true -->

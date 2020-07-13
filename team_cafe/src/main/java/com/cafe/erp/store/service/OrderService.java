@@ -16,6 +16,9 @@ public interface OrderService {
 	public int updateordercart(OrderDTO dto);
 	public int deleteordercart(OrderDTO dto);
 	public OrderDTO getOrder(int cart_number);
-	public void orderinsert(OrderDTO dto);
 	public int getcarttotal();
+	public int deleteorderlistcart();
+	public int getstockcode(int stock_code);
+	public void updatecount(OrderDTO dto);
+	
 }

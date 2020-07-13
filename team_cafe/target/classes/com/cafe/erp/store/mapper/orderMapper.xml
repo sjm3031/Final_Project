@@ -62,4 +62,20 @@
 	<select id="getcarttotal" resultType="integer">
 		select nvl(sum (cart_stock_price*cart_stock_quantity), 0) cart_total from Cafe_order_cart
 	</select>
+	
+	<!-- 임시 발주 목록 발주 후 삭제 -->
+	<delete id="deleteorderlistcart">
+		delete from cafe_order_cart
+	</delete>
+	
+	<!-- 임시 발주 목록에 기존 품목이 있는지 확인 -->
+	<select id="getstockcode" resultType="integer">
+		select count(*) from cafe_order_cart where stock_code = #{stock_code}
+	</select>
+	
+	<!-- 기존의 수량 변경 -->
+	<update id="updatecount" parameterType="com.cafe.erp.store.model.OrderDTO">
+		update cafe_order_cart set cart_stock_quantity = (cart_stock_quantity + #{cart_stock_quantity})
+		where stock_code = #{stock_code}
+	</update>
 </mapper>

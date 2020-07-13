@@ -78,12 +78,6 @@ public class OrderServiceImpl implements OrderService {
 		return dao.getOrder(cart_number);
 	}
 
-	@Override
-	public void orderinsert(OrderDTO dto) {
-		System.out.println("서비스단 orderinsert 진입");
-		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
-		
-	}
 
 	@Override
 	public int getcarttotal() {
@@ -91,6 +85,28 @@ public class OrderServiceImpl implements OrderService {
 		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
 		
 		return dao.getcarttotal();
+	}
+
+	@Override
+	public int deleteorderlistcart() {
+		System.out.println("담는 테이블 삭제하는곳 진입");
+		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
+		
+		return dao.deleteorderlistcart();
+	}
+
+	@Override
+	public int getstockcode(int stock_code) {
+		System.out.println("기존에 있는지 확인");
+		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
+		return dao.getstockcode(stock_code);
+	}
+
+	@Override
+	public void updatecount(OrderDTO dto) {
+		System.out.println("수량 변경");
+		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
+		dao.updatecount(dto);
 	}
 
 }

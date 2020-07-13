@@ -51,7 +51,7 @@
 		<input type="hidden" name="stock_code" value="${b.stock_code}">
 		<input type="text" value="0" size="5" id="cart_stock_quantity" name="cart_stock_quantity"/>
 		</td>
-		
+		<td>${b.stock_code}</td>
 		<td>
 		<input type="submit" value="품목담기"/>
 		</td>

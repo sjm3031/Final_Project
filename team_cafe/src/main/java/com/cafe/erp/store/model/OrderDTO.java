@@ -1,8 +1,12 @@
 package com.cafe.erp.store.model;
 
+import java.util.Date;
+
 public class OrderDTO {
-	private int cart_number, cart_stock_quantity, cart_stock_price;
+	private int cart_number, cart_stock_quantity, cart_stock_price, stock_code;
+	private int productOrder_code, prodectOrder_total, cart_total;
 	private String cart_stock_productname, cart_stock_detailname;
+	private Date productOrder_date;
 
 	
 	public int getCart_number() {
@@ -35,4 +39,35 @@ public class OrderDTO {
 	public void setCart_stock_detailname(String cart_stock_detailname) {
 		this.cart_stock_detailname = cart_stock_detailname;
 	}
+	public int getStock_code() {
+		return stock_code;
+	}
+	public void setStock_code(int stock_code) {
+		this.stock_code = stock_code;
+	}
+	public int getProductOrder_code() {
+		return productOrder_code;
+	}
+	public void setProductOrder_code(int productOrder_code) {
+		this.productOrder_code = productOrder_code;
+	}
+	public int getProdectOrder_total() {
+		return prodectOrder_total;
+	}
+	public void setProdectOrder_total(int prodectOrder_total) {
+		this.prodectOrder_total = prodectOrder_total;
+	}
+	public Date getProductOrder_date() {
+		return productOrder_date;
+	}
+	public void setProductOrder_date(Date productOrder_date) {
+		this.productOrder_date = productOrder_date;
+	}
+	public int getCart_total() {
+		return cart_total;
+	}
+	public void setCart_total(int cart_total) {
+		this.cart_total = cart_total;
+	}
 }
+

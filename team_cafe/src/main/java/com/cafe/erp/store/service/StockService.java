@@ -15,4 +15,5 @@ public interface StockService {
 	public int deleteStock(StockDTO dto);
 	public void insertStock(StockDTO dto); 
 	public List<AccountDTO> getAccountList(HashMap map);
+	
 }

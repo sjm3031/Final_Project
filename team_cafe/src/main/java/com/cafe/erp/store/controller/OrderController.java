@@ -7,10 +7,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cafe.erp.store.model.AccountDTO;
 import com.cafe.erp.store.model.OrderDTO;
 import com.cafe.erp.store.model.StockDTO;
 import com.cafe.erp.store.service.OrderService;
@@ -21,6 +21,7 @@ public class OrderController {
 	@Resource
 	private OrderService orderService;
 	
+	//발주 신청목록보기
 	@RequestMapping("/stockorder")
 	public String order(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
@@ -67,6 +68,7 @@ public class OrderController {
 		return "stockorder";
 	}
 	
+	//임시 발주 테이블에 담기
 	@RequestMapping("/ordercartinsert")
 	public String ordercartinsert(OrderDTO dto) {
 		System.out.println("insert controller 진입");
@@ -76,6 +78,7 @@ public class OrderController {
 		return "redirect:stockorder";
 	}
 	
+	//임시 발주 테이블 목록
 	@RequestMapping("/stockorderlist")
 	public String showordercartlist(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
@@ -109,8 +112,9 @@ public class OrderController {
 		HashMap map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);
-
 		List<OrderDTO> order_list = orderService.getStockOrderList(map);
+		int cart_total = orderService.getcarttotal();
+		req.setAttribute("cart_total", cart_total);
 		req.setAttribute("order_list", order_list);
 		req.setAttribute("pg", pg);
 		req.setAttribute("allPage", allPage);
@@ -121,4 +125,43 @@ public class OrderController {
 		return "stockorderlist";
 	}
 	
+	//임시 발주 테이블 목록 수정페이지
+	@RequestMapping("/stockorderupdateform")
+	public String stockorderupdateform(int cart_number, int pg, Model model) {
+		System.out.println("stockorderupdateform 진입");
+		System.out.println("cart_number" + cart_number);
+		OrderDTO dto = orderService.getOrder(cart_number);
+		
+		model.addAttribute("c", dto);
+		model.addAttribute("pg", pg);
+		System.out.println("수정하기               "+dto.getCart_stock_quantity());
+		return "stockorderlistupdate";
+	}
+	
+	//임시 발주 테이블 수정
+	@RequestMapping("/stockorderlistupdate")
+	public String stockorderupdate (OrderDTO dto, int pg) {
+		System.out.println("stockorderupdate 진입");
+//		System.out.println("수정한 수량 = " + dto.getCart_stock_quantity());
+		orderService.updateordercart(dto);
+		
+		return "redirect:stockorderlist?pg=" + pg;
+	}
+	
+	//임시 발주 테이블 목록 삭제
+	@RequestMapping("/stockorderdelete")
+	public String stockorderdelete(OrderDTO dto, int pg) {
+		System.out.println("stockorderdelete 진입");
+		orderService.deleteordercart(dto);
+		System.out.println("stockorderdelete 완료");
+		return "redirect:stockorderlist?pg=" + pg;
+	}
+	
+	@RequestMapping("/orderinsert")
+	public String orderinsert(OrderDTO dto, int pg) {
+		System.out.println("orderinsert 진입");
+		orderService.orderinsert(dto);
+		System.out.println("발주등록 완료");
+		return "redirect:stockorderlist?pg=" + pg;
+	}
 }

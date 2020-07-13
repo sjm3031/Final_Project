@@ -15,8 +15,8 @@
 		<th width="120">품명</th>
 		<th width="120">상세명</th>
 		<th width="120">금액</th>
-		<th width="120">수량</th>
-
+		<th width="200">수량</th>
+		<th></th>
 	</tr>	
 
 <c:forEach var="c" items="${order_list}">
@@ -27,14 +27,21 @@
 		<td align="center">${c.cart_stock_detailname}</td>
 		<td align="center">${c.cart_stock_price}</td>
 		<td align="center">${c.cart_stock_quantity}</td>
-		<td><input type="button" value="수정" onclick=""/></td>
-		<td><input type="button" value="삭제" onclick=""/></td>
+		<td>
+		<input type="button" value="수정" onclick="location.href='stockorderupdateform?cart_number=${c.cart_number}&pg=${pg}'"/>
+		<input type="button" value="삭제" onclick="location.href='stockorderdelete?cart_number=${c.cart_number}&pg=${pg}'"/>
+		</td>
 	</tr>
 </c:forEach>
 	
 	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td>총 금액 : ${cart_total}</td>
 		<td>
-		<input type="button" value="발주신청" onclick="location.href='accountinsert'"/>
+		<input type="button" value="발주신청" onclick="location.href='orderinsert'"/>
 		</td>
 	</tr>
 </table>

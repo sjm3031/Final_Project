@@ -9,4 +9,14 @@
 		values((select NVL(max(productOrder_code),0) + 1 from cafe_productorder), sysdate, #{prodectOrder_total})
 	</insert>
 	
+	<select id="showorderlist" parameterType="hashmap" resultType="com.cafe.erp.store.model.ProductOrderDTO">
+		select * from
+		( select A.*, rownum r from
+		( select * from cafe_productorder ORDER BY productorder_code asc) A
+		)
+		where r >= #{ start } and r &lt;= #{ end }
+	</select>
+	<select id="getordercount" resultType="integer">
+		select count(*) from cafe_productorder
+	</select>
 	</mapper>

@@ -109,4 +109,11 @@ public class OrderServiceImpl implements OrderService {
 		dao.updatecount(dto);
 	}
 
+	@Override
+	public void updatecode() {
+		System.out.println("productOrder_code 업데이트");
+		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
+		dao.updatecode();
+	}
+
 }

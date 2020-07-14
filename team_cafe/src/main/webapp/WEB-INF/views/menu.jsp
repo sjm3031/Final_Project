@@ -11,5 +11,6 @@
 	<a href="stockorder">발주하기</a>
 	<a href="accountinsertform">거래처 등록</a>
 	<a href="accountlist">거래처 리스트 보기</a>
+	<a href="orderlist">발주내역 보기</a>
 </body>
 </html>

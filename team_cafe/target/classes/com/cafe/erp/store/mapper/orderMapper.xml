@@ -78,4 +78,9 @@
 		update cafe_order_cart set cart_stock_quantity = (cart_stock_quantity + #{cart_stock_quantity})
 		where stock_code = #{stock_code}
 	</update>
+	
+	<!-- productOrder_code 추가 -->
+	<update id="updatecode">
+		update cafe_order_cart set productOrder_code = (select NVL(max(productOrder_code),0) from cafe_productorder)
+	</update>
 </mapper>

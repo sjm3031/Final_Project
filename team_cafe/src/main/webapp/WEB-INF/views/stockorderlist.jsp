@@ -63,7 +63,7 @@
 		<input type="hidden" name="prodectOrder_total" id="prodectOrder_total" value="${cart_total}"/>
 		</td>
 		<td>
-		<input type="submit" value="발주신청" "/>
+		<input type="submit" value="발주신청" />
 		</td>
 	</tr>
 </table>

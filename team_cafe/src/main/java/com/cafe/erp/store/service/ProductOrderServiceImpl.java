@@ -1,5 +1,8 @@
 package com.cafe.erp.store.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +21,18 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
 		dao.orderinsert(dto);
 		
+	}
+
+	@Override
+	public List<ProductOrderDTO> showorderlist(HashMap map) {
+		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
+		return dao.showorderlist(map);
+	}
+
+	@Override
+	public int getordercount() {
+		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
+		return dao.getordercount();
 	}
 	
 }

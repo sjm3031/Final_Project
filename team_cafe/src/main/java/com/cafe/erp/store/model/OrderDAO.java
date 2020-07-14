@@ -18,4 +18,5 @@ public interface OrderDAO {
 	public int deleteorderlistcart();
 	public int getstockcode(int stock_code);
 	public void updatecount(OrderDTO dto);
+	public void updatecode();
 }

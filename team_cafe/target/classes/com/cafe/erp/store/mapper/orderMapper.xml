@@ -26,8 +26,8 @@
 	<!-- 담기용 table에 insert -->
 	<insert id="insertordercart" parameterType="com.cafe.erp.store.model.OrderDTO">
 		insert into Cafe_order_cart(cart_number, cart_stock_productname, cart_stock_detailname, cart_stock_price,
-		cart_stock_quantity, stock_code) values( (select NVL(max(cart_number),0) + 1 from Cafe_order_cart), 
-		#{cart_stock_productname}, #{cart_stock_detailname}, #{cart_stock_price}, #{cart_stock_quantity}, #{stock_code})
+		cart_stock_quantity, stock_code, account_number) values( (select NVL(max(cart_number),0) + 1 from Cafe_order_cart), 
+		#{cart_stock_productname}, #{cart_stock_detailname}, #{cart_stock_price}, #{cart_stock_quantity}, #{stock_code}, #{account_number})
 	</insert>
 	<!-- 임시로 발주한 목록 불러오기 -->
 	<select id="getStockOrderList" parameterType="hashmap" resultType="com.cafe.erp.store.model.OrderDTO">

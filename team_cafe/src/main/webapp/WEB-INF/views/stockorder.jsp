@@ -53,6 +53,10 @@
 		</td>
 		<td>${b.stock_code}</td>
 		<td>
+		${b.account_number}
+		<input type="hidden" name="account_number" value="${b.account_number}"/>
+		</td>
+		<td>
 		<input type="submit" value="품목담기"/>
 		</td>
 	</tr>

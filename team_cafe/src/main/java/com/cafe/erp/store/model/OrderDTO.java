@@ -3,7 +3,7 @@ package com.cafe.erp.store.model;
 
 
 public class OrderDTO {
-	private int cart_number, cart_stock_quantity, cart_stock_price, stock_code;
+	private int cart_number, cart_stock_quantity, cart_stock_price, stock_code, account_number;
 	private String cart_stock_productname, cart_stock_detailname;
 
 	
@@ -42,6 +42,12 @@ public class OrderDTO {
 	}
 	public void setStock_code(int stock_code) {
 		this.stock_code = stock_code;
+	}
+	public int getAccount_number() {
+		return account_number;
+	}
+	public void setAccount_number(int account_number) {
+		this.account_number = account_number;
 	}
 }
 

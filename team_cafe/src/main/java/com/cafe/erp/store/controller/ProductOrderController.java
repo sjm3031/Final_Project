@@ -94,7 +94,7 @@ public class ProductOrderController {
 	}
 	
 	@RequestMapping("/detaillist")
-	public String detaillist(HttpServletRequest req, @Param("productOrder_code") int productOrder_code) {
+	public String detaillist(HttpServletRequest req, int productOrder_code) {
 		System.out.println("detaillist 진입");
 //		String productOrder_code = req.getParameter("productOrder_code");
 //		System.out.println(productOrder_code);

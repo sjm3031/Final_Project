@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 -------------------------------------------------------------------------------------------------------------------------------
 --고객관리
 -------------------------------------------------------------------------------------------------------------------------------
@@ -11,6 +20,7 @@ create table CAFE_CUSTOMER(
     customer_phone varchar2(50), --고객 전화번호
     customer_birth varchar2(30), -- 고객 생년월일
     customer_gender varchar2(10), --고객 성별
+    customer_pwd varchar2(30),  --고객 비밀번호
 --    customer_phone varchar(30) PRIMARY key,    
 --    customer_name varchar2(40),      
     customer_stamp number --스탬프
@@ -19,8 +29,7 @@ DESC CAFE_CUSTOMER;
 select * FROM CAFE_CUSTOMER;
 
 
-insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_stamp) 
- values(1,'lee','010-1234-1234','','',0);
+--insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_stamp,customer_pwd) values(1,'lee','010-1234-1234','','',0,'aa');
 
 
 -------------------------------------------------------------------------------------------------------------------------------
@@ -159,12 +168,9 @@ DESC CAFE_PRODUCT_CATEGORY;
 select * FROM CAFE_PRODUCT_CATEGORY;
 
 --상품 카테고리 테이블 데이터 입력
-insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) 
- values(1,'coffe');
- insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) 
- values(2,'non-coffe');
- insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) 
- values(3,'juice');
+--insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(1,'coffe');
+--insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(2,'non-coffe');
+--insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(3,'juice');
  
  
  DROP TABLE CAFE_PRODUCT_ADD;
@@ -178,14 +184,11 @@ DESC CAFE_PRODUCT_ADD;
 select * FROM CAFE_PRODUCT_ADD;
 
 --음료 추가 사항 테이블 데이터 입력
-insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) 
- values(1,'샷추가',500);
- insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) 
- values(2,'시럽추가',500);
- insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) 
- values(3,'버블추가',700);
-  insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) 
- values(4,'휘핑추가',700);
+--delete from CAFE_PRODUCT_ADD;
+--insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(1,'샷추가',500);
+--insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(2,'시럽추가',500);
+--insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(3,'버블추가',700);
+--insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(4,'휘핑추가',700);
  
  
 
@@ -202,30 +205,47 @@ CREATE TABLE CAFE_PRODUCT(
 );
 DESC CAFE_PRODUCT;
 select * FROM CAFE_PRODUCT;
+delete from CAFE_PRODUCT;
 
- 
- 
+
+
+
 DROP TABLE CAFE_CART;
 --장바구니
-CREATE TABLE CAFE_CART
-(
+CREATE TABLE CAFE_CART(
+     cart_code number primary key,--장바구니 코드
      customer_code number, --고객코드
      cafe_product_code number, --상품코드
      cart_num number, --장바구니에담은 상품수량
-    
+
     CONSTRAINT customer_code_cart FOREIGN KEY(customer_code) REFERENCES CAFE_CUSTOMER(customer_code),
     CONSTRAINT cafe_product_code_cart FOREIGN KEY(cafe_product_code) REFERENCES CAFE_PRODUCT(cafe_product_code)
- 
 );
 DESC CAFE_CART;
 select * FROM CAFE_CART;
- 
- 
- select * FROM CAFE_CUSTOMER;
+update CAFE_CART set cart_num=cart_num+1 where cart_code=1;
+update CAFE_CART set cart_num=1 where cart_code=1;
+
+delete from CAFE_CART;
+
+insert INTO cafe_cart VALUES(3,1,3,1);
 
 
-insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_stamp) 
- values(1,'lee','010-1234-1234','','',0);
+DROP TABLE CAFE_CART_ADD;
+--장바구니의 옵션내역 테이블
+CREATE TABLE CAFE_CART_ADD(
+    cart_code number,--장바구니 코드
+    PRODUCT_ADD_CODE number, --옵션코드(fk)
+    
+    CONSTRAINT cart_code_cart_Add FOREIGN KEY(cart_code) REFERENCES CAFE_CART(cart_code),
+    CONSTRAINT PRODUCT_ADD_CODE_cart_add FOREIGN KEY(PRODUCT_ADD_CODE) REFERENCES CAFE_Product_add(PRODUCT_ADD_CODE)
+);
+DESC CAFE_CART_ADD;
+select * FROM CAFE_CART_ADD;
+delete from CAFE_CART_ADD;
+
+
+--insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_stamp) values(1,'lee','010-1234-1234','','',0);
  
  
  

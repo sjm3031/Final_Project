@@ -228,7 +228,7 @@ update CAFE_CART set cart_num=1 where cart_code=1;
 
 delete from CAFE_CART;
 
-insert INTO cafe_cart VALUES(3,1,3,1);
+--insert INTO cafe_cart VALUES(3,1,3,1);
 
 
 DROP TABLE CAFE_CART_ADD;

@@ -83,4 +83,9 @@
 	<update id="updatecode">
 		update cafe_order_cart set productOrder_code = (select NVL(max(productOrder_code),0) from cafe_productorder)
 	</update>
+	
+	<select id="getStockOrderListaccountnumber" resultType="com.cafe.erp.store.model.OrderDTO">
+		select distinct account_number from cafe_order_cart
+	</select>
+	
 </mapper>

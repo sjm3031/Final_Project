@@ -19,4 +19,8 @@
 	<select id="getordercount" resultType="integer">
 		select count(*) from cafe_productorder
 	</select>
+	
+	<select id="getaccountnumber" resultType="com.cafe.erp.store.model.AccountDTO">
+		select account_number from cafe_account
+	</select>
 	</mapper>

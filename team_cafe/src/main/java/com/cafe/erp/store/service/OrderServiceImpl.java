@@ -116,4 +116,11 @@ public class OrderServiceImpl implements OrderService {
 		dao.updatecode();
 	}
 
+	@Override
+	public List<OrderDTO> getStockOrderListaccountnumber() {
+		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
+		return dao.getStockOrderListaccountnumber();
+	}
+
+
 }

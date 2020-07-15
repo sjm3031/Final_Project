@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cafe.erp.store.model.AccountDTO;
 import com.cafe.erp.store.model.ProductOrderDAO;
 import com.cafe.erp.store.model.ProductOrderDTO;
 
@@ -33,6 +34,12 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 	public int getordercount() {
 		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
 		return dao.getordercount();
+	}
+
+	@Override
+	public List<AccountDTO> getaccountnumber() {
+		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
+		return dao.getaccountnumber();
 	}
 	
 }

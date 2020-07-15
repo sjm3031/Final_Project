@@ -46,6 +46,9 @@
 		${c.cart_stock_quantity}
 		</td>
 		<td>
+		${c.account_number}
+		</td>
+		<td>
 		<input type="button" value="수정" onclick="location.href='stockorderupdateform?cart_number=${c.cart_number}&pg=${pg}'"/>
 		<input type="button" value="삭제" onclick="location.href='stockorderdelete?cart_number=${c.cart_number}&pg=${pg}'"/>
 		</td>
@@ -57,9 +60,10 @@
 		<td></td>
 		<td></td>
 		<td></td>
+		<td></td>
 		<td>
 <%-- 		<input type="text" name="prodectOrder_total" id="prodectOrder_total" value="총 금액 : ${cart_total}" disabled="disabled"/> --%>
-		총 금액 : ${cart_total}
+		총 금액 : ${cart_total}(원)
 		<input type="hidden" name="prodectOrder_total" id="prodectOrder_total" value="${cart_total}"/>
 		</td>
 		<td>

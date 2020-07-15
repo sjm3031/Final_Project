@@ -65,7 +65,11 @@ public class ProductOrderController {
 				if (accountnumber.get(i).getAccount_number() == orderlistaccountnumber.get(j).getAccount_number()) {
 					System.out.println(accountnumber.get(i).getAccount_number() + "=" + orderlistaccountnumber.get(j).getAccount_number());
 					System.out.println("같다");
-					
+					map.put("account_number", accountnumber.get(i).getAccount_number());
+					String email = orderService.getemail(map);
+					System.out.println("email : " + email);
+					List<OrderDTO> stockorderlist = orderService.getOrderListByNumber(map);
+					System.out.println("list : " + stockorderlist);
 				}
 				else {
 					System.out.println("다르다");

@@ -22,4 +22,6 @@ public interface OrderService {
 	public void updatecount(OrderDTO dto);
 	public void updatecode();
 	public List<OrderDTO> getStockOrderListaccountnumber();
+	public String getemail(HashMap map);
+	public List<OrderDTO> getOrderListByNumber(HashMap map);
 }

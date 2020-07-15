@@ -122,5 +122,17 @@ public class OrderServiceImpl implements OrderService {
 		return dao.getStockOrderListaccountnumber();
 	}
 
+	@Override
+	public String getemail(HashMap map) {
+		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
+		return dao.getemail(map);
+	}
+
+	@Override
+	public List<OrderDTO> getOrderListByNumber(HashMap map) {
+		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
+		return dao.getOrderListByNumber(map);
+	}
+
 
 }

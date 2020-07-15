@@ -31,7 +31,7 @@ public class ProductOrderController {
 	private ProductOrderListSercvice productOrderListSercvice;
 	
 	@RequestMapping("/orderinsert")
-	public String orderinsert(ProductOrderDTO dto, ProductOrderListDTO dto1, HttpServletRequest req) {
+	public String orderinsert(ProductOrderDTO dto, ProductOrderListDTO dto1, HttpServletRequest req) throws Exception {
 		System.out.println("orderinsert 진입");
 		
 		//발주 등록
@@ -70,6 +70,8 @@ public class ProductOrderController {
 					System.out.println("email : " + email);
 					List<OrderDTO> stockorderlist = orderService.getOrderListByNumber(map);
 					System.out.println("list : " + stockorderlist);
+					orderService.sendEmail(email, stockorderlist);
+					
 				}
 				else {
 					System.out.println("다르다");

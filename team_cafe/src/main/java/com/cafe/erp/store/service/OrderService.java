@@ -24,4 +24,5 @@ public interface OrderService {
 	public List<OrderDTO> getStockOrderListaccountnumber();
 	public String getemail(HashMap map);
 	public List<OrderDTO> getOrderListByNumber(HashMap map);
+	public void sendEmail(String email, List<OrderDTO> stockorderlist) throws Exception;
 }

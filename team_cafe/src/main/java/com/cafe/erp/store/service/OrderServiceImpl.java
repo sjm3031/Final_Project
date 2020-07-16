@@ -1,15 +1,14 @@
 package com.cafe.erp.store.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -156,7 +155,17 @@ public class OrderServiceImpl implements OrderService {
       //메일 내용 
 //        String recipient = "*******@naver.com"; //메일을 발송할 이메일 주소를 기재해 줍니다.
         String subject = "납품요청서(kosta_cafe)";    //메일 발송시 제목을 작성
-        List body = stockorderlist; //메일 발송시 내용 작성
+        List<OrderDTO> body = stockorderlist; //메일 발송시 내용 작성
+        StringBuffer sb = new StringBuffer();
+        sb.append("품명\t상세명\t금액\t수량\n");
+        sb.append("===========================================\n");
+        for (OrderDTO dto : body) {
+        	sb.append(dto.toString() + "\n");
+        	System.out.println("sb 출력");
+        	System.out.println(sb + "\n");
+		}
+        sb.append("\n=========================================\n");
+        sb.append("\n\n납품을 요청 바랍니다. \n감사합니다.");
         
         Properties props = System.getProperties();
         props.put("mail.smtp.host", host);
@@ -178,7 +187,7 @@ public class OrderServiceImpl implements OrderService {
         mimeMessage.setFrom(new InternetAddress("kosta4@naver.com")); //발신자 셋팅 보내는 사람의 이메일주소를 한번 더 입력 이때는 이메일 풀 주소를 다 작성 
         mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email)); //수신자셋팅  
         mimeMessage.setSubject(subject); //제목셋팅  
-        mimeMessage.setText(body.toString()); //내용셋팅 
+        mimeMessage.setText(sb.toString()); //내용셋팅
         Transport.send(mimeMessage); //javax.mail.Transport.send() 이용 
 		
 	}

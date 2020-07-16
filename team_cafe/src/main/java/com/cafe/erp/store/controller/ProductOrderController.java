@@ -81,11 +81,11 @@ public class ProductOrderController {
 			
 		}
 		//임시 발주 목록을 그대로 복사해서 상세내역 테이블에 복사 insert함
-//		productOrderListSercvice.orderlistinsert(dto1);
-//		System.out.println("발주 상세내역 등록 완료");
+		productOrderListSercvice.orderlistinsert(dto1);
+		System.out.println("발주 상세내역 등록 완료");
 		//임시 발주 목록을 삭제해서 초기화
-//		orderService.deleteorderlistcart();
-//		System.out.println("임시 발주 목록 초기화 완료");
+		orderService.deleteorderlistcart();
+		System.out.println("임시 발주 목록 초기화 완료");
 		return "redirect:stockorderlist";
 	}
 	

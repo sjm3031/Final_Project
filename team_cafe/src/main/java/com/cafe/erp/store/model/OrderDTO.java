@@ -49,5 +49,10 @@ public class OrderDTO {
 	public void setAccount_number(int account_number) {
 		this.account_number = account_number;
 	}
+	@Override
+	public String toString() {
+		return cart_stock_productname + "\t" + cart_stock_detailname + "\t" + cart_stock_price + "\t" + cart_stock_quantity;
+	}
+	
 }
 

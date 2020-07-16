@@ -4,7 +4,36 @@ package com.cafe.erp.hr.model;
 
 public class empTnaDTO {
 	
-	private int emptna_empcode,emptna_year,emptna_month,emptna_day,emptna_empname,emptna_starttime,emptna_endtime,emptna_daytotaltime,emptna_monthtotaltime;
+	private int emptna_code,emptna_empcode,emptna_year,emptna_month,emptna_day,emptna_empname,emptna_starttime,emptna_endtime,emptna_daytotaltime,emptna_monthtotaltime
+				,employee_code;
+	
+	private String employee_name,employee_jumin;
+	
+	
+	
+	public String getEmployee_jumin() {
+		return employee_jumin;
+	}
+
+	public void setEmployee_jumin(String employee_jumin) {
+		this.employee_jumin = employee_jumin;
+	}
+
+	public String getEmployee_name() {
+		return employee_name;
+	}
+
+	public void setEmployee_name(String employee_name) {
+		this.employee_name = employee_name;
+	}
+
+	public int getEmptna_code() {
+		return emptna_code;
+	}
+
+	public void setEmptna_code(int emptna_code) {
+		this.emptna_code = emptna_code;
+	}
 
 	public int getEmptna_empcode() {
 		return emptna_empcode;
@@ -76,6 +105,14 @@ public class empTnaDTO {
 
 	public void setEmptna_monthtotaltime(int emptna_monthtotaltime) {
 		this.emptna_monthtotaltime = emptna_monthtotaltime;
+	}
+
+	public int getEmployee_code() {
+		return employee_code;
+	}
+
+	public void setEmployee_code(int employee_code) {
+		this.employee_code = employee_code;
 	}
 	
    

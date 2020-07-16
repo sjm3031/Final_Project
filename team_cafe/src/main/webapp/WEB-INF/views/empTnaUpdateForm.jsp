@@ -6,15 +6,15 @@
 <meta charset="UTF-8">
 
 <script type="text/javascript">
-	function empTna_insert(){
+	function empTna_update(){
 		//alert("쓰기")	;
-		if(document.empTnaInsert.employee_name.value==""){
+		if(document.empTnaUpdate.employee_name.value==""){
 			alert("이름을 입력해주세요");
-		}else if(document.empTnaInsert.employee_jumin.value==""){
+		}else if(document.empTnaUpdate.employee_jumin.value==""){
 			alert("주민번호 입력해주세요");
-			document.empTnaInsert.employee_jumin.focus();
+			document.empTnaUpdate.employee_jumin.focus();
 		}else{
-			document.empTnaInsert.submit(); //전송
+			document.empTnaUpdate.submit(); //전송
 		}
 	}
 </script>
@@ -22,7 +22,7 @@
 
 </head>
 <body>
-	<form name="empTnaInsert" action="empTnaInsert.cafe" method="post">
+	<form name="empTnaUpdate" action="empTnaUpdate.cafe" method="post">
 	
 		<table>
 			<tr>
@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<td rowspan="2">
-				<input type="button" value="출근" onclick="empTna_insert()">
+				<input type="button" value="정보입력완료" onclick="empTna_update()">
  				<input type="reset" value="취소" onclick="history.back()">
 			</tr>
 		</table>

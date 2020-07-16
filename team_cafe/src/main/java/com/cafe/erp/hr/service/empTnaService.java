@@ -3,20 +3,36 @@ package com.cafe.erp.hr.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cafe.erp.hr.model.empDTO;
 import com.cafe.erp.hr.model.empTnaDTO;
 
 public interface empTnaService {
-	
+
+	public empDTO getEmpTna(empDTO dto);
+
 	public void insertEmpTna(empTnaDTO dto);
 
-	public List<empTnaDTO> getDayTnaList(HashMap map);
+	public void updateEmpTna(empTnaDTO dto);
 
-	public List<empTnaDTO> getMonthTnaList(HashMap map);
+	public List<empTnaDTO> getEmpTnaList(HashMap map);
 
-	public empTnaDTO getEmpTna(int enptna_empcode);
+	public List<empTnaDTO> getYear();
 
-	public int updateEmpTna(empTnaDTO dto);
+	public List<empTnaDTO> getMonth();
+	
+	public List<empTnaDTO> getDay();
+
+	public List<empTnaDTO> getDayRead(HashMap map);
+
+	public List<empTnaDTO> getMonthRead(HashMap map);
+
+//	public int updateEmpTna(empTnaDTO dto);
+
+//	public empTnaDTO getempTna(int emptna_code);
 
 	public int getEmpTnaCount();
+
+	public int getTotal();
 }

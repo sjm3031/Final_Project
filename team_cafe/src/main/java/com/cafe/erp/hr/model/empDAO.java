@@ -10,6 +10,7 @@ public interface empDAO {
 	public void insertEmp(empDTO dto);
 	
 	public List<empDTO> getEmpList(HashMap map); 
+	
 	public empDTO getEmp(int num); 
 	
 	public int updateEmp(empDTO dto); 

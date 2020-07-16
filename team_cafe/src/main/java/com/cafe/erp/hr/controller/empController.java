@@ -106,6 +106,7 @@ public class empController {
 		model.addAttribute("emp", dto);
 		model.addAttribute("pg", pg);
 		model.addAttribute("num", num);
+		
 		return "empUpdateForm";
 	}
 

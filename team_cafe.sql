@@ -222,7 +222,7 @@ CREATE TABLE CAFE_CART(
     CONSTRAINT cafe_product_code_cart FOREIGN KEY(cafe_product_code) REFERENCES CAFE_PRODUCT(cafe_product_code)
 );
 DESC CAFE_CART;
-select * FROM CAFE_CART;
+select * FROM CAFE_CART order by cart_code;
 update CAFE_CART set cart_num=cart_num+1 where cart_code=1;
 update CAFE_CART set cart_num=1 where cart_code=1;
 
@@ -240,12 +240,19 @@ CREATE TABLE CAFE_CART_ADD(
     CONSTRAINT cart_code_cart_Add FOREIGN KEY(cart_code) REFERENCES CAFE_CART(cart_code),
     CONSTRAINT PRODUCT_ADD_CODE_cart_add FOREIGN KEY(PRODUCT_ADD_CODE) REFERENCES CAFE_Product_add(PRODUCT_ADD_CODE)
 );
-DESC CAFE_CART_ADD;
-select * FROM CAFE_CART_ADD;
+DESC CAFE_CART_ADD ;
+select * FROM CAFE_CART_ADD order by cart_code,PRODUCT_ADD_CODE;
 delete from CAFE_CART_ADD;
 
 
 --insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_stamp) values(1,'lee','010-1234-1234','','',0);
+ 
+ 
+ 
+
+ 
+ 
+ 
  
  
  
@@ -257,9 +264,8 @@ DROP TABLE CAFE_ORDER_WEB;
 CREATE TABLE CAFE_ORDER_WEB
 (
  order_web_code number PRIMARY KEY, --주문 코드
- order_web_tatal number, --총 금액
+ order_web_total number, --총 금액
  order_web_count number,--건수
- order_web_accountType varchar2(30),--결제수단
  order_web_date date,--주문 일자
  customer_code number, --고객코드(fk)
  
@@ -268,24 +274,45 @@ CONSTRAINT customer_code_web FOREIGN KEY(customer_code) REFERENCES CAFE_CUSTOMER
 );
 DESC CAFE_ORDER_WEB;
 select * FROM CAFE_ORDER_WEB;
+delete from CAFE_ORDER_WEB;
+
 
 
 DROP TABLE CAFE_ORDERList_web;
 --주문 내역 테이블      -web
 CREATE TABLE CAFE_ORDERList_web
 (
-orderList_web_code number primary key,--상세내역 코드
-orderList_web_pCount number,--부모
+orderList_web_code number primary key,--주문 내역 코드
+cafe_product_code number, --상품코드
 orderList_web_count number,--수량
 order_web_code number,--주문코드(fk)
 
-CONSTRAINT order_web_code FOREIGN KEY(order_web_code) REFERENCES CAFE_ORDER_WEB(order_web_code)
+CONSTRAINT order_web_code FOREIGN KEY(order_web_code) REFERENCES CAFE_ORDER_WEB(order_web_code),
+CONSTRAINT cafe_product_code_order_web FOREIGN KEY(cafe_product_code) REFERENCES CAFE_PRODUCT(cafe_product_code)
 );
  DESC CAFE_ORDERList_web;
 select * FROM CAFE_ORDERList_web;
+delete from CAFE_ORDERList_web;
+
+
+ DROP TABLE CAFE_ORDERLIST_ADD_web;
+--주문 내역 테이블 의 옵션내역 테이블
+CREATE TABLE CAFE_ORDERLIST_ADD_web(
+    orderList_web_code number, --주문 내역 코드
+    PRODUCT_ADD_CODE number, --옵션코드(fk)
+    
+    CONSTRAINT orderList_web_code_add FOREIGN KEY(orderList_web_code) REFERENCES CAFE_ORDERList_web(orderList_web_code),
+    CONSTRAINT PRODUCT_ADD_CODE_order_add FOREIGN KEY(PRODUCT_ADD_CODE) REFERENCES CAFE_Product_add(PRODUCT_ADD_CODE)
+);
+DESC CAFE_ORDERLIST_ADD_web;
+select * FROM CAFE_ORDERLIST_ADD_web;
+delete from CAFE_ORDERLIST_ADD_web;
 
  
  
+ select a.orderList_web_code,a.cafe_product_code,a.orderList_web_count,a.order_web_code,nvl(b.PRODUCT_ADD_CODE,0) product_add_code
+ from CAFE_ORDERList_web a, CAFE_ORDERLIST_ADD_web b
+ where a.orderList_web_code=b.orderlist_web_code(+) and a.order_web_code=1 order by a.orderList_web_code,b.product_add_code ;
  
  
  
@@ -302,9 +329,7 @@ select * FROM CAFE_ORDERList_web;
  
  
  
- 
- 
- 
+ ----------------------------------------pos  주문
  
  
  

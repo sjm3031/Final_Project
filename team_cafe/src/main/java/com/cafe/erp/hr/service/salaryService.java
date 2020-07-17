@@ -9,8 +9,8 @@ import com.cafe.erp.hr.model.salaryDTO;
 
 public interface salaryService {
 
-	public void insertSalary(salaryDTO dto);
-
+	public void insertSalary(HashMap map);
+	
 	public List<salaryDTO> getSalaryList(HashMap map);
 
 	public List<salaryDTO> searchSalary(HashMap map);
@@ -26,4 +26,6 @@ public interface salaryService {
 	public int updateSalary(salaryDTO dto);
 
 	public int getSalaryCount();
+	
+	public int getMaxMonthTotal(HashMap map);
 }

@@ -18,7 +18,7 @@ th {
 <body>
 	<h1>급여리스트</h1>
 	
-	<a href="salaryInsert.cafe">급여등록</a>
+	<a href="salaryInsert.cafe">급여정산</a>
 	
 	<br>
 	<br>
@@ -62,6 +62,7 @@ th {
 
 
 			<tr>
+				
 				<td>${list.salary_code}</td>
 				<td>${list.employee_name}</td>
 				<td>${list.employee_jobname}</td>

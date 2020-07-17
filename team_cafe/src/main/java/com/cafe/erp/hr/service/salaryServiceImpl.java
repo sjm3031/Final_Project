@@ -17,6 +17,17 @@ public class salaryServiceImpl implements salaryService {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	
+
+
+	@Override
+	public int getMaxMonthTotal(HashMap map) {
+		
+		salaryDAO dao = sqlSession.getMapper(salaryDAO.class);
+				
+		return dao.getMaxMonthTotal(map);
+	}
 
 	@Override
 	public List<empDTO> getName() {
@@ -51,11 +62,11 @@ public class salaryServiceImpl implements salaryService {
 	}
 
 	@Override
-	public void insertSalary(salaryDTO dto) {
+	public void insertSalary(HashMap map) {
 
 		salaryDAO dao = sqlSession.getMapper(salaryDAO.class);
 
-		dao.insertSalary(dto);
+		dao.insertSalary(map);
 	}
 
 	@Override

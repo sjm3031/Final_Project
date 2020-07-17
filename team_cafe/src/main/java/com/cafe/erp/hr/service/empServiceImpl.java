@@ -9,12 +9,14 @@ import org.springframework.stereotype.Component;
 
 import com.cafe.erp.hr.model.empDAO;
 import com.cafe.erp.hr.model.empDTO;
+import com.cafe.erp.hr.model.jobDTO;
 
 @Component
 public class empServiceImpl implements empService {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
 	
 	@Override
 	public void insertEmp(empDTO dto) {

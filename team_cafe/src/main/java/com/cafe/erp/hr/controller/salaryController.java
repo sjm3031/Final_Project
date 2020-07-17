@@ -147,9 +147,19 @@ public class salaryController {
 	}
 	
 	@RequestMapping(value="salaryInsert.cafe",method=RequestMethod.POST)
-	public String insert(salaryDTO dto,Model model,int salary_date) {
+	public String insert(salaryDTO dto,Model model,String employee_name,int salary_year,int salary_month,int
+			salary_date) {
 		
-		salaryService.insertSalary(dto);
+		HashMap map = new HashMap();
+		map.put("employee_name", employee_name);
+		map.put("salary_year", salary_year);
+		map.put("salary_month", salary_month);
+		map.put("salary_date", salary_date);
+		
+		int monthtotal = salaryService.getMaxMonthTotal(map);
+		map.put("monthtotal", monthtotal);
+		
+		salaryService.insertSalary(map);
 //		model.addAttribute("salary_date", salary_date);
 //		System.out.println(salary_date);
 		return "redirect:salaryList.cafe";

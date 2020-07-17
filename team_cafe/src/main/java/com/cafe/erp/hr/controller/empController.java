@@ -107,6 +107,10 @@ public class empController {
 		model.addAttribute("pg", pg);
 		model.addAttribute("num", num);
 		
+		List<jobDTO> list = jobService.getJobList();
+		
+		model.addAttribute("list", list);
+		
 		return "empUpdateForm";
 	}
 

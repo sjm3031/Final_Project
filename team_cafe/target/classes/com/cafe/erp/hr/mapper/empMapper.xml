@@ -33,7 +33,9 @@
 	
 	<!-- 수정 -->
 	<update id="updateEmp" parameterType="com.cafe.erp.hr.model.empDTO">
-		UPDATE cafe_employee SET employee_phone=#{employee_phone},employee_address=#{employee_address}, employee_bank = #{employee_bank}, employee_bankaddress=#{employee_bankaddress} WHERE employee_code = #{employee_code}
+		UPDATE cafe_employee SET employee_phone=#{employee_phone},employee_address=#{employee_address},
+		 employee_bank = #{employee_bank}, employee_bankaddress=#{employee_bankaddress} ,employee_jobname=#{employee_jobname}
+		WHERE employee_code = #{employee_code}
 	
 	</update>
 	
@@ -41,6 +43,7 @@
 		UPDATE CAFE_EMPLOYEE SET EMPLOYEE_ENDDATE=sysdate,employee_endyn='y' where employee_code= #{employee_code}
 	
 	</update>
+	
  	<!-- 삭제 -->
 <!-- 	<delete id="deleteEmp" parameterType="com.cafe.erp.hr.model.empDTO"> -->
 <!-- 		DELETE FROM cafe_employee WHERE employee_code= #{employee_code}  -->

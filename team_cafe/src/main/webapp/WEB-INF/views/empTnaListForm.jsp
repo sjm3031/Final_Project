@@ -73,6 +73,7 @@ th {
 				<!-- 				</td> -->
 			</tr>
 		</c:forEach>
+		
 
 	</table>
 

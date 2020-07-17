@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.cafe.erp.hr.model.empDTO;
+import com.cafe.erp.hr.model.jobDTO;
 
 public interface empService {
 

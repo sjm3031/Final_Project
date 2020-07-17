@@ -25,19 +25,25 @@
 	
 	
  	<select name="emptna_year" >
-			<option>선택하세요</option> 
+			<option>년도를 선택하세요</option> 
 				<c:forEach var="list" items="${list}">
 						<option value="${list.emptna_year}">${list.emptna_year}</option>
 										</c:forEach>
  	</select> &nbsp;&nbsp;
  	
   	<select name="emptna_month">
-			<option>선택하세요</option> 
+			<option>월을 선택하세요</option> 
 				<c:forEach var="list" items="${list1}">
 						<option value="${list.emptna_month}">${list.emptna_month}</option>
 				</c:forEach>
  	</select>
  	
+ 	<select name="employee_name">
+			<option>이름을 선택하세요</option> 
+				<c:forEach var="list" items="${list2}">
+						<option value="${list.employee_name}">${list.employee_name}</option>
+				</c:forEach>
+ 	</select>
  	<input type="submit" value="조회">
  	</form>
  	

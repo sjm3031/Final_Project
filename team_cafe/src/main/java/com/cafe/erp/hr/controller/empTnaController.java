@@ -11,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cafe.erp.hr.model.empDTO;
-import com.cafe.erp.hr.model.empTnaDAO;
 import com.cafe.erp.hr.model.empTnaDTO;
 import com.cafe.erp.hr.service.empTnaService;
 
@@ -61,10 +59,18 @@ public class empTnaController {
 	}
 	
 	@RequestMapping(value="/empTnaUpdate.cafe",method=RequestMethod.POST)
-	public String empTnaUpdate(empTnaDTO dto) {
+	public String empTnaUpdate(empTnaDTO dto,String employee_name,String employee_jumin) {
 		
-		empTnaService.updateEmpTna(dto);
+		HashMap map = new HashMap();
+		map.put("employee_name", employee_name);
+		map.put("employee_jumin", employee_jumin);
 		
+		int total = empTnaService.getTotal(map);
+		map.put("total",total);
+		
+		empTnaService.updateEmpTna(map);
+		System.out.println(total);
+		System.out.println(dto.getEmptna_monthtotaltime());
 		return "redirect:empTnaList.cafe";
 	}
 	
@@ -85,15 +91,15 @@ public class empTnaController {
 		
 		List<empTnaDTO> list = empTnaService.getYear();
 		List<empTnaDTO> list1 = empTnaService.getMonth();
-		
+		List<empTnaDTO> list2 = empTnaService.getName();
 		model.addAttribute("list", list);
 		model.addAttribute("list1", list1);
-		
+		model.addAttribute("list2", list2);
 		return "empTnaMonthForm";
 	}
 		
 	@RequestMapping("/empTnaMonthRead.cafe")
-	public String empTnaMonthRead(HttpServletRequest req,int emptna_year,int emptna_month) {
+	public String empTnaMonthRead(HttpServletRequest req,int emptna_year,int emptna_month,String employee_name) {
 		
 		
 		int pg = 1;
@@ -128,7 +134,7 @@ public class empTnaController {
 		map.put("end", end);
 		map.put("emptna_year", emptna_year);
 		map.put("emptna_month", emptna_month);
-		
+		map.put("employee_name", employee_name);
 		List<empTnaDTO> list = empTnaService.getMonthRead(map);
 		
 		req.setAttribute("list", list);
@@ -198,6 +204,7 @@ public class empTnaController {
 	public String empTnalist(HttpServletRequest req) {
 		
 		
+		
 		int pg = 1;
 		String strPg = req.getParameter("pg");
 
@@ -224,7 +231,8 @@ public class empTnaController {
 		if (toPage > allPage) { // ex)20>17
 			toPage = allPage;
 		}
-
+		
+		
 		HashMap map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);

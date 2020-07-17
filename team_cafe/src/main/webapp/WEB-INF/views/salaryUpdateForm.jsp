@@ -56,42 +56,42 @@
 	<tr>
 		<th>직급</th>
 		<td>
-			<input type="text" name="employee_jobname" value="${salary.employee_jobname}" />
+			<input type="text" name="employee_jobname" value="${salary.employee_jobname}" readonly="readonly"/>
 		</td>
 	</tr>
 	<tr>
 		<th>근무 월</th>
 		<td>
 		<input type="hidden" name="pg" value="${pg}" />
-			<input type="text" name="salary_month" value="${salary.salary_month }" />
+			<input type="text" name="salary_month" value="${salary.salary_month }" readonly="readonly"/>
 		</td>
 	</tr>
 	
 	<tr>
 		<th>알바시급</th>
 		<td>
-			<input type="text" name="salary_tpay" value="${salary.salary_tpay}" />
+			<input type="text" name="salary_tpay" value="${salary.salary_tpay}" readonly="readonly"/>
 		</td>
 	</tr>
 	
 	<tr>
 		<th>직원월급</th>
 		<td>
-			<input type="text" name="salary_mpay" value="${salary.salary_mpay}" />
+			<input type="text" name="salary_mpay" value="${salary.salary_mpay}" readonly="readonly"/>
 		</td>
 	</tr>
 	
 	<tr>
 		<th>월 근무시간</th>
 		<td>
-			<input type="text" name="salary_time"  value="${salary.salary_time}" />
+			<input type="text" name="salary_time"  value="${salary.salary_time}"readonly="readonly" />
 		</td>
 	</tr>
 	
 	<tr>
 		<th>총급여</th>
 		<td>
-			<input type="text" name="salary_totalpay" value="${salary.salary_totalpay}" />
+			<input type="text" name="salary_totalpay" value="${salary.salary_totalpay}"readonly="readonly" />
 		</td>
 	</tr>
 	<tr>

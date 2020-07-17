@@ -82,10 +82,15 @@
 	<tr>
 		<th>직급</th>
 		<td>
-			<input type="text" name="employee_jobname" value="${emp.employee_jobname}" />
+			<select name="employee_jobname">
+				<c:forEach var="list" items="${list}">
+					<option value="${list.job_name }">${list.job_name }</option>
+				</c:forEach>
+			</select>
 		</td>
 	</tr>
 	
+<%-- 			<input type="text" name="employee_jobname" value="${emp.employee_jobname}" /> --%>
 	<tr>
 		
 		<td colspan="2">

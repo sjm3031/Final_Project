@@ -11,7 +11,7 @@ public interface empTnaDAO {
 	
 	public void insertEmpTna(empTnaDTO dto);  //insert
 	
-	public void updateEmpTna(empTnaDTO dto);
+	public void updateEmpTna(HashMap map);
 	
 	public List<empTnaDTO> getEmpTnaList(HashMap map); 
 	
@@ -20,6 +20,8 @@ public interface empTnaDAO {
 	public List<empTnaDTO> getMonth();
 	
 	public List<empTnaDTO> getDay();
+	
+	public List<empTnaDTO> getName();
 	
 	public List<empTnaDTO> getMonthRead(HashMap map);
 	
@@ -31,5 +33,5 @@ public interface empTnaDAO {
 	
 	public int getEmpTnaCount();
 	
-	public int getTotal();
+	public int getTotal(HashMap map);
 }

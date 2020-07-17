@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface salaryDAO {
 
-	public void insertSalary(salaryDTO dto);
+	public void insertSalary(HashMap map);
 
 	public List<salaryDTO> getSalaryList(HashMap map);
 	
@@ -23,4 +23,6 @@ public interface salaryDAO {
 	public int updateSalary(salaryDTO dto);
 
 	public int getSalaryCount();
+	
+	public int getMaxMonthTotal(HashMap map);
 }

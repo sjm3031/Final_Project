@@ -6,9 +6,16 @@ public class empDTO {
 	
 	private int employee_code;
     private String employee_name, employee_jumin, employee_phone,employee_address,employee_jobname,
-    employee_bank,employee_bankaddress,employee_endyn;
+    employee_bank,employee_bankaddress,employee_endyn,job_name;
     private Date employee_startdate , employee_enddate;
     
+    
+	public String getJob_name() {
+		return job_name;
+	}
+	public void setJob_name(String job_name) {
+		this.job_name = job_name;
+	}
 	public int getEmployee_code() {
 		return employee_code;
 	}

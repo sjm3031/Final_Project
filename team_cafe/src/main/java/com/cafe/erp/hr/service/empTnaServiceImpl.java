@@ -24,7 +24,8 @@ public class empTnaServiceImpl implements empTnaService {
 //
 //		return dao.getempTna(emptna_code);
 //	}
-
+	
+	
 	@Override
 	public List<empTnaDTO> getDay() {
 		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
@@ -33,19 +34,27 @@ public class empTnaServiceImpl implements empTnaService {
 	}
 
 	@Override
-	public int getTotal() {
+	public List<empTnaDTO> getName() {
 
 		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
 
-		return dao.getTotal();
+		return dao.getName();
 	}
 
 	@Override
-	public void updateEmpTna(empTnaDTO dto) {
+	public int getTotal(HashMap map) {
 
 		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
 
-		dao.updateEmpTna(dto);
+		return dao.getTotal(map);
+	}
+
+	@Override
+	public void updateEmpTna(HashMap map) {
+
+		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
+		
+		dao.updateEmpTna(map);
 
 	}
 

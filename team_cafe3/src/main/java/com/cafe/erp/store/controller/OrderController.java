@@ -86,7 +86,7 @@ public class OrderController {
 			orderService.updatecount(dto);
 		}
 
-		return "redirect:stock/stockorder.cafe";
+		return "redirect:stockorder.cafe";
 	}
 	
 	//임시 발주 테이블 목록

@@ -44,6 +44,7 @@
 <button type="button" onclick="location.href='store/orderlist.cafe'">발주내역 보기</button>
 <button type="button" onclick="location.href='store/accountlist.cafe'">거래처 보기</button>
 <button type="button" onclick="location.href='store/accountinsertform.cafe'">거래처 등록</button>
+<button type="button" onclick="location.href='store/stockorder.cafe'">발주 장바구니</button>
 <br>
 
 <hr>

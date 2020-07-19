@@ -23,7 +23,7 @@
 
 <c:forEach var="b" items="${list}">
 
-		<form action="store/ordercartinsert.cafe" name="ordercartinsert" method="post">
+		<form action="ordercartinsert.cafe" name="ordercartinsert" method="post">
 	<tr>
 		<td><%-- <input type="hidden" name="stock_code" value="${b.stock_code}"> --%></td>
 		

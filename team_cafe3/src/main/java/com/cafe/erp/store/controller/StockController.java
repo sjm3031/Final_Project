@@ -67,7 +67,7 @@ public class StockController {
 		System.out.println("insert controller 진입");
 		stockService.insertStock(dto);
 		System.out.println("insert 완료");
-		return "redirect:store/stock/stocklist.cafe";
+		return "redirect:stocklist.cafe";
 	}
 	
 

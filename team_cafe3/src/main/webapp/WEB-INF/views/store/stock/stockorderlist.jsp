@@ -9,7 +9,7 @@
 </head>
 <body>
 <h3>발주한 목록</h3>
-<form action="store/orderinsert.cafe" method="post">
+<form action="orderinsert.cafe" method="post">
 <table>
 	<tr>
 		<th width="50">번호</th>
@@ -77,8 +77,8 @@
 	<td align="center">
 		<!-- 처음 이전 링크 -->
 		<c:if test="${pg>block}">  <!-- 5>10 : false / 15>10 : true -->
-			[<a href="store/stockorderlist.cafe?pg=1">◀◀</a>]
-			[<a href="store/stockorderlist.cafe?pg=${fromPage-1}">◀</a>]		
+			[<a href="stockorderlist.cafe?pg=1">◀◀</a>]
+			[<a href="stockorderlist.cafe?pg=${fromPage-1}">◀</a>]		
 		</c:if>
 		<c:if test="${pg<=block}"> <!-- 5<=10 :true / 15<=10:false -->
 			[<span style="color:gray">◀◀</span>]	
@@ -89,14 +89,14 @@
 		<c:forEach begin="${fromPage}" end="${toPage}" var="i">
 			<c:if test="${i==pg}">[${i}]</c:if>
 			<c:if test="${i!=pg}">
-				[<a href="store/stockorderlist.cafe?pg=${i}">${i}</a>]
+				[<a href="stockorderlist.cafe?pg=${i}">${i}</a>]
 			</c:if>
 		</c:forEach>
 		
 		<!-- 다음, 이후 -->
 		<c:if test="${toPage<allPage}"> <!-- 20<21 : true -->
-				[<a href="store/stockorderlist.cafe?pg=${toPage+1}">▶</a>]
-				[<a href="store/stockorderlist.cafe?pg=${allPage}">▶▶</a>]
+				[<a href="stockorderlist.cafe?pg=${toPage+1}">▶</a>]
+				[<a href="stockorderlist.cafe?pg=${allPage}">▶▶</a>]
 		
 		</c:if>	
 		<c:if test="${toPage>=allPage}"> <!-- 21>=21 :true -->

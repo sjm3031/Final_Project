@@ -29,7 +29,7 @@ cart_stock_productname VARCHAR2(30), -- 담은 품명
 cart_stock_detailname VARCHAR2(50), -- 담은 상세명
 cart_stock_price number, -- 담은 발부품의 금액
 cart_stock_quantity NUMBER, -- 담은 수량
-stock_number number,
+stock_code number,
 PRODUCTORDER_CODE number,
 ACCOUNT_NUMBER number
 );

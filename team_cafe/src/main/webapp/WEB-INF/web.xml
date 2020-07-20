@@ -34,7 +34,7 @@
 
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>*.cafe</url-pattern>
 	</servlet-mapping>
 
 	<!-- 한글깨짐 처리 filter 설정 -->

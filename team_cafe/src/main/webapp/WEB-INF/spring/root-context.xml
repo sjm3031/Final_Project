@@ -10,7 +10,7 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-		<property name="username" value="c##yoon"/>
+		<property name="username" value="c##yunyun"/>
 		<property name="password" value="oracle"/>
 	</bean>
 	
@@ -26,7 +26,7 @@
 		<property name="dataSource" ref="dataSource"/>
 		<!-- Mapping 할 xml 이  있는 패키지 경로를 설정한다. -->
 		<property name="typeAliasesPackage" value="com.cafe.erp.sale.model"/>
-		<property name="mapperLocations" value="classpath:com/cafe/erp/mapper/*.xml"></property>
+		<property name="mapperLocations" value="classpath:com/cafe/erp/*/mapper/*.xml"></property>
 	</bean>
 	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">

@@ -120,4 +120,13 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.getProductPlusCategoryList(map);
 	}
 
+	
+	//카테고리별로 제품list 가져오기	
+
+	@Override
+	public List<ProductVO> getProductListByCategory(int num) {
+		ProductDAO productDAO = sqlSession.getMapper(ProductDAO.class);
+		return productDAO.getProductListByCategory(num);
+	}
+
 }

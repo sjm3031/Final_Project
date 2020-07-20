@@ -16,6 +16,20 @@
 	</properties>
 	<dependencies>
 
+			<!-- mail을 보낼때 필요한 dependency -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.1</version>
+		</dependency>
+		
+		
+		
 		<!-- common fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -39,7 +53,7 @@
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc8</artifactId>
-			<version>18</version>
+			<version>18.0.0</version>
 		</dependency>
 
 

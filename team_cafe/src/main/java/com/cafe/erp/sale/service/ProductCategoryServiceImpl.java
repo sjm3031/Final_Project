@@ -20,7 +20,6 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 	private SqlSession sqlSession;			//SqlSessionTemplete	
 	
 	
-	
 	@Override
 	public void insertProductCategory(ProductCategoryVO vo) {
 		// TODO Auto-generated method stub
@@ -33,7 +32,6 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 		// TODO Auto-generated method stub
 		ProductCategoryDAO productCategoryDAO = sqlSession.getMapper(ProductCategoryDAO.class);
 		return productCategoryDAO.getProductCategoryList(map);
-
 	}
 
 	@Override
@@ -47,14 +45,12 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 	public int updateProductCategory(ProductCategoryVO vo) {
 		ProductCategoryDAO productCategoryDAO = sqlSession.getMapper(ProductCategoryDAO.class);
 		return productCategoryDAO.updateProductCategory(vo);
-
 	}
 
 	@Override
 	public int deleteProductCategory(ProductCategoryVO vo) {
 		ProductCategoryDAO productCategoryDAO = sqlSession.getMapper(ProductCategoryDAO.class);
 		return productCategoryDAO.deleteProductCategory(vo);
-
 	}
 
 }

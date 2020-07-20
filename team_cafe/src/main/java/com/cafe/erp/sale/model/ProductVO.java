@@ -9,6 +9,8 @@ public class ProductVO {
     private int cafe_product_price,product_category_code;
     
     private String cafe_product_img;
+    
+    
     private String product_category_name;
     
 	public int getCafe_product_code() {

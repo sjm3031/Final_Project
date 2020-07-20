@@ -25,5 +25,6 @@ public interface ProductService {
 	
 	public List<ProductVO> getProductPlusCategoryList(HashMap map);		//읽기
 	
+	public List<ProductVO> getProductListByCategory(int num); // 카테고리별로 제품list 가져오기	
 
 }

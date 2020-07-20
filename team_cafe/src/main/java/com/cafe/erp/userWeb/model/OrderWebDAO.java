@@ -18,4 +18,6 @@ public interface OrderWebDAO {
 	public List<OrderWebDTO> getOrderWebList(int customer_code);		//해당 고객의 주문 list 불러오기
 	public List<OrderWebListAddJoinDTO> getOrderWebListAddJoinList(int order_web_code);		// 주문번호에 해당하는 주문내역들 조인해서 가져요기..
 	
+	public int getOrderWebCheck();				//order_web_check 가 0 인 레코드수 가져오기 >> 주문접수가 안된 web주문건수 가져오기
+	
 }

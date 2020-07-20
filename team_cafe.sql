@@ -1,12 +1,5 @@
 
 
-
-
-
-
-
-
-
 -------------------------------------------------------------------------------------------------------------------------------
 --고객관리
 -------------------------------------------------------------------------------------------------------------------------------
@@ -268,6 +261,7 @@ CREATE TABLE CAFE_ORDER_WEB
  order_web_count number,--건수
  order_web_date date,--주문 일자
  customer_code number, --고객코드(fk)
+ order_web_check number, --주문확인 (0:주문접수확인중 1:주문접수완료)
  
 CONSTRAINT customer_code_web FOREIGN KEY(customer_code) REFERENCES CAFE_CUSTOMER(customer_code)
  

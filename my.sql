@@ -70,4 +70,6 @@ insert into CAFE_ORDERList_web(orderList_web_code)
  
  
  
+ select count(*) FROM CAFE_ORDER_WEB where order_web_check=0 ;
+ 
  

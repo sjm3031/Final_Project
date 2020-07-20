@@ -28,6 +28,7 @@
 		<th width="50">총 주문 상품 수량</th>
 		<th width="50">총 금액</th>
 		<th width="50">날짜</th>
+		<th width="50">접수상태</th>
 		<th width="50"></th>
 	</tr>	
 
@@ -42,6 +43,7 @@
 		<td>${o.order_web_count}</td>
 		<td>${o.order_web_total}</td>
 		<td>${o.order_web_date}</td>
+		<td>${o.order_web_check}</td>
 		<td></td>
 		
 	</tr>

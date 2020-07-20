@@ -15,10 +15,11 @@ DROP TABLE CAFE_PRODUCT_ADD;
 DROP TABLE CAFE_PRODUCT_CATEGORY;
 
 --재고
-DROP TABLE CAFE_PRODUCTORDERLIST;
-DROP TABLE CAFE_PRODUCTORDER;
-DROP TABLE Cafe_stock;
-DROP TABLE Cafe_account;
+drop table CAFE_PRODUCTORDERLIST;
+drop table CAFE_PRODUCTORDER;
+drop table Cafe_order_cart;
+drop table Cafe_stock;
+drop table Cafe_account;
 
 --인사
 DROP TABLE cafe_emptna;
@@ -34,7 +35,7 @@ DROP TABLE CAFE_CUSTOMER;
 ----------------------------------------------------------------------------------------------------------------------------
 --고객
 create table CAFE_CUSTOMER(                    
-    customer_code number PRIMARY key, --고객코드  
+    customer_code number UNIQUE, --고객코드  
     customer_name varchar2(30), --고객명
     customer_phone varchar2(50), --고객 전화번호
     customer_birth varchar2(30), -- 고객 생년월일
@@ -86,24 +87,42 @@ create table cafe_emptna
 --재고
 --거래처 테이블
 create table Cafe_account (
-account_number number PRIMARY key, --거래처 코드(=사업자번호)
+account_number number(30) PRIMARY key, --거래처 코드
 account_name VARCHAR2(30),  -- 거래처 명
-account_ceoname VARCHAR2(30),  -- 거래처 사업자명(이름)
+account_ceoname VARCHAR2(30),  -- 거래처 사업자명
 account_address VARCHAR2(50), -- 주소
 account_email VARCHAR2(100) -- email
+
 );
+
+select * from Cafe_account;
+
 
 --원재료 테이블
 CREATE table Cafe_stock (
 stock_code NUMBER PRIMARY KEY, --원재료 코드
-stock_productname VARCHAR2(30), --품명(폼목종류 ex)유제품...)
+stock_productname VARCHAR2(30), --품명
 stock_detailname VARCHAR2(50), --상세명
 stock_standard VARCHAR2(30), --규격
 stock_price VARCHAR2(50), --금액
-stock_image VARCHAR2(50), -- 이미지
-account_number number,  --거래처 코드
-CONSTRAINT account_number FOREIGN KEY(account_number) REFERENCES Cafe_account(account_number)
-);    
+stock_image VARCHAR2(100), -- 이미지
+account_number NUMBER(30)  --거래처 코드
+);
+alter table Cafe_stock add CONSTRAINT account_number FOREIGN KEY (account_number) 
+REFERENCES Cafe_account(account_number) on delete set null;
+
+-- 발주내용 담기용 테이블
+create table Cafe_order_cart( 
+cart_number number, -- 담은번호
+cart_stock_productname VARCHAR2(30), -- 담은 품명
+cart_stock_detailname VARCHAR2(50), -- 담은 상세명
+cart_stock_price number, -- 담은 발부품의 금액
+cart_stock_quantity NUMBER, -- 담은 수량
+stock_code number,
+PRODUCTORDER_CODE number,
+ACCOUNT_NUMBER number
+);
+
 
 --발주 테이블
 CREATE TABLE CAFE_PRODUCTORDER
@@ -113,6 +132,7 @@ productOrder_date date,--날짜
 prodectOrder_total number--총금액
 );
 
+
 --발주 상세내역 테이블
 CREATE TABLE CAFE_PRODUCTORDERLIST 
 (
@@ -121,10 +141,15 @@ CREATE TABLE CAFE_PRODUCTORDERLIST
  productOrder_code number, --발주테이블 코드(fk)
  stock_code number,--원재료상품테이블 코드(fk)
  
- CONSTRAINT productOrder_code FOREIGN KEY(productOrder_code) REFERENCES CAFE_PRODUCTORDER(productOrder_code),
- CONSTRAINT stock_code FOREIGN KEY(stock_code) REFERENCES Cafe_stock(stock_code)
+ CONSTRAINT productOrder_code FOREIGN KEY(productOrder_code) REFERENCES CAFE_PRODUCTORDER(productOrder_code) on delete cascade,
+ CONSTRAINT stock_code FOREIGN KEY(stock_code) REFERENCES Cafe_stock(stock_code) on delete set null
  
 );
+
+
+
+
+
 
 --판매상품
 --상품 카테고리 테이블

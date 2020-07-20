@@ -1,0 +1,57 @@
+--거래처 테이블
+create table Cafe_account (
+account_number number(30) PRIMARY key, --거래처 코드
+account_name VARCHAR2(30),  -- 거래처 명
+account_ceoname VARCHAR2(30),  -- 거래처 사업자명
+account_address VARCHAR2(50), -- 주소
+account_email VARCHAR2(100) -- email
+
+);
+
+--원재료 테이블
+CREATE table Cafe_stock (
+stock_code NUMBER PRIMARY KEY, --원재료 코드
+stock_productname VARCHAR2(30), --품명
+stock_detailname VARCHAR2(50), --상세명
+stock_standard VARCHAR2(30), --규격
+stock_price VARCHAR2(50), --금액
+stock_image VARCHAR2(100), -- 이미지
+account_number NUMBER(30)  --거래처 코드
+);
+alter table Cafe_stock add CONSTRAINT account_number FOREIGN KEY (account_number) 
+REFERENCES Cafe_account(account_number) on delete set null;
+
+
+-- 발주내용 담기용 테이블
+create table Cafe_order_cart( 
+cart_number number, -- 담은번호
+cart_stock_productname VARCHAR2(30), -- 담은 품명
+cart_stock_detailname VARCHAR2(50), -- 담은 상세명
+cart_stock_price number, -- 담은 발부품의 금액
+cart_stock_quantity NUMBER, -- 담은 수량
+stock_number number,
+PRODUCTORDER_CODE number,
+ACCOUNT_NUMBER number
+);
+
+--발주 상세내역 테이블
+CREATE TABLE CAFE_PRODUCTORDERLIST 
+(
+ productOrderList_code number primary key,--코드
+ productOrderList_count number,--수량
+ productOrder_code number, --발주테이블 코드(fk)
+ stock_code number,--원재료상품테이블 코드(fk)
+ 
+ CONSTRAINT productOrder_code FOREIGN KEY(productOrder_code) REFERENCES CAFE_PRODUCTORDER(productOrder_code) on delete cascade,
+ CONSTRAINT stock_code FOREIGN KEY(stock_code) REFERENCES Cafe_stock(stock_code) on delete set null
+ 
+);
+
+
+--발주 테이블
+CREATE TABLE CAFE_PRODUCTORDER
+(
+productOrder_code number primary key,--코드
+productOrder_date date,--날짜
+prodectOrder_total number--총금액
+);

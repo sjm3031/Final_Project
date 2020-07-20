@@ -16,13 +16,14 @@ import com.cafe.erp.store.model.StockDTO;
 import com.cafe.erp.store.service.OrderService;
 
 @Controller
+@RequestMapping("store")
 public class OrderController {
 
 	@Resource
 	private OrderService orderService;
 	
 	//발주 신청목록보기
-	@RequestMapping("/stockorder")
+	@RequestMapping("/stockorder.cafe")
 	public String order(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 
@@ -65,11 +66,11 @@ public class OrderController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 		
-		return "stockorder";
+		return "store/stock/stockorder2";
 	}
 	
 	//임시 발주 테이블에 담기
-	@RequestMapping("/ordercartinsert")
+	@RequestMapping("/ordercartinsert.cafe")
 	public String ordercartinsert(OrderDTO dto) {
 		
 		int count = orderService.getstockcode(dto.getStock_code());
@@ -85,11 +86,11 @@ public class OrderController {
 			orderService.updatecount(dto);
 		}
 
-		return "redirect:stockorder";
+		return "redirect:stockorder.cafe";
 	}
 	
 	//임시 발주 테이블 목록
-	@RequestMapping("/stockorderlist")
+	@RequestMapping("/stockorderlist.cafe")
 	public String showordercartlist(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		int pg = 1;
@@ -132,11 +133,11 @@ public class OrderController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 		System.out.println(order_list);
-		return "stockorderlist";
+		return "store/stock/stockorderlist2";
 	}
 	
 	//임시 발주 테이블 목록 수정페이지
-	@RequestMapping("/stockorderupdateform")
+	@RequestMapping("/stockorderupdateform.cafe")
 	public String stockorderupdateform(int cart_number, int pg, Model model) {
 		System.out.println("stockorderupdateform 진입");
 		System.out.println("cart_number" + cart_number);
@@ -145,26 +146,26 @@ public class OrderController {
 		model.addAttribute("c", dto);
 		model.addAttribute("pg", pg);
 		System.out.println("수정하기               "+dto.getCart_stock_quantity());
-		return "stockorderlistupdate";
+		return "store/stock/stockorderlistupdate";
 	}
 	
 	//임시 발주 테이블 수정
-	@RequestMapping("/stockorderlistupdate")
+	@RequestMapping("/stockorderlistupdate.cafe")
 	public String stockorderupdate (OrderDTO dto, int pg) {
 		System.out.println("stockorderupdate 진입");
 //		System.out.println("수정한 수량 = " + dto.getCart_stock_quantity());
 		orderService.updateordercart(dto);
 		
-		return "redirect:stockorderlist?pg=" + pg;
+		return "redirect:stock/stockorderlist.cafe?pg=" + pg;
 	}
 	
 	//임시 발주 테이블 목록 삭제
-	@RequestMapping("/stockorderdelete")
+	@RequestMapping("/stockorderdelete.cafe")
 	public String stockorderdelete(OrderDTO dto, int pg) {
 		System.out.println("stockorderdelete 진입");
 		orderService.deleteordercart(dto);
 		System.out.println("stockorderdelete 완료");
-		return "redirect:stockorderlist?pg=" + pg;
+		return "redirect:stock/stockorderlist.cafe?pg=" + pg;
 	}
 	
 

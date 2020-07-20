@@ -21,6 +21,7 @@ import com.cafe.erp.store.model.StockDTO;
 import com.cafe.erp.store.service.StockService;
 
 @Controller
+@RequestMapping("store")
 public class StockController {
 
 	@Resource
@@ -29,28 +30,29 @@ public class StockController {
 	
 	private StockDTO dto;
 
-	@RequestMapping(value = "/stockinsert", method = RequestMethod.GET)
+	@RequestMapping(value = "/stockinsert.cafe", method = RequestMethod.GET)
 	public String insertstockform(StockDTO dto, HttpServletRequest req) {
 		HashMap map = new HashMap();
 		List<AccountDTO> account_list = stockService.getAccountList(map);
 		req.setAttribute("account_list", account_list);
 		
-		return "stockinsert";
+		return "store/stock/stockinsert";
 	}
 
-	@RequestMapping(value = "/stockinsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/stockinsert.cafe", method = RequestMethod.POST)
 	public String insertstock(StockDTO dto, @RequestParam("stock_upimage") MultipartFile stock_upimage, HttpServletRequest request ) throws Exception {
-		String stock_image = stock_upimage.getOriginalFilename();
+//		String stock_image = stock_upimage.getOriginalFilename();
 		System.out.println(dto.getAccount_number());
-		System.out.println(stock_image);
-		dto.setStock_image(stock_image);
+//		System.out.println(stock_image);
+//		dto.setStock_image(stock_image);
 		
 		// 단일파일  업로드시 사용했던 코드 
 		if(!stock_upimage.isEmpty()){
 			dto.setStock_image(stock_upimage.getOriginalFilename());
-			String path = request.getServletContext().getRealPath("/resources/img");
+			String path = request.getServletContext().getRealPath("/store/upload");
+			System.out.println(path);
 			String fpath = path + "\\" + dto.getStock_image();
-		
+			System.out.println(fpath);
 			//System.out.println(request.getParameter("title"));
 			//System.out.println("notice : " + n.getTitle() + " / " + n.getContent());
 			//System.out.println("FileInfo : " + fpath);
@@ -66,11 +68,11 @@ public class StockController {
 		System.out.println("insert controller 진입");
 		stockService.insertStock(dto);
 		System.out.println("insert 완료");
-		return "redirect:stocklist";
+		return "redirect:stocklist.cafe";
 	}
 	
 
-	@RequestMapping("/stocklist")
+	@RequestMapping("/stocklist.cafe")
 	public String showlist(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 
@@ -113,15 +115,15 @@ public class StockController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 
-		return "stocklist";
+		return "store/stock/stocklist2";
 	}
 
-	@RequestMapping("/stockdelete")
+	@RequestMapping("/stockdelete.cafe")
 	public String detelestock(StockDTO dto, int pg) {
 		System.out.println("delete controller 진입");
 		System.out.println("code : " + dto.getStock_code());
 		int result = stockService.deleteStock(dto);
-		String res = "redirect:stocklist?pg=" + pg;
+		String res = "redirect:stocklist.cafe?pg=" + pg;
 		if (result == 0) {
 			res = "fail";
 		}
@@ -129,7 +131,7 @@ public class StockController {
 		return res;
 	}
 
-	@RequestMapping("/stockupdateform")
+	@RequestMapping("/stockupdateform.cafe")
 	public String updatestockform(int stock_code, int pg, Model model) {
 		HashMap map = new HashMap();
 		List<AccountDTO> account_list = stockService.getAccountList(map);
@@ -139,25 +141,25 @@ public class StockController {
 		model.addAttribute("account_list", account_list);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
-		return "stockupdate";
+		return "store/stock/stockupdate";
 	}
 
-	@RequestMapping("/stockupdate")
+	@RequestMapping("/stockupdate.cafe")
 	public String updatestock(StockDTO dto, int pg) {
 
 		System.out.println("controller updatestock 진입");
 		System.out.println("code : " + dto.getStock_code() + "name : " + dto.getStock_detailname());
 		stockService.updateStock(dto);
-		String res = "redirect:stocklist?pg=" + pg;
+		String res = "redirect:stocklist.cafe?pg=" + pg;
 
 		System.out.println("update 성공");
 		return res;
 	}
 	
-	@RequestMapping("/menu")
+	@RequestMapping("/main.cafe")
 	public String menu() {
 		
-		return "menu";
+		return "store/stock/main";
 	}
 	
 //	@RequestMapping("/stockorder")

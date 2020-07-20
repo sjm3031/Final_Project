@@ -17,6 +17,7 @@ import com.cafe.erp.store.model.StockDTO;
 import com.cafe.erp.store.service.AccountService;
 
 @Controller
+@RequestMapping("store")
 public class AccountController {
 	
 	@Resource
@@ -24,22 +25,22 @@ public class AccountController {
 	
 	private AccountDTO dto;
 	
-	@RequestMapping("/accountinsertform")
+	@RequestMapping("/accountinsertform.cafe")
 	public String insertaccountform() {
 		
-		return "accountinsert";
+		return "store/account/accountinsert";
 	}
 	
-	@RequestMapping("/accountinsert")
+	@RequestMapping("/accountinsert.cafe")
 	public String insertaccount(AccountDTO dto) {
 		System.out.println("insert controller 진입");
 		accountService.insertAccount(dto);
 		System.out.println("insert 완료");
 		
-		return "redirect:accountlist";
+		return "redirect:accountlist.cafe";
 	}
 	
-	@RequestMapping("/accountlist")
+	@RequestMapping("/accountlist.cafe")
 	public String showlist(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 
@@ -82,14 +83,14 @@ public class AccountController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 		System.out.println(account_list);
-		return "accountlist";
+		return "store/account/accountlist2";
 	}
 	
-	@RequestMapping("/accountdelete")
+	@RequestMapping("/accountdelete.cafe")
 	public String deleteaccount(AccountDTO dto, int pg) {
 		System.out.println("delete controller 진입");
 		int result = accountService.deleteAccount(dto);
-		String res = "redirect:accountlist?pg=" + pg;
+		String res = "redirect:accountlist.cafe?pg=" + pg;
 		if(result == 0) {
 			res = "fail";
 		}
@@ -97,7 +98,7 @@ public class AccountController {
 		return res;
 	}
 	
-	@RequestMapping("/accountupdateform")
+	@RequestMapping("/accountupdateform.cafe")
 	public String updateaccountform(int account_number, int pg, Model model) {
 		System.out.println(account_number);
 		AccountDTO dto = accountService.getAccount(account_number);
@@ -105,16 +106,16 @@ public class AccountController {
 		System.out.println("dto : " + dto);
 		model.addAttribute("c", dto);
 		model.addAttribute("pg", pg);
-		return "accountupdate";
+		return "store/account/accountupdate";
 	}
 	
-	@RequestMapping("/accountupdate")
+	@RequestMapping("/accountupdate.cafe")
 	public String updateaccount(AccountDTO dto, int pg) {
 		System.out.println("update controller 진입");
 		accountService.updateAccount(dto);
 		System.out.println("update 완료");
 		
-		return "redirect:accountlist?pg=" + pg;
+		return "redirect:accountlist.cafe?pg=" + pg;
 	}
 	
 }

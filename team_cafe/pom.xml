@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cafe</groupId>
 	<artifactId>erp</artifactId>
-	<name>team_gift</name>
+	<name>team_cafe</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -15,7 +15,8 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-		<!-- mail을 보낼때 필요한 dependency -->
+
+			<!-- mail을 보낼때 필요한 dependency -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
@@ -27,18 +28,26 @@
 			<version>1.5.1</version>
 		</dependency>
 		
-		<!-- 파일업로드에 필요한 jar라이브러리 -->
+		
+		
+		<!-- common fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.1</version>
+			<version>1.2.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>1.4</version>
 		</dependency>
+		
+
+
+
+
+
 
 		<!-- https://mvnrepository.com/artifact/oracle/ojdbc6 -->
 		<dependency>

@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+
 		
 	<!-- DB 연결 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
@@ -19,17 +19,19 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
-		 <!-- SqlSessionFactoryBean 설정 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->
-		<property name="mapperLocations" value="classpath:com/cafe/erp/store/mapper/*.xml" />
+		
+	<!-- myBatis -->
+	<!-- SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- Mapping 할 xml 이  있는 패키지 경로를 설정한다. -->
+		<property name="typeAliasesPackage" value="com.cafe.erp.sale.model"/>
+		<property name="mapperLocations" value="classpath:com/cafe/erp/*/mapper/*.xml"></property>
 	</bean>
 	
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactory" />
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
 	</bean>
-	
 	
 		
 		

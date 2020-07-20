@@ -19,6 +19,7 @@ import com.cafe.erp.store.service.ProductOrderListSercvice;
 import com.cafe.erp.store.service.ProductOrderService;
 
 @Controller
+@RequestMapping("store")
 public class ProductOrderController {
 
 	@Resource
@@ -30,7 +31,7 @@ public class ProductOrderController {
 	@Resource
 	private ProductOrderListSercvice productOrderListSercvice;
 	
-	@RequestMapping("/orderinsert")
+	@RequestMapping("/orderinsert.cafe")
 	public String orderinsert(ProductOrderDTO dto, ProductOrderListDTO dto1, HttpServletRequest req) throws Exception {
 		System.out.println("orderinsert 진입");
 		
@@ -86,11 +87,11 @@ public class ProductOrderController {
 		//임시 발주 목록을 삭제해서 초기화
 		orderService.deleteorderlistcart();
 		System.out.println("임시 발주 목록 초기화 완료");
-		return "redirect:stockorderlist";
+		return "redirect:stockorderlist.cafe";
 	}
 	
 	
-	@RequestMapping("/orderlist")
+	@RequestMapping("/orderlist.cafe")
 	public String orderlist(HttpServletRequest req) {
 		System.out.println("orderlist 진입");
 		ModelAndView mav = new ModelAndView();
@@ -134,14 +135,15 @@ public class ProductOrderController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 		
-		return "orderlist";
+		return "store/order/orderlist2";
 	}
 	
-	@RequestMapping("/detaillist")
+	@RequestMapping("/detaillist.cafe")
 	public String detaillist(HttpServletRequest req, int productOrder_code) {
 		System.out.println("detaillist 진입");
 //		String productOrder_code = req.getParameter("productOrder_code");
 //		System.out.println(productOrder_code);
+//		System.out.println(req.getParameter("Orderdate"));
 		ModelAndView mav = new ModelAndView();
 		
 		int pg = 1;
@@ -184,7 +186,7 @@ public class ProductOrderController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 		
-		return "orderdetail";
+		return "store/order/orderdetail2";
 	}
 	
 }

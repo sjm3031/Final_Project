@@ -29,7 +29,7 @@
 		<td align="center">${b.stock_standard}</td>
 		<td align="center">${b.stock_price}</td>
 		<td align="center">${b.account_name}</td>
-		<td align="center"><img alt="제품" src="./store/upload/${b.stock_image}" height="50" width="60"></td>
+		<td align="center"><img alt="제품" src="../store/upload/${b.stock_image}" height="50" width="60"></td>
 		<td>
 		<input type="button" value="삭제" onclick="location.href='stockdelete.cafe?stock_code=${b.stock_code}&pg=${pg}'"/>
 		</td>

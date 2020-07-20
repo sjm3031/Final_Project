@@ -41,17 +41,18 @@ public class StockController {
 
 	@RequestMapping(value = "/stockinsert.cafe", method = RequestMethod.POST)
 	public String insertstock(StockDTO dto, @RequestParam("stock_upimage") MultipartFile stock_upimage, HttpServletRequest request ) throws Exception {
-		String stock_image = stock_upimage.getOriginalFilename();
+//		String stock_image = stock_upimage.getOriginalFilename();
 		System.out.println(dto.getAccount_number());
-		System.out.println(stock_image);
-		dto.setStock_image(stock_image);
+//		System.out.println(stock_image);
+//		dto.setStock_image(stock_image);
 		
 		// 단일파일  업로드시 사용했던 코드 
 		if(!stock_upimage.isEmpty()){
 			dto.setStock_image(stock_upimage.getOriginalFilename());
 			String path = request.getServletContext().getRealPath("/store/upload");
+			System.out.println(path);
 			String fpath = path + "\\" + dto.getStock_image();
-		
+			System.out.println(fpath);
 			//System.out.println(request.getParameter("title"));
 			//System.out.println("notice : " + n.getTitle() + " / " + n.getContent());
 			//System.out.println("FileInfo : " + fpath);

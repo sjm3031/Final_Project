@@ -1,12 +1,5 @@
 
 
-
-
-
-
-
-
-
 -------------------------------------------------------------------------------------------------------------------------------
 --°í°´°ü¸®
 -------------------------------------------------------------------------------------------------------------------------------
@@ -243,7 +236,7 @@ CREATE TABLE CAFE_CART_ADD(
 DESC CAFE_CART_ADD ;
 select * FROM CAFE_CART_ADD order by cart_code,PRODUCT_ADD_CODE;
 delete from CAFE_CART_ADD;
-
+delete from CAFE_CART_ADD where cart_code=1;
 
 --insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_stamp) values(1,'lee','010-1234-1234','','',0);
  
@@ -308,12 +301,6 @@ DESC CAFE_ORDERLIST_ADD_web;
 select * FROM CAFE_ORDERLIST_ADD_web;
 delete from CAFE_ORDERLIST_ADD_web;
 
- 
- 
- select a.orderList_web_code,a.cafe_product_code,a.orderList_web_count,a.order_web_code,nvl(b.PRODUCT_ADD_CODE,0) product_add_code
- from CAFE_ORDERList_web a, CAFE_ORDERLIST_ADD_web b
- where a.orderList_web_code=b.orderlist_web_code(+) and a.order_web_code=1 order by a.orderList_web_code,b.product_add_code ;
- 
  
  
  

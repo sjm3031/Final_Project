@@ -37,7 +37,7 @@ ACCOUNT_NUMBER number
 --발주 상세내역 테이블
 CREATE TABLE CAFE_PRODUCTORDERLIST 
 (
- productOrderList_code number primary key,--코드
+ productOrderList_code number ,--코드
  productOrderList_count number,--수량
  productOrder_code number, --발주테이블 코드(fk)
  stock_code number,--원재료상품테이블 코드(fk)

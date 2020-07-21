@@ -213,7 +213,7 @@
             <span>도움말</span></a>
         </li>
       </ul>
-      <div id="content-wrapper" style="padding: 2em;">	
+      <div id="content-wrapper" style="margin: 2em;">	
           <div class="container-fluid">
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">

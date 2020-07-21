@@ -13,10 +13,8 @@
 
 <script type="text/javascript">
 
-window.onload = setInterval(function(){webOrder()},3000);
+window.onload = setInterval(function(){webOrder()},2000);
 
-
-	
 function webOrder(){
 	$.ajax(
 	         {
@@ -30,7 +28,6 @@ function webOrder(){
 		          }else{
 		        	  document.getElementById("orderBtn").setAttribute("style","background-color: blue;");
 			      }
-	             
 	            },
 	            error: function(error){
 	               console.log('error');
@@ -52,7 +49,7 @@ POS 화면입니다.
 <br>
 <br>
 <div id="webOrder">
-<button type="button" id="orderBtn" name="orderBtn"  onclick="window.open('../userWeb/orderlist.cafe?customer_code=1','orderWeb','width=800,height=500')" >web주문</button> 
+<button type="button" id="orderBtn" name="orderBtn"  onclick="window.open('orderlist.cafe','orderWeb','width=800,height=500')" >web주문</button> 
 <a></a>
 </div>
 

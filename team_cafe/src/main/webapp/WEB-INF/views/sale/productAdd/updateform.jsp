@@ -263,7 +263,7 @@
 					class="fa fa-fw fa-life-ring"></i> <span>도움말</span></a></li>
 		</ul>
 		
-		<div id="content-wrapper" style="padding: 2em; height: 850px;">
+		<div id="content-wrapper" style="margin: 2em;">
 			<div class="container-fluid">
 				<!-- Breadcrumbs-->
 				<ol class="breadcrumb">
@@ -340,7 +340,7 @@
 			
 		</div>
 	</div>
-
+</div>
 
 
 	<!-- Scroll to Top Button-->

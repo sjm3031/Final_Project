@@ -19,6 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	public int getOrderWebCheck();				//order_web_check 가 0 인 레코드수 가져오기 >> 주문접수가 안된 web주문건수 가져오기
 	
+	public List<OrderWebDTO> getOrderWebListAll(String date); //pos화면에서 오늘날짜의 모든 목록을 가져올때
+	public void updateOrderWebCheck(int order_web_code);		// 해당주문의 주문접수 확인 처리하기
 -->
 
 
@@ -68,5 +70,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getOrderWebCheck" resultType="Integer"  >
 		  select count(*) FROM CAFE_ORDER_WEB where order_web_check=0 
  	</select>
+	
+	
+	<select id="getOrderWebListAll" parameterType="String" resultType="com.cafe.erp.userWeb.model.OrderWebDTO"  >
+		  select order_web_code,order_web_total,order_web_count,order_web_date, customer_code,order_web_check from (select order_web_code,order_web_total,order_web_count,order_web_date, customer_code,order_web_check, TO_CHAR(order_web_date,'YY/MM/DD') as today from CAFE_ORDER_WEB )
+where today=#{date} order by order_web_code desc
+ 	</select>	
+ 	
+ 	<update id="updateOrderWebCheck"  parameterType="int"  >
+ 		UPDATE CAFE_ORDER_WEB SET order_web_check =1 where order_web_code=#{order_web_code}
+ 	</update>
+ 	
 	
 </mapper>

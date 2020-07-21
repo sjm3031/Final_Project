@@ -61,8 +61,8 @@ function account_insert(){
 		<td><input type="text" id="account_number" name="account_number"/></td>
 		<td><input type="text" id="account_name" name="account_name" maxlength="10" size="12"/></td>
 		<td><input type="text" id="account_ceoname" name="account_ceoname" maxlength="10" size="12"/></td>
-		<td><input type="text" id="account_address" name="account_address" maxlength="10" size="12"/></td>
-		<td><input type="text" id="account_email" name="account_email" maxlength="20" size="20" /></td>
+		<td><input type="text" id="account_address" name="account_address" /></td>
+		<td><input type="text" id="account_email" name="account_email" /></td>
 	</tr>
 	
 	

@@ -20,4 +20,6 @@ public interface OrderWebDAO {
 	
 	public int getOrderWebCheck();				//order_web_check 가 0 인 레코드수 가져오기 >> 주문접수가 안된 web주문건수 가져오기
 	
+	public List<OrderWebDTO> getOrderWebListAll(String date); //pos화면에서 오늘날짜의 모든 목록을 가져올때
+	public void updateOrderWebCheck(int order_web_code);		// 해당주문의 주문접수 확인 처리하기
 }

@@ -106,7 +106,7 @@ public class AccountController {
 		System.out.println("dto : " + dto);
 		model.addAttribute("c", dto);
 		model.addAttribute("pg", pg);
-		return "store/account/accountupdate";
+		return "store/account/accountupdate2";
 	}
 	
 	@RequestMapping("/accountupdate.cafe")

@@ -141,7 +141,7 @@ public class StockController {
 		model.addAttribute("account_list", account_list);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
-		return "store/stock/stockupdate";
+		return "store/stock/stockupdate2";
 	}
 
 	@RequestMapping("/stockupdate.cafe")

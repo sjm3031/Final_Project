@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
   <head>
     <meta charset="UTF-8">
@@ -176,11 +177,11 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">거래처</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addAccountModal"> <i class="fa fa-plus"></i> 거래처 등록</a>
-            <a class="dropdown-item" href="store/accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
+            <a class="dropdown-item" href="accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">원재료 품목</h6>
            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addStockModal"> <i class="fa fa-plus"></i> 재료 품목 추가</a>
-            <a class="dropdown-item" href="product-types.do"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
+            <a class="dropdown-item" href="stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">발주</h6>
             <a class="dropdown-item" href="stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
@@ -221,123 +222,70 @@
               <li class="breadcrumb-item active">Product Brands</li>
             </ol>
             <!-- Page Content -->
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-              <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
-                <i class="fa fa-table"></i>
-                발주 상세내역
-                <a href="stockorder.cafe" class="text-white">
-                  <span class="float-right">
-                    <i class="fa fa-plus"></i>
-                    발주 신청
-                  </span>
-                </a>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                      <tr>
-                        <th>발주번호</th>
-                        <th>품명</th>
-                        <th>상세명</th>
-                        <th>금액</th>
-                        <th>수량</th>
-                      </tr>
-                    </thead>
-                    <tfoot>
-                      <tr>
-                        <th>발주번호</th>
-                        <th>품명</th>
-                        <th>상세명</th>
-                        <th>금액</th>
-                        <th>수량</th>
-                      </tr>
-                    </tfoot>
-                    <tbody>
-                    <c:forEach var="b" items="${orderdetail}">
-                      <tr>
-                        <td align="center">${b.productOrder_code}</td>
-						<td align="center">${b.stock_productname}</td>
-						<td align="center">${b.stock_detailname}</td>
-						<td align="center">${b.stock_price}</td>
-						<td align="center">${b.productOrderList_count}</td>
-                      </tr>
-                    </c:forEach>
-                    </tbody>
-                  </table>
-                  <div class="row">
-	                  <div class="col-sm-12 col-md-5">
-		                  <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-		              
-		                  </div>
-	                  </div>
-                   <div class="col-sm-12 col-md-7">
-		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-			                  <ul class="pagination">
-			                  
-			                  		<c:if test="${pg>1}">  <!-- 5>10 : false / 15>10 : true -->
-										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-					              	  		  Previous
-					                	  </a>
-					             	    </li>
-									</c:if>
-									<c:if test="${pg<=1}"> <!-- 5<=10 :true / 15<=10:false -->
-										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-						                  <a aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-						              	    Previous
-						                  </a>
-					  	               </li>
-									</c:if>          
-					          <c:forEach begin="${fromPage}" end="${toPage}" var="i">
-								<c:if test="${i==pg}">
-					                 <li class="paginate_button page-item active">      
-					                  <a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
-					              	    ${i}
-					                  </a>
-					                 </li>
-					            </c:if>
-					            <c:if test="${i!=pg}">
-		            				  <li class="paginate_button page-item ">
-		            				  	<a href="list.cafe?pg=${i}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					             		    ${i}
-					        	         </a>
-					                 </li>
-					    	       </c:if>
-					           </c:forEach>
-					                 
-					                	       
-					       <c:if test="${pg<allPage}"> 
-					           <li class="paginate_button page-item next disabled" id="dataTable_next">
-					                  <a href="list.cafe?pg=${pg+1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	Next
-					                  </a>
-				                  </li>
-				            </c:if>      
-				            
-				             <c:if test="${pg>=allPage}"> 
-					           <li class="paginate_button page-item next disabled" id="dataTable_next">
-					                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	Next
-					                  </a>
-				                  </li>
-				            </c:if>    
-				            
-				 
-				                  
-				                  
-				                  
-				                  
-			                  </ul>
-		                  </div>
-	                  </div>
-                </div>
-                </div>
-              </div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
-          </div>
+            <div class="modal-content">
+					<div class="modal-header bg-primary text-white">
+						<h7 class="modal-title" id="">
+							<i class="fa fa-tag"></i> 재료 품목 수정
+						</h7>
+						
+					</div>
+					<form class="" action="stockupdate.cafe" method="post">
+						<div class="modal-body">
+							<div class="form-group">
+							
+		  
+	
+								<label>코드</label> 
+								<input type="hidden" name="pg" value="${pg}"/>
+		<input type="hidden" id="stock_code" name="stock_code" value="${b.stock_code}"/>
+		<input type="text" class="form-control" id="stock_code" name="stock_code" value="${b.stock_code}" disabled="disabled"/>
+								 
+							</div>
+							
+							<div class="form-group">
+								<label for="">품명</label>
+								<input type="text" class="form-control" id="stock_productname" name="stock_productname" value="${b.stock_productname}"/>
+								 <small	class="text-muted">정확히 입력해주세요.</small>
+			 
+							</div>
+
+							<div class="form-group">
+								<label for="">상세명</label> 
+								<input type="text" class="form-control" id="stock_detailname" name="stock_detailname" value="${b.stock_detailname}"/>
+							</div>
+							<div class="form-group">
+								<label for="">규격</label><br> 
+								<input type="text" class="form-control" id="stock_standard" name="stock_standard" value="${b.stock_standard}"/>
+							</div>
+							
+							<div class="form-group">
+								<label for="">금액(원)</label><br> 
+								<input type="text" class="form-control" id="stock_price" name="stock_price" value="${b.stock_price}"/>
+							</div>
+
+							<div class="form-group">
+								<label for="">회사명</label><br> 
+								<select class="form-control text-primary" name="account_number" id="account_number">
+								<option>선택하세요</option>
+								<c:forEach var="get" items="${account_list}">
+								<option value="${get.account_number}">${get.account_name}</option>
+								</c:forEach>
+								</select>
+							</div>
+							
+							<div class="form-group">
+								<label for="">이미지 등록</label><br> 
+								<input type="file" id="stock_image" name="stock_image"/>
+							</div>
+						
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary" type="button"
+								data-dismiss="modal">취소</button>
+							<input type="submit" class="btn btn-primary" value="수정">
+						</div>
+					</form>
+				</div>
           <br><br><br>
          <!-- Sticky Footer -->
         <footer class="sticky-footer">
@@ -460,7 +408,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="accountinsert" action="store/accountinsert.cafe" method="post" name="accountinsert">
+          <form class="accountinsert" action="accountinsert.cafe" method="post" name="accountinsert">
             <div class="modal-body">
               <div class="form-group">
                 <label>사업자 번호</label>

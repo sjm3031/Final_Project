@@ -10,3 +10,12 @@ KOSTA 200기 3팀 파이널 프로젝트
 [추가적인 마크다운 언어](https://gist.github.com/ihoneymon/652be052a0727ad59601)
 
 
+-customerDB
+
+create table CAFE_CUSTOMER(                    
+    customer_phone varchar(30) PRIMARY key,     
+    customer_name varchar2(40),      
+    customer_stamp number
+);  
+
+

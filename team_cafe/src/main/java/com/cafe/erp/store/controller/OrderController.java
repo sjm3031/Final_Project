@@ -147,7 +147,7 @@ public class OrderController {
 		model.addAttribute("c", dto);
 		model.addAttribute("pg", pg);
 		System.out.println("수정하기               "+dto.getCart_stock_quantity());
-		return "store/stock/stockorderlistupdate";
+		return "store/stock/stockorderlistupdate2";
 	}
 	
 	//임시 발주 테이블 수정
@@ -157,7 +157,7 @@ public class OrderController {
 //		System.out.println("수정한 수량 = " + dto.getCart_stock_quantity());
 		orderService.updateordercart(dto);
 		
-		return "redirect:stock/stockorderlist.cafe?pg=" + pg;
+		return "redirect:stockorderlist.cafe?pg=" + pg;
 	}
 	
 	//임시 발주 테이블 목록 삭제

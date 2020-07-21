@@ -225,58 +225,42 @@
             <div class="modal-content">
 					<div class="modal-header bg-primary text-white">
 						<h7 class="modal-title" id="">
-							<i class="fa fa-tag"></i> 재료 품목 수정
+							<i class="fa fa-tag"></i> 발주 수량 수정
 						</h7>
 						
 					</div>
-					<form class="" action="stockupdate.cafe" method="post">
+					<form class="" action="stockorderlistupdate.cafe" method="post">
 						<div class="modal-body">
 							<div class="form-group">
 							
 		  
 	
-								<label>코드</label> 
+								<label>번호</label><br> 
 								<input type="hidden" name="pg" value="${pg}"/>
-		<input type="hidden" id="stock_code" name="stock_code" value="${b.stock_code}"/>
-		<input type="text" class="form-control" id="stock_code" name="stock_code" value="${b.stock_code}" disabled="disabled"/>
-								 
+		<input type="hidden" name="cart_number" value="${c.cart_number}"/>
+								 ${c.cart_number}
 							</div>
 							
 							<div class="form-group">
-								<label for="">품명</label>
-								<input type="text" class="form-control" id="stock_productname" name="stock_productname" value="${b.stock_productname}"/>
-								 <small	class="text-muted">정확히 입력해주세요.</small>
+								<label for="">품명</label><br>
+								${c.cart_stock_productname}
 			 
 							</div>
 
 							<div class="form-group">
-								<label for="">상세명</label> 
-								<input type="text" class="form-control" id="stock_detailname" name="stock_detailname" value="${b.stock_detailname}"/>
+								<label for="">상세명</label><br> 
+								${c.cart_stock_detailname}
 							</div>
-							<div class="form-group">
-								<label for="">규격</label><br> 
-								<input type="text" class="form-control" id="stock_standard" name="stock_standard" value="${b.stock_standard}"/>
-							</div>
-							
 							<div class="form-group">
 								<label for="">금액(원)</label><br> 
-								<input type="text" class="form-control" id="stock_price" name="stock_price" value="${b.stock_price}"/>
-							</div>
-
-							<div class="form-group">
-								<label for="">회사명</label><br> 
-								<select class="form-control text-primary" name="account_number" id="account_number">
-								<option>선택하세요</option>
-								<c:forEach var="get" items="${account_list}">
-								<option value="${get.account_number}">${get.account_name}</option>
-								</c:forEach>
-								</select>
+								${c.cart_stock_price}(원)
 							</div>
 							
 							<div class="form-group">
-								<label for="">이미지 등록</label><br> 
-								<input type="file" id="stock_image" name="stock_image"/>
+								<label for="">수량</label><br> 
+								<input type="text" class="form-control" name="cart_stock_quantity" id="cart_stock_quantity" value="${c.cart_stock_quantity}"/>
 							</div>
+
 						
 						</div>
 						<div class="modal-footer">

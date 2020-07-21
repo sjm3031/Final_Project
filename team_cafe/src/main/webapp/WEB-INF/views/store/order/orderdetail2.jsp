@@ -601,9 +601,6 @@
       <script src="../resources/js/jquery.min.js"></script>
       <script src="../resources/js/bootstrap.bundle.min.js"></script>
       <script src="../resources/js/jquery.easing.min.js"></script>
-      <script src="../resources/js/jquery.dataTables.js"></script>
-      <script src="../resources/js/dataTables.bootstrap4.js"></script>
-      <script src="../resources/js/datatables-demo.js"></script>
       <script src="../resources/js/rc-pos.min.js"></script>
     </body>
   </html>

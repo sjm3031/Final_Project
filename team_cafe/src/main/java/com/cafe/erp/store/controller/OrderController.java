@@ -74,6 +74,7 @@ public class OrderController {
 	public String ordercartinsert(OrderDTO dto) {
 		
 		int count = orderService.getstockcode(dto.getStock_code());
+		System.out.println(dto.getCart_stock_detailname());
 		
 		if(count == 0 ) {
 		System.out.println("등록되어 있지 않음 insert 진행");
@@ -165,7 +166,7 @@ public class OrderController {
 		System.out.println("stockorderdelete 진입");
 		orderService.deleteordercart(dto);
 		System.out.println("stockorderdelete 완료");
-		return "redirect:stock/stockorderlist.cafe?pg=" + pg;
+		return "redirect:stockorderlist.cafe?pg=" + pg;
 	}
 	
 

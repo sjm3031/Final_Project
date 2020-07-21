@@ -265,7 +265,7 @@
 						</td>
 						<td align="center">${b.prodectOrder_total}</td>
 						<td>
-						<input type="button" value="상세내역보기" onclick="location.href='detaillist.cafe?productOrder_code=${b.productOrder_code}&pg=${pg}'"/>
+						<input type="button" value="상세내역보기" class="btn btn-secondary" onclick="location.href='detaillist.cafe?productOrder_code=${b.productOrder_code}&pg=${pg}'"/>
 						</td>
                       </tr>
                     </c:forEach>

@@ -273,8 +273,8 @@
 						<img alt="제품" src="../store/upload/${b.stock_image}" height="50" width="60">
 						</td>
 						<td>
-						<input type="button" value="삭제" onclick="location.href='stockdelete.cafe?stock_code=${b.stock_code}&pg=${pg}'"/>
-						<input type="button" value="수정" onclick="location.href='stockupdateform.cafe?stock_code=${b.stock_code}&pg=${pg}'"/>
+						<input type="button" value="삭제" class="btn btn-secondary" onclick="location.href='stockdelete.cafe?stock_code=${b.stock_code}&pg=${pg}'"/>
+						<input type="button" value="수정" class="btn btn-secondary" onclick="location.href='stockupdateform.cafe?stock_code=${b.stock_code}&pg=${pg}'"/>
 						</td>
                       </tr>
                     </c:forEach>  

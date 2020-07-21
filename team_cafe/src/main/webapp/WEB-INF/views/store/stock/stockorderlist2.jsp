@@ -282,6 +282,10 @@
 						<input type="hidden" name="cart_stock_quantity" id="cart_stock_quantity" value="${c.cart_stock_quantity}"/>
 						${c.cart_stock_quantity}
 						</td>
+						<td>
+						<input type="button" value="수정" class="btn btn-secondary" onclick="location.href='stockorderupdateform.cafe?cart_number=${c.cart_number}&pg=${pg}'"/>
+						<input type="button" value="삭제" class="btn btn-secondary" onclick="location.href='stockorderdelete.cafe?cart_number=${c.cart_number}&pg=${pg}'"/>
+						</td>
                       </tr>
                     </c:forEach>
                     </tbody>

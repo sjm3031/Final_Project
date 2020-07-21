@@ -183,8 +183,8 @@
             <a class="dropdown-item" href="product-types.do"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">발주</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductVendorModal"><i class="fa fa-plus"></i> 발주 신청</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductBrandModal"> <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
+            <a class="dropdown-item" href="stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
+            <a class="dropdown-item" href="orderlist.cafe"> <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
           </div>
         </li>
         
@@ -226,10 +226,10 @@
               <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
                 <i class="fa fa-table"></i>
                 발주 상세내역
-                <a href="#" class="text-white" data-toggle="modal" data-target="#addProductBrandModal">
+                <a href="stockorder.cafe" class="text-white">
                   <span class="float-right">
                     <i class="fa fa-plus"></i>
-                    브랜드 등록
+                    발주 신청
                   </span>
                 </a>
               </div>

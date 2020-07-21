@@ -266,8 +266,8 @@
 				<td align="center">${c.account_address}</td>
 				<td align="center">${c.account_email}</td>
 				<td>
-				<input type="button" value="삭제" onclick="location.href='accountdelete.cafe?account_number=${c.account_number}&pg=${pg}'"/>
-				<input type="button" value="수정" onclick="location.href='accountupdateform.cafe?account_number=${c.account_number}&pg=${pg}'"/>
+				<input type="button" value="삭제" class="btn btn-secondary" onclick="location.href='accountdelete.cafe?account_number=${c.account_number}&pg=${pg}'"/>
+				<input type="button" value="수정" class="btn btn-secondary" onclick="location.href='accountupdateform.cafe?account_number=${c.account_number}&pg=${pg}'"/>
 				</td>
            </tr>
      </c:forEach>

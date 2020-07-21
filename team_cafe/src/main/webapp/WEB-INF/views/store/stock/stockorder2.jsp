@@ -260,8 +260,8 @@
                     </tfoot>
                     <tbody>
                     <c:forEach var="b" items="${list}">
-    	<form action="ordercartinsert.cafe" name="ordercartinsert" method="post">
 		<tr>
+    	<form action="ordercartinsert.cafe" name="ordercartinsert" method="post">
 		<td>
 		${b.stock_productname}
 		<input type="hidden" name="cart_stock_productname" id="cart_stock_productname" value="${b.stock_productname}"/>
@@ -288,10 +288,10 @@
 		<input type="hidden" name="account_number" value="${b.account_number}"/>
 		</td>
 		<td>
-		<input type="submit" value="품목담기"/>
+		<input type="submit" value="품목담기" class="btn btn-secondary"/>
 		</td>
-		</tr>
 		</form>
+		</tr>
                     </c:forEach>  
                     </tbody>
                   </table>

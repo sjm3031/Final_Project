@@ -41,6 +41,7 @@ public class ProductOrderController {
 	
 		//임시 발주 목록에 발주 등록번호를 업데이트 해줌
 		orderService.updatecode();
+		System.out.println("update 완료");
 		int pg = 1;
 		String strPg = req.getParameter("pg");
 

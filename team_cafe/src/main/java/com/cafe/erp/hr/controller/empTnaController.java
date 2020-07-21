@@ -39,26 +39,26 @@ public class empTnaController {
 //		return "empTnaReadForm";
 //	}
 	
-	@RequestMapping(value="/empTnaInsert.cafe",method=RequestMethod.GET)
+	@RequestMapping(value="hr/emptna/insert.cafe",method=RequestMethod.GET)
 	public String empTnaInsertForm() {
 		
-		return "empTnaInsertForm";
+		return "hr/emptna/empTnaInsertForm";
 	}
 	
-	@RequestMapping(value="/empTnaInsert.cafe",method=RequestMethod.POST)
+	@RequestMapping(value="hr/emptna/insert.cafe",method=RequestMethod.POST)
 	public String empTnaInsert(empTnaDTO dto) {
 		
 		empTnaService.insertEmpTna(dto);
 		
-		return "redirect:empTnaList.cafe";
+		return "redirect:list.cafe";
 	}
-	@RequestMapping(value="/empTnaUpdate.cafe",method=RequestMethod.GET)
+	@RequestMapping(value="hr/emptna/update.cafe",method=RequestMethod.GET)
 	public String empTnaUpdateForm() {
 		
-		return "empTnaUpdateForm";
+		return "hr/emptna/empTnaUpdateForm";
 	}
 	
-	@RequestMapping(value="/empTnaUpdate.cafe",method=RequestMethod.POST)
+	@RequestMapping(value="hr/emptna/update.cafe",method=RequestMethod.POST)
 	public String empTnaUpdate(empTnaDTO dto,String employee_name,String employee_jumin) {
 		
 		HashMap map = new HashMap();
@@ -71,10 +71,10 @@ public class empTnaController {
 		empTnaService.updateEmpTna(map);
 		System.out.println(total);
 		System.out.println(dto.getEmptna_monthtotaltime());
-		return "redirect:empTnaList.cafe";
+		return "redirect:list.cafe";
 	}
 	
-	@RequestMapping("/empTnaDaySearch.cafe")
+	@RequestMapping("hr/emptna/daySearch.cafe")
 	public String empTnaDayForm(Model model) {
 		
 		List<empTnaDTO> list = empTnaService.getYear();
@@ -83,10 +83,10 @@ public class empTnaController {
 		model.addAttribute("list", list);
 		model.addAttribute("list1", list1);
 		model.addAttribute("list2", list2);
-		return "empTnaDayForm";
+		return "hr/emptna/empTnaDayForm";
 	}
 	
-	@RequestMapping("/empTnaMonthSearch.cafe")
+	@RequestMapping("hr/emptna/monthSearch.cafe")
 	public String empTnaMonthForm(Model model) {
 		
 		List<empTnaDTO> list = empTnaService.getYear();
@@ -95,10 +95,10 @@ public class empTnaController {
 		model.addAttribute("list", list);
 		model.addAttribute("list1", list1);
 		model.addAttribute("list2", list2);
-		return "empTnaMonthForm";
+		return "hr/emptna/empTnaMonthForm";
 	}
 		
-	@RequestMapping("/empTnaMonthRead.cafe")
+	@RequestMapping("hr/emptna/monthRead.cafe")
 	public String empTnaMonthRead(HttpServletRequest req,int emptna_year,int emptna_month,String employee_name) {
 		
 		
@@ -146,9 +146,9 @@ public class empTnaController {
 		req.setAttribute("toPage", toPage);
 		
 		
-		return "empTnaMonthReadForm";
+		return "hr/emptna/empTnaMonthReadForm";
 	}
-	@RequestMapping("/empTnaDayRead.cafe")
+	@RequestMapping("hr/emptna/dayRead.cafe")
 	public String empTnaDayRead(HttpServletRequest req,int emptna_year,int emptna_month,int emptna_day) {
 		
 		
@@ -197,10 +197,10 @@ public class empTnaController {
 		req.setAttribute("toPage", toPage);
 		
 		
-		return "empTnaDayReadForm";
+		return "hr/emptna/empTnaDayReadForm";
 	}
 	
-	@RequestMapping("/empTnaList.cafe")
+	@RequestMapping("hr/emptna/list.cafe")
 	public String empTnalist(HttpServletRequest req) {
 		
 		
@@ -250,7 +250,7 @@ public class empTnaController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 		
-		return "empTnaListForm";
+		return "hr/emptna/empTnaListForm";
 	}
 	
 	

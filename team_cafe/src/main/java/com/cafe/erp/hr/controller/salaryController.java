@@ -22,7 +22,7 @@ public class salaryController {
 	@Resource
 	private salaryService salaryService;
 
-	@RequestMapping(value="salaryList.cafe",method=RequestMethod.GET)
+	@RequestMapping(value="hr/salary/list.cafe",method=RequestMethod.GET)
 	public String SalaryListForm(HttpServletRequest req) {
 		
 		List<empTnaDTO> list = salaryService.getMonth();
@@ -70,11 +70,11 @@ public class salaryController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 
-		return "salaryListForm";
+		return "hr/salary/salaryListForm";
 	
 	}
 	
-	@RequestMapping(value="salaryList.cafe",method=RequestMethod.POST)
+	@RequestMapping(value="hr/salary/list.cafe",method=RequestMethod.POST)
 	public String SalarySearch(HttpServletRequest req,int salary_year,int salary_month) {
 		
 		List<empTnaDTO> tm = salaryService.getMonth();
@@ -128,10 +128,10 @@ public class salaryController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 		
-		return "salaryListForm";
+		return "hr/salary/salaryListForm";
 	}
 	
-	@RequestMapping(value="salaryInsert.cafe",method=RequestMethod.GET)
+	@RequestMapping(value="hr/salary/insert.cafe",method=RequestMethod.GET)
 	public String insertForm(Model model) {
 		
 		List<empDTO> list = salaryService.getName();
@@ -142,11 +142,11 @@ public class salaryController {
 		model.addAttribute("list", list);
 		model.addAttribute("list2", list2);
 		model.addAttribute("list3", list3);
-		return "salaryInsertForm";
+		return "hr/salary/salaryInsertForm";
 	
 	}
 	
-	@RequestMapping(value="salaryInsert.cafe",method=RequestMethod.POST)
+	@RequestMapping(value="hr/salary/insert.cafe",method=RequestMethod.POST)
 	public String insert(salaryDTO dto,Model model,String employee_name,int salary_year,int salary_month,int
 			salary_date) {
 		
@@ -162,9 +162,9 @@ public class salaryController {
 		salaryService.insertSalary(map);
 //		model.addAttribute("salary_date", salary_date);
 //		System.out.println(salary_date);
-		return "redirect:salaryList.cafe";
+		return "redirect:list.cafe";
 	}
-	@RequestMapping(value="salaryUpdate.cafe",method=RequestMethod.GET)
+	@RequestMapping(value="hr/salary/update.cafe",method=RequestMethod.GET)
 	public String SalaryUpdate(int salary_code,Model model,int pg) {
 		
 		salaryDTO dto = salaryService.getSalary(salary_code);
@@ -172,15 +172,15 @@ public class salaryController {
 		model.addAttribute("pg", pg);
 		model.addAttribute("salary_code",salary_code);
 		
-		return "salaryUpdateForm";
+		return "hr/salary/salaryUpdateForm";
 	}
 	
-	@RequestMapping(value="salaryUpdate.cafe",method=RequestMethod.POST)
+	@RequestMapping(value="hr/salary/update.cafe",method=RequestMethod.POST)
 	public String SalaryUpdate(salaryDTO dto,int pg) {
 		
 		int result = salaryService.updateSalary(dto);
 		
-		String res = "redirect:salaryList.cafe?pg=" + pg;
+		String res = "redirect:list.cafe?pg=" + pg;
 		
 		if (result == 0) {
 			res = "fail";

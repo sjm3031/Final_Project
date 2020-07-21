@@ -26,24 +26,24 @@ public class empController {
 	@Resource
 	private jobService jobService;
 	
-	@RequestMapping(value="/empInsert.cafe",method=RequestMethod.GET)
+	@RequestMapping(value="hr/emp/insert.cafe",method=RequestMethod.GET)
 	public String empInsertForm(Model model) {
 		
 		List<jobDTO> list = jobService.getJobList();
 		
 		model.addAttribute("list", list);
 		
-		return "empInsertForm";
+		return "hr/emp/empInsertForm";
 	}
 
-	@RequestMapping(value="/empInsert.cafe",method=RequestMethod.POST)
+	@RequestMapping(value="hr/emp/insert.cafe",method=RequestMethod.POST)
 	public String empInsert(empDTO dto) {
 		empService.insertEmp(dto);
 			
-		return "redirect:empList.cafe";
+		return "redirect:/hr/emp/list.cafe";
 	}
 
-	@RequestMapping("/empList.cafe")
+	@RequestMapping("hr/emp/list.cafe")
 	public String empList(HttpServletRequest req) {
 
 		int pg = 1;
@@ -85,20 +85,20 @@ public class empController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 
-		return "empListForm";
+		return "hr/emp/empListForm";
 	}
 
-	@RequestMapping("/empRead.cafe")
+	@RequestMapping("hr/emp/read.cafe")
 	public String empRead(int num, int pg, Model model) {
 
 		empDTO dto = empService.getEmp(num);
 		model.addAttribute("emp", dto);
 		model.addAttribute("pg", pg);
 		model.addAttribute("num", num);
-		return "empReadForm";
+		return "hr/emp/empReadForm";
 	}
 
-	@RequestMapping("/empUpdateForm.cafe")
+	@RequestMapping("hr/emp/updateForm.cafe")
 	public String empUpdateForm(int num, int pg, Model model) {
 		
 		empDTO dto = empService.getEmp(num);
@@ -111,16 +111,16 @@ public class empController {
 		
 		model.addAttribute("list", list);
 		
-		return "empUpdateForm";
+		return "hr/emp/empUpdateForm";
 	}
 
-	@RequestMapping("/empUpdate.cafe")
+	@RequestMapping("hr/emp/update.cafe")
 	public String empUpdate(empDTO dto,int pg) {
 		
 		System.out.println(dto.getEmployee_code());
 		System.out.println(dto.getEmployee_name());
 		int result = empService.updateEmp(dto);
-		String res = "redirect:/empList.cafe?pg=" + pg;
+		String res = "redirect:hr/emp/list.cafe?pg=" + pg;
 		
 		if (result == 0) {
 			res = "fail";
@@ -129,13 +129,13 @@ public class empController {
 
 	}
 	
-	@RequestMapping("/empUpdate2.cafe")
+	@RequestMapping("hr/emp/update2.cafe")
 	public String empUpdate2(empDTO dto,int pg) {
 		
 		System.out.println(dto.getEmployee_code());
 		System.out.println(dto.getEmployee_name());
 		int result = empService.updateEmp2(dto);
-		String res = "redirect:/empList.cafe?pg=" + pg;
+		String res = "redirect:/hr/emp/list.cafe?pg=" + pg;
 		
 		if (result == 0) {
 			res = "fail";
@@ -143,6 +143,12 @@ public class empController {
 		return res;
 
 	}
+	
+//	@RequestMapping("/main.cafe")
+//	public String main() {
+//		
+//		return "erp/main";
+//	}
 //	@RequestMapping("/empDelete.cafe")
 //	public String delete(empDTO dto,int pg) {
 //		
@@ -156,4 +162,6 @@ public class empController {
 //		System.out.println(pg);
 //		return res;
 //	}
+	
+	
 }

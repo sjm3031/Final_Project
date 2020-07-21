@@ -18,6 +18,7 @@ create table CAFE_JOB(
     job_tpay number(20),                    
     job_mpay number(20)                      
     );
+   select * from cafe_job;
    
 create table cafe_emptna(        
         emptna_code number primary key,                                                  
@@ -37,8 +38,10 @@ create table cafe_salary(
     salary_year number not null,
     salary_month number not null,
     salary_time number not null,
-    salary_tpay number ,
-    salary_mpay number ,
+    salary_tpay number not null,
+    salary_mpay number not null,
     salary_totalpay number not null,
     salary_date number not null
     );
+
+ 

@@ -57,5 +57,15 @@ public class ERPController {
 		return "erp/index";
 		
 	}
+	
+	@RequestMapping("tem3.cafe")
+	public String tem3() {
+		return "erp/index2";
+	}
+	
+	@RequestMapping("sales-reports.cafe")
+	public String salesreports(){
+		return "erp/sales-reports";
+	}
 
 }

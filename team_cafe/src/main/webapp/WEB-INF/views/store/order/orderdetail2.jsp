@@ -176,11 +176,11 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">거래처</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addAccountModal"> <i class="fa fa-plus"></i> 거래처 등록</a>
-            <a class="dropdown-item" href="store/accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
+            <a class="dropdown-item" href="accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">원재료 품목</h6>
            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addStockModal"> <i class="fa fa-plus"></i> 재료 품목 추가</a>
-            <a class="dropdown-item" href="product-types.do"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
+            <a class="dropdown-item" href="stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">발주</h6>
             <a class="dropdown-item" href="stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>

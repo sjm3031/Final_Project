@@ -169,7 +169,7 @@
         
          <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-fw fa-folder"></i>
+            <i class="fa fa-fw fa-table"></i>
             <span>
               재고관리
               <i class="float-right fa fa-angle-down"></i>
@@ -377,7 +377,7 @@
 				</c:forEach>
               
                 </select>
-                <small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="#addProductTypeModal">추가하기</a> </small>
+                <small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="#addAccountModal">추가하기</a> </small>
               </div>
               <div class="form-group">
                 <label for="">제품명</label>
@@ -547,7 +547,7 @@
         <div class="modal-content">
           <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-tags"></i>
+              <i class="fa fa-tag"></i>
               재료 품목 추가
             </h5>
             <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
@@ -591,7 +591,9 @@
 				</c:forEach>
               
                 </select>
-                <small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="#addAccountModal">추가하기</a> </small>
+<!--                 <small class="float-right">찾는 카테고리가 없으신가요? -->
+<!--                 <a href="#"data-toggle="modal" data-target="#addAccountModal">추가하기</a> -->
+<!--                 </small> -->
               </div>
               
               <div class="form-group">

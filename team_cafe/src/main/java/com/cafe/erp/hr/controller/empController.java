@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe.erp.hr.model.empDTO;
+import com.cafe.erp.hr.model.empTnaDTO;
 import com.cafe.erp.hr.model.jobDTO;
 import com.cafe.erp.hr.service.empService;
 import com.cafe.erp.hr.service.jobService;
+import com.cafe.erp.hr.service.salaryService;
 
 
 
@@ -25,6 +27,8 @@ public class empController {
 	private empService empService;
 	@Resource
 	private jobService jobService;
+	@Resource
+	private salaryService salaryService;
 	
 	@RequestMapping(value="hr/emp/insert.cafe",method=RequestMethod.GET)
 	public String empInsertForm(Model model) {
@@ -44,8 +48,19 @@ public class empController {
 	}
 
 	@RequestMapping("hr/emp/list.cafe")
-	public String empList(HttpServletRequest req) {
+	public String empList(HttpServletRequest req,Model model) {
+		
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
 
+		List<empDTO> nameList = salaryService.getName();
+		List<empTnaDTO> yearList = salaryService.getYear();
+		List<empTnaDTO> monthList = salaryService.getMonth();
+
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("yearList", yearList);
+		model.addAttribute("monthList", monthList);
+		
 		int pg = 1;
 		String strPg = req.getParameter("pg");
 
@@ -110,6 +125,17 @@ public class empController {
 		List<jobDTO> list = jobService.getJobList();
 		
 		model.addAttribute("list", list);
+		
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
+
+		List<empDTO> nameList = salaryService.getName();
+		List<empTnaDTO> yearList = salaryService.getYear();
+		List<empTnaDTO> monthList = salaryService.getMonth();
+
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("yearList", yearList);
+		model.addAttribute("monthList", monthList);
 		
 		return "hr/emp/empUpdateForm";
 	}

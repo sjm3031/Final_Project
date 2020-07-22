@@ -120,7 +120,7 @@ public class empController {
 		System.out.println(dto.getEmployee_code());
 		System.out.println(dto.getEmployee_name());
 		int result = empService.updateEmp(dto);
-		String res = "redirect:hr/emp/list.cafe?pg=" + pg;
+		String res = "redirect:list.cafe?pg=" + pg;
 		
 		if (result == 0) {
 			res = "fail";
@@ -135,7 +135,7 @@ public class empController {
 		System.out.println(dto.getEmployee_code());
 		System.out.println(dto.getEmployee_name());
 		int result = empService.updateEmp2(dto);
-		String res = "redirect:/hr/emp/list.cafe?pg=" + pg;
+		String res = "redirect:list.cafe?pg=" + pg;
 		
 		if (result == 0) {
 			res = "fail";

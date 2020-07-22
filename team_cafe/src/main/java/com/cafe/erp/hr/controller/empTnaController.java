@@ -1,15 +1,21 @@
 package com.cafe.erp.hr.controller;
 
+import java.io.PrintWriter;
+import java.util.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe.erp.hr.model.empTnaDTO;
 import com.cafe.erp.hr.service.empTnaService;
@@ -21,24 +27,6 @@ public class empTnaController {
 	private empTnaService empTnaService;
 	
 	
-//	@RequestMapping(value="/empTnaSelect.cafe",method=RequestMethod.GET)
-//	public String empTnaSelectForm() {
-//		
-//		return "empTnaSelectForm";
-//	}
-//	
-//	@RequestMapping(value="/empTnaSelect.cafe",method=RequestMethod.POST)
-//	public String empTnaSelect(empDTO dto,Model model) {
-//		
-//		dto= empTnaService.getEmpTna(dto);
-//		
-//		int code = dto.getEmployee_code();
-//		model.addAttribute("emp", dto);
-//		model.addAttribute("code", code);
-//		
-//		return "empTnaReadForm";
-//	}
-	
 	@RequestMapping(value="hr/emptna/insert.cafe",method=RequestMethod.GET)
 	public String empTnaInsertForm() {
 		
@@ -46,9 +34,24 @@ public class empTnaController {
 	}
 	
 	@RequestMapping(value="hr/emptna/insert.cafe",method=RequestMethod.POST)
-	public String empTnaInsert(empTnaDTO dto) {
+	public String empTnaInsert(empTnaDTO dto,String employee_name,String employee_jumin,HttpServletResponse resp) throws Exception{
+			
+		HashMap map = new HashMap();
+		map.put("employee_name", employee_name);
+		map.put("employee_jumin", employee_jumin);
+		int total=empTnaService.selectEmp(map);
 		
-		empTnaService.insertEmpTna(dto);
+		if(total==0) {
+			empTnaService.insertEmpTna(dto);
+		}
+		else if(total!=0){
+			resp.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = resp.getWriter();
+            out.println("<script>alert('이미 출근처리 되었습니다.');</script>");
+            out.flush();
+            
+            return "hr/emptna/empTnaInsertForm";
+		}
 		
 		return "redirect:list.cafe";
 	}
@@ -59,18 +62,31 @@ public class empTnaController {
 	}
 	
 	@RequestMapping(value="hr/emptna/update.cafe",method=RequestMethod.POST)
-	public String empTnaUpdate(empTnaDTO dto,String employee_name,String employee_jumin) {
+	public String empTnaUpdate(empTnaDTO dto,String employee_name,String employee_jumin,HttpServletResponse resp)
+	throws Exception{
 		
 		HashMap map = new HashMap();
 		map.put("employee_name", employee_name);
 		map.put("employee_jumin", employee_jumin);
 		
-		int total = empTnaService.getTotal(map);
-		map.put("total",total);
+		dto = empTnaService.selectEmp2(map);
+		
+		if(dto.getEmptna_endtime()==null) {
 		
 		empTnaService.updateEmpTna(map);
-		System.out.println(total);
-		System.out.println(dto.getEmptna_monthtotaltime());
+		
+		
+		}else {
+			resp.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = resp.getWriter();
+            out.println("<script>alert('이미 퇴근처리 되었습니다.');</script>");
+            out.flush();
+            
+            return "hr/emptna/empTnaUpdateForm";
+		}
+		
+		
+		
 		return "redirect:list.cafe";
 	}
 	
@@ -255,38 +271,41 @@ public class empTnaController {
 	
 	
 
-//	
-//	
-//	@RequestMapping(value ="/empTnaInsert.cafe", method=RequestMethod.POST)
-//	public String empTnaMonthInsertForm(empTnaDTO dto) {
-//		
-//	
-//		return "redirect:empTnaDayList.cafe";
-//	}
-//	
-//	@RequestMapping(value ="/empTnaUpdate.cafe", method=RequestMethod.GET)
-//	public String empTnaUpdateForm(int emptna_code,int pg ,Model model) {
-//		
-//			empTnaDTO dto = empTnaService.getempTna(emptna_code);
-//			
-//			model.addAttribute("dto", dto);
-//			model.addAttribute("pg", pg);
-//			model.addAttribute("dto", dto);
-//			
-//			
-//		return "empTnaUpdateForm";
-//	}
-////	
-//	@RequestMapping(value ="/empTnaUpdate.cafe", method=RequestMethod.POST)
-//	public String empTnaUpdateForm(empTnaDTO dto,int pg) {
-//		
-//		
-//		int result = empTnaService.updateEmpTna(dto);
-//		String res = "redirect:empTnaList.cafe?pg=" + pg;
-//		
-//		if (result == 0) {
-//			res = "fail";
-//		}
-//		return res;
-//	}
+
+	@RequestMapping(value ="hr/emptna/update2.cafe", method=RequestMethod.GET)
+	public String empTnaUpdateForm(int emptna_code,int pg ,Model model) {
+		
+			empTnaDTO dto = empTnaService.getEmpTna(emptna_code);
+			System.out.println(dto.getEmptna_starttime());
+			model.addAttribute("dto", dto);
+			model.addAttribute("pg", pg);
+			model.addAttribute("emptna_code", emptna_code);
+			
+			
+		return "hr/emptna/empTnaUpdateForm2";
+	}
+
+	@RequestMapping(value ="hr/emptna/update2.cafe", method=RequestMethod.POST)
+	public String empTnaUpdate(empTnaDTO dto,int pg,@RequestParam("starttime")String starttime,
+			@RequestParam("endtime")String endtime,Model model,int emptna_code,HttpServletResponse resp) 
+					throws Exception {
+			
+		model.addAttribute("starttime", starttime);
+		model.addAttribute("endtime", endtime);
+		model.addAttribute("emptna_code", emptna_code);
+		
+		int result = empTnaService.updateEmpTna3(dto);
+		
+		HashMap map = new HashMap();
+		map.put("emptna_code", emptna_code);
+		
+		
+		String res = "redirect:list.cafe?pg=" + pg;
+		
+		if (result == 0) {
+			res = "fail";
+		}
+		return res;
+		}
+	
 }

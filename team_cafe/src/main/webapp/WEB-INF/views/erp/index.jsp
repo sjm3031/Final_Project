@@ -121,14 +121,18 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">직원</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal"> <i class="fa fa-plus"></i> 직원등록</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductVendorModal"> <i class="fa fa-user"></i> 직원조회</a>
+            <a class="dropdown-item" href="hr/emp/insert.cafe" data-toggle="modal" data-target="#addEmpModal"> <i class="fa fa-plus"></i> 직원등록</a>
+            <a class="dropdown-item" href="hr/emp/list.cafe" data-toggle="modal" data-target="#addProductVendorModal"> <i class="fa fa-user"></i> 직원조회</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">직급</h6>
+            <a class="dropdown-item" href="hr/job/list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">근태	</h6>
-            <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 근태일지 조회</a>
+            <a class="dropdown-item" href="hr/emptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">급여</h6>
-            <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 급여 조회</a>
+            <a class="dropdown-item" href="hr/salary/insert.cafe" data-toggle="modal" data-target="#addProductModal"> <i class="fa fa-plus"></i>급여정산</a>
+            <a class="dropdown-item" href="hr/salary/list.cafe"> <i class="fa fa-tags"></i> 급여 조회</a>
           </div>
         </li>
         
@@ -351,6 +355,93 @@
     
     
     
+    <!-- #addEmpModal -->
+   <div class="modal fade" id="addEmpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+              직원등록
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form class="">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>이름</label>
+                <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력하세요" required>
+              </div>
+              <div class="form-group">
+                <label>주민번호</label>
+                <input type="text" class="form-control" name="employee_jumin"  placeholder="주민번호를 (-)빼고 입력하세요" required>
+              </div>
+              <div class="form-group">
+                
+              </div>
+              <div class="form-group">
+                <label for="">핸드폰번호</label>
+                <input type="text" class="form-control" name="" value="" placeholder="제품명 입력" required>
+                <small class="text-muted">정확히 입력해주세요.</small>
+              </div>
+              <div class="form-group">
+                <label for="">주소 </label>
+                <input type="number" class="form-control" name="" value="" placeholder="단가를 입력해주세요" required>
+              </div>
+              <div class="form-group">
+                <label for="">은행 </label>
+                <input type="number" class="form-control" name="" value="" placeholder="갯수를 입력해주세요." required>
+                <small class="text-muted">재고의 수량을 정확히 입력해주세요.</small>
+              </div>
+            
+              <br>
+             
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="확인">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- Add Product Type-->
+    <div class="modal fade" id="addProductTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tags"></i>
+              제품 타입 추가
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form class="">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="">제품 타입</label>
+                <input type="text" class="form-control" name="" value="" placeholder="제품 타입 입력" required>
+              </div>
+              <div class="form-group">
+                <label for="">상세설명 <small class="text-muted">(부가설명)</small></label>
+                <textarea name="name" class="form-control" rows="8" cols="80" placeholder="이 제품에 대한 참고사항이나 부가설명을 입력해주세요"></textarea>
+              </div>
+              <small class="text-muted"><em>확인을 누르시기전에 한번 더 체크해주세요.</em></small>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="확인">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
     <!-- #addCafeProductModal -->
     <div class="modal fade" id="addCafeProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -405,8 +496,6 @@
         </div>
       </div>
     </div>
-    
-    
     	
     
     

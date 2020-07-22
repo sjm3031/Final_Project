@@ -50,7 +50,6 @@ th {
 			<th>출근시간</th>
 			<th>퇴근시간</th>
 			<th>일일근무시간</th>
-			<th>월근무시간</th>
 
 		</tr>
 
@@ -63,10 +62,13 @@ th {
 				<td>${list.emptna_year}</td>
 				<td>${list.emptna_month}</td>
 				<td>${list.emptna_day}</td>
-				<td>${list.emptna_starttime}</td>
-				<td>${list.emptna_endtime}</td>
+				<td><fmt:formatDate value="${list.emptna_starttime}"
+						pattern="HH:mm" /></td>
+				<td><fmt:formatDate value="${list.emptna_endtime}"
+						pattern="HH:mm" /></td>
 				<td>${list.emptna_daytotaltime}</td>
-				<td>${list.emptna_monthtotaltime}</td>
+				
+				<td><input type="button" value="수정" onclick="location.href='update2.cafe?emptna_code=${list.emptna_code}&pg=${pg}'"></td>
 				<!-- 				<td> -->
 				<%-- 				<input type="button" value="수정" onclick="location.href='empUpdateForm.cafe?num=${emp.employee_code}&pg=${pg}'"> --%>
 				<%-- 				<input type="button" value="삭제" onclick="location.href='empDelete.cafe?employee_code=${emp.employee_code}&pg=${pg}'"> --%>

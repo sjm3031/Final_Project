@@ -35,7 +35,7 @@
 </head>
 <body>
 <h1>글 수정</h1>
-<form name = "empUpdateform" action="hr/emp/update.cafe" method="post">
+<form name = "empUpdateform" action="update.cafe" method="post">
 <table width="1000">
 	<tr>
 		<th>이름</th>
@@ -95,7 +95,7 @@
 		
 		<td colspan="2">
 			<input type="button" value="수정" onclick="emp_update()"/>
-			<input type="reset" value="취소" onclick="location.href='hr/emp/list.cafe'" />
+			<input type="reset" value="취소" onclick="location.href='list.cafe'" />
 		</td>
 	</tr>
 	

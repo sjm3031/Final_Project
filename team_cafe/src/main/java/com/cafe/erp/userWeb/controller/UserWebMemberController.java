@@ -1,5 +1,8 @@
 package com.cafe.erp.userWeb.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe.erp.cs.model.CustomerDTO;
+import com.cafe.erp.sale.model.ProductAddDTO;
+import com.cafe.erp.sale.model.ProductVO;
+import com.cafe.erp.userWeb.model.ProductCartAddJoinDTO;
 import com.cafe.erp.userWeb.service.MemberService;
 
 @Controller
@@ -56,4 +62,14 @@ public class UserWebMemberController {
 		return "userWeb/login";
 	}
 
+	@RequestMapping("mypage.cafe")				//장바구니 list 불러오기
+	public String mypage(HttpServletRequest request) {
+		
+		int customer_code = Integer.parseInt(request.getParameter("customer_code"));
+		CustomerDTO dto = memberService.getCustomerInfoByCode(customer_code);
+		request.setAttribute("dto", dto);
+		
+		
+		return "userWeb/member/mypage";
+	}
 }

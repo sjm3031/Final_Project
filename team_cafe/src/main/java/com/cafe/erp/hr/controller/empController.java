@@ -44,7 +44,7 @@ public class empController {
 	}
 
 	@RequestMapping("hr/emp/list.cafe")
-	public String empList(HttpServletRequest req) {
+	public String empList(Model model, HttpServletRequest req) {
 
 		int pg = 1;
 		String strPg = req.getParameter("pg");
@@ -84,6 +84,9 @@ public class empController {
 		req.setAttribute("block", block);
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
+		
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
 
 		return "hr/emp/empListForm";
 	}

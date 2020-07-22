@@ -51,4 +51,11 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.updateCustomer(dto);
 	}
 
+	@Override
+	public CustomerDTO getCustomerInfoByCode(int customercode) {
+		// TODO Auto-generated method stub
+		MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);	
+		return memberDAO.getCustomerInfoByCode(customercode);
+	}
+
 }

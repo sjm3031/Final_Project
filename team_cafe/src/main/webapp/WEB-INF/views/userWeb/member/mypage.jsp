@@ -66,57 +66,67 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 
   </div>
 </div>
-  
-<!-- Header with image -->
-<header class="bgimg w3-display-container w3-grayscale-min" id="home">
-  <div class="w3-display-bottomleft w3-padding">
-    <span class="w3-tag w3-xlarge">Open from 10am to 12pm</span>
-  </div>
-  <div class="w3-display-middle w3-center">	
-    <span class="w3-text-white w3-hide-small" style="font-size:100px;">delicious<br><b>Coffe</b></span>
-    <span class="w3-text-white w3-hide-large w3-hide-medium" style="font-size:60px"><b>thin<br>CRUST PIZZA</b></span>
-    <p><a href="#menu" class="w3-button w3-xxlarge w3-black">Let me see the menu</a></p>
-  </div>
-</header>
+
 
 <!-- Menu Container -->
 <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
   <div class="w3-content">
   
-      <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">THE MENU</h1>
+      <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">MY PAGE</h1>
     <div class="w3-row w3-center w3-border w3-border-dark-grey">
- <c:forEach var="c" items="${categorylist}">
-
-	<c:if test="${product_category_code == c.product_category_code}">
 	
-	<a href="home.cafe?category=${c.product_category_code}" >
-        <div class="w3-col s4 tablink w3-padding-large w3-hover-red" style="background-color: #a95858 !important;">${c.product_category_name}</div>
+	<a href="" >
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red" style="background-color: #a95858 !important;">My Page</div>
+      </a>
+      
+      <a href="" >
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red" >Stamp</div>
+      </a>
+      
+      <a href="" >
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red" >Order</div>
       </a>
 
-	</c:if>
-	<c:if test="${product_category_code != c.product_category_code}">
-	
-	<a href="home.cafe?category=${c.product_category_code}" >
-        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">${c.product_category_name}</div>
-      </a>
-    </c:if>
-
-</c:forEach>
     </div> 
+    
+    
+     <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+
+         <c:if test="${ 'm' eq dto.customer_gender }">         
+                        
+         <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+
+		</c:if>
+
+         <c:if test="${ 'f' eq dto.customer_gender }">
+         
+         <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar6.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         
+         </c:if>
+         <hr>
+         <h1 class="w3-center">${ dto.customer_name }</h1> 
+ 
+         <p class="aaa">전화번호 : ${ dto.customer_phone }</p>
+         <p class="aaa">생년월일 : ${ dto.customer_birth }</p>
+        </div>
+      </div>
+      <br>
 
 
 	
  	<div id="" class="w3-container menu w3-padding-32 w3-white" style="display: block; margin-bottom: 60px;">
-    <c:forEach var="b" items="${list}">
-    	<a href="productview.cafe?productcode=${b.cafe_product_code}">
 
-	      <h1><b class="aaa">${b.cafe_product_name}</b> <span class="w3-tag w3-red w3-round">Hot!</span><span class="w3-right w3-tag w3-dark-grey w3-round">${b.cafe_product_price} ₩</span></h1>
-	      <img src="../sale/upload/${b.cafe_product_img}" style="width:150px">
+    	<a href="">
+
+	      <h1><b class="aaa">AAAA</b> <span class="w3-tag w3-red w3-round">Hot!</span><span class="w3-right w3-tag w3-dark-grey w3-round">CCCC</span></h1>
+	    
 	      <p class="w3-text-grey">Fresh tomatoes, fresh mozzarella, fresh basil</p>
 	      <hr>
 
       </a>
-  	</c:forEach>
+
   	 
   
 

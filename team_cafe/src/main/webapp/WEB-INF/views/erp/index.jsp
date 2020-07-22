@@ -499,7 +499,7 @@
 				</c:forEach>
               
                 </select>
-                <small class="float-right">찾는 직급이 없으신가요?<a href="#"data-toggle="modal" data-target="#">추가하기</a> </small>
+                <small class="float-right">찾는 직급이 없으신가요?<a href="#"data-toggle="modal" data-target="#addJobModal">추가하기</a> </small>
               </div>
               
               <div class="form-group">
@@ -540,6 +540,50 @@
         </div>
       </div>
     </div>
+    
+    <!-- #addJobModal -->
+    <div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+              직급 등록
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form class="" action="hr/job/list.cafe" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+
+              <div class="form-group">
+                <label for="">직급명</label>
+                <input type="text" class="form-control" name="job_name" value="" placeholder="직급 명을 입력해주세요" required>
+                <small class="text-muted">정확히 입력해주세요.</small>
+              </div>
+              <div class="form-group">
+                <label for="">시급 </label>
+                <input type="text" class="form-control" name="job_tpay" value="" placeholder="시급을 입력해주세요" >
+              </div>
+              <div class="form-group">
+                <label for="">월급</label>
+                <input type="text" class="form-control" name="job_mpay" value="" placeholder="월급을 입력해주세요" >
+                <small class="text-muted">정확히 입력해주세요.</small>
+              </div>
+
+              <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="등록">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    
   
     <!-- #addAccountModal -->
      <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -589,8 +633,9 @@
         </div>
       </div>
     </div>
-    <!-- #addStockModal-->
-    <div class="modal fade" id="addStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <!-- #addStockModal -->
+     <div class="modal fade" id="addStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header bg-primary text-white">
@@ -602,9 +647,10 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="stockinsert" action="store/stockinsert.cafe" name="stockinsert" method="post" enctype="multipart/form-data">
+          <form class="" action="store/stockinsert.cafe" method="post" >
             <div class="modal-body">
-              <div class="form-group">
+  
+             <div class="form-group">
                 <label for="">품명</label>
                  <select class="form-control text-primary" name="stock_productname" id="stock_productname">
                   <option disabled selected>품명을 선택해주세요.</option>
@@ -646,12 +692,13 @@
                 <label>이미지 등록</label>
                 <input type="file" id="stock_upimage" name="stock_upimage" />
               </div>
-              
-              <small class="text-muted"><em>확인을 누르시기전에 한번 더 체크해주세요.</em></small>
+             
+       
+              <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="등록">
             </div>
           </form>
         </div>
@@ -659,6 +706,10 @@
     </div>
     
     
+    
+    
+    
+  
     
     
     

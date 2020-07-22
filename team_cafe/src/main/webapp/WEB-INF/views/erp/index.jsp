@@ -17,7 +17,7 @@
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href="index.do">Cafe Home</a>
+      <a class="navbar-brand mr-1" href="index.cafe">Cafe Home</a>
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fa fa-bars"></i>
       </button>
@@ -218,7 +218,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item" >
-              <a href="index.do" style="color: #A95858 !important;">Home</a>
+              <a href="index.cafe" style="color: #A95858 !important;">Home</a>
             </li>
             <li class="breadcrumb-item active">Overview</li>
           </ol>

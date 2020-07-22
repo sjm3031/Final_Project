@@ -578,7 +578,7 @@
               
               <div class="form-group">
                 <label>금액(원)</label>
-                <input type="text" placeholder="금액(원)을 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
+                <input type="text" placeholder="숫자만 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
               </div>
               <div class="form-group">
                 <label>회사명</label>

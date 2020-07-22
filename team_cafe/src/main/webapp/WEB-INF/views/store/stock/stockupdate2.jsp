@@ -39,7 +39,7 @@
           </a>
          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addSaleModal"> <i class="fa fa-money"></i> 판매등록</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addAccountModal"> <i class="fa fa-tag"></i> 거래처등록</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addAccountModal"> <i class="fa fa-tags"></i> 거래처등록</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addStockModal"> <i class="fa fa-tags"></i> 재료 품목 등록</a>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductVendorModal"> <i class="fa fa-user"></i> 거래처등록</a>
@@ -266,7 +266,7 @@
 							<div class="form-group">
 								<label for="">회사명</label><br> 
 								<select class="form-control text-primary" name="account_number" id="account_number">
-								<option>선택하세요</option>
+								<option>회사명을 선택해주세요</option>
 								<c:forEach var="get" items="${account_list}">
 								<option value="${get.account_number}">${get.account_name}</option>
 								</c:forEach>
@@ -288,6 +288,7 @@
 				</div>
           <br><br><br>
          <!-- Sticky Footer -->
+         <br><br><br>
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">
@@ -454,7 +455,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="stockinsert" action="store/stockinsert.cafe" name="stockinsert" method="post" enctype="multipart/form-data">
+          <form class="stockinsert" action="stockinsert.cafe" name="stockinsert" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <div class="form-group">
                 <label for="">품명</label>
@@ -478,7 +479,7 @@
               
               <div class="form-group">
                 <label>금액(원)</label>
-                <input type="text" placeholder="금액(원)을 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
+                <input type="text" placeholder="숫자만 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
               </div>
               <div class="form-group">
                 <label>회사명</label>
@@ -491,7 +492,6 @@
 				</c:forEach>
               
                 </select>
-                <small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="addAccountModal">추가하기</a> </small>
               </div>
               
               <div class="form-group">

@@ -272,6 +272,7 @@
 				</div>
           <br><br><br>
          <!-- Sticky Footer -->
+         <br><br><br>
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">
@@ -438,7 +439,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="stockinsert" action="store/stockinsert.cafe" name="stockinsert" method="post" enctype="multipart/form-data">
+          <form class="stockinsert" action="stockinsert.cafe" name="stockinsert" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <div class="form-group">
                 <label for="">품명</label>
@@ -462,7 +463,7 @@
               
               <div class="form-group">
                 <label>금액(원)</label>
-                <input type="text" placeholder="금액(원)을 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
+                <input type="text" placeholder="숫자만 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
               </div>
               <div class="form-group">
                 <label>회사명</label>
@@ -475,7 +476,6 @@
 				</c:forEach>
               
                 </select>
-                <small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="addAccountModal">추가하기</a> </small>
               </div>
               
               <div class="form-group">

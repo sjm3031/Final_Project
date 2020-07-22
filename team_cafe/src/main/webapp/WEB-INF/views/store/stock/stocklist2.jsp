@@ -293,7 +293,7 @@
 			                  
 			                  		<c:if test="${pg>1}">  <!-- 5>10 : false / 15>10 : true -->
 										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
+								           <a href="stocklist.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
 					              	  		  Previous
 					                	  </a>
 					             	    </li>
@@ -315,7 +315,7 @@
 					            </c:if>
 					            <c:if test="${i!=pg}">
 		            				  <li class="paginate_button page-item ">
-		            				  	<a href="list.cafe?pg=${i}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+		            				  	<a href="stocklist.cafe?pg=${i}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
 					             		    ${i}
 					        	         </a>
 					                 </li>
@@ -325,7 +325,7 @@
 					                	       
 					       <c:if test="${pg<allPage}"> 
 					           <li class="paginate_button page-item next disabled" id="dataTable_next">
-					                  <a href="list.cafe?pg=${pg+1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					                  <a href="stocklist.cafe?pg=${pg+1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
 					                  	Next
 					                  </a>
 				                  </li>
@@ -476,7 +476,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="accountinsert" action="store/accountinsert.cafe" method="post" name="accountinsert">
+          <form class="accountinsert" action="accountinsert.cafe" method="post" name="accountinsert">
             <div class="modal-body">
               <div class="form-group">
                 <label>사업자 번호</label>
@@ -546,7 +546,7 @@
               
               <div class="form-group">
                 <label>금액(원)</label>
-                <input type="text" placeholder="금액(원)을 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
+                <input type="text" placeholder="숫자만 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
               </div>
               <div class="form-group">
                 <label>회사명</label>
@@ -559,7 +559,6 @@
 				</c:forEach>
               
                 </select>
-                <small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="addAccountModal">추가하기</a> </small>
               </div>
               
               <div class="form-group">

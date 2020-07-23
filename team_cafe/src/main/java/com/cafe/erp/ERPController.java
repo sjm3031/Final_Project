@@ -1,9 +1,11 @@
 package com.cafe.erp;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +44,8 @@ public class ERPController {
 
 		List<jobDTO> joblist = jobService.getJobList();
 		model.addAttribute("joblist", joblist);
+		
+		
 
 		List<empDTO> nameList = salaryService.getName();
 		List<empTnaDTO> yearList = salaryService.getYear();

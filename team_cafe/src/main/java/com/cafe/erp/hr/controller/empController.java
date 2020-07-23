@@ -1,13 +1,16 @@
 package com.cafe.erp.hr.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -41,7 +44,18 @@ public class empController {
 	}
 
 	@RequestMapping(value="hr/emp/insert.cafe",method=RequestMethod.POST)
-	public String empInsert(empDTO dto) {
+	public String empInsert(empDTO dto,HttpServletResponse resp) throws Exception{
+		
+		List<jobDTO> joblist = jobService.getJobList();
+		
+		if(joblist.isEmpty()) {
+			resp.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = resp.getWriter();
+			out.println("<script>alert('직급을 먼저 등록해주세요');</script>");
+			out.flush();
+
+			return "hr/job/jobListForm"; }
+		
 		empService.insertEmp(dto);
 			
 		return "redirect:/hr/emp/list.cafe";

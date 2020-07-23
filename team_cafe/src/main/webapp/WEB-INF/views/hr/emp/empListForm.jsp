@@ -251,6 +251,7 @@
 						<th>계좌번호</th>
 						<th>직급</th>
                         <th></th>
+                        <th></th>
                       </tr>
                     </thead>
                     
@@ -272,8 +273,9 @@
 						<td>${emp.employee_bankaddress}</td>
 						<td>${emp.employee_jobname}</td>
                         <td><input type="button" value="수정" onclick="location.href='updateForm.cafe?num=${emp.employee_code}&pg=${pg}'" /></td>
+                        <td><input type="button" value="퇴사처리" onclick="location.href='update2.cafe?employee_code=${emp.employee_code}&pg=${pg}'" /></td>
                       </tr>
-                      
+                      	
                     
                       
             </c:forEach>   
@@ -418,7 +420,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/job/insert.cafe" method="post">
+          <form action="../../hr/job/list.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>직급</label>
@@ -454,7 +456,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/salary/insert.cafe" method="post">
+          <form action="../../hr/salary/insert.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>직원이름</label>

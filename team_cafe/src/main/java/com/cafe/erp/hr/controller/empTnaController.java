@@ -1,9 +1,6 @@
 package com.cafe.erp.hr.controller;
 
 import java.io.PrintWriter;
-import java.util.Date;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,15 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cafe.erp.hr.model.empDTO;
 import com.cafe.erp.hr.model.empTnaDTO;
+import com.cafe.erp.hr.model.jobDTO;
 import com.cafe.erp.hr.service.empTnaService;
+import com.cafe.erp.hr.service.jobService;
+import com.cafe.erp.hr.service.salaryService;
+import com.cafe.erp.sale.model.ProductCategoryVO;
+import com.cafe.erp.sale.service.ProductCategoryService;
 
 @Controller
 public class empTnaController {
 
 	@Resource
 	private empTnaService empTnaService;
-
+	@Resource
+	private salaryService salaryService;
+	@Resource
+	private ProductCategoryService productCategoryService;
+	@Resource
+	private jobService jobService;
 	@RequestMapping(value = "hr/emptna/insert.cafe", method = RequestMethod.GET)
 	public String empTnaInsertForm() {
 
@@ -62,10 +70,25 @@ public class empTnaController {
 	}
 
 	@RequestMapping(value = "hr/emptna/update.cafe", method = RequestMethod.POST)
-	public String empTnaUpdate(empTnaDTO dto, String employee_name, String employee_jumin, HttpServletResponse resp)
+	public String empTnaUpdate(empTnaDTO dto, String employee_name, String employee_jumin, HttpServletResponse resp,Model model)
 			throws Exception {
-
 		HashMap map = new HashMap();
+		
+		List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", list);
+
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
+		
+		List<empDTO> nameList = salaryService.getName();
+		List<empTnaDTO> yearList = salaryService.getYear();
+		List<empTnaDTO> monthList = salaryService.getMonth();
+
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("yearList", yearList);
+		model.addAttribute("monthList", monthList);
+		
+		
 		map.put("employee_name", employee_name);
 		map.put("employee_jumin", employee_jumin);
 
@@ -100,33 +123,19 @@ public class empTnaController {
 		return "redirect:list.cafe";
 	}
 
-	@RequestMapping("hr/emptna/daySearch.cafe")
-	public String empTnaDayForm(Model model) {
 
+	@RequestMapping("hr/emptna/monthRead.cafe")
+	public String empTnaMonthRead(HttpServletRequest req, int emptna_year, int emptna_month,String employee_name,Model model) {
+		
 		List<empTnaDTO> list = empTnaService.getYear();
 		List<empTnaDTO> list1 = empTnaService.getMonth();
 		List<empTnaDTO> list2 = empTnaService.getDay();
+		List<empTnaDTO> list3 = empTnaService.getName();
 		model.addAttribute("list", list);
 		model.addAttribute("list1", list1);
 		model.addAttribute("list2", list2);
-		return "hr/emptna/empTnaDayForm";
-	}
-
-	@RequestMapping("hr/emptna/monthSearch.cafe")
-	public String empTnaMonthForm(Model model) {
-
-		List<empTnaDTO> list = empTnaService.getYear();
-		List<empTnaDTO> list1 = empTnaService.getMonth();
-		List<empTnaDTO> list2 = empTnaService.getName();
-		model.addAttribute("list", list);
-		model.addAttribute("list1", list1);
-		model.addAttribute("list2", list2);
-		return "hr/emptna/empTnaMonthForm";
-	}
-
-	@RequestMapping("hr/emptna/monthRead.cafe")
-	public String empTnaMonthRead(HttpServletRequest req, int emptna_year, int emptna_month, String employee_name) {
-
+		model.addAttribute("list3", list3);
+		
 		int pg = 1;
 		String strPg = req.getParameter("pg");
 
@@ -160,9 +169,10 @@ public class empTnaController {
 		map.put("emptna_year", emptna_year);
 		map.put("emptna_month", emptna_month);
 		map.put("employee_name", employee_name);
-		List<empTnaDTO> list = empTnaService.getMonthRead(map);
+		
+		List<empTnaDTO> empTnaList = empTnaService.getMonthRead(map);
 
-		req.setAttribute("list", list);
+		req.setAttribute("empTnaList", empTnaList);
 
 		req.setAttribute("pg", pg);
 		req.setAttribute("allPage", allPage);
@@ -170,12 +180,21 @@ public class empTnaController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 
-		return "hr/emptna/empTnaMonthReadForm";
+		return "hr/emptna/empTnaListForm";
 	}
 
 	@RequestMapping("hr/emptna/dayRead.cafe")
-	public String empTnaDayRead(HttpServletRequest req, int emptna_year, int emptna_month, int emptna_day) {
-
+	public String empTnaDayRead(HttpServletRequest req, int emptna_year, int emptna_month, int emptna_day,Model model) {
+		
+		List<empTnaDTO> list = empTnaService.getYear();
+		List<empTnaDTO> list1 = empTnaService.getMonth();
+		List<empTnaDTO> list2 = empTnaService.getDay();
+		List<empTnaDTO> list3 = empTnaService.getName();
+		model.addAttribute("list", list);
+		model.addAttribute("list1", list1);
+		model.addAttribute("list2", list2);
+		model.addAttribute("list3", list3);
+		
 		int pg = 1;
 		String strPg = req.getParameter("pg");
 
@@ -210,9 +229,9 @@ public class empTnaController {
 		map.put("emptna_month", emptna_month);
 		map.put("emptna_day", emptna_day);
 
-		List<empTnaDTO> list = empTnaService.getDayRead(map);
+		List<empTnaDTO> empTnaList = empTnaService.getDayRead(map);
 
-		req.setAttribute("list", list);
+		req.setAttribute("empTnaList", empTnaList);
 
 		req.setAttribute("pg", pg);
 		req.setAttribute("allPage", allPage);
@@ -220,12 +239,36 @@ public class empTnaController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 
-		return "hr/emptna/empTnaDayReadForm";
+		return "hr/emptna/empTnaListForm";
 	}
-
+	
 	@RequestMapping("hr/emptna/list.cafe")
-	public String empTnalist(HttpServletRequest req) {
+	public String empTnalist(HttpServletRequest req,Model model) {
+		
+		List<empTnaDTO> list = empTnaService.getYear();
+		List<empTnaDTO> list1 = empTnaService.getMonth();
+		List<empTnaDTO> list2 = empTnaService.getDay();
+		List<empTnaDTO> list3 = empTnaService.getName();
+		model.addAttribute("list", list);
+		model.addAttribute("list1", list1);
+		model.addAttribute("list2", list2);
+		model.addAttribute("list3", list3);
+		
+		HashMap map = new HashMap();
+		List<ProductCategoryVO> list4 = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", list4);
 
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
+		
+		List<empDTO> nameList = salaryService.getName();
+		List<empTnaDTO> yearList = salaryService.getYear();
+		List<empTnaDTO> monthList = salaryService.getMonth();
+
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("yearList", yearList);
+		model.addAttribute("monthList", monthList);
+		
 		int pg = 1;
 		String strPg = req.getParameter("pg");
 
@@ -253,13 +296,13 @@ public class empTnaController {
 			toPage = allPage;
 		}
 
-		HashMap map = new HashMap();
+		
 		map.put("start", start);
 		map.put("end", end);
 
-		List<empTnaDTO> list = empTnaService.getEmpTnaList(map);
+		List<empTnaDTO> empTnaList= empTnaService.getEmpTnaList(map);
 
-		req.setAttribute("list", list);
+		req.setAttribute("empTnaList", empTnaList);
 
 		req.setAttribute("pg", pg);
 		req.setAttribute("allPage", allPage);

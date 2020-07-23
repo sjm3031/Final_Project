@@ -126,14 +126,14 @@
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">직급</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addJobModal"> <i class="fa fa-plus"></i> 직급등록</a>
-            <a class="dropdown-item" href="list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
+            <a class="dropdown-item" href="../job/list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">근태	</h6>
-            <a class="dropdown-item" href="../emptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
+            <a class="dropdown-item" href="../enptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">급여</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addSalaryModal"> <i class="fa fa-plus"></i> 급여정산</a>
-            <a class="dropdown-item" href="../salary/list.cafe"> <i class="fa fa-tags"></i> 급여 조회</a>
+            <a class="dropdown-item" href="list.cafe"> <i class="fa fa-tags"></i> 급여 조회</a>
           </div>
         </li>
         
@@ -231,55 +231,88 @@
             <div class="card mb-3">
               <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
                 <i class="fa fa-table"></i>
-             직급수정
+        급여수정
                 
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                 <form action="update.cafe" method="post">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-		<th>직급코드</th>
+<table width="1000">
+	<tr>
+		<th>이름</th>
 		<td>
-			<input type="text" name="job_code" id="job_code" value="${dto.job_code }" readonly="readonly">
+			<input type="hidden" name="salary_code" value="${salary.salary_code}">
+			<input type="text" name="employee_name"  value="${salary.employee_name}" readonly="readonly"/>
 		</td>
 	</tr>
-	
 	<tr>
 		<th>직급</th>
 		<td>
-			<input type="text" name="job_name" id="job_name" value="${dto.job_name }" >
+			<input type="text" name="employee_jobname" value="${salary.employee_jobname}" readonly="readonly"/>
 		</td>
 	</tr>
 	<tr>
-		<th>시급</th>
+		<th>근무 년</th>
 		<td>
-			<input type="text" name="job_tpay" id="job_tpay" value="${dto.job_tpay }">
+			<input type="text" name="salary_year" value="${salary.salary_year }" readonly="readonly"/>
 		</td>
 	</tr>
-	
+	<tr>
+		<th>근무 월</th>
+		<td>
+		<input type="hidden" name="pg" value="${pg}" />
+			<input type="text" name="salary_month" value="${salary.salary_month }" readonly="readonly"/>
+		</td>
+	</tr>
 	
 	<tr>
-		<th>월급</th>
+		<th>알바시급</th>
 		<td>
-			<input type="text" name="job_mpay" id="job_mpay" value="${dto.job_mpay }">
+			<input type="text" name="salary_tpay" value="${salary.salary_tpay}" readonly="readonly"/>
 		</td>
 	</tr>
 	
+	<tr>
+		<th>직원월급</th>
+		<td>
+			<input type="text" name="salary_mpay" value="${salary.salary_mpay}" readonly="readonly"/>
+		</td>
+	</tr>
+	
+	<tr>
+		<th>월 근무시간</th>
+		<td>
+			<input type="text" name="salary_time"  value="${salary.salary_time}"readonly="readonly" />
+		</td>
+	</tr>
+	
+	<tr>
+		<th>총급여</th>
+		<td>
+			<input type="text" name="salary_totalpay" value="${salary.salary_totalpay}"readonly="readonly" />
+		</td>
+	</tr>
+	<tr>
+		<th>월급지급일</th>
+		<td>
+			<input type="text" name="salary_date" value="${salary.salary_date}" />
+			
+		</td>
+	</tr>
 	
 	<tr>
 		
-		<td colspan="2" align="center">
-			<input type="submit" value="수정" >
+		<td colspan="2">
+			<input type="button" value="수정" onclick="salary_update()"/>
 			<input type="reset" value="취소" onclick="location.href='list.cafe'" />
 		</td>
 	</tr>
-                  
-                   
-      </table>
-                </form> 
-                 <br>
-	<br>
+	
+
+</table>
+
+
+</form>
 	
   
                 </div>

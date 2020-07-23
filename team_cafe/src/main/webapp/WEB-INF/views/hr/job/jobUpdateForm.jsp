@@ -325,7 +325,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/emp/insert.cafe" method="post">
+          <form action="../../hr/emp/insert.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>이름</label>
@@ -383,7 +383,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/job/insert.cafe" method="post">
+          <form action="list.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>직급</label>
@@ -419,7 +419,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/salary/insert.cafe" method="post">
+          <form action="../../hr/salary/insert.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>직원이름</label>

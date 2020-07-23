@@ -29,8 +29,9 @@ create table cafe_emptna(
         emptna_endtime date,                                                
         emptna_daytotaltime number                                                                                 
     );
+drop table cafe_emptna;
+commit;
 
- 
 create table cafe_salary(
     salary_code number not null primary key,
     salary_empcode number not null REFERENCES CAFE_EMPLOYEE (employee_code),

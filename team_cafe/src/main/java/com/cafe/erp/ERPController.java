@@ -65,6 +65,9 @@ public class ERPController {
 	
 	@RequestMapping("sales-reports.cafe")
 	public String salesreports(){
+		
+		
+		
 		return "erp/sales-reports";
 	}
 

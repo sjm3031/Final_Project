@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
   <head>
@@ -201,6 +202,9 @@
             </div>
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
+          
+          
+          
           <div class="row">
             <div class="col-lg-8">
               <div class="card mb-3">
@@ -213,6 +217,7 @@
                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
               </div>
             </div>
+            
             <div class="col-lg-4">
               <div class="card mb-3">
                 <div class="card-header">
@@ -225,6 +230,9 @@
               </div>
             </div>
           </div>
+          
+          
+          
           <p class="small text-center text-muted my-5">
             <em>More chart examples coming soon...</em>
           </p>
@@ -568,17 +576,25 @@
           </form>
         </div>
       </div>
-
+	
       <script src="resources/js/jquery.min.js"></script>
       <script src="resources/js/bootstrap.bundle.min.js"></script>
       <script src="resources/js/jquery.easing.min.js"></script>
-      <script src="resources/js/chart.min.js"></script>
+      <script src="resources/js/chart.min.js">
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+      </script>
       <script src="resources/js/jquery.dataTables.js"></script>
       <script src="resources/js/dataTables.bootstrap4.js"></script>
       <script src="resources/js/rc-pos.min.js"></script>
       <script src="resources/js/datatables-demo.js"></script>
-      <script src="resources/js/chart-area-demo.js"></script>
-      <script src="resources/js/chart-bar-demo.js"></script>
-      <script src="resources/js/chart-pie-demo.js"></script>
+      <script src="resources/js/chart-area-demo.js">
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+      </script>
+      <script src="resources/js/chart-bar-demo.js">
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+      </script>
+      <script src="resources/js/chart-pie-demo.js">
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+      </script>
     </body>
   </html>

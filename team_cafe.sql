@@ -324,7 +324,7 @@ DROP TABLE CAFE_ORDER;
 CREATE TABLE CAFE_ORDER
 (
  order_code number PRIMARY KEY, --주문 코드
- order_tatal number, --총 금액
+ order_total number, --총 금액
  order_count number,--건수
  order_accountType varchar2(30),--결제수단
  order_date date,--주문 일자

@@ -219,6 +219,8 @@ public class salaryController {
 		map.put("salary_month", salary_month);
 		map.put("salary_date", salary_date);
 		
+		
+		
 		List<salaryDTO> salary = salaryService.checkSalary(map);
 		
 		if(salary.isEmpty()) {
@@ -229,7 +231,7 @@ public class salaryController {
 			out.flush();
 			
 			return "hr/emptna/empTnaListForm";
-		}
+		}else {
 		
 		double monthtotal = salaryService.getMaxMonthTotal(map);
 		map.put("monthtotal", monthtotal);
@@ -244,8 +246,9 @@ public class salaryController {
 			out.flush();
 
 			return "hr/emptna/empTnaListForm";
-		}
+			}
 		
+		}
 //		model.addAttribute("salary_date", salary_date);
 //		System.out.println(salary_date);
 		return "redirect:list.cafe";

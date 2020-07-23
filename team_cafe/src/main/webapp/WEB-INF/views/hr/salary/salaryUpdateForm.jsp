@@ -387,7 +387,7 @@
               <div class="form-group">
                 <label for="">직급</label>
                 <select name="employee_jobname" required>
-						<option>선택하세요</option>
+						<option value="">선택하세요</option>
 					<c:forEach var="emp" items="${joblist}">
 						<option  value="${emp.job_name}">${emp.job_name}</option>
 					</c:forEach>
@@ -460,7 +460,7 @@
               <div class="form-group">
                 <label>직원이름</label>
                 	<select name="employee_name" required>
-					<option>이름을 선택하세요</option>
+					<option value="">이름을 선택하세요</option>
 		
 					<c:forEach var="t" items="${nameList }">
 					<option value="${t.employee_name }">${t.employee_name }</option>
@@ -470,7 +470,7 @@
               <div class="form-group">
                 <label>근무 연도</label>
                 <select name="salary_year" required>
-					<option>연도를 선택하세요</option>
+					<option value="">연도를 선택하세요</option>
 		
 					<c:forEach var="t" items="${yearList }">
 					<option value="${t.emptna_year }">${t.emptna_year }</option>
@@ -481,7 +481,7 @@
               <div class="form-group">
                 <label for="">근무 월</label>
                 	<select name="salary_month" required>
-						<option>월을 선택하세요</option>
+						<option value="">월을 선택하세요</option>
 		
 							<c:forEach var="t" items="${monthList }">
 							<option value="${t.emptna_month }">${t.emptna_month }</option>

@@ -226,12 +226,12 @@
               <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
                 <i class="fa fa-table"></i>
                     발주 장바구니 목록
-<!--                 <a href="#" class="text-white" data-toggle="modal" data-target="#addProductBrandModal"> -->
-<!--                   <span class="float-right"> -->
-<!--                     <i class="fa fa-plus"></i> -->
-<!--                     발주 신청 -->
-<!--                   </span> -->
-<!--                 </a> -->
+                <a href="stockorder.cafe" class="text-white">
+                  <span class="float-right">
+                    <i class="fa fa-plus"></i>
+                    발주 신청
+                  </span>
+                </a>
               </div>
               <div class="card-body">
                 <div class="table-responsive">

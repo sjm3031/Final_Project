@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <link href="../resources/css/w3.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
@@ -75,15 +77,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
       <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">MY PAGE</h1>
     <div class="w3-row w3-center w3-border w3-border-dark-grey">
 	
-	<a href="" >
+	<a href="mypage.cafe?customer_code=${sessionScope.USERCODE}" >
         <div class="w3-col s4 tablink w3-padding-large w3-hover-red" style="background-color: #a95858 !important;">My Page</div>
       </a>
       
-      <a href="" >
-        <div class="w3-col s4 tablink w3-padding-large w3-hover-red" >Stamp</div>
+      <a href="cartlist.cafe?customer_code=${sessionScope.USERCODE}" >
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red" >Cart</div>
       </a>
       
-      <a href="" >
+      <a href="orderlist.cafe?customer_code=${sessionScope.USERCODE}" >
         <div class="w3-col s4 tablink w3-padding-large w3-hover-red" >Order</div>
       </a>
 
@@ -93,45 +95,62 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
      <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-
-         <c:if test="${ 'm' eq dto.customer_gender }">         
-                        
-         <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-
-		</c:if>
-
-         <c:if test="${ 'f' eq dto.customer_gender }">
+<c:choose>
+        
+	<c:when test="${ 'f' eq dto.customer_gender }">   
          
          <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar6.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-         
-         </c:if>
+     </c:when>
+    <c:otherwise>
+    
+      <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+    
+    </c:otherwise>
+           
+</c:choose>
          <hr>
          <h1 class="w3-center">${ dto.customer_name }</h1> 
  
-         <p class="aaa">전화번호 : ${ dto.customer_phone }</p>
-         <p class="aaa">생년월일 : ${ dto.customer_birth }</p>
+         <p class="aaa" style="font-size: large;">전화번호 : ${ dto.customer_phone }</p>
+         <p class="aaa" style="font-size: large;">생년월일 : ${ dto.customer_birth }</p>
+         
+       <div >
+      <br>
+          <p class="aaa" style="font-size: x-large; margin-bottom: 0px;" >스탬프 적립 현황 : ${dto.customer_stamp }</p>
+          <hr>
+        </div>
+        <!--스탬프 현황판-->
+      	<div align="center" class="stamp_status" style="float: left; margin-bottom: 30px;">
+      	<c:forEach var="index" begin="1" end="10">
+  		
+  		<c:if test="${dto.customer_stamp+0 >= index+0}">
+      		<img src="../resources/images/stamp.png" alt="스탬프 없음" style="width: 150px; margin: 10px;">	
+      	</c:if>
+      
+      	<c:if test="${dto.customer_stamp+0 < index+0}">
+      		<img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 10px;">
+      	</c:if> 
+      	
+      	</c:forEach>
+<!--         	 <img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 15px;">
+					<img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 15px;">
+				<img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 15px;">
+				<img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 15px;">
+				<img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 15px;">
+				<img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 15px;">
+				<img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 15px;">
+				<img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 15px;">
+				<img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 15px;">
+				<img src="../resources/images/heart.png" alt="스탬프 없음" style="width: 150px; margin: 15px;">						
+ -->
+
+        </div>
         </div>
       </div>
       <br>
 
 
-	
- 	<div id="" class="w3-container menu w3-padding-32 w3-white" style="display: block; margin-bottom: 60px;">
 
-    	<a href="">
-
-	      <h1><b class="aaa">AAAA</b> <span class="w3-tag w3-red w3-round">Hot!</span><span class="w3-right w3-tag w3-dark-grey w3-round">CCCC</span></h1>
-	    
-	      <p class="w3-text-grey">Fresh tomatoes, fresh mozzarella, fresh basil</p>
-	      <hr>
-
-      </a>
-
-  	 
-  
-
-   
-  </div>
 </div>
 
 

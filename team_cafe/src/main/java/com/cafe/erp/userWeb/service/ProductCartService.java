@@ -27,10 +27,17 @@ public interface ProductCartService {
 
 	public List<ProductCartDTO> getProductCartListByCustomer(int customer_code);		//읽기
 	public ProductVO getProductViewByCode(int productcode);		// 판매상품 읽기 by code
-
 	
-	public ProductCartDTO getProductCategoryByCode(int num);				//읽기 by num
-	public int updateProductCategory(ProductCartDTO dto);					//수정
-	public int deleteProductCategory(ProductCartDTO dto);					//삭제
+	
+	public void deleteProductCartAddAll(int cart_num);					//주문이 등록되면 장바구니 옵션내역 삭제..
+	public void deleteProductCartAll(int customer_code);					//주문이 등록되면 장바구니 내역 삭제..
+	
+	
+	public void updateListCount(HashMap Map);	//수량만 수정				
+	public void deleteListProduct(int cart_code);	//코드로 삭제
+	
+	public void deleteListCartAdd(int cart_code);	//CART_CODE_CART_ADD코드로 삭제
+	
+	
 
 }

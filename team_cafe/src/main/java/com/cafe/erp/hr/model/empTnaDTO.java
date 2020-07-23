@@ -1,16 +1,32 @@
 package com.cafe.erp.hr.model;
 
-
+import java.sql.Date;
 
 public class empTnaDTO {
 	
-	private int emptna_code,emptna_empcode,emptna_year,emptna_month,emptna_day,emptna_empname,emptna_starttime,emptna_endtime,emptna_daytotaltime,emptna_monthtotaltime
-				,employee_code;
+	private int emptna_code,emptna_empcode,emptna_year,emptna_month,emptna_day,emptna_empname,employee_code;
 	
-	private String employee_name,employee_jumin;
+	private String employee_name,employee_jumin,starttime,endtime;
+	private Double emptna_daytotaltime;
+	private Date emptna_starttime,emptna_endtime;
+
 	
-	
-	
+	public String getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+
+	public String getEndtime() {
+		return endtime;
+	}
+
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
+	}
+
 	public String getEmployee_jumin() {
 		return employee_jumin;
 	}
@@ -75,36 +91,28 @@ public class empTnaDTO {
 		this.emptna_empname = emptna_empname;
 	}
 
-	public int getEmptna_starttime() {
+	public Date getEmptna_starttime() {
 		return emptna_starttime;
 	}
 
-	public void setEmptna_starttime(int emptna_starttime) {
+	public void setEmptna_starttime(Date emptna_starttime) {
 		this.emptna_starttime = emptna_starttime;
 	}
 
-	public int getEmptna_endtime() {
+	public Date getEmptna_endtime() {
 		return emptna_endtime;
 	}
 
-	public void setEmptna_endtime(int emptna_endtime) {
+	public void setEmptna_endtime(Date emptna_endtime) {
 		this.emptna_endtime = emptna_endtime;
 	}
 
-	public int getEmptna_daytotaltime() {
+	public Double getEmptna_daytotaltime() {
 		return emptna_daytotaltime;
 	}
 
-	public void setEmptna_daytotaltime(int emptna_daytotaltime) {
+	public void setEmptna_daytotaltime(Double emptna_daytotaltime) {
 		this.emptna_daytotaltime = emptna_daytotaltime;
-	}
-
-	public int getEmptna_monthtotaltime() {
-		return emptna_monthtotaltime;
-	}
-
-	public void setEmptna_monthtotaltime(int emptna_monthtotaltime) {
-		this.emptna_monthtotaltime = emptna_monthtotaltime;
 	}
 
 	public int getEmployee_code() {

@@ -122,14 +122,14 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">직원</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addEmpModal"> <i class="fa fa-plus"></i> 직원등록</a>
-            <a class="dropdown-item" href="list.cafe"> <i class="fa fa-user"></i> 직원조회</a>
+            <a class="dropdown-item" href="../emp/list.cafe"> <i class="fa fa-user"></i> 직원조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">직급</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addJobModal"> <i class="fa fa-plus"></i> 직급등록</a>
             <a class="dropdown-item" href="../job/list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">근태	</h6>
-            <a class="dropdown-item" href="../emptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
+            <a class="dropdown-item" href="list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">급여</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addSalaryModal"> <i class="fa fa-plus"></i> 급여정산</a>
@@ -231,93 +231,47 @@
             <div class="card mb-3">
               <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
                 <i class="fa fa-table"></i>
-               직원리스트
+        근태수정
                 
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                      <tr>
-                        <th>직원코드</th>
-						<th>이름</th>
-						<th>주민번호</th>
-						<th>핸드폰번호</th>
-						<th>주소</th>
-						<th>입사날짜</th>
-						<th>퇴사날짜</th>
-						<th>퇴사여부</th>
-						<th>은행</th>
-						<th>계좌번호</th>
-						<th>직급</th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    
-                   
-          <c:forEach var="emp" items="${list}">
-          
-                      <tr>
-						<td>${emp.employee_code}</td>
-						<td><a href="read.cafe?num=${emp.employee_code}&pg=${pg}">${emp.employee_name}</a></td>
-						<td>${emp.employee_jumin}</td>
-						<td>${emp.employee_phone}</td>
-						<td>${emp.employee_address}</td>
-						<td><fmt:formatDate value="${emp.employee_startdate}"
-						pattern="yyyy-MM-dd" /></td>
-						<td><fmt:formatDate value="${emp.employee_enddate}"
-						pattern="yyyy-MM-dd" /></td>
-						<td>${emp.employee_endyn}</td>
-						<td>${emp.employee_bank}</td>
-						<td>${emp.employee_bankaddress}</td>
-						<td>${emp.employee_jobname}</td>
-                        <td><input type="button" value="수정" onclick="location.href='updateForm.cafe?num=${emp.employee_code}&pg=${pg}'" /></td>
-                        <td><input type="button" value="퇴사처리" onclick="location.href='update2.cafe?employee_code=${emp.employee_code}&pg=${pg}'" /></td>
-                      </tr>
-                      	
-                    
-                      
-            </c:forEach>   
-                  
-                   
-                  </table>
-                 
-                 <br>
-	<br>
-	<table width="100%" align="center">
-		<tr>
-			<td align="center">
-				<!-- 처음 이전 링크 --> <c:if test="${pg>block}">
-					<!-- 5>10 : false / 15>10 : true -->
-			[<a href="emplist.cafe?pg=1">◀◀</a>]
-			[<a href="emplist.cafe?pg=${fromPage-1}">◀</a>]		
-		</c:if> <c:if test="${pg<=block}">
-					<!-- 5<=10 :true / 15<=10:false -->
-			[<span style="color: gray">◀◀</span>]	
-			[<span style="color: gray">◀</span>]
-		</c:if> <!-- 블록 범위 찍기 --> <c:forEach begin="${fromPage}" end="${toPage}"
-					var="i">
-					<c:if test="${i==pg}">[${i}]</c:if>
-					<c:if test="${i!=pg}">
-				[<a href="emplist.cafe?pg=${i}">${i}</a>]
-			</c:if>
-				</c:forEach> <!-- 다음, 이후 --> <c:if test="${toPage<allPage}">
-					<!-- 20<21 : true -->
-				[<a href="emplist.cafe?pg=${toPage+1}">▶</a>]
-				[<a href="emplist.cafe?pg=${allPage}">▶▶</a>]
+                <form action="update2.cafe" method="post">
+	<table width="1500" cellpadding="3">
 		
-		</c:if> <c:if test="${toPage>=allPage}">
-					<!-- 21>=21 :true -->
-				[<span style="color: gray">▶</span>]
-				[<span style="color: gray">▶▶</span>]
-		
-		</c:if>
 
-			</td>
+	
+
+			<tr><td>근태코드</td><td>
+			<input type="hidden" name="pg" value="${pg}" />
+			<input type="text" name="emptna_code" value="${dto.emptna_code}" readonly="readonly"></td></tr>
+				<tr><td>이름</td><td>${dto.employee_name}</td></tr>
+				<tr><td>년</td><td>${dto.emptna_year}</td></tr>
+				<tr><td>월</td><td>${dto.emptna_month}</td></tr>
+				<tr><td>일</td><td>${dto.emptna_day}</td></tr>
+				<tr>
+				<td>출근시간</td>
+				<td>
+				<input type="text" name="starttime" value="<fmt:formatDate value="${dto.emptna_starttime}" pattern="yyyy-MM-dd HH:mm" />">
+				</td>
+				</tr>
+				<tr><td>퇴근시간 </td>
+				<td><input type="text" name="endtime" value="<fmt:formatDate value="${dto.emptna_endtime}" pattern="yyyy-MM-dd HH:mm" />"></td></tr>
+				<tr><td>일일근무시간</td><td>${dto.emptna_daytotaltime}</td></tr>
+				
+				
+				<tr><td colspan="2"><input type="submit" value="수정"></td></tr>
+				
+				<%-- 				<input type="button" value="삭제" onclick="location.href='empDelete.cafe?employee_code=${emp.employee_code}&pg=${pg}'"> --%>
+				<!-- 				</td> -->
 			
-		</tr>
-	</table> 
+		
+		
+
+	</table>
+	</form>
+
+	
   
                 </div>
               </div>
@@ -362,7 +316,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="insert.cafe" method="post">
+          <form action="../../hr/emp/insert.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>이름</label>

@@ -1,10 +1,12 @@
 package com.cafe.erp.hr.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,23 +15,46 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe.erp.hr.model.empDTO;
 import com.cafe.erp.hr.model.empTnaDTO;
+import com.cafe.erp.hr.model.jobDTO;
 import com.cafe.erp.hr.model.salaryDTO;
+import com.cafe.erp.hr.service.jobService;
 import com.cafe.erp.hr.service.salaryService;
+import com.cafe.erp.sale.model.ProductCategoryVO;
+import com.cafe.erp.sale.service.ProductCategoryService;
 
 @Controller
 public class salaryController {
 
 	@Resource
 	private salaryService salaryService;
+	@Resource
+	private ProductCategoryService productCategoryService;
+	@Resource
+	private jobService jobService;
 
-	@RequestMapping(value="hr/salary/list.cafe",method=RequestMethod.GET)
-	public String SalaryListForm(HttpServletRequest req) {
+	@RequestMapping("hr/salary/list.cafe")
+	public String SalaryListForm(HttpServletRequest req,Model model) {
 		
-		List<empTnaDTO> list = salaryService.getMonth();
-		req.setAttribute("tm", list);
+		HashMap map = new HashMap();
+		List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", list);
+
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
 		
-		List<empTnaDTO> list2 = salaryService.getYear();
-		req.setAttribute("ty", list2);
+		List<empDTO> nameList = salaryService.getName();
+		List<empTnaDTO> yearList = salaryService.getYear();
+		List<empTnaDTO> monthList = salaryService.getMonth();
+
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("yearList", yearList);
+		model.addAttribute("monthList", monthList);
+		
+		List<empTnaDTO> list2 = salaryService.getMonth();
+		req.setAttribute("tm", list2);
+		
+		List<empTnaDTO> list3 = salaryService.getYear();
+		req.setAttribute("ty", list3);
 		
 		int pg = 1;
 		String strPg = req.getParameter("pg");
@@ -58,10 +83,10 @@ public class salaryController {
 			toPage = allPage;
 		}
 
-		HashMap map = new HashMap();
+		
 		map.put("start", start);
 		map.put("end", end);
-
+		
 		List<salaryDTO> list1 = salaryService.getSalaryList(map);
 		req.setAttribute("list1", list1);
 		req.setAttribute("pg", pg);
@@ -73,15 +98,32 @@ public class salaryController {
 		return "hr/salary/salaryListForm";
 	
 	}
-	
-	@RequestMapping(value="hr/salary/list.cafe",method=RequestMethod.POST)
-	public String SalarySearch(HttpServletRequest req,int salary_year,int salary_month) {
+	@RequestMapping("hr/salary/search.cafe")
+	public String search(int salary_month,int salary_year,Model model,HttpServletRequest req) {
+		HashMap map = new HashMap();
+		map.put("salary_month", salary_month);
+		map.put("salary_year", salary_year);
 		
-		List<empTnaDTO> tm = salaryService.getMonth();
-		req.setAttribute("tm", tm);
 		
-		List<empTnaDTO> ty = salaryService.getYear();
-		req.setAttribute("ty", ty);
+		List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", list);
+
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
+		
+		List<empDTO> nameList = salaryService.getName();
+		List<empTnaDTO> yearList = salaryService.getYear();
+		List<empTnaDTO> monthList = salaryService.getMonth();
+
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("yearList", yearList);
+		model.addAttribute("monthList", monthList);
+		
+		List<empTnaDTO> list2 = salaryService.getMonth();
+		req.setAttribute("tm", list2);
+		
+		List<empTnaDTO> list3 = salaryService.getYear();
+		req.setAttribute("ty", list3);
 		
 		int pg = 1;
 		String strPg = req.getParameter("pg");
@@ -110,26 +152,21 @@ public class salaryController {
 			toPage = allPage;
 		}
 
-		HashMap map = new HashMap();
+		
 		map.put("start", start);
 		map.put("end", end);
 		
-		map.put("salary_year", salary_year);
-		map.put("salary_month", salary_month);
+		List<salaryDTO> list1 = salaryService.searchSalary(map);
 		
-		System.out.println(salary_year);
-		System.out.println(salary_month);
-		List<salaryDTO> list = salaryService.searchSalary(map);
-		
-		req.setAttribute("list1", list);
+		req.setAttribute("list1", list1);
 		req.setAttribute("pg", pg);
 		req.setAttribute("allPage", allPage);
 		req.setAttribute("block", block);
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
-		
 		return "hr/salary/salaryListForm";
 	}
+	
 	
 	@RequestMapping(value="hr/salary/insert.cafe",method=RequestMethod.GET)
 	public String insertForm(Model model) {
@@ -148,7 +185,7 @@ public class salaryController {
 	
 	@RequestMapping(value="hr/salary/insert.cafe",method=RequestMethod.POST)
 	public String insert(salaryDTO dto,Model model,String employee_name,int salary_year,int salary_month,int
-			salary_date) {
+			salary_date,HttpServletResponse resp) throws Exception{
 		
 		HashMap map = new HashMap();
 		map.put("employee_name", employee_name);
@@ -156,10 +193,21 @@ public class salaryController {
 		map.put("salary_month", salary_month);
 		map.put("salary_date", salary_date);
 		
-		int monthtotal = salaryService.getMaxMonthTotal(map);
+		double monthtotal = salaryService.getMaxMonthTotal(map);
 		map.put("monthtotal", monthtotal);
 		
-		salaryService.insertSalary(map);
+		if (monthtotal!=0) {
+			salaryService.insertSalary(map);
+		}else {
+			
+			resp.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = resp.getWriter();
+			out.println("<script>alert('근무시간이 없습니다.');</script>");
+			out.flush();
+
+			return "hr/emptna/empTnaUpdateForm";
+		}
+		
 //		model.addAttribute("salary_date", salary_date);
 //		System.out.println(salary_date);
 		return "redirect:list.cafe";
@@ -167,10 +215,27 @@ public class salaryController {
 	@RequestMapping(value="hr/salary/update.cafe",method=RequestMethod.GET)
 	public String SalaryUpdate(int salary_code,Model model,int pg) {
 		
+		HashMap map = new HashMap();
+		List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", list);
+
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
+		
+		List<empDTO> nameList = salaryService.getName();
+		List<empTnaDTO> yearList = salaryService.getYear();
+		List<empTnaDTO> monthList = salaryService.getMonth();
+
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("yearList", yearList);
+		model.addAttribute("monthList", monthList);
+		
 		salaryDTO dto = salaryService.getSalary(salary_code);
+		
 		model.addAttribute("salary", dto);
 		model.addAttribute("pg", pg);
 		model.addAttribute("salary_code",salary_code);
+	
 		
 		return "hr/salary/salaryUpdateForm";
 	}

@@ -77,12 +77,12 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">상품 타입</h6>
-            <a class="dropdown-item" href="sale/productCategory/list.cafe"> <i class="fa fa-tags"></i> 상품 카테고리 조회</a>
-            <a class="dropdown-item" href="sale/productAdd/list.cafe"> <i class="fa fa-tags"></i> 상품 옵션 조회</a>
+            <a class="dropdown-item" href="../../sale/productCategory/list.cafe"> <i class="fa fa-tags"></i> 상품 카테고리 조회</a>
+            <a class="dropdown-item" href="../../sale/productAdd/list.cafe"> <i class="fa fa-tags"></i> 상품 옵션 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">판매 상품</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addCafeProductModal"> <i class="fa fa-plus"></i> 판매 상품 추가</a>
-            <a class="dropdown-item" href="sale/product/list.cafe"> <i class="fa fa-tags"></i> 상품 조회</a>
+            <a class="dropdown-item" href="../../sale/product/list.cafe"> <i class="fa fa-tags"></i> 상품 조회</a>
           </div>
         </li>
         

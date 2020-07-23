@@ -33,6 +33,32 @@ public class empTnaServiceImpl implements empTnaService {
 		return dao.getDay();
 	}
 
+
+	@Override
+	public empTnaDTO getEmpTna(int emptna_code) {
+
+		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
+
+		return dao.getEmpTna(emptna_code);
+	}
+
+	@Override
+	public int selectEmp(HashMap map) {
+		
+		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
+
+		return dao.selectEmp(map);
+	}
+
+	@Override
+	public int updateEmpTna3(empTnaDTO dto) {
+		
+		
+		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
+
+		return dao.updateEmpTna3(dto);
+	}
+
 	@Override
 	public List<empTnaDTO> getName() {
 
@@ -41,12 +67,16 @@ public class empTnaServiceImpl implements empTnaService {
 		return dao.getName();
 	}
 
+	
+
 	@Override
-	public int getTotal(HashMap map) {
+	public empTnaDTO selectEmp2(HashMap map) {
 
 		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
 
-		return dao.getTotal(map);
+		return dao.selectEmp2(map);
+		
+
 	}
 
 	@Override
@@ -90,13 +120,7 @@ public class empTnaServiceImpl implements empTnaService {
 		return dao.getMonth();
 	}
 
-	@Override
-	public empDTO getEmpTna(empDTO dto) {
 
-		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
-
-		return dao.getEmpTna(dto);
-	}
 
 	@Override
 	public void insertEmpTna(empTnaDTO dto) {

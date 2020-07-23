@@ -380,52 +380,6 @@
         </div>
       </div>
     </div>
-    <!-- Add Product Modal-->
-    <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-tag"></i>
-             거래처 등록
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form class="accountinsert" action="accountinsert.cafe" method="post" name="accountinsert">
-            <div class="modal-body">
-              <div class="form-group">
-                <label>사업자 번호</label>
-                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number"/>
-              </div>
-              <div class="form-group">
-                <label>업체명</label>
-                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name"/>
-              </div>
-              <div class="form-group">
-                <label>사업자 명</label>
-                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname"/>
-              </div>
-              <div class="form-group">
-                <label>주소</label>
-                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address"/>
-              </div>
-              <div class="form-group">
-                <label>email</label>
-                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email"/>
-              </div>
-              <br>
-              <small class="text-muted"><em>확인을 누르시기전에 한번 더 체크해주세요.</em></small>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
     <!-- Add Product Brand-->
     <div class="modal fade" id="addStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -476,6 +430,11 @@
 				</c:forEach>
               
                 </select>
+                
+                <small class="float-right">찾는 카테고리가 없으신가요?
+                <a href="#"data-toggle="modal" data-target="#addAccountModal">추가하기</a>
+                </small>
+                
               </div>
               
               <div class="form-group">
@@ -483,6 +442,52 @@
                 <input type="file" id="stock_upimage" name="stock_upimage" />
               </div>
               
+              <small class="text-muted"><em>확인을 누르시기전에 한번 더 체크해주세요.</em></small>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="확인">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Add Product Modal-->
+    <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+             거래처 등록
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form class="accountinsert" action="accountinsert.cafe" method="post" name="accountinsert">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>사업자 번호</label>
+                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number"/>
+              </div>
+              <div class="form-group">
+                <label>업체명</label>
+                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name"/>
+              </div>
+              <div class="form-group">
+                <label>사업자 명</label>
+                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname"/>
+              </div>
+              <div class="form-group">
+                <label>주소</label>
+                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address"/>
+              </div>
+              <div class="form-group">
+                <label>email</label>
+                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email"/>
+              </div>
+              <br>
               <small class="text-muted"><em>확인을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
             <div class="modal-footer">

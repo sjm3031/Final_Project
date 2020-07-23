@@ -64,9 +64,11 @@ public class ERPController {
 	}
 	
 	@RequestMapping("sales-reports.cafe")
-	public String salesreports(){
+	public String salesreports(Model model){
+		HashMap map = new HashMap();
 		
-		
+		List<AccountDTO> account_list = stockService.getAccountList(map);
+		model.addAttribute("account_list", account_list);
 		
 		return "erp/sales-reports";
 	}

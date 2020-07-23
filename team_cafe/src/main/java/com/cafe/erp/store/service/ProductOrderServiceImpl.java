@@ -21,7 +21,6 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 	public void orderinsert(ProductOrderDTO dto) {
 		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
 		dao.orderinsert(dto);
-		
 	}
 
 	@Override
@@ -40,6 +39,13 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 	public List<AccountDTO> getaccountnumber() {
 		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
 		return dao.getaccountnumber();
+	}
+
+	@Override
+	public int cartcount() {
+		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
+		
+		return dao.cartcount();
 	}
 	
 }

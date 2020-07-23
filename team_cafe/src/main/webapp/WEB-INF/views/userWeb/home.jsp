@@ -25,7 +25,7 @@
 
 <h2>User Main Home</h2>
 
-<button type="button" onclick="">회원가입</button>
+<button type="button" onclick="location.href='memberwriteform.cafe'">회원가입</button>
 <br>
 <br>
 

@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe.erp.cs.model.CustomerDTO;
@@ -31,6 +33,7 @@ import com.cafe.erp.userWeb.model.ProductCartAddDTO;
 import com.cafe.erp.userWeb.model.ProductCartAddJoinDTO;
 import com.cafe.erp.userWeb.model.ProductCartDTO;
 import com.cafe.erp.userWeb.model.ProductCartDTOMulti;
+import com.cafe.erp.userWeb.service.MemberService;
 import com.cafe.erp.userWeb.service.OrderWebService;
 import com.cafe.erp.userWeb.service.ProductCartService;
 
@@ -63,21 +66,14 @@ public class UserWebController {
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//														로그인 관련
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-	
+
+
 		
 		@RequestMapping("login.cafe")
 		public String login() {
 			return "userWeb/login";
 			
 		}
-		/*
-		@RequestMapping("order.cafe")
-		public String order() {
-			return "userWeb/order";
-			
-		}
-		*/
 		
 		@RequestMapping("main.cafe")
 		public String main() {
@@ -85,7 +81,6 @@ public class UserWebController {
 			
 		}
 		
-
 		//로그인 처리
 		@RequestMapping("loginCheck.cafe")
 		public ModelAndView loginCheck(@ModelAttribute CustomerDTO dto, HttpSession session) {
@@ -117,7 +112,7 @@ public class UserWebController {
 		public ModelAndView logout(HttpSession session) {
 			loginService.logout(session);
 			ModelAndView mav = new ModelAndView();
-			mav.setViewName("redirect:/index.cafe");
+			mav.setViewName("redirect:/userWeb/home.cafe");
 			
 			return mav;
 			

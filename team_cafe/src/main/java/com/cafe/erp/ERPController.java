@@ -10,8 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cafe.erp.hr.model.jobDTO;
+import com.cafe.erp.hr.service.jobService;
 import com.cafe.erp.sale.model.ProductCategoryVO;
 import com.cafe.erp.sale.service.ProductCategoryService;
+import com.cafe.erp.store.model.AccountDTO;
+import com.cafe.erp.store.service.StockService;
 
 
 
@@ -20,7 +24,12 @@ public class ERPController {
 
 	@Resource
 	private ProductCategoryService productCategoryService;
+	
+	@Resource
+	private jobService jobService;
 		 
+	@Resource
+	private StockService stockService;
 		 
 	@RequestMapping("main.cafe")
 	public String login() {
@@ -30,9 +39,13 @@ public class ERPController {
 
 	@RequestMapping("index.cafe")
 	public String index(Model model) {
-		 HashMap map = new HashMap();
-		 List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
-		 model.addAttribute("productcategorylist", list);
+		HashMap map = new HashMap();
+		List<ProductCategoryVO> productcategorylist = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", productcategorylist);
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
+		List<AccountDTO> account_list = stockService.getAccountList(map);
+		model.addAttribute("account_list", account_list);
 	
 		return "erp/index";
 		

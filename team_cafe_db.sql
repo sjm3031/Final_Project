@@ -22,6 +22,7 @@ drop table Cafe_stock;
 drop table Cafe_account;
 
 --인사
+DROP TABLE cafe_salary;
 DROP TABLE cafe_emptna;
 DROP TABLE CAFE_EMPLOYEE;
 DROP TABLE CAFE_JOB;
@@ -37,50 +38,63 @@ DROP TABLE CAFE_CUSTOMER;
 create table CAFE_CUSTOMER(                    
     customer_code number UNIQUE, --고객코드  
     customer_name varchar2(30), --고객명
-    customer_phone varchar2(50), --고객 전화번호
+    customer_phone varchar2(50) PRIMARY key, --고객 전화번호
     customer_birth varchar2(30), -- 고객 생년월일
     customer_gender varchar2(10), --고객 성별
     customer_pwd varchar2(30),  --고객 비밀번호
 --    customer_phone varchar(30) PRIMARY key,    
 --    customer_name varchar2(40),      
     customer_stamp number --스탬프
-);  
+);
 
 
+--인사
  --직급테이블
-create table CAFE_JOB(     
-    job_code number not null unique,           --직급코드
-    job_name varchar(20) primary key,          --직급이름
-    job_tpay varchar(20) ,                     --시급
-    job_mpay varchar(20)                       --월급
+create table CAFE_JOB(      
+    job_code number not null unique,   --직급코드       
+    job_name varchar(20) primary key,         --직급명
+    job_tpay number(20),                       --시급
+    job_mpay number(20)                         --월급
     );
 
 --직원테이블
-create table CAFE_EMPLOYEE(   
-    employee_code number primary key,            --직원코드
-    employee_name varchar(20) not null unique,   --직원이름
-    employee_jumin varchar(20) not null ,        --직원주민번호  
-    employee_phone varchar(20) ,                 --직원핸드폰번호
-    employee_address varchar(50),                --직원주소
+create table CAFE_EMPLOYEE(  
+    employee_code number primary key,          --직원코드
+    employee_name varchar(20) not null unique,   --직원 이름
+    employee_jumin varchar(20) not null ,          --직원 주민번호
+    employee_phone varchar(20) ,                --핸드폰번호
+    employee_address varchar(50),               --주소
     employee_startdate date not null,            --입사날짜
     employee_enddate date,                       --퇴사날짜
-    employee_endyn varchar(1),                   --퇴사여부
-    employee_bank varchar(20),                   --은행명
+    employee_endyn varchar(1),                   --퇴사 여부(y:퇴사, n:재직중) 
+    employee_bank varchar(20),                   --은행
     employee_bankaddress varchar(30),            --계좌번호
-    employee_jobname varchar(20) not null REFERENCES CAFE_JOB(job_name)   --직급이름
+    employee_jobname varchar(20) not null REFERENCES CAFE_JOB(job_name)   --직급명
     );
 
 --근태 테이블
-create table cafe_emptna        
-(   emptna_code number primary key,                                       --근태코드            
-    emptna_empcode number REFERENCES CAFE_EMPLOYEE (employee_code),       --직원코드
-    emptna_year number(4) not null,                                       --근무한년
-    emptna_month number(2) not null,                                      --근무한월
-    emptna_day number(2) not null,                                        --근무한일
-    emptna_starttime varchar(10),                                         --출근시간
-    emptna_endtime varchar(10),                                           --퇴근시간
-    emptna_daytotaltime varchar(10),                                      --하루 총 일한시간
-    emptna_monthtotaltime varchar(10)                                     --한달동안 일한시간
+create table cafe_emptna(   
+        emptna_code number primary key,                                      --직급코드            
+        emptna_empcode number REFERENCES CAFE_EMPLOYEE (employee_code),     --직원코드
+        emptna_year number not null,                                          --년
+        emptna_month number not null,                                       --월
+        emptna_day number not null,                                         --일
+        emptna_starttime date not null,                                        --출근시간      
+        emptna_endtime date,                                                --퇴근시간
+        emptna_daytotaltime number                                           --하루 근무시간                              
+    );
+
+--급여 테이블    
+create table cafe_salary(
+    salary_code number not null primary key,                                    --급여코드
+    salary_empcode number not null REFERENCES CAFE_EMPLOYEE (employee_code),    --직원코드
+    salary_year number not null,                                                --년
+    salary_month number not null,                                              --월
+    salary_time number not null,                                              --총 근무 시간
+    salary_tpay number not null,                                              --시급
+    salary_mpay number not null,                                              --월급
+    salary_totalpay number not null,                                           --총급여
+    salary_date number not null                                                 --급여지급일
     );
 
 
@@ -92,10 +106,8 @@ account_name VARCHAR2(30),  -- 거래처 명
 account_ceoname VARCHAR2(30),  -- 거래처 사업자명
 account_address VARCHAR2(50), -- 주소
 account_email VARCHAR2(100) -- email
-
 );
 
-select * from Cafe_account;
 
 
 --원재료 테이블
@@ -123,7 +135,6 @@ PRODUCTORDER_CODE number,
 ACCOUNT_NUMBER number
 );
 
-
 --발주 테이블
 CREATE TABLE CAFE_PRODUCTORDER
 (
@@ -132,19 +143,18 @@ productOrder_date date,--날짜
 prodectOrder_total number--총금액
 );
 
-
 --발주 상세내역 테이블
 CREATE TABLE CAFE_PRODUCTORDERLIST 
 (
- productOrderList_code number primary key,--코드
+ productOrderList_code number ,--코드
  productOrderList_count number,--수량
  productOrder_code number, --발주테이블 코드(fk)
  stock_code number,--원재료상품테이블 코드(fk)
  
  CONSTRAINT productOrder_code FOREIGN KEY(productOrder_code) REFERENCES CAFE_PRODUCTORDER(productOrder_code) on delete cascade,
  CONSTRAINT stock_code FOREIGN KEY(stock_code) REFERENCES Cafe_stock(stock_code) on delete set null
- 
 );
+
 
 
 
@@ -244,6 +254,10 @@ insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) 
 insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(2,'non-coffe');
 insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(3,'juice');
  
+INSERT INTO CAFE_JOB VALUES (1,'매니저',0,2000000);
+INSERT INTO CAFE_JOB VALUES (2,'아르바이트',8590,0);
+INSERT INTO CAFE_JOB VALUES (3,'아르바이트pro',9000,0);
+
  
 commit;
 

@@ -109,6 +109,8 @@ public class empTnaController {
 			if (dto.getEmptna_endtime() == null) {
 
 				empTnaService.updateEmpTna(map);
+				
+				dto.getEmptna_daytotaltime();
 
 			} else {
 				resp.setContentType("text/html; charset=UTF-8");

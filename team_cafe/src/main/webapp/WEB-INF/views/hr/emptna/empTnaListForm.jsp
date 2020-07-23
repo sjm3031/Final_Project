@@ -398,6 +398,7 @@
 						<option  value="${emp.job_name}">${emp.job_name}</option>
 					</c:forEach>
  				</select>
+ 				<small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="#addJobModal">추가하기</a> </small>
               </div>
               <br>
              </div>
@@ -532,10 +533,12 @@
               <div class="form-group">
                 <label>시급</label>
                 <input type="text" class="form-control" name="job_tpay"  placeholder="없으면 0을 입력하세요" required>
+                <small class="text-muted">급여를 계산할 때 필요하니 꼭 입력해주세요.</small>
               </div>
               <div class="form-group">
                 <label for="">월급</label>
                 <input type="text" class="form-control" name="job_mpay" placeholder="없으면 0을 입력하세요" required>
+                <small class="text-muted">급여를 계산할 때 필요하니 꼭 입력해주세요.</small>
               </div>
               </div>
             <div class="modal-footer">

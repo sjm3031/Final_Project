@@ -39,12 +39,12 @@ public class OrderController {
 		int end = pg * rowSize;
 
 		int total = orderService.getStockCount(); // 총 게시글수
-//		System.out.println("start : " + start + "end : " + end);
-//		System.out.println("write count : " + total);
+		System.out.println("start : " + start + "end : " + end);
+		System.out.println("write count : " + total);
 
 		int allPage = (int) Math.ceil(total / (double) rowSize); // 페이지수
 		int totalPage = total / rowSize + (total % rowSize == 0 ? 0 : 1);
-//		System.out.println("page count : " + allPage);
+		System.out.println("page count : " + allPage);
 
 		int block = 10; // 한페이지에 보여줄 범위 [1][2][3]~~[10]
 		int fromPage = ((pg - 1) / block * block) + 1; // 보여줄 페이지의 시작
@@ -76,10 +76,10 @@ public class OrderController {
 		int count = orderService.getstockcode(dto.getStock_code());
 		
 		if(count == 0 ) {
-//		System.out.println("등록되어 있지 않음 insert 진행");
-//		System.out.println("insert controller 진입");
+		System.out.println("등록되어 있지 않음 insert 진행");
+		System.out.println("insert controller 진입");
 		orderService.insertordercart(dto);
-//		System.out.println("insertordercart 완료");
+		System.out.println("insertordercart 완료");
 		}
 		else if(count == 1) {
 			System.out.println("등록 되어있음 update 진행");
@@ -105,12 +105,12 @@ public class OrderController {
 		int end = pg * rowSize;
 
 		int total = orderService.getStockOrderCount(); // 총 게시글수
-//		System.out.println("start : " + start + "end : " + end);
-//		System.out.println("write count : " + total);
+		System.out.println("start : " + start + "end : " + end);
+		System.out.println("write count : " + total);
 
 		int allPage = (int) Math.ceil(total / (double) rowSize); // 페이지수
 		int totalPage = total / rowSize + (total % rowSize == 0 ? 0 : 1);
-//		System.out.println("page count : " + allPage);
+		System.out.println("page count : " + allPage);
 
 		int block = 10; // 한페이지에 보여줄 범위 [1][2][3]~~[10]
 		int fromPage = ((pg - 1) / block * block) + 1; // 보여줄 페이지의 시작
@@ -132,40 +132,40 @@ public class OrderController {
 		req.setAttribute("block", block);
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
-//		System.out.println(order_list);
+		System.out.println(order_list);
 		return "store/stock/stockorderlist";
 	}
 	
 	//임시 발주 테이블 목록 수정페이지
 	@RequestMapping("/stockorderupdateform.cafe")
 	public String stockorderupdateform(int cart_number, int pg, Model model) {
-//		System.out.println("stockorderupdateform 진입");
-//		System.out.println("cart_number" + cart_number);
+		System.out.println("stockorderupdateform 진입");
+		System.out.println("cart_number" + cart_number);
 		OrderDTO dto = orderService.getOrder(cart_number);
 		
 		model.addAttribute("c", dto);
 		model.addAttribute("pg", pg);
-//		System.out.println("수정하기               "+dto.getCart_stock_quantity());
+		System.out.println("수정하기               "+dto.getCart_stock_quantity());
 		return "store/stock/stockorderlistupdate";
 	}
 	
 	//임시 발주 테이블 수정
 	@RequestMapping("/stockorderlistupdate.cafe")
 	public String stockorderupdate (OrderDTO dto, int pg) {
-	//	System.out.println("stockorderupdate 진입");
+		System.out.println("stockorderupdate 진입");
 //		System.out.println("수정한 수량 = " + dto.getCart_stock_quantity());
 		orderService.updateordercart(dto);
 		
-		return "redirect:stockorderlist.cafe?pg=" + pg;
+		return "redirect:stock/stockorderlist.cafe?pg=" + pg;
 	}
 	
 	//임시 발주 테이블 목록 삭제
 	@RequestMapping("/stockorderdelete.cafe")
 	public String stockorderdelete(OrderDTO dto, int pg) {
-		//System.out.println("stockorderdelete 진입");
+		System.out.println("stockorderdelete 진입");
 		orderService.deleteordercart(dto);
-		//System.out.println("stockorderdelete 완료");
-		return "redirect:stockorderlist.cafe?pg=" + pg;
+		System.out.println("stockorderdelete 완료");
+		return "redirect:stock/stockorderlist.cafe?pg=" + pg;
 	}
 	
 

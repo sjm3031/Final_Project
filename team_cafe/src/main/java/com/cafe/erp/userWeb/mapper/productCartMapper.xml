@@ -27,16 +27,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	public void deleteProductCartAddAll(int customer_code);					//주문이 등록되면 장바구니 옵션내역 삭제..
-	public void deleteProductCartAll(int customer_code);					//주문이 등록되면 장바구니 내역 삭제..
-	
-
-	
-	public void updateListCount(HashMap Map);	//수량만 수정				
-	public void deleteListProduct(int cart_code);	//코드로 삭제
-	public void deleteListCartAdd(int cart_code);	//CART_CODE_CART_ADD코드로 삭제
-	
-	
+	public ProductCartDTO getProductCategoryByCode(int num);				//읽기 by num
+	public int updateProductCategory(ProductCartDTO dto);					//수정
+	public int deleteProductCategory(ProductCartDTO dto);					//삭제
 	
 		
 -->
@@ -83,44 +76,21 @@ select a.cart_code,a.customer_code,a.cafe_product_code,a.cart_num,nvl(b.PRODUCT_
 		 select * FROM CAFE_PRODUCT
  	</select>
  	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+	
+
+
+
+
 	<select id="getProductCartListByCustomer" parameterType="int" resultType="com.cafe.erp.userWeb.model.ProductCartDTO">
 		 select * FROM CAFE_CART where customer_code=#{customer_code} order by cart_code
  	</select>
- 	
- 	
- 	<delete id="deleteProductCartAddAll" parameterType="int"  >
-		delete from CAFE_CART_ADD where cart_code=#{cart_code}
-	</delete>
-	
-	<delete id="deleteProductCartAll" parameterType="int" >
-		delete from CAFE_CART where customer_code=#{customer_code} 
-	</delete>
 
-	<delete id="deleteListProduct" parameterType="int">
-		delete from CAFE_CART where cart_code=#{cart_code}  
-	</delete>
-	
-	<update id="updateListCount"  parameterType="hashmap" >
- 		update CAFE_CART set cart_num=#{cart_num}
-		where cart_code=#{cart_code}  
-	</update>
-	
-		
-	<delete id="deleteListCartAdd" parameterType="int">
-		delete from CAFE_CART_ADD where cart_code=#{cart_code}
-	</delete>
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	<select id="getProductViewByCode" parameterType="int" resultType="com.cafe.erp.sale.model.ProductVO">

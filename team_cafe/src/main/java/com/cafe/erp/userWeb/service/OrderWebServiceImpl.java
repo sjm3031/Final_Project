@@ -14,8 +14,6 @@ import com.cafe.erp.sale.model.ProductDAO;
 import com.cafe.erp.sale.model.ProductVO;
 import com.cafe.erp.userWeb.model.OrderWebDAO;
 import com.cafe.erp.userWeb.model.OrderWebDTO;
-import com.cafe.erp.userWeb.model.OrderWebListAddDTO;
-import com.cafe.erp.userWeb.model.OrderWebListAddJoinDTO;
 import com.cafe.erp.userWeb.model.ProductCartAddDTO;
 import com.cafe.erp.userWeb.model.ProductCartAddJoinDTO;
 import com.cafe.erp.userWeb.model.ProductCartDAO;
@@ -69,48 +67,7 @@ public class OrderWebServiceImpl implements OrderWebService {
 		OrderWebDAO orderWebDAO = sqlSession.getMapper(OrderWebDAO.class);
 		return orderWebDAO.getProductCartAddList();
 	}
-
-	@Override
-	public void insertOrderWebListAdd(ProductCartAddDTO dto) {
-		// TODO Auto-generated method stub
-		OrderWebDAO orderWebDAO = sqlSession.getMapper(OrderWebDAO.class);
-		orderWebDAO.insertOrderWebListAdd(dto);
-	}
-
-	@Override
-	public List<OrderWebDTO> getOrderWebList(int customer_code){		
-		// TODO Auto-generated method stub
-		OrderWebDAO orderWebDAO = sqlSession.getMapper(OrderWebDAO.class);
-		return orderWebDAO.getOrderWebList(customer_code);
-	}
-
-	@Override
-	public List<OrderWebListAddJoinDTO> getOrderWebListAddJoinList(int order_web_code) {
-		// TODO Auto-generated method stub
-		OrderWebDAO orderWebDAO = sqlSession.getMapper(OrderWebDAO.class);
-		return orderWebDAO.getOrderWebListAddJoinList(order_web_code);
-	}
-
-	@Override
-	public int getOrderWebCheck() {
-		// TODO Auto-generated method stub
-		OrderWebDAO orderWebDAO = sqlSession.getMapper(OrderWebDAO.class);
-		return orderWebDAO.getOrderWebCheck();
-	}
-
-	@Override
-	public List<OrderWebDTO> getOrderWebListAll(String date) {
-		// TODO Auto-generated method stub
-		OrderWebDAO orderWebDAO = sqlSession.getMapper(OrderWebDAO.class);
-		return orderWebDAO.getOrderWebListAll(date);
-	}
-
-	@Override
-	public void updateOrderWebCheck(int order_web_code) {
-		// TODO Auto-generated method stub
-		OrderWebDAO orderWebDAO = sqlSession.getMapper(OrderWebDAO.class);
-		orderWebDAO.updateOrderWebCheck(order_web_code);
-	}
+	
 	
 	
 }

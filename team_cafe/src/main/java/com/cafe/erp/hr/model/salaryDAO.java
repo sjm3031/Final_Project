@@ -9,6 +9,10 @@ public interface salaryDAO {
 
 	public List<salaryDTO> getSalaryList(HashMap map);
 	
+	
+	public List<salaryDTO> checkSalary(HashMap map);
+	
+	
 	public List<salaryDTO> searchSalary(HashMap map);
 	
 	public List<empTnaDTO> getMonth();

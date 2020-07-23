@@ -562,7 +562,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="../../salary/insert.cafe" method="post">
+          <form action="../../hr/salary/insert.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>직원이름</label>

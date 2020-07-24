@@ -59,7 +59,7 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../../index.cafe">
+          <a class="nav-link" href="../index.cafe">
             <i class="fa fa-fw fa-home"></i>
             <span>홈</span>
           </a>

@@ -11,13 +11,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Cafe 매장관리시스템</title>
-    <link href="../resources/css/bootstrap.css" rel="stylesheet">
-    <link href="../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="../resources/css/styles.css" rel="stylesheet">
+    <link href="../../resources/css/bootstrap.css" rel="stylesheet">
+    <link href="../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="../../resources/css/styles.css" rel="stylesheet">
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href="index.cafe">Cafe ERP</a>
+      <a class="navbar-brand mr-1" href="../index.cafe">Cafe ERP</a>
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fa fa-bars"></i>
       </button>
@@ -26,45 +26,43 @@
     
     
     <div id="wrapper">
-      <!-- Sidebar -->
+            <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.cafe">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.cafe">
             <i class="fa fa-fw fa-home"></i>
             <span>홈</span>
           </a>
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link" href="cs/customer/list.cafe">
+        <li class="nav-item ">
+          <a class="nav-link" href="../cs/customer/list.cafe">
             <i class="fa fa-fw fa-users"></i>
             <span>고객관리</span>
+     
           </a>
         </li>
+        
         
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user"></i>
             <span>
-            인사관리
+              인사관리
               <i class="float-right fa fa-angle-down"></i>
             </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">직원</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addEmpModal"> <i class="fa fa-plus"></i> 직원등록</a>
-            <a class="dropdown-item" href="hr/emp/list.cafe"> <i class="fa fa-user"></i> 직원조회</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">직급</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addJobModal"> <i class="fa fa-plus"></i> 직급등록</a>
-            <a class="dropdown-item" href="hr/job/list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addEMPModal"> <i class="fa fa-plus"></i> 직원등록</a>
+            <a class="dropdown-item"  href="../hr/emp/list.cafe" > <i class="fa fa-user"></i> 직원조회</a>
+            <a class="dropdown-item" href="../hr/job/list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">근태	</h6>
-            <a class="dropdown-item" href="hr/emptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
+            <a class="dropdown-item" href="../hr/emptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">급여</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addSalaryModal"> <i class="fa fa-plus"></i> 급여정산</a>
-            <a class="dropdown-item" href="hr/salary/list.cafe"> <i class="fa fa-tags"></i> 급여 조회</a>
+            <a class="dropdown-item" href="../hr/salary/list.cafe"> <i class="fa fa-tags"></i> 급여 조회</a>
           </div>
         </li>
         
@@ -78,12 +76,12 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">상품 타입</h6>
-            <a class="dropdown-item" href="sale/productCategory/list.cafe"> <i class="fa fa-tags"></i> 상품 카테고리 조회</a>
-            <a class="dropdown-item" href="sale/productAdd/list.cafe"> <i class="fa fa-tags"></i> 상품 옵션 조회</a>
+            <a class="dropdown-item" href="../sale/productCategory/list.cafe"> <i class="fa fa-tags"></i> 상품 카테고리 조회</a>
+            <a class="dropdown-item" href="../sale/productAdd/list.cafe"> <i class="fa fa-tags"></i> 상품 옵션 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">판매 상품</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addCafeProductModal"> <i class="fa fa-plus"></i> 판매 상품 추가</a>
-            <a class="dropdown-item" href="sale/product/list.cafe"> <i class="fa fa-tags"></i> 상품 조회</a>
+            <a class="dropdown-item" href="../sale/product/list.cafe"> <i class="fa fa-tags"></i> 상품 조회</a>
           </div>
         </li>
         
@@ -98,7 +96,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">매출</h6>
-            <a class="dropdown-item" href="sell/list.cafe"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
+            <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 뭘넣을까</a>
           </div>
         </li>
@@ -114,147 +112,47 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">거래처</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addAccountModal"> <i class="fa fa-plus"></i> 거래처 등록</a>
-            <a class="dropdown-item" href="store/accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
+            <a class="dropdown-item" href="../../store/accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">원재료 품목</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addStockModal"> <i class="fa fa-plus"></i> 재료 품목 추가</a>
-            <a class="dropdown-item" href="store/stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
+            <a class="dropdown-item" href="../store/stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">발주</h6>
-            <a class="dropdown-item" href="store/stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
-            <a class="dropdown-item" href="store/orderlist.cafe" > <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
+            <a class="dropdown-item" href="../store/stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
+            <a class="dropdown-item" href="../store/orderlist.cafe" > <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
           </div>
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link" href="accounting/list.cafe">
+        <li class="nav-item active">
+          <a class="nav-link" href="payment-reports.do">
             <i class="fa fa-fw fa-money"></i>
             <span>회계/재무관리</span></a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="setting.cafe">
+          <a class="nav-link" href="../setting.cafe">
             <i class="fa fa-fw fa-cogs"></i>
             <span>설정</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="help.cafe">
+          <a class="nav-link" href="../help.cafe">
             <i class="fa fa-fw fa-life-ring"></i>
             <span>도움말</span></a>
         </li>
       </ul>
+
+
       <div id="content-wrapper" style="padding: 2em;">
         <div class="container-fluid">
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item" >
-              <a href="index.do" style="color: #A95858 !important;">Home</a>
+              <a href="index.do" style="color: #A95858 !important;">회계정산</a>
             </li>
-            <li class="breadcrumb-item active">Overview</li>
+            <li class="breadcrumb-item active">일일정산 조회</li>
           </ol>
-          <!-- Icon Cards-->
-          <div class="row" align="center" style="padding-top: 2em; padding-bottom: 2em;">
-            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100" style="width:90%;">
-                <div class="card-header">
-                  <h1>매출 건수</h1>
-                  <small class="float-left">최근 2주 동안</small>
-                </div>
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-money"></i>
-                  </div>
-                  <div class="card-text">
-                    <h1 class="text-center display-3"><strong>db연결</strong></h1>
-                  </div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="sales-count.do">
-                  <span class="float-left">세부사항</span>
-                  <span class="float-right">
-                    <i class="fa fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-danger o-hidden h-100" style="width:90%;">
-                <div class="card-header">
-                  <h1>베스트셀러? 최대 매출 품목?</h1>
-                  <small class="float-left">설문, 데이터베이스 통계</small>
-                </div>
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-flash"></i>
-                  </div>
-                  <div class="card-text">
-                    <h1 class="text-center display-3"><strong>db연결</strong></h1>
-                  </div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="top-selling.do">
-                  <span class="float-left">세부사항</span>
-                  <span class="float-right">
-                    <i class="fa fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-dark o-hidden h-100" style="width:90%;">
-                <div class="card-header">
-                  <h1>판매상품</h1>
-                  <small class="float-left">재고목록</small>
-                </div>
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-tags"></i>
-                  </div>
-                  <div class="card-text">
-                    <h1 class="text-center display-3"><strong>db연결</strong></h1>
-                  </div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="short-items.do">
-                  <span class="float-left">세부사항</span>
-                  <span class="float-right">
-                    <i class="fa fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-warning o-hidden h-100" style="width:90%;">
-                <div class="card-header">
-                  <h1>매출관리</h1>
-                  <small class="float-left">월별정산</small>
-                </div>
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-shopping-cart"></i>
-                  </div>
-                  <div class="card-text">
-                    <h1 class="text-center display-3"><strong>db연결</strong></h1>
-                  </div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="improvements.do">
-                  <span class="float-left">세부사항</span>
-                  <span class="float-right">
-                    <i class="fa fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Area Chart Example-->
-          <div class="card mb-3">
-            <div class="card-header">
-              <i class="fa fa-chart-area"></i>
-              월별차트샘플()</div>
-            <div class="card-body">
-              <canvas id="myAreaChart" width="100%" height="30"></canvas>
-            </div>
-            <div class="card-footer small text-muted">db연결(마지막상품 업데이트 시간찍기)</div>
-          </div>
-        </div>
-        <br><br><br>
+  
         <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">
@@ -272,6 +170,7 @@
           </div>
         </footer>
       </div>
+    </div>
     </div>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top" style="background: #212529 !important;  ">
@@ -686,11 +585,11 @@
   
   
 
-    <script src="../resources/js/jquery.min.js"></script>
-    <script src="../resources/js/bootstrap.bundle.min.js"></script>
-    <script src="../resources/js/jquery.easing.min.js"></script>
-    <script src="../resources/js/chart.min.js"></script>
-    <script src="../resources/js/rc-pos.min.js"></script>
-    <script src="../resources/js/chart-area-demo.js"></script>
+    <script src="../../resources/js/jquery.min.js"></script>
+    <script src="../../resources/js/bootstrap.bundle.min.js"></script>
+    <script src="../../resources/js/jquery.easing.min.js"></script>
+    <script src="../../resources/js/chart.min.js"></script>
+    <script src="../../resources/js/rc-pos.min.js"></script>
+    <script src="../../resources/js/chart-area-demo.js"></script>
   </body>
 </html>

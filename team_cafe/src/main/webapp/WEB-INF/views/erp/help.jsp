@@ -98,7 +98,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">매출</h6>
-            <a class="dropdown-item" href="sell/list.cafe"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
+            <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 뭘넣을까</a>
           </div>
         </li>
@@ -150,111 +150,9 @@
             <li class="breadcrumb-item" >
               <a href="index.do" style="color: #A95858 !important;">Home</a>
             </li>
-            <li class="breadcrumb-item active">Overview</li>
+            <li class="breadcrumb-item active">도움말</li>
           </ol>
-          <!-- Icon Cards-->
-          <div class="row" align="center" style="padding-top: 2em; padding-bottom: 2em;">
-            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100" style="width:90%;">
-                <div class="card-header">
-                  <h1>매출 건수</h1>
-                  <small class="float-left">최근 2주 동안</small>
-                </div>
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-money"></i>
-                  </div>
-                  <div class="card-text">
-                    <h1 class="text-center display-3"><strong>db연결</strong></h1>
-                  </div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="sales-count.do">
-                  <span class="float-left">세부사항</span>
-                  <span class="float-right">
-                    <i class="fa fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-danger o-hidden h-100" style="width:90%;">
-                <div class="card-header">
-                  <h1>베스트셀러? 최대 매출 품목?</h1>
-                  <small class="float-left">설문, 데이터베이스 통계</small>
-                </div>
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-flash"></i>
-                  </div>
-                  <div class="card-text">
-                    <h1 class="text-center display-3"><strong>db연결</strong></h1>
-                  </div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="top-selling.do">
-                  <span class="float-left">세부사항</span>
-                  <span class="float-right">
-                    <i class="fa fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-dark o-hidden h-100" style="width:90%;">
-                <div class="card-header">
-                  <h1>판매상품</h1>
-                  <small class="float-left">재고목록</small>
-                </div>
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-tags"></i>
-                  </div>
-                  <div class="card-text">
-                    <h1 class="text-center display-3"><strong>db연결</strong></h1>
-                  </div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="short-items.do">
-                  <span class="float-left">세부사항</span>
-                  <span class="float-right">
-                    <i class="fa fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-warning o-hidden h-100" style="width:90%;">
-                <div class="card-header">
-                  <h1>매출관리</h1>
-                  <small class="float-left">월별정산</small>
-                </div>
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-shopping-cart"></i>
-                  </div>
-                  <div class="card-text">
-                    <h1 class="text-center display-3"><strong>db연결</strong></h1>
-                  </div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="improvements.do">
-                  <span class="float-left">세부사항</span>
-                  <span class="float-right">
-                    <i class="fa fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Area Chart Example-->
-          <div class="card mb-3">
-            <div class="card-header">
-              <i class="fa fa-chart-area"></i>
-              월별차트샘플()</div>
-            <div class="card-body">
-              <canvas id="myAreaChart" width="100%" height="30"></canvas>
-            </div>
-            <div class="card-footer small text-muted">db연결(마지막상품 업데이트 시간찍기)</div>
-          </div>
-        </div>
-        <br><br><br>
+  
         <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">

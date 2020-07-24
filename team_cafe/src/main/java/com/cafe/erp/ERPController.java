@@ -64,6 +64,21 @@ public class ERPController {
 	}
 	
 	
+	@RequestMapping("help.cafe")
+	public String help(HttpServletRequest request) {
+		menuMethod(request);
+		return "erp/help";
+	}
+	
+	@RequestMapping("setting.cafe")
+	public String setting(HttpServletRequest request) {
+		menuMethod(request);
+		return "erp/setting";
+	}
+
+
+	
+	
 	public void menuMethod(Model model) {
 		HashMap map = new HashMap();
 		List<ProductCategoryVO> productcategorylist = productCategoryService.getProductCategoryList(map);

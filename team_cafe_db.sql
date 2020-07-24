@@ -1,6 +1,10 @@
 ----------------------------------------------------------------------------------------------------------------------------
 --                                                      drop
 ----------------------------------------------------------------------------------------------------------------------------
+--pos 주문
+DROP TABLE CAFE_ORDERLIST_ADD;
+DROP TABLE CAFE_ORDERList;
+DROP TABLE CAFE_ORDER;
 
 --web주문
 DROP TABLE CAFE_ORDERLIST_ADD_web;
@@ -156,11 +160,6 @@ CREATE TABLE CAFE_PRODUCTORDERLIST
 );
 
 
-
-
-
-
-
 --판매상품
 --상품 카테고리 테이블
 CREATE TABLE CAFE_PRODUCT_CATEGORY(
@@ -237,7 +236,44 @@ CREATE TABLE CAFE_ORDERLIST_ADD_web(
     orderList_web_code number, --주문 내역 코드
     PRODUCT_ADD_CODE number, --옵션코드(fk)
     
-    CONSTRAINT orderList_web_code_add FOREIGN KEY(orderList_web_code) REFERENCES CAFE_ORDERList_web(orderList_web_code),
+    CONSTRAINT orderList_web_code_add_web FOREIGN KEY(orderList_web_code) REFERENCES CAFE_ORDERList_web(orderList_web_code),
+    CONSTRAINT PRODUCT_ADD_CODE_order_add_web FOREIGN KEY(PRODUCT_ADD_CODE) REFERENCES CAFE_Product_add(PRODUCT_ADD_CODE)
+);
+
+
+--pos 주문
+--주문 테이블
+CREATE TABLE CAFE_ORDER
+(
+ order_code number PRIMARY KEY, --주문 코드
+ order_total number, --총 금액
+ order_count number,--건수
+ order_accountType varchar2(30),--결제수단
+ order_date date,--주문 일자
+ customer_phone varchar2(50), --고객전화번호(fk)
+ 
+CONSTRAINT customer_phone FOREIGN KEY(customer_phone) REFERENCES CAFE_CUSTOMER(customer_phone)
+ 
+);
+
+--주문 내역 테이블
+CREATE TABLE CAFE_ORDERList
+(
+orderList_code number primary key,--상세내역 코드
+cafe_product_code number,-- 상품코드
+orderList_count number,--수량
+order_code number,--주문코드(fk)
+
+CONSTRAINT order_code FOREIGN KEY(order_code) REFERENCES CAFE_ORDER(order_code),
+CONSTRAINT cafe_product_code_order FOREIGN KEY(cafe_product_code) REFERENCES CAFE_PRODUCT(cafe_product_code)
+);
+
+--주문 내역 테이블의 옵션내역 테이블
+CREATE TABLE CAFE_ORDERLIST_ADD(
+    orderList_code number, --주문 내역 코드
+    PRODUCT_ADD_CODE number, --옵션코드(fk)
+    
+    CONSTRAINT orderList_code_add FOREIGN KEY(orderList_code) REFERENCES CAFE_ORDERList(orderList_code),
     CONSTRAINT PRODUCT_ADD_CODE_order_add FOREIGN KEY(PRODUCT_ADD_CODE) REFERENCES CAFE_Product_add(PRODUCT_ADD_CODE)
 );
 

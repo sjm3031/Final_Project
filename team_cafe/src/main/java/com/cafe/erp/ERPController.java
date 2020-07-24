@@ -22,6 +22,7 @@ import com.cafe.erp.store.service.StockService;
 
 
 @Controller
+//@RequestMapping("admin/")
 public class ERPController {
 
 	@Resource

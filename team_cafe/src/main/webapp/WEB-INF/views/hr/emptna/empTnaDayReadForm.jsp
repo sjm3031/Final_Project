@@ -18,6 +18,7 @@
 			<th>출근시간</th>
 			<th>퇴근시간</th>
 			<th>일일근무시간</th>
+			<th>월근무시간</th>
 
 		</tr>
 
@@ -31,7 +32,7 @@
 				<td>${list.emptna_starttime}</td>
 				<td>${list.emptna_endtime}</td>
 				<td>${list.emptna_daytotaltime}</td>
-				
+				<td>${list.emptna_monthtotaltime}</td>
 				<!-- 				<td> -->
 				<%-- 				<input type="button" value="수정" onclick="location.href='empUpdateForm.cafe?num=${emp.employee_code}&pg=${pg}'"> --%>
 				<%-- 				<input type="button" value="삭제" onclick="location.href='empDelete.cafe?employee_code=${emp.employee_code}&pg=${pg}'"> --%>

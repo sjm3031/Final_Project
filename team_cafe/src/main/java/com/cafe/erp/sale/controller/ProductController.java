@@ -39,8 +39,8 @@ public class ProductController {
 		 List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
 	//	 model.setAttribute("list", list);
 		 model.addAttribute("categorylist", list);
-	//	 System.out.println();
-	//	 System.out.println(list);
+		 System.out.println();
+		 System.out.println(list);
 		 
 		return "sale/product/writeform";
 	}
@@ -140,6 +140,7 @@ public class ProductController {
 	@RequestMapping("product/updateform.cafe")
 	public String updateform(HttpServletRequest request) {
 		int num = Integer.parseInt(request.getParameter("num"));
+		int pg = Integer.parseInt(request.getParameter("pg"));
 		ProductVO vo = productService.getProductByCode(num);
 		
 		 HashMap map = new HashMap();
@@ -148,13 +149,16 @@ public class ProductController {
 		// model.addAttribute("categorylist", list);
 		 System.out.println();
 		 System.out.println(categorylist);
-
+		 
+		 
+		 
+		request.setAttribute("pg", pg);
 		request.setAttribute("b", vo);
 		return "sale/product/updateform";
 	}	
 	
 	@RequestMapping("product/update.cafe")
-	public String update(ProductVO vo) {
+	public String update(ProductVO vo,int pg) {
 		int result = productService.updateProduct(vo);		// 0: 실패 1:성공
 		return "redirect:/sale/product/list.cafe";	
 	}

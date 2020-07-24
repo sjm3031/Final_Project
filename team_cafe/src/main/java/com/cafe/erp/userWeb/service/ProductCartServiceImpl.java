@@ -97,25 +97,6 @@ public class ProductCartServiceImpl implements ProductCartService {
 		
 	}
 	
-
-	@Override
-	public void deleteProductCartAddAll(int cart_num) {
-		// TODO Auto-generated method stub
-		ProductCartDAO productCartDAO = sqlSession.getMapper(ProductCartDAO.class);
-		productCartDAO.deleteProductCartAddAll(cart_num);
-		
-	}
-	@Override
-	public void deleteProductCartAll(int customer_code) {
-		// TODO Auto-generated method stub
-		ProductCartDAO productCartDAO = sqlSession.getMapper(ProductCartDAO.class);
-		productCartDAO.deleteProductCartAll(customer_code);
-	}
-
-	
-	
-	
-	
 	
 	
 	
@@ -141,30 +122,26 @@ public class ProductCartServiceImpl implements ProductCartService {
 	}
 	
 
-	@Override
-	public void updateListCount(HashMap Map) {
-		
-		ProductCartDAO productCartDAO = sqlSession.getMapper(ProductCartDAO.class);
-		
-		 productCartDAO.updateListCount(Map);
-		
-		
-
-	}
-	@Override
-	public void deleteListProduct(int cart_code) {
-		
-		ProductCartDAO productCartDAO = sqlSession.getMapper(ProductCartDAO.class);
-		 productCartDAO.deleteListProduct(cart_code);
-		
-	}
-	@Override
-	public void deleteListCartAdd(int cart_code) {
-		
-		ProductCartDAO productCartDAO = sqlSession.getMapper(ProductCartDAO.class);
-		 productCartDAO.deleteListCartAdd(cart_code);
-	}
 	
+	@Override
+	public ProductCartDTO getProductCategoryByCode(int num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateProductCategory(ProductCartDTO dto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteProductCategory(ProductCartDTO dto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 	
 

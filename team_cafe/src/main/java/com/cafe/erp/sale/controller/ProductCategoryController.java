@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.sale.model.ProductCategoryVO;
 import com.cafe.erp.sale.model.ProductVO;
 import com.cafe.erp.sale.service.ProductCategoryService;
@@ -24,11 +25,13 @@ import com.cafe.erp.sale.service.ProductService;
 
 
 @Controller
-@RequestMapping("sale/")
+@RequestMapping("admin/sale/")
 public class ProductCategoryController {
 
 	@Resource
 	private ProductCategoryService productCategoryService;
+	@Resource
+	private ERPController erpController;
 	
 	@RequestMapping("productCategory/writeform.cafe")
 	public String writeForm() {
@@ -49,6 +52,7 @@ public class ProductCategoryController {
 	
 	@RequestMapping("productCategory/list.cafe")
 	public String list(HttpServletRequest request){
+		erpController.menuMethod(request);
 		 HashMap map = new HashMap();
 		 List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
 		 request.setAttribute("list", list);
@@ -62,6 +66,7 @@ public class ProductCategoryController {
 	
 	@RequestMapping("productCategory/updateform.cafe")
 	public String updateform(HttpServletRequest request) {
+		erpController.menuMethod(request);
 		int num = Integer.parseInt(request.getParameter("num"));
 
 		ProductCategoryVO vo = productCategoryService.getProductCategoryByCode(num);

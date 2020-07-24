@@ -53,11 +53,10 @@
 		delete from cafe_order_cart where cart_number = #{cart_number}
 	</delete>
 	
-	<!-- 발주 내역에 등록 -->
-<!-- 	<insert id="orderinsert" parameterType="com.cafe.erp.store.model.OrderDTO"> -->
-<!-- 		insert into CAFE_PRODUCTORDER (productOrder_code, productOrder_date, prodectOrder_total) -->
-<!-- 		values ((select NVL(max(productOrder_code),0) + 1 from CAFE_PRODUCTORDER), sysdate, ) -->
-<!-- 	</insert> -->
+	<insert id="orderinsert" parameterType="com.cafe.erp.store.model.OrderDTO">
+		insert into CAFE_PRODUCTORDER (productOrder_code, productOrder_date, prodectOrder_total)
+		values ((select NVL(max(productOrder_code),0) + 1 from CAFE_PRODUCTORDER), sysdate, )
+	</insert>
 	
 	<!-- 임시 발주 목록 총금액 구하기 -->
 	<select id="getcarttotal" resultType="integer">

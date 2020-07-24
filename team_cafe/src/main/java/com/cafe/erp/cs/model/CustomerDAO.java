@@ -16,7 +16,8 @@ public interface CustomerDAO {
 	
 	
 	
-	public int getBoardCount();				
+	public int getBoardCount();		
+	
 
 	
 	

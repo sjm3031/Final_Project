@@ -21,6 +21,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 	public void orderinsert(ProductOrderDTO dto) {
 		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
 		dao.orderinsert(dto);
+		
 	}
 
 	@Override

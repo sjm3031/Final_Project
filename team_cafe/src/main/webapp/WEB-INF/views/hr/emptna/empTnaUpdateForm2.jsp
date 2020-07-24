@@ -17,101 +17,30 @@
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href="index.do">Cafe Home</a>
+      <a class="navbar-brand mr-1" href="../../index.cafe">Cafe ERP</a>
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fa fa-bars"></i>
       </button>
-      <!-- Navbar Search -->
-      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="검색어 입력" aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button" style="background-color: #212529 !important; border-color: #212529 !important;  ">
-              <i class="fa fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-      <!-- Navbar -->
-      <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-plus fa-fw"></i>
-          </a>
-         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addSaleModal"> <i class="fa fa-money"></i> 판매등록</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal"> <i class="fa fa-tag"></i> 상품등록</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-tags"></i> 상품타입 등록</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductVendorModal"> <i class="fa fa-user"></i> 거래처등록</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductBrandModal"> <i class="fa fa-industry"></i> 브랜드등록</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addExpenseAccountModal"> <i class="fa fa-dollar"></i> 지출등록</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-flash fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-            <a class="dropdown-item" href="products.do"> <i class="fa fa-tag"></i> 상품관리</a>
-            <a class="dropdown-item" href="product-types.do"> <i class="fa fa-tags"></i> 제품 타입</a>
-            <a class="dropdown-item" href="product-vendors.do"> <i class="fa fa-user"></i> 거래처</a>
-            <a class="dropdown-item" href="product-brands.do"> <i class="fa fa-industry"></i> 제품 브랜드</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="revenue.do"> <i class="fa fa-money"></i> 수익</a>
-            <a class="dropdown-item" href="improvements.do"> <i class="fa fa-rocket"></i> 월별현황</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="accounts.do"> <i class="fa fa-dollar"></i> 지출내역</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow ml-3">
-          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="badge badge-warning">9+</span>
-            <i class="fa fa-fw fa-bell"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-            <a class="dropdown-item text-danger no-text-decorations" href="#"> <i class="fa fa-info-circle"></i> 오류</a>
-            <a class="dropdown-item text-danger no-text-decorations" href="#"> <i class="fa fa-info-circle"></i> 오류</a>
-            <a class="dropdown-item text-danger no-text-decorations" href="#"> <i class="fa fa-info-circle"></i> 오류</a>
-            <a class="dropdown-item text-danger no-text-decorations" href="#"> <i class="fa fa-info-circle"></i> 오류</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="notifications.do">오류 더 보기</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow ml-3">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user-circle fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="profile.do"> <i class="fa fa-user"></i> 관리자 정보</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"> <i class="fa fa-cog"></i> 설정</a>
-            <a class="dropdown-item" href="history.do"> <i class="fa fa-line-chart"></i> 활동기록</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> <i class="fa fa-power-off"></i> 로그아웃</a>
-          </div>
-        </li>
-      </ul>
+    
     </nav>
     <div id="wrapper">
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="admin.do">
+          <a class="nav-link" href="../../index.cafe">
             <i class="fa fa-fw fa-home"></i>
             <span>홈</span>
           </a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="retail-dashboard.do">
+          <a class="nav-link" href="../../cs/customer/list.cafe">
             <i class="fa fa-fw fa-users"></i>
             <span>고객관리</span>
           </a>
         </li>
         
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user"></i>
             <span>
@@ -137,22 +66,22 @@
           </div>
         </li>
         
-               <li class="nav-item dropdown active">
+               <li class="nav-item dropdown ">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-table"></i>
             <span>
-              제품관리
+             제품관리
               <i class="float-right fa fa-angle-down"></i>
             </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">상품 타입</h6>
-            <a class="dropdown-item" href="../productCategory/list.cafe"> <i class="fa fa-tags"></i> 상품 카테고리 조회</a>
-            <a class="dropdown-item" href="../productAdd/list.cafe"> <i class="fa fa-tags"></i> 상품 옵션 조회</a>
+            <a class="dropdown-item" href="../../sale/productCategory/list.cafe"> <i class="fa fa-tags"></i> 상품 카테고리 조회</a>
+            <a class="dropdown-item" href="../../sale/productAdd/list.cafe"> <i class="fa fa-tags"></i> 상품 옵션 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">판매 상품</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addCafeProductModal"> <i class="fa fa-plus"></i> 판매 상품 추가</a>
-            <a class="dropdown-item" href="../product/list.cafe"> <i class="fa fa-tags"></i> 상품 조회</a>
+            <a class="dropdown-item" href="../../sale/product/list.cafe"> <i class="fa fa-tags"></i> 상품 조회</a>
           </div>
         </li>
          
@@ -181,16 +110,16 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">거래처</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal"> <i class="fa fa-plus"></i> 거래처 등록</a>
-            <a class="dropdown-item" href="products.do"> <i class="fa fa-industry"></i>거래처 조회</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addAccountModal"> <i class="fa fa-plus"></i> 거래처 등록</a>
+            <a class="dropdown-item" href="../../store/accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">원재료 품목</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-plus"></i> 재료 품목 추가</a>
-            <a class="dropdown-item" href="product-types.do"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addStockModal"> <i class="fa fa-plus"></i> 재료 품목 추가</a>
+            <a class="dropdown-item" href="../../store/stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">발주</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductVendorModal"><i class="fa fa-plus"></i> 발주 신청</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductBrandModal"> <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
+            <a class="dropdown-item" href="../../store/stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
+            <a class="dropdown-item" href="../../store/orderlist.cafe"> <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
           </div>
         </li>
         
@@ -237,7 +166,7 @@
               <div class="card-body">
                 <div class="table-responsive">
                 <form action="update2.cafe" method="post">
-	<table width="1500" cellpadding="3">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		
 
 	
@@ -275,7 +204,7 @@
   
                 </div>
               </div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+<!--               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
             </div>
           </div>
           <br><br><br>
@@ -345,7 +274,7 @@
               <div class="form-group">
                 <label for="">직급</label>
                 <select name="employee_jobname" required>
-						<option>선택하세요</option>
+						<option value="">선택하세요</option>
 					<c:forEach var="emp" items="${joblist}">
 						<option  value="${emp.job_name}">${emp.job_name}</option>
 					</c:forEach>
@@ -418,7 +347,7 @@
               <div class="form-group">
                 <label>직원이름</label>
                 	<select name="employee_name" required>
-					<option>이름을 선택하세요</option>
+					<option value="">이름을 선택하세요</option>
 		
 					<c:forEach var="t" items="${nameList }">
 					<option value="${t.employee_name }">${t.employee_name }</option>
@@ -428,7 +357,7 @@
               <div class="form-group">
                 <label>근무 연도</label>
                 <select name="salary_year" required>
-					<option>연도를 선택하세요</option>
+					<option value="">연도를 선택하세요</option>
 		
 					<c:forEach var="t" items="${yearList }">
 					<option value="${t.emptna_year }">${t.emptna_year }</option>
@@ -439,7 +368,7 @@
               <div class="form-group">
                 <label for="">근무 월</label>
                 	<select name="salary_month" required>
-						<option>월을 선택하세요</option>
+						<option value="">월을 선택하세요</option>
 		
 							<c:forEach var="t" items="${monthList }">
 							<option value="${t.emptna_month }">${t.emptna_month }</option>
@@ -452,6 +381,7 @@
               
               <br>
              </div>
+             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
               <input type="submit" class="btn btn-primary" value="확인">
@@ -461,7 +391,7 @@
       </div>
     </div>
     
-       <!-- #addCafeProductModal -->
+         <!-- #addCafeProductModal -->
     <div class="modal fade" id="addCafeProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -474,7 +404,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/product/write.cafe" method="post" enctype="multipart/form-data">
+          <form class="" action="../../sale/product/write.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <div class="form-group">
                 <label>카테고리</label>
@@ -487,7 +417,7 @@
 				</c:forEach>
               
                 </select>
-                <small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="#addProductTypeModal">추가하기</a> </small>
+                <small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="#addCafeProductCategoryModal">추가하기</a> </small>
               </div>
               <div class="form-group">
                 <label for="">제품명</label>
@@ -530,7 +460,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="write.cafe" method="post" >
+          <form class="" action="../../sale/productCategory/write.cafe" method="post" >
             <div class="modal-body">
   
               <div class="form-group">
@@ -564,7 +494,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="write.cafe" method="post">
+          <form class="" action="../../sale/productAdd/write.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label for="">옵션(추가사항) 명</label>
@@ -586,6 +516,121 @@
       </div>
     </div>
     
+     <!-- #addStockModal -->
+    <div class="modal fade" id="addStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+              재료 품목 등록
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form class="" action="../../store/stockinsert.cafe" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+               <div class="form-group">
+                <label for="">품명</label>
+                 <select class="form-control text-primary" name="stock_productname" id="stock_productname">
+                  <option disabled selected>품명을 선택해주세요.</option>
+                  <option>음료</option>
+                  <option>원두</option>
+                  <option>재과</option>
+                  <option>기타</option>
+                 </select>
+              </div>
+              <div class="form-group">
+                <label>상세명</label>
+                <input type="text" placeholder="상세명을 입력해주세요" class="form-control" id="stock_detailname" name="stock_detailname"/>
+              </div>
+              
+              <div class="form-group">
+                <label>규격</label>
+                <input type="text" placeholder="규격을 입력해주세요" class="form-control" id="stock_standard" name="stock_standard"/>
+              </div>
+              
+              <div class="form-group">
+                <label>금액(원)</label>
+                <input type="text" placeholder="금액(원)을 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
+              </div>
+              <div class="form-group">
+                <label>회사명</label>
+                <select class="form-control text-primary" name="account_number" id="account_number">
+                  <option disabled selected><sub>회사명을 선택해주세요.</sub></option>
+                  <c:forEach var="get" items="${account_list}">
+
+		   		 <option value="${ get.account_number }">${ get.account_name }</option>
+		    
+				</c:forEach>
+              
+                </select>
+                <small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="#addAccountModal">추가하기</a> </small>
+              </div>
+              
+              <div class="form-group">
+                <label>이미지 등록</label>
+                <input type="file" id="stock_upimage" name="stock_upimage" />
+              </div>
+              <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="등록">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+   
+     <!-- #addAccountModal -->
+    <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+             거래처 등록
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form class="" action="../../store/accountinsert.cafe" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+  
+              <div class="form-group">
+                <label>사업자 번호</label>
+                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number"/>
+              </div>
+              <div class="form-group">
+                <label>업체명</label>
+                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name"/>
+              </div>
+              <div class="form-group">
+                <label>사업자 명</label>
+                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname"/>
+              </div>
+              <div class="form-group">
+                <label>주소</label>
+                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address"/>
+              </div>
+              <div class="form-group">
+                <label>email</label>
+                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email"/>
+              </div>
+              <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="등록">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     
     
     

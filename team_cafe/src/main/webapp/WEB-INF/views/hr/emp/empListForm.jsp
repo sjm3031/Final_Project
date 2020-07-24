@@ -11,122 +11,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>aaKartRider 매장관리시스템</title>
-    <link href="../../resources/css/bootstrap.css" rel="stylesheet">
-    <link href="../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="../../resources/css/styles.css" rel="stylesheet">
-    <style type="text/css">
-    	.label {
-    	 display: inline !important;
-    	 position: relative;
-    	}
-    	.gender {
-    		display: inline;
-    		position: relative;
-    		top: 12px;
-    		width: 8%;
-    	}
-    	
-    	.gender a {
-    		display: inline !important;
-    		position: relative;
-    		top: 12px;
-    		width: 8%;
-    	}
-    	.stamp {
-	    	width: 100%;
-   			margin: 12px 0 8px;
-    	}
-    	.customGen {
-    		/* height: 10px !important */
-    		/* padding: -50px; */
-    		/* width: 100%; */
-   			margin: -20px 0 8px; 
-   			bottom: -30px;
-   			text-align:left;
-    	}
-    </style>
+    <link href="../../../resources/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="../../../resources/css/styles.css" rel="stylesheet">
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href="../../index.cafe">Cafe Home</a>
+      <a class="navbar-brand mr-1" href="../../index.cafe">Cafe ERP</a>
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fa fa-bars"></i>
       </button>
-      <!-- Navbar Search -->
-      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="검색어 입력" aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button" style="background-color: #212529 !important; border-color: #212529 !important;  ">
-              <i class="fa fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-      <!-- Navbar -->
-      <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-plus fa-fw"></i>
-          </a>
-         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addSaleModal"> <i class="fa fa-money"></i> 판매등록</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal"> <i class="fa fa-tag"></i> 상품등록</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-tags"></i> 상품타입 등록</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductVendorModal"> <i class="fa fa-user"></i> 거래처등록</a>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductBrandModal"> <i class="fa fa-industry"></i> 브랜드등록</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addExpenseAccountModal"> <i class="fa fa-dollar"></i> 지출등록</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-flash fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-            <a class="dropdown-item" href="products.do"> <i class="fa fa-tag"></i> 상품관리</a>
-            <a class="dropdown-item" href="product-types.do"> <i class="fa fa-tags"></i> 제품 타입</a>
-            <a class="dropdown-item" href="product-vendors.do"> <i class="fa fa-user"></i> 거래처</a>
-            <a class="dropdown-item" href="product-brands.do"> <i class="fa fa-industry"></i> 제품 브랜드</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="revenue.do"> <i class="fa fa-money"></i> 수익</a>
-            <a class="dropdown-item" href="improvements.do"> <i class="fa fa-rocket"></i> 월별현황</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="accounts.do"> <i class="fa fa-dollar"></i> 지출내역</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow ml-3">
-          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="badge badge-warning">9+</span>
-            <i class="fa fa-fw fa-bell"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-            <a class="dropdown-item text-danger no-text-decorations" href="#"> <i class="fa fa-info-circle"></i> 오류</a>
-            <a class="dropdown-item text-danger no-text-decorations" href="#"> <i class="fa fa-info-circle"></i> 오류</a>
-            <a class="dropdown-item text-danger no-text-decorations" href="#"> <i class="fa fa-info-circle"></i> 오류</a>
-            <a class="dropdown-item text-danger no-text-decorations" href="#"> <i class="fa fa-info-circle"></i> 오류</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="notifications.do">오류 더 보기</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow ml-3">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user-circle fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="profile.do"> <i class="fa fa-user"></i> 관리자 정보</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"> <i class="fa fa-cog"></i> 설정</a>
-            <a class="dropdown-item" href="history.do"> <i class="fa fa-line-chart"></i> 활동기록</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> <i class="fa fa-power-off"></i> 로그아웃</a>
-          </div>
-        </li>
-      </ul>
+    
     </nav>
+    
     <div id="wrapper">
-       <!-- Sidebar -->
+      <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="../../index.cafe">
@@ -139,10 +38,8 @@
           <a class="nav-link" href="../../cs/customer/list.cafe">
             <i class="fa fa-fw fa-users"></i>
             <span>고객관리</span>
-     
           </a>
         </li>
-        
         
         <li class="nav-item dropdown active">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -154,19 +51,23 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">직원</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addEMPModal"> <i class="fa fa-plus"></i> 직원등록</a>
-            <a class="dropdown-item"  href="hr/emp/list.cafe" > <i class="fa fa-user"></i> 직원조회</a>
-            <a class="dropdown-item" href="hr/job/list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addEmpModal"> <i class="fa fa-plus"></i> 직원등록</a>
+            <a class="dropdown-item" href="list.cafe"> <i class="fa fa-user"></i> 직원조회</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">직급</h6>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addJobModal"> <i class="fa fa-plus"></i> 직급등록</a>
+            <a class="dropdown-item" href="../job/list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">근태	</h6>
-            <a class="dropdown-item" href="hr/emptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
+            <a class="dropdown-item" href="../emptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">급여</h6>
-            <a class="dropdown-item" href="hr/salary/list.cafe"> <i class="fa fa-tags"></i> 급여 조회</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addSalaryModal"> <i class="fa fa-plus"></i> 급여정산</a>
+            <a class="dropdown-item" href="../salary/list.cafe"> <i class="fa fa-tags"></i> 급여 조회</a>
           </div>
         </li>
         
-        <li class="nav-item dropdown">
+               <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-table"></i>
             <span>
@@ -184,7 +85,6 @@
             <a class="dropdown-item" href="../../sale/product/list.cafe"> <i class="fa fa-tags"></i> 상품 조회</a>
           </div>
         </li>
-        
          
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -201,7 +101,7 @@
           </div>
         </li>
         
-              <li class="nav-item dropdown">
+         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-folder"></i>
             <span>
@@ -212,15 +112,15 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">거래처</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addAccountModal"> <i class="fa fa-plus"></i> 거래처 등록</a>
-            <a class="dropdown-item" href="../store/accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
+            <a class="dropdown-item" href="../../store/accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">원재료 품목</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addStockModal"> <i class="fa fa-plus"></i> 재료 품목 추가</a>
-            <a class="dropdown-item" href="../store/stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
+            <a class="dropdown-item" href="../../store/stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">발주</h6>
-            <a class="dropdown-item" href="../store/stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
-            <a class="dropdown-item" href="../store/orderlist.cafe" > <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
+            <a class="dropdown-item" href="../../store/stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
+            <a class="dropdown-item" href="../../store/orderlist.cafe"> <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
           </div>
         </li>
         
@@ -250,36 +150,26 @@
       <div id="content-wrapper" style="padding: 2em;">	
           <div class="container-fluid">
             <!-- Breadcrumbs-->
-            
-            <!-- 
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="index.do" style="color: #A95858 !important;">제품관리</a>
+                <a href="index.do" style="color: #A95858 !important;">직원</a>
               </li>
-              <li class="breadcrumb-item active">판매상품</li>
+              <li class="breadcrumb-item active">직원조회</li>
             </ol>
-             -->
-            
-            
             <!-- Page Content -->
             <!-- DataTables Example -->
             <div class="card mb-3">
               <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
                 <i class="fa fa-table"></i>
-               직원 리스트
-                <a href="#" class="text-white" data-toggle="modal" data-target="#addEMPModal">
-                  <span class="float-right">
-                    <i class="fa fa-plus"></i>
-                   신규 직원 등록
-                  </span>
-                </a>
+               직원리스트
+                
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
-                        <th>직원코드</th>
+                        
 						<th>이름</th>
 						<th>주민번호</th>
 						<th>핸드폰번호</th>
@@ -290,42 +180,42 @@
 						<th>은행</th>
 						<th>계좌번호</th>
 						<th>직급</th>
-                        <th bgcolor=''></th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </thead>
                     
                    
-          <c:forEach var="b" items="${list}">
+          <c:forEach var="emp" items="${list}">
           
                       <tr>
-                        <td>${emp.employee_code}</td>
-				<td><a href="read.cafe?num=${emp.employee_code}&pg=${pg}">${emp.employee_name}</a></td>
-				<td>${emp.employee_jumin}</td>
-				<td>${emp.employee_phone}</td>
-				<td>${emp.employee_address}</td>
-				<td><fmt:formatDate value="${emp.employee_startdate}"
+						<td><input type="hidden" value="${emp.employee_code}">
+						<a href="read.cafe?num=${emp.employee_code}&pg=${pg}">${emp.employee_name}</a></td>
+						<td>${emp.employee_jumin}</td>
+						<td>${emp.employee_phone}</td>
+						<td>${emp.employee_address}</td>
+						<td><fmt:formatDate value="${emp.employee_startdate}"
 						pattern="yyyy-MM-dd" /></td>
-				<td><fmt:formatDate value="${emp.employee_enddate}"
+						<td><fmt:formatDate value="${emp.employee_enddate}"
 						pattern="yyyy-MM-dd" /></td>
-				<td>${emp.employee_endyn}</td>
-				<td>${emp.employee_bank}</td>
-				<td>${emp.employee_bankaddress}</td>
-				<td>${emp.employee_jobname}</td>
-                        <td><input type="button" value="수정" onclick="location.href='updateform.cafe?customer_code=${b.customer_code}&pg=${pg}'" /></td>
+						<td>${emp.employee_endyn}</td>
+						<td>${emp.employee_bank}</td>
+						<td>${emp.employee_bankaddress}</td>
+						<td>${emp.employee_jobname}</td>
+                        <td><input type="button" value="수정" onclick="location.href='updateForm.cafe?num=${emp.employee_code}&pg=${pg}'" /></td>
+                        <td><input type="button" value="퇴사처리" onclick="location.href='update2.cafe?employee_code=${emp.employee_code}&pg=${pg}'" /></td>
                       </tr>
-                      
+                      	
                     
                       
             </c:forEach>   
                   
                    
                   </table>
-                  
-  
-		
-		
-		
-                  <div class="row">
+                 
+                 <br>
+	<br>
+	<div class="row">
 	                  <div class="col-sm-12 col-md-5">
 		                  <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
 		              
@@ -394,7 +284,7 @@
                   </div>
                 </div>
               </div>
-           <!--    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+<!--               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
             </div>
           </div>
           <br><br><br>
@@ -420,12 +310,172 @@
     <a class="scroll-to-top rounded" href="#page-top" style="background: #212529 !important;  ">
       <i class="fa fa-angle-up"></i>
     </a>
-    <!-- Modals -->   
-    <!-- #addCafeProductModal -->
+      <!-- Modals -->
+      
+      <!-- #addEmpModal -->
+   <div class="modal fade" id="addEmpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+              직원등록
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form action="insert.cafe" method="post">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>이름</label>
+                <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력하세요" required>
+              </div>
+              <div class="form-group">
+                <label>주민번호</label>
+                <input type="text" class="form-control" name="employee_jumin"  placeholder="(-)빼고 입력하세요" required>
+              </div>
+              <div class="form-group">
+                <label for="">핸드폰번호</label>
+                <input type="text" class="form-control" name="employee_phone" placeholder="(-)빼고 입력하세요" required>
+              </div>
+              <div class="form-group">
+                <label for="">주소 </label>
+                <input type="text" class="form-control" name="employee_address" placeholder="주소를 입력하세요" required>
+              </div>
+              <div class="form-group">
+                <label for="">은행 </label>
+                <input type="text" class="form-control" name="employee_bank" placeholder="급여 받을 은행을 입력해주세요." required>
+              </div>
+              <div class="form-group">
+                <label for="">계좌번호</label>
+                <input type="text" class="form-control" name="employee_bankaddress" placeholder="계좌번호를 (-)빼고 입력해주세요." required>
+              </div>
+              <div class="form-group">
+                <label for="">직급</label>
+                <select name="employee_jobname" required>
+						<option value="">선택하세요</option>
+					<c:forEach var="emp" items="${joblist}">
+						<option  value="${emp.job_name}">${emp.job_name}</option>
+					</c:forEach>
+ 				</select>
+ 				<small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="#addJobModal">추가하기</a> </small>
+              </div>
+              <br>
+             </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="확인">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+      <!-- #addjobModal -->
+   <div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+              직급등록
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form action="../../hr/job/list.cafe" method="post">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>직급</label>
+                <input type="text" class="form-control" name="job_name"  placeholder="직급을 입력하세요" required>
+              </div>
+              <div class="form-group">
+                <label>시급</label>
+                <input type="text" class="form-control" name="job_tpay"  placeholder="없으면 0을 입력하세요" required>
+                <small class="text-muted">급여를 계산할 때 필요하니 꼭 입력해주세요.</small>
+              </div>
+              <div class="form-group">
+                <label for="">월급</label>
+                <input type="text" class="form-control" name="job_mpay" placeholder="없으면 0을 입력하세요" required>
+                <small class="text-muted">급여를 계산할 때 필요하니 꼭 입력해주세요.</small>
+              </div>
+              </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="확인">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> 
+      <!-- #addSalaryModal -->
+   <div class="modal fade" id="addSalaryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+              급여정산
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form action="../../hr/salary/insert.cafe" method="post">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>직원이름</label>
+                	<select name="employee_name" required>
+					<option value="">이름을 선택하세요</option>
+		
+					<c:forEach var="t" items="${nameList }">
+					<option value="${t.employee_name }">${t.employee_name }</option>
+					</c:forEach>
+					</select><br><br>
+              </div>
+              <div class="form-group">
+                <label>근무 연도</label>
+                <select name="salary_year" required>
+					<option value="">연도를 선택하세요</option>
+		
+					<c:forEach var="t" items="${yearList }">
+					<option value="${t.emptna_year }">${t.emptna_year }</option>
+					</c:forEach>
+				</select><br><br>
+              </div>
+              
+              <div class="form-group">
+                <label for="">근무 월</label>
+                	<select name="salary_month" required>
+						<option value="">월을 선택하세요</option>
+		
+							<c:forEach var="t" items="${monthList }">
+							<option value="${t.emptna_month }">${t.emptna_month }</option>
+						</c:forEach>
+					</select><br><br>
+              </div>
+              <div class="form-group">
+                <label for="">급여일</label>
+                <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
+              
+              <br>
+             </div>
+             </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="확인">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+      <!-- #addCafeProductModal -->
     <div class="modal fade" id="addCafeProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">
               <i class="fa fa-tag"></i>
               판매 상품 등록
@@ -434,7 +484,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/product/write.cafe" method="post" enctype="multipart/form-data">
+          <form class="" action="../../sale/product/write.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <div class="form-group">
                 <label>카테고리</label>
@@ -475,11 +525,13 @@
         </div>
       </div>
     </div>
+    
+
     <!-- #addCafeProductCategoryModal -->
     <div class="modal fade" id="addCafeProductCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">
               <i class="fa fa-tag"></i>
               판매 상품 카테고리 등록
@@ -488,7 +540,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/productCategory/write.cafe" method="post" >
+          <form class="" action="../../sale/productCategory/write.cafe" method="post" >
             <div class="modal-body">
   
               <div class="form-group">
@@ -509,11 +561,11 @@
       </div>
     </div>
     
-	 <!-- #addCafeProductAddModal -->
+          <!-- #addCafeProductAddModal -->
     <div class="modal fade" id="addCafeProductAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">
               <i class="fa fa-tag"></i>
               판매 상품 옵션(추가 사항) 등록
@@ -522,7 +574,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/productAdd/write.cafe" method="post">
+          <form class="" action="../../sale/productAdd/write.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label for="">옵션(추가사항) 명</label>
@@ -544,185 +596,22 @@
       </div>
     </div>
     
-    
-    <!-- #addEMPModal -->
-    <div class="modal fade" id="addEMPModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <!-- #addStockModal -->
+    <div class="modal fade" id="addStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">
               <i class="fa fa-tag"></i>
-              직원 등록
+              재료 품목 등록
             </h5>
             <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="hr/emp/write.cafe" method="post" enctype="multipart/form-data">
+          <form class="" action="../../store/stockinsert.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
-              <div class="form-group">
-                <label>직급</label>
-                <select class="form-control text-primary" name="employee_jobname" id="employee_jobname">
-                  <option disabled selected><sub>직급 선택해주세요.</sub></option>
-                  <c:forEach var="emp" items="${joblist}">
-
-		    <option value="${emp.job_name}">${emp.job_name}</option>
-				
-				</c:forEach>
-              
-                </select>
-                <small class="float-right">찾는 직급이 없으신가요?<a href="#"data-toggle="modal" data-target="#addJobModal">추가하기</a> </small>
-              </div>
-              
-              <div class="form-group">
-                <label for="">이름</label>
-                <input type="text" class="form-control" name="employee_name" value="" placeholder="사원 명을 입력해주세요" required>
-                <small class="text-muted">정확히 입력해주세요.</small>
-              </div>
-              <div class="form-group">
-                <label for="">주민번호 <small class="text-muted"> EX ) XXXXXX-XXXXXXX</small> </label>
-                <input type="password" class="form-control" name="employee_jumin" value="" placeholder="주민번호를 입력해주세요" required>
-              </div>
-              <div class="form-group">
-                <label for="">핸드폰번호<small class="text-muted"> EX ) 010-XXXX-XXXX</small> </label>
-                <input type="text" class="form-control" name="employee_phone" value="" placeholder="전화번호를 입력해주세요" required>
-                <small class="text-muted">정확히 입력해주세요.</small>
-              </div>
-              <div class="form-group">
-                <label for="">주소 </label>
-                <input type="text" class="form-control" name="employee_address" value="" placeholder="주소를 입력해주세요" required>
-              </div>
-              <div class="form-group">
-                <label for="">은행</label>
-                <input type="text" class="form-control" name="employee_bank" value="" placeholder="은행 명을 입력해주세요" required>
-                <small class="text-muted">정확히 입력해주세요.</small>
-              </div>
-              <div class="form-group">
-                <label for="">계좌번호 </label>
-                <input type="text" class="form-control" name="employee_bankaddress" value="" placeholder="계좌번호를 입력해주세요" required>
-              </div>
-
-              <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    
-    <!-- #addJobModal -->
-    <div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-tag"></i>
-              직급 등록
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form class="" action="hr/job/list.cafe" method="post" enctype="multipart/form-data">
-            <div class="modal-body">
-
-              <div class="form-group">
-                <label for="">직급명</label>
-                <input type="text" class="form-control" name="job_name" value="" placeholder="직급 명을 입력해주세요" required>
-                <small class="text-muted">정확히 입력해주세요.</small>
-              </div>
-              <div class="form-group">
-                <label for="">시급 </label>
-                <input type="text" class="form-control" name="job_tpay" value="" placeholder="시급을 입력해주세요" >
-              </div>
-              <div class="form-group">
-                <label for="">월급</label>
-                <input type="text" class="form-control" name="job_mpay" value="" placeholder="월급을 입력해주세요" >
-                <small class="text-muted">정확히 입력해주세요.</small>
-              </div>
-
-              <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    
-    
-  
-    <!-- #addAccountModal -->
-     <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-tag"></i>
-              거래처 등록
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form class="" action="store/accountinsert.cafe" method="post" >
-            <div class="modal-body">
-  
-              <div class="form-group">
-                <label>사업자 번호</label>
-                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number"/>
-              </div>
-              <div class="form-group">
-                <label>업체명</label>
-                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name"/>
-              </div>
-              <div class="form-group">
-                <label>사업자 명</label>
-                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname"/>
-              </div>
-              <div class="form-group">
-                <label>주소</label>
-                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address"/>
-              </div>
-              <div class="form-group">
-                <label>email</label>
-                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email"/>
-              </div>
-             
-       
-              <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-        <!-- #addStockModal -->
-     <div class="modal fade" id="addStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-tag"></i>
-              재료 품목 추가
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form class="" action="store/stockinsert.cafe" method="post" >
-            <div class="modal-body">
-  
-             <div class="form-group">
+               <div class="form-group">
                 <label for="">품명</label>
                  <select class="form-control text-primary" name="stock_productname" id="stock_productname">
                   <option disabled selected>품명을 선택해주세요.</option>
@@ -764,8 +653,54 @@
                 <label>이미지 등록</label>
                 <input type="file" id="stock_upimage" name="stock_upimage" />
               </div>
-             
-       
+              <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="등록">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+   
+     <!-- #addAccountModal -->
+    <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+             거래처 등록
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form class="" action="../../store/accountinsert.cafe" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+  
+              <div class="form-group">
+                <label>사업자 번호</label>
+                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number"/>
+              </div>
+              <div class="form-group">
+                <label>업체명</label>
+                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name"/>
+              </div>
+              <div class="form-group">
+                <label>사업자 명</label>
+                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname"/>
+              </div>
+              <div class="form-group">
+                <label>주소</label>
+                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address"/>
+              </div>
+              <div class="form-group">
+                <label>email</label>
+                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email"/>
+              </div>
               <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
             <div class="modal-footer">
@@ -781,352 +716,9 @@
     
     
     
-  
-    
-    
-    
-     	
-    
-    
-    <!-- Logout Mod	al-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title" id="exampleModalLabel">끝마치시겠습니까?</h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">세션 종료를 원하시면 아래 "로그아웃" 버튼을 눌러주세요</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-            <a class="btn btn-danger" href="login.do">로그아웃</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Add Sale Modal-->
-    <div class="modal fade" id="addSaleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-money"></i>
-              판매등록
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form class="">
-            <div class="modal-body">
-              <div class="form-group">
-                <label>제품 선택</label>
-                <select class="form-control text-primary" required>
-                  <option disabled selected><sub>이곳을 클릭해주세요.</sub></option>
-                  <option disabled><sub>Null &amp; Null</sub></option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option disabled><sub>Null &amp; Null</sub></option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option disabled><sub>Null &amp; Null</sub></option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option disabled><sub>Null &amp; Null</sub></option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                </select>
-                <small class="float-right">찾는 상품이 없으신가요? <a href="#" data-toggle="modal" data-target="#addProductModal">추가하기</a> </small>
-              </div>
-              <div class="form-group">
-                <label for="">제품가</label>
-                <input type="number" class="form-control" name="" value="" placeholder="가격 입력" required>
-              </div>
-              <div class="form-group">
-                <label for="">설명 <small class="text-muted">(부가)</small></label>
-                <textarea name="name" class="form-control" rows="8" cols="80" placeholder="부가설명을 입력해주세요."></textarea>
-              </div>
-              <small class="text-muted"><em>확인을 누르시기 전에 한번 더 체크해주세요</em></small>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인" >
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Add Product Modal-->
-    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-tag"></i>
-              상품등록
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form class="">
-            <div class="modal-body">
-              <div class="form-group">
-                <label>제품 타입</label>
-                <select class="form-control text-primary" required>
-                  <option disabled selected><sub>제품 타입을 선택해주세요.</sub></option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null &amp; Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null & Null</option>
-                  <option>Null</option>
-                </select>
-                <small class="float-right">찾는 제품타입이 없으신가요?<a href="#"data-toggle="modal" data-target="#addProductTypeModal">추가하기</a> </small>
-              </div>
-              <div class="form-group">
-                <label>제품 브랜드</label>
-                <select class="form-control text-primary" required>
-                  <option disabled selected><sub>브랜드를 선택해주세요.</sub></option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                </select>
-                <small class="float-right">찾는 브랜드가 없으신가요? <a href="#"data-toggle="modal" data-target="#addProductBrandModal">추가하기</a> </small>
-              </div>
-              <div class="form-group">
-                <label>제품 거래처</label>
-                <select class="form-control text-primary" required>
-                  <option disabled selected><sub>거래처를 선택해주세요</sub></option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                  <option>Null</option>
-                </select>
-                <small class="float-right">찾는 거래처가 없으신가요? <a href="#"data-toggle="modal" data-target="#addProductVendorModal">추가하기</a> </small>
-              </div>
-              <div class="form-group">
-                <label for="">제품명</label>
-                <input type="text" class="form-control" name="" value="" placeholder="제품명 입력" required>
-                <small class="text-muted">정확히 입력해주세요.</small>
-              </div>
-              <div class="form-group">
-                <label for="">제품 가격 <small class="text-muted">(개당 가격)</small> </label>
-                <input type="number" class="form-control" name="" value="" placeholder="단가를 입력해주세요" required>
-              </div>
-              <div class="form-group">
-                <label for="">제품 재고 <small>수량 입력</small> </label>
-                <input type="number" class="form-control" name="" value="" placeholder="갯수를 입력해주세요." required>
-                <small class="text-muted">재고의 수량을 정확히 입력해주세요.</small>
-              </div>
-              지불 방식
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                  매출에서 지불
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                  다른 방법으로 지불(자산관리에 포함되지 않음.)
-                </label>
-              </div>
-              <br>
-              <div class="form-group">
-                <label for="">상세설명 <small class="text-muted">(부가설명)</small></label>
-                <textarea name="name" class="form-control" cols="80" placeholder="이 제품에 대한 참고사항이나 부가설명을 입력해주세요"></textarea>
-              </div>
-              <small class="text-muted"><em>확인을 누르시기전에 한번 더 체크해주세요.</em></small>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Add Product Type-->
-    <div class="modal fade" id="addProductTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-tags"></i>
-              제품 타입 추가
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form class="">
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="">제품 타입</label>
-                <input type="text" class="form-control" name="" value="" placeholder="제품 타입 입력" required>
-              </div>
-              <div class="form-group">
-                <label for="">상세설명 <small class="text-muted">(부가설명)</small></label>
-                <textarea name="name" class="form-control" rows="8" cols="80" placeholder="이 제품에 대한 참고사항이나 부가설명을 입력해주세요"></textarea>
-              </div>
-              <small class="text-muted"><em>확인을 누르시기전에 한번 더 체크해주세요.</em></small>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Add Product Brand-->
-    <div class="modal fade" id="addProductBrandModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-industry"></i>
-              브랜드 추가
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form class="">
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="">제품 브랜드</label>
-                <input type="text" class="form-control" name="" value="" placeholder="브랜드 명을 입력해주세요." required>
-                
-              </div>
-              <div class="form-group">
-                <label for="">상세설명 <small class="text-muted">(부가설명)</small></label>
-                <textarea name="name" class="form-control" rows="8" cols="80" placeholder="이 브랜드에 대한 참고사항이나 부가설명을 입력해주세요."></textarea>
-              </div>
-              <small class="text-muted"><em>확인을 누르시기전에 한번 더 체크해주세요.</em></small>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Add Product Vendor -->
-    <div class="modal fade" id="addProductVendorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-user"></i>
-              제품 거래처 추가
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form class="">
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="">거래처 명</label>
-                <input type="text" class="form-control" name="" value="" placeholder="거래처 명을 입력해주세요." required>
-              </div>
-              <div class="form-group">
-                <label for="">거래처 연락망</label>
-                <input type="text" class="form-control" name="" value="" placeholder="거래처 연락망을 입력해주세요.">
-              </div>
-              <div class="form-group">
-                <label for="">이메일 주소</label>
-                <input type="email" class="form-control" name="" value="" placeholder="거래처 이메일 주소를 입력해주세요.">
-              </div>
-              <div class="form-group">
-                <label for="">상세설명 <small class="text-muted">(부가설명)</small></label>
-                <textarea name="name" class="form-control" rows="8" cols="80" placeholder="이 거래처에 대한 참고사항이나 부가설명을 입력해주세요."></textarea>
-              </div>
-              <small class="text-muted"><em>확인을 누르시기전에 한번 더 체크해주세요.</em></small>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Add Expense Account Modal -->
-    <div class="modal fade" id="addExpenseAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-dollar"></i>
-              비용지출 등록
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form class="">
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="">지출목적</label>
-                <input type="text" class="form-control" name="" value="" placeholder="지출목적을 입력해주세요." required>
-                
-              </div>
-              <div class="form-group">
-                <label for="">비용은 얼마나 들었습니까?</label>
-                <input type="email" class="form-control" name="" value="" placeholder="지출된 비용을 입력해주세요.">
-              </div>
-              <div class="form-group">
-                <label for="">상세설명 <small class="text-muted">(부가설명)</small></label>
-                <textarea name="name" class="form-control" cols="80" placeholder="이 지출에 대한 참고사항이나 부가설명을 입력해주세요."></textarea>
-              </div>
-              
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    
-    
-    
-    
-      <script src="../../resources/js/jquery.min.js"></script>
-      <script src="../../resources/js/bootstrap.bundle.min.js"></script>
-      <script src="../../resources/js/jquery.easing.min.js"></script>
-      <script src="../../resources/js/rc-pos.min.js"></script>
+      <script src="../../../resources/js/jquery.min.js"></script>
+      <script src="../../../resources/js/bootstrap.bundle.min.js"></script>
+      <script src="../../../resources/js/jquery.easing.min.js"></script>
+      <script src="../../../resources/js/rc-pos.min.js"></script>
     </body>
   </html>

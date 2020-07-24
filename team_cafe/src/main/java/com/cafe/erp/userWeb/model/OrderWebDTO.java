@@ -9,8 +9,15 @@ public class OrderWebDTO {
 	private int order_web_count;
 	private int customer_code;
 	private Date order_web_date;
+	private int order_web_check;
 	
 	
+	public int getOrder_web_check() {
+		return order_web_check;
+	}
+	public void setOrder_web_check(int order_web_check) {
+		this.order_web_check = order_web_check;
+	}
 	public int getOrder_web_code() {
 		return order_web_code;
 	}

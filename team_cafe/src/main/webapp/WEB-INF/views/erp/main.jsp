@@ -24,8 +24,14 @@
 <button type="button" onclick="location.href='hr/emp/list.cafe'">직원리스트조회</button>
 <button type="button" onclick="location.href='hr/emp/insert.cafe'">직원등록</button>
 <button type="button" onclick="location.href='hr/job/list.cafe'">직급등록</button>
+
+
+
 <button type="button" onclick="location.href='hr/emptna/insert.cafe'">출석찍기</button>
 <button type="button" onclick="location.href='hr/emptna/update.cafe'">퇴근찍기</button>
+
+
+
 <button type="button" onclick="location.href='hr/emptna/list.cafe'">근태리스트보기</button>
 <button type="button" onclick="location.href='hr/salary/list.cafe'">급여리스트</button>
 

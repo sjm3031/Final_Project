@@ -13,16 +13,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.hr.model.empDTO;
 import com.cafe.erp.hr.model.empTnaDTO;
 import com.cafe.erp.hr.model.jobDTO;
 import com.cafe.erp.hr.service.empService;
 import com.cafe.erp.hr.service.jobService;
 import com.cafe.erp.hr.service.salaryService;
+import com.cafe.erp.sale.model.ProductCategoryVO;
+import com.cafe.erp.sale.service.ProductCategoryService;
+import com.cafe.erp.store.model.AccountDTO;
+import com.cafe.erp.store.service.StockService;
 
 
 
 @Controller
+@RequestMapping("admin/")
 public class empController {
 
 	@Resource
@@ -31,6 +37,12 @@ public class empController {
 	private jobService jobService;
 	@Resource
 	private salaryService salaryService;
+	@Resource
+	private StockService stockService;
+	@Resource
+	private ProductCategoryService productCategoryService;
+	@Resource
+	private ERPController erpController;
 	
 	@RequestMapping(value="hr/emp/insert.cafe",method=RequestMethod.GET)
 	public String empInsertForm(Model model) {
@@ -62,6 +74,13 @@ public class empController {
 
 	@RequestMapping("hr/emp/list.cafe")
 	public String empList(HttpServletRequest req,Model model) {
+		
+		HashMap map = new HashMap();
+		List<ProductCategoryVO> productcategorylist = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", productcategorylist);
+
+		List<AccountDTO> account_list = stockService.getAccountList(map);
+		model.addAttribute("account_list", account_list);
 		
 		List<jobDTO> joblist = jobService.getJobList();
 		model.addAttribute("joblist", joblist);
@@ -101,7 +120,7 @@ public class empController {
 			toPage = allPage;
 		}
 
-		HashMap map = new HashMap();
+		
 		map.put("start", start);
 		map.put("end", end);
 
@@ -135,9 +154,12 @@ public class empController {
 		model.addAttribute("pg", pg);
 		model.addAttribute("num", num);
 		
-		List<jobDTO> list = jobService.getJobList();
-		
-		model.addAttribute("list", list);
+		HashMap map = new HashMap();
+		List<ProductCategoryVO> productcategorylist = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", productcategorylist);
+
+		List<AccountDTO> account_list = stockService.getAccountList(map);
+		model.addAttribute("account_list", account_list);
 		
 		List<jobDTO> joblist = jobService.getJobList();
 		model.addAttribute("joblist", joblist);
@@ -149,7 +171,6 @@ public class empController {
 		model.addAttribute("nameList", nameList);
 		model.addAttribute("yearList", yearList);
 		model.addAttribute("monthList", monthList);
-		
 		return "hr/emp/empUpdateForm";
 	}
 

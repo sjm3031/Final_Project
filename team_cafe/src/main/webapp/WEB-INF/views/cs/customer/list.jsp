@@ -11,9 +11,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>aaKartRider 매장관리시스템</title>
-    <link href="../../resources/css/bootstrap.css" rel="stylesheet">
-    <link href="../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="../../resources/css/styles.css" rel="stylesheet">
+    <link href="../../../resources/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="../../../resources/css/styles.css" rel="stylesheet">
     <style type="text/css">
     	.label {
     	 display: inline !important;
@@ -1045,7 +1045,7 @@
     <div class="modal fade" id="addCafeCustomerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">
               <i class="fa fa-tag"></i>
               신규 고객 등록
@@ -1115,9 +1115,9 @@
     
     
     
-      <script src="../../resources/js/jquery.min.js"></script>
-      <script src="../../resources/js/bootstrap.bundle.min.js"></script>
-      <script src="../../resources/js/jquery.easing.min.js"></script>
-      <script src="../../resources/js/rc-pos.min.js"></script>
+      <script src="../../../resources/js/jquery.min.js"></script>
+      <script src="../../../resources/js/bootstrap.bundle.min.js"></script>
+      <script src="../../../resources/js/jquery.easing.min.js"></script>
+      <script src="../../../resources/js/rc-pos.min.js"></script>
     </body>
   </html>

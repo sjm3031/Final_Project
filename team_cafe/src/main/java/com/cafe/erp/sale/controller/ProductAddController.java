@@ -10,16 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.sale.model.ProductAddDTO;
 import com.cafe.erp.sale.service.ProductAddService;
 
 
 @Controller
-@RequestMapping("sale/")
+@RequestMapping("admin/sale/")
 public class ProductAddController {
 
 	@Resource
 	private ProductAddService productAddService;
+	@Resource
+	private ERPController erpController;
 	
 	@RequestMapping("productAdd/writeform.cafe")
 	public String writeForm() {
@@ -40,6 +43,7 @@ public class ProductAddController {
 	
 	@RequestMapping("productAdd/list.cafe")
 	public String list(HttpServletRequest request){
+		erpController.menuMethod(request);
 		 HashMap map = new HashMap();
 		 List<ProductAddDTO> list = productAddService.getProductAddList(map);
 		 request.setAttribute("list", list);
@@ -53,6 +57,7 @@ public class ProductAddController {
 	
 	@RequestMapping("productAdd/updateform.cafe")
 	public String updateform(HttpServletRequest request) {
+		erpController.menuMethod(request);
 		int num = Integer.parseInt(request.getParameter("num"));
 
 		ProductAddDTO dto = productAddService.getProductAddByCode(num);

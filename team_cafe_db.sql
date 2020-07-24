@@ -1,6 +1,10 @@
 ----------------------------------------------------------------------------------------------------------------------------
 --                                                      drop
 ----------------------------------------------------------------------------------------------------------------------------
+--pos 주문
+DROP TABLE CAFE_ORDERLIST_ADD;
+DROP TABLE CAFE_ORDERList;
+DROP TABLE CAFE_ORDER;
 
 --web주문
 DROP TABLE CAFE_ORDERLIST_ADD_web;
@@ -51,51 +55,50 @@ create table CAFE_CUSTOMER(
 --인사
  --직급테이블
 create table CAFE_JOB(      
-    job_code number not null unique,          
-    job_name varchar(20) primary key,          
-    job_tpay number(20),                    
-    job_mpay number(20)                      
+    job_code number not null unique,   --직급코드       
+    job_name varchar(20) primary key,         --직급명
+    job_tpay number(20),                       --시급
+    job_mpay number(20)                         --월급
     );
 
 --직원테이블
 create table CAFE_EMPLOYEE(  
-    employee_code number primary key,          
-    employee_name varchar(20) not null unique,   
-    employee_jumin varchar(20) not null ,          
-    employee_phone varchar(20) ,                
-    employee_address varchar(50),               
-    employee_startdate date not null,            
-    employee_enddate date,                       
-    employee_endyn varchar(1),                   
-    employee_bank varchar(20),                   
-    employee_bankaddress varchar(30),            
-    employee_jobname varchar(20) not null REFERENCES CAFE_JOB(job_name)   
+    employee_code number primary key,          --직원코드
+    employee_name varchar(20) not null unique,   --직원 이름
+    employee_jumin varchar(20) not null ,          --직원 주민번호
+    employee_phone varchar(20) ,                --핸드폰번호
+    employee_address varchar(50),               --주소
+    employee_startdate date not null,            --입사날짜
+    employee_enddate date,                       --퇴사날짜
+    employee_endyn varchar(1),                   --퇴사 여부(y:퇴사, n:재직중) 
+    employee_bank varchar(20),                   --은행
+    employee_bankaddress varchar(30),            --계좌번호
+    employee_jobname varchar(20) not null REFERENCES CAFE_JOB(job_name)   --직급명
     );
 
 --근태 테이블
-create table cafe_emptna(        
-        emptna_code number primary key,                                                  
-        emptna_empcode number REFERENCES CAFE_EMPLOYEE (employee_code),   
-        emptna_year number not null,                                          
-        emptna_month number not null,                                       
-        emptna_day number not null,                                         
-        emptna_starttime number not null,                                              
-        emptna_endtime number,                                                
-        emptna_daytotaltime number(10),                                           
-        emptna_monthtotaltime number(10)                                          
+create table cafe_emptna(   
+        emptna_code number primary key,                                      --직급코드            
+        emptna_empcode number REFERENCES CAFE_EMPLOYEE (employee_code),     --직원코드
+        emptna_year number not null,                                          --년
+        emptna_month number not null,                                       --월
+        emptna_day number not null,                                         --일
+        emptna_starttime date not null,                                        --출근시간      
+        emptna_endtime date,                                                --퇴근시간
+        emptna_daytotaltime number                                           --하루 근무시간                              
     );
 
 --급여 테이블    
 create table cafe_salary(
-    salary_code number not null primary key,
-    salary_empcode number not null REFERENCES CAFE_EMPLOYEE (employee_code),
-    salary_year number not null,
-    salary_month number not null,
-    salary_time number not null,
-    salary_tpay number not null,
-    salary_mpay number not null,
-    salary_totalpay number not null,
-    salary_date number not null
+    salary_code number not null primary key,                                    --급여코드
+    salary_empcode number not null REFERENCES CAFE_EMPLOYEE (employee_code),    --직원코드
+    salary_year number not null,                                                --년
+    salary_month number not null,                                              --월
+    salary_time number not null,                                              --총 근무 시간
+    salary_tpay number not null,                                              --시급
+    salary_mpay number not null,                                              --월급
+    salary_totalpay number not null,                                           --총급여
+    salary_date number not null                                                 --급여지급일
     );
 
 
@@ -155,11 +158,6 @@ CREATE TABLE CAFE_PRODUCTORDERLIST
  CONSTRAINT productOrder_code FOREIGN KEY(productOrder_code) REFERENCES CAFE_PRODUCTORDER(productOrder_code) on delete cascade,
  CONSTRAINT stock_code FOREIGN KEY(stock_code) REFERENCES Cafe_stock(stock_code) on delete set null
 );
-
-
-
-
-
 
 
 --판매상품
@@ -238,7 +236,44 @@ CREATE TABLE CAFE_ORDERLIST_ADD_web(
     orderList_web_code number, --주문 내역 코드
     PRODUCT_ADD_CODE number, --옵션코드(fk)
     
-    CONSTRAINT orderList_web_code_add FOREIGN KEY(orderList_web_code) REFERENCES CAFE_ORDERList_web(orderList_web_code),
+    CONSTRAINT orderList_web_code_add_web FOREIGN KEY(orderList_web_code) REFERENCES CAFE_ORDERList_web(orderList_web_code),
+    CONSTRAINT PRODUCT_ADD_CODE_order_add_web FOREIGN KEY(PRODUCT_ADD_CODE) REFERENCES CAFE_Product_add(PRODUCT_ADD_CODE)
+);
+
+
+--pos 주문
+--주문 테이블
+CREATE TABLE CAFE_ORDER
+(
+ order_code number PRIMARY KEY, --주문 코드
+ order_total number, --총 금액
+ order_count number,--건수
+ order_accountType varchar2(30),--결제수단
+ order_date date,--주문 일자
+ customer_phone varchar2(50), --고객전화번호(fk)
+ 
+CONSTRAINT customer_phone FOREIGN KEY(customer_phone) REFERENCES CAFE_CUSTOMER(customer_phone)
+ 
+);
+
+--주문 내역 테이블
+CREATE TABLE CAFE_ORDERList
+(
+orderList_code number primary key,--상세내역 코드
+cafe_product_code number,-- 상품코드
+orderList_count number,--수량
+order_code number,--주문코드(fk)
+
+CONSTRAINT order_code FOREIGN KEY(order_code) REFERENCES CAFE_ORDER(order_code),
+CONSTRAINT cafe_product_code_order FOREIGN KEY(cafe_product_code) REFERENCES CAFE_PRODUCT(cafe_product_code)
+);
+
+--주문 내역 테이블의 옵션내역 테이블
+CREATE TABLE CAFE_ORDERLIST_ADD(
+    orderList_code number, --주문 내역 코드
+    PRODUCT_ADD_CODE number, --옵션코드(fk)
+    
+    CONSTRAINT orderList_code_add FOREIGN KEY(orderList_code) REFERENCES CAFE_ORDERList(orderList_code),
     CONSTRAINT PRODUCT_ADD_CODE_order_add FOREIGN KEY(PRODUCT_ADD_CODE) REFERENCES CAFE_Product_add(PRODUCT_ADD_CODE)
 );
 
@@ -255,6 +290,10 @@ insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) 
 insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(2,'non-coffe');
 insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(3,'juice');
  
+INSERT INTO CAFE_JOB VALUES (1,'매니저',0,2000000);
+INSERT INTO CAFE_JOB VALUES (2,'아르바이트',8590,0);
+INSERT INTO CAFE_JOB VALUES (3,'아르바이트pro',9000,0);
+
  
 commit;
 

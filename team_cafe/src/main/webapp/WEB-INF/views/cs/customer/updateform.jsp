@@ -227,6 +227,7 @@
   
               <div class="form-group">
                 <label for="">고객이름</label>
+                <input type="hidden" name="pg" value="${pg}"/>
                 <input type="hidden" name="customer_code" value="${b.customer_code}"/>
                 <input type="text" class="form-control" name="customer_name" value="${b.customer_name}" required>
                 <small class="text-muted">정확히 입력해주세요.</small>
@@ -244,11 +245,7 @@
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
               
-              <div class="form-group">
-                <label for="">고객 전화번호</label>
-                <input type="text" class="form-control" name="customer_phone" value="${b.customer_phone}" required>
-                <small class="text-muted">정확히 입력해주세요.</small>
-              </div>
+              
               
         
               <!--  -->

@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
+ <html>
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +15,66 @@
     <link href="../../../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/styles.css" rel="stylesheet">
+    
+   <script type="text/javascript">
+	function addEmp(){
+		var nameP = /^[가-힣]{4}$/;
+		var phoneP = /^01[0179][0-9]{7,8}$/;
+		var bankP = /^[가-힣]{2,6}$/;
+		var bankaddP= /^[0-9]*$/g;
+		var juminP=/\d{6}\[1-4]\d{6}/;
+		
+		if (nameP.test(document.addEmp.employee_name.value)) {
+			alert("이름을 확인해주세요");
+			
+		} else if (document.addEmp.employee_jumin.value == juminP.test(document.addEmp.employee_jumin.value)) {
+			alert("주민번호를 확인하세요");
+			document.addEmp.employee_jumin.focus();
+		} else if (document.addEmp.employee_phone.value == phoneP.test(document.addEmp.employee_phone.value)) {
+			alert("핸드폰번호를 확인하세요");
+			document.addEmp.employee_phone.focus();
+		} else if (document.addEmp.employee_bank.value == bankP.test(document.addEmp.employee_bank.value)) {
+			alert("은행명을 확인하세요");
+			document.addEmp.employee_bank.focus();
+		} else if (document.addEmp.employee_bankaddress.value == bankaddP.test(document.addEmp.employee_bankaddress.value)) {
+			alert("계좌번호를 확인하세요");
+			document.addEmp.employee_bankaddress.focus();
+		}else {
+			document.addEmp.submit(); //전송
+		}
+		
+		}
+
+	function addJob(){
+		var nameP = /^[가-힣]{2,4}$/;
+		var tpayP = /^[0-9]*$/g;
+		var mpayP = /^[0-9]*$/g;
+
+		if (document.addJob.job_name.value == nameP.test(document.addJob.job_name.value)) {
+			alert("직급을 확인해주세요");
+		} else if (document.addJob.job_tpay.value == tpayP.test(document.addJob.job_tpay.value)) {
+			alert("시급을 확인하세요");
+			document.addJob.job_tpay.focus();
+		}else if (document.addJob.job_mpay.value == mpayP.test(document.addJob.job_mpay.value)) {
+			alert("월급을 확인하세요");
+			document.addJob.job_mpay.focus();
+		}else {
+			document.addJob.submit(); //전송
+		}
+	}
+	
+	function addSalary(){
+
+		var timeP= /^\d{2}$/;
+
+		if (document.addSalary.salary_date.value == timeP.test(document.addSalary.salary_date.value)) {
+			alert("직급을 확인해주세요");
+		}else {
+			document.addSalary.submit(); //전송
+		}
+	
+	}
+    </script>
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -325,35 +386,41 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="insert.cafe" method="post">
+          <form name="addEmp" action="insert.cafe" method="post" onsubmit="addEmp()">
             <div class="modal-body">
               <div class="form-group">
                 <label>이름</label>
                 <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력하세요" required>
+               
               </div>
               <div class="form-group">
                 <label>주민번호</label>
-                <input type="text" class="form-control" name="employee_jumin"  placeholder="(-)빼고 입력하세요" required>
+                <input type="text" class="form-control" name="employee_jumin" placeholder="(-)빼고 입력하세요" required>
+                
               </div>
               <div class="form-group">
                 <label for="">핸드폰번호</label>
-                <input type="text" class="form-control" name="employee_phone" placeholder="(-)빼고 입력하세요" required>
+                <input type="text" class="form-control" name="employee_phone"  placeholder="(-)빼고 입력하세요" required>
+               
               </div>
               <div class="form-group">
                 <label for="">주소 </label>
-                <input type="text" class="form-control" name="employee_address" placeholder="주소를 입력하세요" required>
+                <input type="text" class="form-control" name="employee_address"  placeholder="주소를 입력하세요" required>
+                
               </div>
               <div class="form-group">
                 <label for="">은행 </label>
-                <input type="text" class="form-control" name="employee_bank" placeholder="급여 받을 은행을 입력해주세요." required>
+                <input type="text" class="form-control" name="employee_bank"  placeholder="급여 받을 은행을 입력해주세요." required>
+                
               </div>
               <div class="form-group">
                 <label for="">계좌번호</label>
-                <input type="text" class="form-control" name="employee_bankaddress" placeholder="계좌번호를 (-)빼고 입력해주세요." required>
+                <input type="text" class="form-control" name="employee_bankaddress"  placeholder="계좌번호를 (-)빼고 입력해주세요." required>
+                
               </div>
               <div class="form-group">
                 <label for="">직급</label>
-                <select name="employee_jobname" required>
+                <select name="employee_jobname"  required>
 						<option value="">선택하세요</option>
 					<c:forEach var="emp" items="${joblist}">
 						<option  value="${emp.job_name}">${emp.job_name}</option>
@@ -365,7 +432,7 @@
              </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
@@ -384,7 +451,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="../../hr/job/list.cafe" method="post">
+          <form name="addJob" action="../../hr/job/list.cafe" method="post" onsubmit="return addJob()">
             <div class="modal-body">
               <div class="form-group">
                 <label>직급</label>
@@ -403,7 +470,7 @@
               </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
@@ -422,7 +489,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="../../hr/salary/insert.cafe" method="post">
+          <form name="addSalary" action="../../hr/salary/insert.cafe" method="post"  onsubmit="return addSalary()">
             <div class="modal-body">
               <div class="form-group">
                 <label>직원이름</label>
@@ -464,7 +531,7 @@
              </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="정산">
             </div>
           </form>
         </div>

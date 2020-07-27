@@ -69,7 +69,7 @@ public class empController {
 		
 		empService.insertEmp(dto);
 			
-		return "redirect:/hr/emp/list.cafe";
+		return "redirect:list.cafe";
 	}
 
 	@RequestMapping("hr/emp/list.cafe")

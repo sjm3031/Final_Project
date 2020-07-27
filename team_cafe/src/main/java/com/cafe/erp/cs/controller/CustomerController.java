@@ -134,7 +134,7 @@ public class CustomerController {
 		System.out.println("update ==>"+dto);
 		int result = customerService.updateBoard(dto); 
 		System.out.println("update result=>"+result);
-		String res = "redirect:/cs/customer/list.cafe?pg="+pg;
+		String res = "redirect:list.cafe?pg="+pg;
 		
 		if(result == 0) {
 			res = "fail"; 

@@ -142,7 +142,7 @@
 			document.updateJobForm.submit(); //전송
 		}
 	}
-		}
+		
     </script>
   </head>
  <body id="page-top">
@@ -286,66 +286,44 @@
               <li class="breadcrumb-item active">직급수정</li>
             </ol>
             <!-- Page Content -->
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-              <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
-                <i class="fa fa-table"></i>
-             직급수정
-                
+             
+            <div class="modal-content">
+					<div class="modal-header btn-secondary text-white">
+						<h7 class="modal-title" id="">
+							<i class="fa fa-tag"></i> 직급 수정
+						</h7>
+						
+					</div>
+					<form name="updateJobForm" action="update.cafe" method="post">
+            <div class="modal-body">
+            
+             <div class="form-group">
+                <label for="">직급이름</label>
+                <input type="hidden" name="job_code" id="job_code" value="${dto.job_code }">
+               <input type="text" class="form-control" name="job_name" id="job_name" value="${dto.job_name }" >
+                <small class="text-muted">정확히 입력해주세요.</small>
+              </div>   
+              
+              <div class="form-group">
+                <label for="">시급</label>
+               <input type="text" class="form-control" name="job_tpay" id="job_tpay" value="${dto.job_tpay }">
+                <small class="text-muted">정확히 입력해주세요.</small>
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                <form name="updateJobForm" action="update.cafe" method="post">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-		<th>직급코드</th>
-		<td>
-			<input type="text" name="job_code" id="job_code" value="${dto.job_code }" readonly="readonly">
-		</td>
-	</tr>
-	
-	<tr>
-		<th>직급</th>
-		<td>
-			<input type="text" name="job_name" id="job_name" value="${dto.job_name }" >
-		</td>
-	</tr>
-	<tr>
-		<th>시급</th>
-		<td>
-			<input type="text" name="job_tpay" id="job_tpay" value="${dto.job_tpay }">
-		</td>
-	</tr>
-	
-	
-	<tr>
-		<th>월급</th>
-		<td>
-			<input type="text" name="job_mpay" id="job_mpay" value="${dto.job_mpay }">
-		</td>
-	</tr>
-	
-	
-	<tr>
-		
-		<td colspan="2" align="center">
-			<input type="button" value="수정" onclick="updateJob()">
-			<input type="reset" value="취소" onclick="location.href='list.cafe'" />
-		</td>
-	</tr>
-                  
-                   
-      </table>
-                </form> 
-                 <br>
-	<br>
-	
-  
-                </div>
+              
+              <div class="form-group">
+                <label for="">월급</label>
+              <input type="text" class="form-control" name="job_mpay" id="job_mpay" value="${dto.job_mpay }">
+                <small class="text-muted">정확히 입력해주세요.</small>
               </div>
-<!--               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+               </div>   
+			<div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="button" class="btn btn-primary" value="수정" onclick="updateJob()">
             </div>
-          </div>
+          </form>
+				</div>
+				
+		
           <br><br><br>
          <!-- Sticky Footer -->
         <footer class="sticky-footer">

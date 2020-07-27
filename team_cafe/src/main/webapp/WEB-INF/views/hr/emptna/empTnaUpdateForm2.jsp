@@ -280,59 +280,69 @@
               <li class="breadcrumb-item active">직원조회</li>
             </ol>
             <!-- Page Content -->
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-              <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
-                <i class="fa fa-table"></i>
-        근태수정
-                
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                <form name="updateEmptnaForm" action="update2.cafe" method="post">
-				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-		
-
-	
-
-			
-			
-				<tr><td>이름</td>
-				<td><input type="hidden" name="pg" value="${pg}" />
-				<input type="hidden" name="emptna_code" value="${dto.emptna_code}">
-				${dto.employee_name}</td></tr>
-				<tr><td>년</td><td>${dto.emptna_year}</td></tr>
-				<tr><td>월</td><td>${dto.emptna_month}</td></tr>
-				<tr><td>일</td><td>${dto.emptna_day}</td></tr>
-				<tr>
-				<td>출근시간</td>
-				<td>
-				<input type="text" name="starttime" value="<fmt:formatDate value="${dto.emptna_starttime}" pattern="yyyy-MM-dd HH:mm" />">
-				</td>
-				</tr>
-				<tr><td>퇴근시간 </td>
-				<td><input type="text" name="endtime" value="<fmt:formatDate value="${dto.emptna_endtime}" pattern="yyyy-MM-dd HH:mm" />"></td></tr>
-				<tr><td>일일근무시간</td><td>${dto.emptna_daytotaltime}</td></tr>
-				
-				
-				<tr><td colspan="2"><input type="button" value="수정" onclick="updateEmptna()"></td></tr>
-				
-				<%-- 				<input type="button" value="삭제" onclick="location.href='empDelete.cafe?employee_code=${emp.employee_code}&pg=${pg}'"> --%>
-				<!-- 				</td> -->
-			
-		
-		
-
-	</table>
-	</form>
-
-	
+            
+            <div class="modal-content">
+					<div class="modal-header btn-secondary text-white">
+						<h7 class="modal-title" id="">
+							<i class="fa fa-tag"></i> 근태 수정
+						</h7>
+						
+					</div>
+					<form name="updateEmptnaForm" action="update2.cafe" method="post">
+            <div class="modal-body">
   
-                </div>
+              <div class="form-group">
+                <label for="">이름</label>
+                <input type="hidden" name="pg" value="${pg}" />
+				<input type="hidden" name="emptna_code" value="${dto.emptna_code}">
+				<input type="text" class="form-control" value="${dto.employee_name}" disabled="disabled">
+        
               </div>
-<!--               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+              
+              <div class="form-group">
+                <label for="">년</label>
+                <input type="text" class="form-control" value="${dto.emptna_year}" disabled="disabled">
+              </div>
+              
+              <div class="form-group">
+                <label for="">월</label>
+                <input type="text" class="form-control" value="${dto.emptna_month}" disabled="disabled">
+              </div>
+              
+              <div class="form-group">
+                <label for="">일</label>
+                <input type="text" class="form-control" value="${dto.emptna_day}" disabled="disabled">
+              </div>
+              
+              <div class="form-group">
+                <label for="">출근시간</label>
+               <input type="text" class="form-control" name="starttime" value="<fmt:formatDate value="${dto.emptna_starttime}" pattern="yyyy-MM-dd HH:mm" />" required>
+                <small class="text-muted">정확히 입력해주세요.</small>
+              </div>
+              
+              <div class="form-group">
+                <label for="">퇴근시간</label>
+               <input type="text" class="form-control" name="endtime" value="<fmt:formatDate value="${dto.emptna_endtime}" pattern="yyyy-MM-dd HH:mm" />" required>
+                <small class="text-muted">정확히 입력해주세요.</small>
+              </div>
+              
+              <div class="form-group">
+                <label for="">일일근무시간</label>
+                <input type="text" class="form-control" value="${dto.emptna_daytotaltime}" disabled="disabled">
+              </div>
+             
+       
+              <small class="text-muted"><em>수정을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
-          </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="button" class="btn btn-primary" value="수정" onclick="updateEmptna()">
+            </div>
+          </form>
+				</div>
+            
+            
+          
           <br><br><br>
          <!-- Sticky Footer -->
         <footer class="sticky-footer">

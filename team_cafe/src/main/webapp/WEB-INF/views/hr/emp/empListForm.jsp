@@ -467,7 +467,7 @@
 						<option  value="${emp.job_name}">${emp.job_name}</option>
 					</c:forEach>
  				</select>
- 				<small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="#addJobModal">추가하기</a> </small>
+ 				<small class="float-right">찾는 직급이 없으신가요?<a href="#"data-toggle="modal" data-target="#addJobModal">추가하기</a> </small>
               </div>
               <br>
              </div>

@@ -297,91 +297,77 @@
               <li class="breadcrumb-item active">직원수정</li>
             </ol>
             <!-- Page Content -->
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-              <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
-                <i class="fa fa-table"></i>
-               직원수정
+            
+            
+            <div class="modal-content">
+					<div class="modal-header btn-secondary text-white">
+						<h7 class="modal-title" id="">
+							<i class="fa fa-tag"></i> 직원수정
+						</h7>
+						
+					</div>
+					<form name="updateEmpForm" action="update.cafe" method="post">
+            <div class="modal-body">
+  
+              <div class="form-group">
+                <label for="">이름</label>
+                <input type="hidden" name="employee_code" value="${emp.employee_code}">
+				<input type="text" class="form-control" name="employee_name"  value="${emp.employee_name}" readonly="readonly"/>
                 
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                <form name="updateEmpForm" action="update.cafe" method="post">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-		<th>이름</th>
-		<td>
-			<input type="hidden" name="employee_code" value="${emp.employee_code}">
-			<input type="text" name="employee_name"  value="${emp.employee_name}" readonly="readonly"/>
-		</td>
-	</tr>
-	
-	<tr>
-		<th>주민번호</th>
-		<td>
-		<input type="hidden" name="pg" value="${pg}" />
-			<input type="password" name="employee_jumin" value="${emp.employee_jumin }" readonly="readonly"/>
-		</td>
-	</tr>
-	<tr>
-		<th>핸드폰번호</th>
-		<td>
-			<input type="text" name="employee_phone"  value="${emp.employee_phone}" />
-		</td>
-	</tr>
-	
-	
-	<tr>
-		<th>주소</th>
-		<td>
-			<input type="text" name="employee_address" value="${emp.employee_address}" />
-		</td>
-	</tr>
-	
-	<tr>
-		<th>은행</th>
-		<td>
-			<input type="text" name="employee_bank" value="${emp.employee_bank}" />
-		</td>
-	</tr>
-	<tr>
-		<th>계좌번호</th>
-		<td>
-			<input type="text" name="employee_bankaddress" value="${emp.employee_bankaddress}" />
-		</td>
-	</tr>
-	
-	<tr>
-		<th>직급</th>
-		<td>
-			<select name="employee_jobname">
+             
+       			<div class="form-group">
+                <label for="">주민번호</label>
+                <input type="hidden" name="pg" value="${pg}" />
+			<input type="text" class="form-control" name="employee_jumin" value="${emp.employee_jumin }" readonly="readonly"/>
+                
+              </div>
+              
+              <div class="form-group">
+                <label for="">핸드폰번호</label>
+                <input type="text"  class="form-control" name="employee_phone"  value="${emp.employee_phone}" />
+                
+              </div>
+              
+              <div class="form-group">
+                <label for="">주소</label>
+                <input type="text"  class="form-control" name="employee_address" value="${emp.employee_address}" />
+                
+              </div>
+              
+              <div class="form-group">
+                <label for="">은행</label>
+                <input type="text"  class="form-control" name="employee_bank" value="${emp.employee_bank}" />
+                
+              </div>
+              
+              <div class="form-group">
+                <label for="">계좌번호</label>
+               <input type="text" class="form-control" name="employee_bankaddress" value="${emp.employee_bankaddress}" />
+                
+              </div>
+              
+            <div class="form-group">
+                <label for="">직급</label>
+               <select name="employee_jobname" class="form-control">
 				<c:forEach var="list" items="${joblist}">
 					<option value="${list.job_name }">${list.job_name }</option>
 				</c:forEach>
 			</select>
-		</td>
-	</tr>
-	
-	<tr>
-		
-		<td colspan="2" align="center">
-			<input type="button" value="수정" onclick="updateEmp()" >
-			<input type="reset" value="취소" onclick="location.href='list.cafe'" />
-		</td>
-	</tr>
-                  
-                   
-      </table>
-                </form> 
-                 <br>
-	<br>
-	
-  
-                </div>
+              <small class="float-right">찾는 직급이 없으신가요?<a href="#"data-toggle="modal" data-target="#addJobModal">추가하기</a> </small>  
               </div>
-<!--               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+              <small class="text-muted"><em>수정을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
-          </div>
+            
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="button" class="btn btn-primary" value="수정" onclick="updateEmp()">
+            </div>
+          </form>
+				</div>
+				
+				
+		
           <br><br><br>
          <!-- Sticky Footer -->
         <footer class="sticky-footer">

@@ -271,99 +271,74 @@
               <li class="breadcrumb-item active">직원수정</li>
             </ol>
             <!-- Page Content -->
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-              <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
-                <i class="fa fa-table"></i>
-        급여수정
+            <div class="modal-content">
+					<div class="modal-header btn-secondary text-white">
+						<h7 class="modal-title" id="">
+							<i class="fa fa-tag"></i> 급여 수정
+						</h7>
+						
+					</div>
+					<form name="updateSalaryForm" action="update.cafe" method="post">
+            <div class="modal-body">
+                
+			<div class="form-group">
+                <label for="">이름</label>
+                <input type="hidden" name="pg" value="${pg}" />
+                <input type="text" class="form-control" name="employee_bankaddress"  value="${salary.employee_name}" disabled="disabled">
+                <input type="hidden" name="salary_code" value="${salary.salary_code}">
+              </div>
+              
+              <div class="form-group">
+                <label for="">직급</label>
+                <input type="text" class="form-control" name="employee_jobname" value="${salary.employee_jobname}" disabled="disabled">
                 
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                <form name="updateSalaryForm" action="update.cafe" method="post">
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-	<tr>
-		<th>이름</th>
-		<td>
-			<input type="hidden" name="salary_code" value="${salary.salary_code}">
-			<input type="text" name="employee_name"  value="${salary.employee_name}" readonly="readonly"/>
-		</td>
-	</tr>
-	<tr>
-		<th>직급</th>
-		<td>
-			<input type="text" name="employee_jobname" value="${salary.employee_jobname}" readonly="readonly"/>
-		</td>
-	</tr>
-	<tr>
-		<th>근무 년</th>
-		<td>
-			<input type="text" name="salary_year" value="${salary.salary_year }" readonly="readonly"/>
-		</td>
-	</tr>
-	<tr>
-		<th>근무 월</th>
-		<td>
-		<input type="hidden" name="pg" value="${pg}" />
-			<input type="text" name="salary_month" value="${salary.salary_month }" readonly="readonly"/>
-		</td>
-	</tr>
-	
-	<tr>
-		<th>알바시급</th>
-		<td>
-			<input type="text" name="salary_tpay" value="${salary.salary_tpay}" readonly="readonly"/>
-		</td>
-	</tr>
-	
-	<tr>
-		<th>직원월급</th>
-		<td>
-			<input type="text" name="salary_mpay" value="${salary.salary_mpay}" readonly="readonly"/>
-		</td>
-	</tr>
-	
-	<tr>
-		<th>월 근무시간</th>
-		<td>
-			<input type="text" name="salary_time"  value="${salary.salary_time}"readonly="readonly" />
-		</td>
-	</tr>
-	
-	<tr>
-		<th>총급여</th>
-		<td>
-			<input type="text" name="salary_totalpay" value="${salary.salary_totalpay}"readonly="readonly" />
-		</td>
-	</tr>
-	<tr>
-		<th>월급지급일</th>
-		<td>
-			<input type="text" name="salary_date" value="${salary.salary_date}" />
-			
-		</td>
-	</tr>
-	
-	<tr>
-		
-		<td colspan="2">
-			<input type="button" value="수정" onclick="updateSalary()"/>
-			<input type="reset" value="취소" onclick="location.href='list.cafe'" />
-		</td>
-	</tr>
-	
-
-</table>
-
-
-</form>
-	
-  
-                </div>
+              
+              <div class="form-group">
+                <label for="">근무년</label>
+                <input type="text" class="form-control" name="salary_year" value="${salary.salary_year }" disabled="disabled">
+                
               </div>
-<!--               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+              
+              <div class="form-group">
+                <label for="">근무월</label>
+                <input type="text" class="form-control" name="salary_month" value="${salary.salary_month }" disabled="disabled">
+              </div>
+              
+              <div class="form-group">
+                <label for="">알바시급</label>
+                <input type="text" class="form-control" name="salary_tpay" value="${salary.salary_tpay}" readonly="readonly">
+              </div>
+              
+              <div class="form-group">
+                <label for="">직원월급</label>
+                <input type="text" class="form-control" name="salary_mpay" value="${salary.salary_mpay}" readonly="readonly">
+              </div>
+              
+              <div class="form-group">
+                <label for="">월근무시간</label>
+                <input type="text" class="form-control" name="salary_time"  value="${salary.salary_time}" readonly="readonly">
+              </div>
+              
+              <div class="form-group">
+                <label for="">총급여</label>
+                <input type="text" class="form-control" name="salary_totalpay" value="${salary.salary_totalpay}" readonly="readonly">
+              </div>
+              
+              <div class="form-group">
+                <label for="">월급지급일</label>
+                <input type="text" class="form-control"name="salary_date" value="${salary.salary_date}">
+                <small class="text-muted">정확히 입력해주세요.</small>
+              </div>
+              </div>   
+			<div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="button" class="btn btn-primary" value="수정" onclick="updateSalary()">
             </div>
-          </div>
+          </form>
+				</div>
+              
+
           <br><br><br>
          <!-- Sticky Footer -->
         <footer class="sticky-footer">

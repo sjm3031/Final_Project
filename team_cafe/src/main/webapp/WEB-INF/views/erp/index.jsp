@@ -19,6 +19,8 @@
 	<script src="../resources/erp_js/form_validation.js"></script>
 
 
+
+
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -526,7 +528,7 @@
     
     
     
-    <!-- #addEmpModal -->
+      <!-- #addEmpModal -->
    <div class="modal fade" id="addEmpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -539,36 +541,44 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/emp/insert.cafe" method="post">
+          <form name="addEmpForm" action="hr/emp/insert.cafe" method="post" onsubmit="return addEmp();">
             <div class="modal-body">
               <div class="form-group">
                 <label>이름</label>
-                <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력하세요" required>
+                <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력해주세요." required>
+               
               </div>
               <div class="form-group">
-                <label>주민번호</label>
-                <input type="text" class="form-control" name="employee_jumin"  placeholder="(-)빼고 입력하세요" required>
+                <label>주민번호 <small class="text-muted">(-) 빼고 입력하세요</small> </label>
+                <input type="text" class="form-control" name="employee_jumin" placeholder="주민번호를 입력해주세요." required>
+                
               </div>
               <div class="form-group">
-                <label for="">핸드폰번호</label>
-                <input type="text" class="form-control" name="employee_phone" placeholder="(-)빼고 입력하세요" required>
+                <label for="">핸드폰번호 <small class="text-muted">(-) 빼고 입력하세요</small> </label>
+                <input type="text" class="form-control" name="employee_phone"  placeholder="전화번호를 입력해주세요." required>
+               
               </div>
               <div class="form-group">
                 <label for="">주소 </label>
-                <input type="text" class="form-control" name="employee_address" placeholder="주소를 입력하세요" required>
+                <input type="text" class="form-control" name="employee_address"  placeholder="주소를 입력해주세요." required>
+                
               </div>
               <div class="form-group">
                 <label for="">은행 </label>
-                <input type="text" class="form-control" name="employee_bank" placeholder="급여 받을 은행을 입력해주세요." required>
+                <input type="text" class="form-control" name="employee_bank"  placeholder="급여 받을 은행을 입력해주세요." required>
+                
               </div>
               <div class="form-group">
-                <label for="">계좌번호</label>
-                <input type="text" class="form-control" name="employee_bankaddress" placeholder="계좌번호를 (-)빼고 입력해주세요." required>
+                <label for="">계좌번호<small class="text-muted">(-) 빼고 입력하세요</small> </label>
+                <input type="text" class="form-control" name="employee_bankaddress"  placeholder="계좌번호를  입력해주세요." required>
+                
               </div>
+                        
+              
               <div class="form-group">
                 <label for="">직급</label>
-                <select name="employee_jobname" required>
-						<option>선택하세요</option>
+                <select class="form-control text-primary" name="employee_jobname" required="required" >
+						<option value=""selected>직급을 선택해주세요.</option>
 					<c:forEach var="emp" items="${joblist}">
 						<option  value="${emp.job_name}">${emp.job_name}</option>
 					</c:forEach>
@@ -579,15 +589,12 @@
              </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
       </div>
     </div>
-    
-    
-    
       <!-- #addjobModal -->
    <div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -601,7 +608,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/job/list.cafe" method="post">
+          <form name="addJobForm" action="hr/job/list.cafe" method="post" onsubmit="return addJob();">
             <div class="modal-body">
               <div class="form-group">
                 <label>직급</label>
@@ -620,7 +627,7 @@
               </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
@@ -639,12 +646,12 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/salary/insert.cafe" method="post">
+          <form name="addSalaryForm" action="hr/salary/insert.cafe" method="post" onsubmit="return addSalary();" >
             <div class="modal-body">
               <div class="form-group">
                 <label>직원이름</label>
                 	<select name="employee_name" required>
-					<option>이름을 선택하세요</option>
+					<option value="">이름을 선택하세요</option>
 		
 					<c:forEach var="t" items="${nameList }">
 					<option value="${t.employee_name }">${t.employee_name }</option>
@@ -654,7 +661,7 @@
               <div class="form-group">
                 <label>근무 연도</label>
                 <select name="salary_year" required>
-					<option>연도를 선택하세요</option>
+					<option value="">연도를 선택하세요</option>
 		
 					<c:forEach var="t" items="${yearList }">
 					<option value="${t.emptna_year }">${t.emptna_year }</option>
@@ -665,7 +672,7 @@
               <div class="form-group">
                 <label for="">근무 월</label>
                 	<select name="salary_month" required>
-						<option>월을 선택하세요</option>
+						<option value="">월을 선택하세요</option>
 		
 							<c:forEach var="t" items="${monthList }">
 							<option value="${t.emptna_month }">${t.emptna_month }</option>
@@ -678,15 +685,16 @@
               
               <br>
              </div>
+             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="정산" >
             </div>
           </form>
         </div>
       </div>
     </div>
-    
+
  
 
     <script src="../resources/js/jquery.min.js"></script>

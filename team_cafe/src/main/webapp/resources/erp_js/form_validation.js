@@ -51,3 +51,54 @@ function customer_insert(){
     }
 
 }
+
+function addEmp(){
+	var nameP = /^[가-힣]{2,4}$/;
+	var phoneP = /^01[0179][0-9]{8}$/;
+	var bankP = /^[가-힣]{2,6}$/;
+	var bankaddP= /^[0-9]*$/g;
+	var juminP= /[0-9]{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[01])[012349][0-9]{6}/;
+	
+	if (!document.addEmpForm.employee_name.value ==nameP.test(document.addEmpForm.employee_name.value)) {
+		alert("이름을 확인해주세요");	
+		return false; 
+	}else if (!document.addEmpForm.employee_jumin.value == juminP.test(document.addEmpForm.employee_jumin.value)) {
+		alert("주민번호를 확인하세요");
+		return false; 
+	} else if (!document.addEmpForm.employee_phone.value == phoneP.test(document.addEmpForm.employee_phone.value)) {
+		alert("핸드폰번호를 확인하세요");
+		return false; 
+	}else if (!document.addEmpForm.employee_bank.value == bankP.test(document.addEmpForm.employee_bank.value)) {
+		alert("은행명을 확인하세요");
+		return false; 
+	}else if (!document.addEmpForm.employee_bankaddress.value == bankaddP.test(document.addEmpForm.employee_bankaddress.value)) {
+		alert("계좌번호를 확인하세요");
+		return false; 
+	}
+	
+}
+function addJob(){
+	var nameP = /^[가-힣]{2,4}$/;
+	var tpayP = /^[0-9]*$/g;
+	var mpayP = /^[0-9]*$/g;
+	
+	if (!document.addJobForm.job_name.value == nameP.test(document.addJobForm.job_name.value)) {
+		alert("직급을 확인하세요");
+		return false; 		
+	} else if (!document.addJobForm.job_tpay.value == tpayP.test(document.addJobForm.job_tpay.value)) {
+		alert("시급을 확인하세요");
+		return false; 		
+	}else if (!document.addJobForm.job_mpay.value == mpayP.test(document.addJobForm.job_mpay.value)) {
+		alert("월급을 확인하세요");
+		return false; 
+	}
+}
+
+function addSalary(){
+	var timeP= /^\d{2}$/;
+	
+	 if (!document.addSalaryForm.salary_date.value == timeP.test(document.addSalaryForm.salary_date.value)) {
+		alert("월급지급일을 확인해주세요");
+		return false; 
+	}
+}

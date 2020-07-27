@@ -1,6 +1,11 @@
 ----------------------------------------------------------------------------------------------------------------------------
 --                                                      drop
 ----------------------------------------------------------------------------------------------------------------------------
+--pos 기타
+DROP TABLE CAFE_POSPASSWORD;
+DROP TABLE CAFE_ACCOUNTS;
+DROP TABLE CAFE_reserveFund;
+
 --pos 주문
 DROP TABLE CAFE_ORDERLIST_ADD;
 DROP TABLE CAFE_ORDERList;
@@ -278,6 +283,37 @@ CREATE TABLE CAFE_ORDERLIST_ADD(
 );
 
 
+
+-- pos 비밀번호 테이블
+CREATE TABLE CAFE_POSPASSWORD
+(
+ POSPASSWORD_PWD varchar2(30)  --POS 비밀번호
+ );
+
+--POS 준비금 테이블 
+ CREATE TABLE CAFE_reserveFund
+(
+ reserveFund_code number PRIMARY KEY,    --코드
+ reserveFund_startTime date, --시작시각
+ reserveFund_endTime date,   --종료시각
+ reserveFund_total number    --영업 준비금
+ );
+ 
+ --일일정산테이블
+CREATE TABLE CAFE_ACCOUNTS
+(
+    accounts_code number PRIMARY KEY,    --정산코드
+    accounts_total number,               -- 총 매출액
+    accounts_card number,                   --카드 매출액
+    accounts_cash number,                --현금 매출액
+    accounts_saleCount number,           -- 총 주문 건수
+    accounts_startSell date,            -- 영업 시작 시간
+    accounts_endSell date,              -- 영업 마감 시간
+    reserveFund_code number,             -- POS 시작일 코드
+    
+    CONSTRAINT reserveFund_code FOREIGN KEY(reserveFund_code) REFERENCES CAFE_reserveFund(reserveFund_code)
+);
+ 
 ----------------------------------------------------------------------------------------------------------------------------
 --                                                      insert
 ----------------------------------------------------------------------------------------------------------------------------
@@ -294,6 +330,7 @@ INSERT INTO CAFE_JOB VALUES (1,'매니저',0,2000000);
 INSERT INTO CAFE_JOB VALUES (2,'아르바이트',8590,0);
 INSERT INTO CAFE_JOB VALUES (3,'아르바이트pro',9000,0);
 
+INSERT INTO CAFE_POSPASSWORD VALUES ('PASSWORD');
  
 commit;
 

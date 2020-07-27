@@ -57,12 +57,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 <!-- Navbar (sit on top) -->
 <div class="w3-top w3-hide-small">
   <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
-    <a href="home.cafe" class="w3-bar-item w3-button">HOME</a>
-    <a href="#menu" class="w3-bar-item w3-button">MENU</a>
+    <a href="../userWeb/home.cafe" class="w3-bar-item w3-button">HOME</a>
+    <a href="../userWeb/home.cafe" class="w3-bar-item w3-button">MENU</a>
 
     
     <c:if test="${sessionScope.USERCODE != null}">
-    <a href="cartlist.cafe?customer_code=${sessionScope.USERCODE}" class="w3-bar-item w3-button">MY PAGE</a>
+    <a href="../userWeb/cartlist.cafe?customer_code=${sessionScope.USERCODE}" class="w3-bar-item w3-button">MY PAGE</a>
     </c:if>
     
     <c:if test="${sessionScope.USERCODE == null}">
@@ -71,13 +71,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
     
     
     
-    <a href="memberwriteform.cafe" class="w3-right w3-bar-item w3-button">REGISTER</a>
+    <a href="../userWeb/memberwriteform.cafe" class="w3-right w3-bar-item w3-button">REGISTER</a>
     <c:if test="${sessionScope.USERCODE != null}">
-    <a href="logout.cafe" class="w3-right w3-bar-item w3-button">LOGOUT</a>
+    <a href="../userWeb/logout.cafe" class="w3-right w3-bar-item w3-button">LOGOUT</a>
 
     </c:if>
     <c:if test="${sessionScope.USERCODE == null}">
-    <a href="login.cafe" class="w3-right w3-bar-item w3-button">LOGIN</a>
+    <a href="../userWeb/login.cafe" class="w3-right w3-bar-item w3-button">LOGIN</a>
     </c:if>
 
   </div>

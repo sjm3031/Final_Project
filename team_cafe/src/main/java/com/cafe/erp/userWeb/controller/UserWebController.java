@@ -30,6 +30,7 @@ import com.cafe.erp.sale.service.ProductCategoryService;
 import com.cafe.erp.sale.service.ProductService;
 import com.cafe.erp.userWeb.model.OrderWebDTO;
 import com.cafe.erp.userWeb.model.OrderWebListAddJoinDTO;
+import com.cafe.erp.userWeb.model.OrderWebListDTO;
 import com.cafe.erp.userWeb.model.ProductCartAddDTO;
 import com.cafe.erp.userWeb.model.ProductCartAddJoinDTO;
 import com.cafe.erp.userWeb.model.ProductCartDTO;
@@ -313,10 +314,11 @@ public class UserWebController {
 		//해당고객의 주문 총 건수(음료잔수)
 		dto.setOrder_web_count(orderWebService.getOrderWebCount(customer_code));
 		//해당고객의 주문 총 금액
-		dto.setOrder_web_total(orderWebService.getOrderWebTotal(customer_code));
+		dto.setOrder_web_total(Integer.parseInt(request.getParameter("totalprice")));
+		//dto.setOrder_web_total(orderWebService.getOrderWebCount(customer_code));
 		//주문 테이블에 저장
 		orderWebService.insertOrderWeb(dto);
-		//주문 내역테이블에 저장
+		//주문 테이블에 저장
 		
 		//주문테이블 주문코드 가져오기
 		int order_web_code = orderWebService.getOrderWebRecent();
@@ -333,12 +335,31 @@ public class UserWebController {
 		}
 		
 		//주문 내역테이블의 옵션내역테이블에 저장
-		//장바구니옵션내역 테이블 가져오기
-		List<ProductCartAddDTO> addlist = orderWebService.getProductCartAddList();
-		for (int i = 0; i < addlist.size(); i++) {
-			ProductCartAddDTO adddto = addlist.get(i);
-			//주문내역의 옵션내역 테이블에 저장
-			orderWebService.insertOrderWebListAdd(adddto);
+
+		//주문코드에 해당하는 주문내역테이블의 주문 내역 코드 불러오기
+		List<OrderWebListAddJoinDTO> orderWeblist= orderWebService.getOrderWebListAddJoinList(order_web_code);
+
+		List<ProductCartAddJoinDTO> cartjoinlist =productCartService.getCartListByCustomer(customer_code);
+
+		for (int j = 0; j < orderWeblist.size(); j++) {
+			
+		
+			for (int i = 0; i < cartjoinlist.size(); i++) {
+				if (orderWeblist.get(j).getCafe_product_code() == cartjoinlist.get(i).getCafe_product_code()) {
+					if (cartjoinlist.get(i).getProduct_add_code() != 0) {
+						int orderList_web_code = orderWeblist.get(j).getOrderList_web_code();
+						int product_add_code = cartjoinlist.get(i).getProduct_add_code();
+						System.out.println();
+						System.out.print(orderWeblist.get(j).getOrderList_web_code());
+						System.out.println(cartjoinlist.get(i).getProduct_add_code());
+						System.out.println();
+						HashMap map1 = new HashMap();
+						map1.put("orderList_web_code", orderList_web_code);
+						map1.put("product_add_code", product_add_code);
+						orderWebService.insertOrderWebListAdd2(map1);
+					}
+				}
+			}
 		}
 		
 		//장바구니 내역 삭제..

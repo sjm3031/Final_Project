@@ -117,25 +117,34 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 	
     </div> 
  <c:set var="before" value="0"/>
+ <c:set var="totalcount" value="0"/>
+ <c:set var="totalprice" value="0"/>
 
 <c:forEach var="cart" items="${list}">
+
+
 
 <c:set var="present" value="${cart.cart_code}"/>
 	
 		<c:if test="${before != present}">
+		
+		<c:set var="totalcount" value="${totalcount + cart.cart_num}"/>
+		
+		
  	<input type="hidden" name="customer_code" id="customers_code" value="${cart.customer_code}"/>
 	<input type="hidden" name="cartCode" value="${cart.cart_code}">
 	
  <c:forEach var="p" items="${productlist}">
 <c:if test="${cart.cafe_product_code == p.cafe_product_code}">
 		
+		 <c:set var="totalprice" value="${ totalprice +  (p.cafe_product_price*cart.cart_num)}"/>
     
 
     <div align="center" class="w3-container menu w3-white" style="display: block; margin-bottom: 30px; padding-left: 0px;padding-right: 0px;padding-bottom: 2em; ">
      <h1 style="background-color: #a95858;margin: 0px; padding:10px; color: white;"><b class="aaa"> ${p.cafe_product_name}	</b> </h1>
 	      
      	<a href="orderview.cafe?productcode=${p.cafe_product_code}">
-			<img src="../sale/upload/${p.cafe_product_img}" style="width:150px">
+			<img src="../sale/upload/${p.cafe_product_img}" style="width:30%">
 		</a>
 	
 	</c:if>
@@ -164,6 +173,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 	
 	<c:if test="${cart.product_add_code == a.product_add_code}">
 				
+				 <c:set var="totalprice" value="${ totalprice + a.product_add_price}"/>
 				
 	<table style="text-align: center;">
 	<tr>
@@ -177,11 +187,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 	</table>
 	</c:if>
 </c:forEach>
+
+
 </c:if>
 		
 
 	</c:if>
 		<c:if test="${before == present}">	
+
+		
 		<c:if test="${cart.product_add_code != 0}">
 		<c:forEach var="a" items="${addlist}">
 	
@@ -198,6 +212,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 		</td>
 	</tr>
 	</table>
+	
+	<c:set var="totalprice" value="${ totalprice + a.product_add_price}"/>
 	</c:if>
 </c:forEach>
 
@@ -213,13 +229,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 	
 	</c:forEach>
 	<br><br>
+	<hr>
       
+
+<h3 class="aaa">총 수량 : ${ totalcount } </h3>
+<h3 class="aaa">총 가격 : ${ totalprice } </h3>
 
    	<br>
 
 
 
-         <a class="w3-button w3-xlarge w3-black aaa" href="order.cafe?customer_code=${customer_code}" onclick="cart()">주문하기</a>
+         <a class="w3-button w3-xlarge w3-black aaa" href="order.cafe?customer_code=${customer_code}&totalprice=${ totalprice }" onclick="cart()">주문하기</a>
 
 	</div>
 

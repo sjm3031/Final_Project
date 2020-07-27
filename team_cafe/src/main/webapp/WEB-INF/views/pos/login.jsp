@@ -47,7 +47,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
          <div class="wrap-login100">
             <form class="login100-form validate-form"  action="${path }/j_spring_security_check" method="POST">
                <span class="login100-form-title p-b-26 bbb">
-               <img src="resources/images/icon1.png" alt="" ><b style="font-size: xx-large;">Welcome</b>
+               <img src="resources/images/icon1.png" alt="" ><b style="font-size: xx-large;">ADMIN</b>
                </span>
                <!-- <span class="login100-form-title p-b-48">
                   <i class="zmdi zmdi-font"></i>
@@ -55,16 +55,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                
    
                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                  <input class="input100" type="text" name="j_username">
-                  <span class="focus-input100 aaa" data-placeholder="전화번호 : 010-1234-1234"></span>
+                  <input class="input100" type="text" name="j_username" placeholder="admin 계정" required="required"> 
+                  <span class="focus-input100 aaa"></span>
                </div>
 
-               <div class="wrap-input100 validate-input aaa" data-validate="Enter password">
+               <div class="wrap-input100 validate-input aaa" data-validate="Enter password" >
                   <span class="btn-show-pass">
                      <i class="zmdi zmdi-eye"></i>
                   </span>
-                  <input class="input100" type="password" name="j_password">
-                  <span class="focus-input100 aaa" data-placeholder="비밀번호"></span>
+                  <input class="input100" type="password" name="j_password" placeholder="비밀번호" required="required">
+                  <span class="focus-input100 aaa"></span>
                </div>
 
                <div class="container-login100-form-btn">

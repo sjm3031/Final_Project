@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cafe.erp.home.service.PosPasswordService;
 import com.cafe.erp.pos.model.PosOrderVO;
 import com.cafe.erp.pos.service.PosOrderService;
 import com.cafe.erp.pos.service.PosOrderlistAddService;
@@ -51,9 +52,30 @@ public class PosController {
 	@Resource
 	private ProductAddService productAddService;
 	
+	@Resource
+	private PosPasswordService posPasswordService;
+	
 	
 	@RequestMapping("main.cafe")
 	public String posMain(Model model) {
+		return "pos/password";
+	}
+	//passwordCheck.cafe
+	@RequestMapping("passwordCheck.cafe")
+	public String passwordCheck(HttpServletRequest request) {
+		String cafe_pospassword = request.getParameter("cafe_pospassword");
+		String pwd = posPasswordService.getPosPassword();
+		if (pwd.toLowerCase().equals(cafe_pospassword.toLowerCase())) {
+			return "pos/home";
+		}else {
+			return "pos/password";
+		}
+	}
+	
+	
+	
+	@RequestMapping("home.cafe")
+	public String posHome(Model model) {
 		return "pos/home";
 	}
 

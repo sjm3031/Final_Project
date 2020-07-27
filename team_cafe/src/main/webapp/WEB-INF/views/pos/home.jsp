@@ -44,6 +44,47 @@ body {
 <link type="text/css" rel="stylesheet"
    href="/erp/resources/web/content/302-2b1892c/point_of_sale.assets.css" />
 
+<script type="text/javascript">
+
+window.onload = setInterval(function(){webOrder()},2000);
+
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+	document.getElementById("myAudio").play(); 
+} 
+
+function pauseAudio() { 
+	document.getElementById("myAudio").pause(); 
+} 
+
+function webOrder(){
+	$.ajax(
+	         {
+	            url: './webOrderCheck.cafe',
+	            type: 'get',
+	            //data: {code : code},
+	            dataType: "text",
+	            success: function(data){
+	              if(data == 'exit'){
+	            	  document.getElementById("orderBtn").setAttribute("style","background-color: red;");
+
+		          }else{
+		        	  document.getElementById("orderBtn").setAttribute("style","background-color: #6EC89B;");
+
+
+			      }
+	            },
+	            error: function(error){
+	               console.log('error');
+	            }
+	         }
+	      );
+}
+
+	
+
+</script>
 
 
 <script type="text/javascript">
@@ -588,8 +629,9 @@ body {
                                              <button class="input-button number-char">1</button>
                                              <button class="input-button number-char">2</button>
                                              <button class="input-button number-char">3</button>
-                                             <button class="mode-button selected-mode"
-                                                data-mode="quantity">미정</button>
+                                             
+                                             <button class="mode-button selected-mode" id="orderBtn" name="orderBtn"  onclick="window.open('orderlist.cafe','orderWeb','width=800,height=500')"
+                                                data-mode="quantity">web</button>
                                              <br>
                                              <button class="input-button number-char">4</button>
                                              <button class="input-button number-char">5</button>

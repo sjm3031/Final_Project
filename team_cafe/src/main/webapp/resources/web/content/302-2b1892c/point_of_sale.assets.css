@@ -1,7 +1,12 @@
 /* /web/static/lib/fontawesome/css/font-awesome.css defined in bundle 'point_of_sale.assets' */
 
+i.fa.fa-camera.fa-5x {
+	padding-top: 25px;
+	color: rgba(255,96,125, 0.6);
+}
+
 /* /point_of_sale/static/src/css/pos.css defined in bundle 'point_of_sale.assets' */
-.ui-dialog, .modal-dialog {
+.ui-dialog ,.modal-dialog {
 	background: white;
 	padding: 10px;
 	border-radius: 3px; rgba (0,0,0,0.4);
@@ -2338,19 +2343,17 @@ td {
 }
 
 .pos .popup input, .pos .popup-input {
-	text-align: left;
-	display: inline-block;
-	overflow: hidden;
-	background: white;
-	min-height: 44px;
-	font-size: 20px;
-	color: #444;
-	padding: 10px;
-	border-radius: 3px;
-	border: none;
-	box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset;
-	box-sizing: border-box;
-	width: 80%;
+   text-align: left;
+   display: inline-block;
+   overflow: hidden;
+   background: white;
+   min-height: 0px;
+   font-size: 20px;
+   color: #444;
+   padding: 10px;
+   border-radius: 3px;
+   border: none;
+   box-sizing: border-box;
 }
 
 .pos .popup .packlot-lines {

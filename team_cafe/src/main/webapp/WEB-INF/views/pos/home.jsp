@@ -41,21 +41,14 @@ body {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="/web/static/src/img/favicon.ico"
    type="image/x-icon" />
-
 <link type="text/css" rel="stylesheet"
    href="/erp/resources/web/content/302-2b1892c/point_of_sale.assets.css" />
+
 
 
 <script type="text/javascript">
 	var num = 0;
 	var total = 0;
-
-	var orderJson = {
-		order : [],
-		total : '',
-		count : '',
-		customer : ''
-	};
 
 	// Opt. 버튼을 눌렀을때 optionList.cafe로 이동하여 옵션 목록을 비동기 처리해여 가져옴
 	$(function(){
@@ -73,7 +66,7 @@ body {
 	               for(var i in data){
 	                  info += '<article class="product option" data-product-id="'
 	                     + data[i].product_add_code +'" tabindex="0" aria-labelledby="article_product_' + data[i].product_add_code + '">';
-	                  info += '<div class="product-img"><img src="/erp/sale/upload/' + data[i].cafe_product_img + '" alt="Product image">';
+	                  info += '<div class="product-img"><i class="fa fa-camera fa-5x" role="img" aria-label="Shopping cart" title="Shopping cart"></i>';
 	                  info += '<span class="price-tag">' + data[i].product_add_price + '</span>';
 	                  info += '</div>';
 	                  info += '<div class="product-name" id="article_product_' + data[i].product_add_code + '">' + data[i].product_add_name + '</div>';
@@ -132,7 +125,7 @@ body {
  		var test = $(this).children('.price').text();
  		total = total - test;
  		var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
-		info3 += '<span class="badge">Total: </span> <span class="value">$ ' + total + '</span>';
+		info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
 		info3 += '</div></div></div>';
 		$(".order2").html(info3);	
 		$(event.currentTarget).remove();
@@ -163,7 +156,7 @@ body {
 				}
 	
 				info = '<li class="orderline">';
-				info += '<input type="hidden" value="' + data.cafe_product_code + '">';
+				info += '<span class="product-id" hidden="true">' + data.cafe_product_code + '</span>';
 				info += '<span class="product-name">' + data.cafe_product_name + '</span>';
 				info += '<span class="price">' + data.cafe_product_price + '</span>';
 				info += '<span class="info-list">Option : </span>';
@@ -183,7 +176,8 @@ body {
 	   });
 	});
 
-	/* 클릭한 데이터 값 */
+	
+	// 옵션을 클릭 시 왼쪽리스트에 등록된 음료 리스트의 맨 마지막에 해당 옵션을 부여함
 	$(document).on('click', '.product.option', function(){
 	   var id = $(this).data('product-id');
 	   list = '';
@@ -206,7 +200,6 @@ body {
 			      $('.orderline:last').children('.price').html(price);
 			      $('.orderline:last').append(extra);
 			      $('.entry.total').children('.value').html(total + ' 원');
-			      //alert(price);
 			      $('.info-list:last').append(data.product_add_name + ' ');
 		      },
 		      error: function(error){
@@ -215,15 +208,246 @@ body {
 		});
 	});
 
+
+	// 결제 버튼 클릭시 물품의 여부에 따라 모달 창을 띄움
 	$(document).on('click', '.button.pay', function(){
+		   if($('.orderline').length == 0){
+		      alert('등록된 물품이 없습니다.');
+		      return;
+		   }
+			
+			$('.modal-dialog.oe_hidden.pay').attr('class', 'modal-dialog pay');
+	});
+
+
+	// 결제 모달에서 취소 누르면 모달 창을 숨김
+	$(document).on('click', '.button.cancel.pay', function(){
+		$('.modal-dialog.pay').attr('class', 'modal-dialog oe_hidden pay');
+	});
+
+	
+	// 결제 버튼 누를시 상품주문 리스트를 가지고 PosController로 전송
+	$(document).on('click', '.button.confirm.pay', function(){
+		var orderJson = {
+				order : [],
+				total : '',
+				count : '',
+				customer : '',
+				payment : ''
+		};
+		
 		$('.orderline').each(function(){
-         $(this).text();
+      	var orderlist = {
+	         code : '',
+	         name : '',
+	         price : '',
+	         option : []
+         };
+
+         orderlist.code = $(this).children('.product-id').text();
+			orderlist.name = $(this).children('.product-name').text();
+         orderlist.price = $(this).children('.price').text();
+         
+         $(this).children('.option-code').each(function(){
+            orderlist.option.push($(this).text());
+         });
+         
+         orderJson.order.push(orderlist);
+      });
+	      
+      var totalPrice = $('.entry.total').children('.value').text().split(' ');
+      orderJson.total = totalPrice[0];
+      orderJson.count = orderJson.order.length;
+      orderJson.customer = $('#customerPhone').val();
+      orderJson.payment = $("input[name='payment']:checked").val();
+
+      $.ajax({
+         url: './orderData.cafe',
+         type: 'post',
+         data: JSON.stringify(orderJson),
+         contentType: 'application/json; charset=utf-8',
+         dataType: 'text',
+         success: function(data){
+         	if(data == "fail"){
+            	alert("등록된 회원을 찾지 못했습니다. 다시 확인해주세요.");
+            } else {
+            	alert("결제가 완료되었습니다.");
+            	location.href = "./home.cafe";
+            }
+         },
+         error: function(error){
+            console.log('error');
+         }
       });
 	});
+
+	
+	// 출근/퇴근 버튼을 누르면 근태 모달창을 띄움
+	$(document).on('click', '.button.attend', function(){
+		$('.modal-dialog.oe_hidden.attend').attr('class', 'modal-dialog attend');
+	});
+
+
+	// 출퇴근 모달창의 취소를 누르면 근태 모달창을 숨김
+	$(document).on('click', '.button.cancel.attend', function(){
+		$('.modal-dialog.attend').attr('class', 'modal-dialog oe_hidden attend');
+	});
+	
+
+	// 근태 모달창에서 등록을 누르면 입력된 값에 따라 출/퇴근 정보를 Controller로 보냄
+	$(document).on('click', '.button.confirm.attend', function(){
+		var attendJson = {
+			name : $('#employeeName').val(),
+			jumin : $('#employeeIdenti').val(),
+			inout : $("input[name='attend']:checked").val()
+		};
+
+		$.ajax({
+			url: './attendInsert.cafe',
+			type: 'post',
+			data: JSON.stringify(attendJson),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'text',
+			success: function(data){
+				alert(data);
+			},
+			error: function(error){
+				console.log('error');
+			}
+		});
+	});
+
+
+	// 쿠폰 버튼을 누르면 쿠폰 모달창을 띄움
+	$(document).on('click', '.mode-button.coupon', function(){
+		$('.modal-dialog.oe_hidden.coupon').attr('class', 'modal-dialog coupon');
+	});
+
+
+	// 쿠폰 모달 창에서 취소 버튼을 누르면 쿠폰 모달창을 숨김
+	$(document).on('click', '.button.cancel.coupon', function(){
+		$('.modal-dialog.coupon').attr('class', 'modal-dialog oe_hidden coupon');
+	});
+
+
+	// 준비 버튼을 누르면 현재 시각을 불러와 모달창에 보여줌
+	$(document).on('click', '.mode-button.ready', function(){
+		$.ajax({
+			url: './dayStart.cafe',
+			type: 'post',
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			success: function(data){
+				$('#startTime').attr('value', data.NOWTIME);
+			},
+			error: function(error){
+				console.log('error');
+			}
+		});
+
+		$('.modal-dialog.oe_hidden.ready').attr('class', 'modal-dialog ready');
+	});
+
+
+	// 준비 모달창의 등록을 누르면 현재 시각과 입력한 준비금을 controller로 보냄
+	$(document).on('click', '.button.confirm.ready', function(){
+		var startData = {
+			startTime : $('#startTime').val(),
+			startMoney : $('#readyMoney').val()
+		}
+
+		$.ajax({
+			url: './dayStartSubmit.cafe',
+			type: 'post',
+			contentType: 'application/json; charset=utf-8',
+			data: JSON.stringify(startData),
+			dataType: 'text',
+			success: function(data){
+				alert(data);
+			},
+			error: function(error){
+				console.log('error');
+			}
+		});
+	});
+
+
+	// 준비 모달창 숨김
+	$(document).on('click', '.button.cancel.ready', function(){
+		$('.modal-dialog.ready').attr('class', 'modal-dialog oe_hidden ready');
+	});
+	
+
+	// 정산 버튼을 누르면 POS 시작 정보, 매출정보, 마감시간을 가져와 모달창에 보여줌
+	$(document).on('click', '.mode-button.dayend', function(){
+		$.ajax({
+			url: './dayend.cafe',
+			type: 'post',
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			success: function(data){				
+				$('#totalSell').attr('value', data[2].SELLTOTAL);
+				$('#cashSell').attr('value', data[1].SELLTOTAL);
+				$('#cardSell').attr('value', data[0].SELLTOTAL);
+				$('#sellCount').attr('value', data[2].SELLCOUNT);
+				$('#endSell').attr('value', data[3].NOWTIME);
+				$('#startSell').attr('value', data[4].STARTTIME)
+				$('#readyCost').attr('value', data[4].RESERVEFUND_TOTAL)
+				$('#reserveId').attr('value', data[4].RESERVEFUND_CODE)
+				$('.modal-dialog.oe_hidden.dayend').attr('class', 'modal-dialog dayend');
+			},
+			error: function(error){
+				alert('POS 준비를 먼저 실행해주세요!');
+				return;
+			}
+		});	
+	});
+
+
+	// 정산 모달창의 등록버튼을 누를시 input에 있는 값들을 controller로 전송
+	$(document).on('click', '.button.confirm.dayend', function(){
+		var endData = {
+			totalSell : $('#totalSell').val(),
+			cashSell : $('#cashSell').val(),
+			cardSell : $('#cardSell').val(),
+			sellCount : $('#sellCount').val(),
+			endSell : $('#endSell').val(),
+			startSell : $('#startSell').val(),
+			reserveId : $('#reserveId').val()
+		};
+
+		$.ajax({
+			url: './dayendSubmit.cafe',
+			type: 'post',
+			data: JSON.stringify(endData),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'text',
+			success: function(data){
+				alert(data);
+			},
+			error: function(error){
+				console.log('error');
+			}
+		});
+	});
+
+
+	// 정산 모달의 취소 창을 누르면 정산 모달을 숨김
+	$(document).on('click', '.button.cancel.dayend', function(){
+		$('.modal-dialog.dayend').attr('class', 'modal-dialog oe_hidden dayend');
+	});
+
+
+	// 어드민 ERP 페이지로 이동하기 위한 로그인
+	$(document).on('click', '.header-button', function(){
+		location.href = "./login.cafe";
+	});
+	
 </script>
         
 </head>
 <body class="">
+
    <div class="o_loading" style="display: none;">Memuat</div>
    <div class="o_action_manager">
       <div class="pos-receipt-print"></div>
@@ -289,7 +513,7 @@ body {
                         aria-label="Synchronisation Error" title="Synchronisation Error"></i>
                   </div>
                </div>
-               <div class="header-button">Close</div>
+               <div class="header-button">로그인</div>
             </div>
          </div>
 
@@ -329,7 +553,7 @@ body {
                                                 <div class="order">						
 			 				                        <div class="order-empty">
 							                            <i class="fa fa-shopping-cart" role="img" aria-label="Shopping cart" title="Shopping cart"></i>
-							                            <h1>Keranjang belanja Anda masih kosong</h1>
+							                            <h1>물건을 선택하면 리스트에 등록됩니다.</h1>
                         							</div> 
                                                 </div>
                                                 <div class="order2">
@@ -347,17 +571,17 @@ body {
                                        <div class="subwindow-container-fix pads">
                                           <div class="control-buttons oe_hidden"></div>
                                           <div class="actionpad">
-                                             <button class="button set-customer ">
+                                             <button class="button attend">
                                                 <i class="fa fa-user" role="img" aria-label="Pelanggan"
-                                                   title="Pelanggan"></i> Pelanggan
+                                                   title="Pelanggan"></i> 출근/퇴근
 
                                              </button>
-                                             <button class="button pay">
+                                             <button type="button" class="button pay" data-toggle="modal" data-target="#posPayModal">
                                                 <div class="pay-circle">
                                                    <i class="fa fa-chevron-right" role="img"
                                                       aria-label="Pay" title="Pay"></i>
                                                 </div>
-                                                Pembayaran
+                                                	결제
                                              </button>
                                           </div>
                                           <div class="numpad">
@@ -365,26 +589,22 @@ body {
                                              <button class="input-button number-char">2</button>
                                              <button class="input-button number-char">3</button>
                                              <button class="mode-button selected-mode"
-                                                data-mode="quantity">Jml</button>
+                                                data-mode="quantity">미정</button>
                                              <br>
                                              <button class="input-button number-char">4</button>
                                              <button class="input-button number-char">5</button>
                                              <button class="input-button number-char">6</button>
-                                             <button class="mode-button" data-mode="discount">Diskon</button>
+                                             <button class="mode-button coupon" data-mode="discount">쿠폰</button>
                                              <br>
                                              <button class="input-button number-char">7</button>
                                              <button class="input-button number-char">8</button>
                                              <button class="input-button number-char">9</button>
-                                             <button class="mode-button" data-mode="price">Harga</button>
+                                             <button class="mode-button dayend" data-mode="price">정산</button>
                                              <br>
                                              <button class="input-button numpad-minus">+/-</button>
                                              <button class="input-button number-char">0</button>
                                              <button class="input-button number-char">.</button>
-                                             <button class="input-button numpad-backspace">
-                                                <img style="pointer-events: none;"
-                                                   src="/point_of_sale/static/src/img/backspace.png"
-                                                   width="24" height="21" alt="Backspace">
-                                             </button>
+                                             <button class="mode-button ready">준비</button>
                                           </div>
                                        </div>
                                     </div>
@@ -396,30 +616,6 @@ body {
                               <table class="layout-table">
 
                                  <tbody>
-                                    <tr class="header-row">
-                                       <td class="header-cell">
-                                          <div>
-                                             <header class="rightpane-header">
-                                                <div class="breadcrumbs">
-                                                   <span class="breadcrumb"> <span
-                                                      class=" breadcrumb-button breadcrumb-home js-category-switch">
-                                                         <i class="fa fa-home" role="img" aria-label="Beranda"
-                                                         title="Beranda"></i>
-                                                   </span>
-                                                   </span>
-
-                                                </div>
-                                                <div class="searchbox">
-                                                   <input placeholder="Cari Produk"> <span
-                                                      class="search-clear left"> <i
-                                                      class="fa fa-search"></i>
-                                                   </span>
-                                                </div>
-                                             </header>
-
-                                          </div>
-                                       </td>
-                                    </tr>
 
                                     <tr class="content-row">
                                        <td class="content-cell">
@@ -694,215 +890,123 @@ body {
          </div>
 
          <div class="popups">
-
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-alert">
-                  <p class="title">Alert</p>
-                  <p class="body"></p>
-                  <div class="footer">
-                     <div class="button cancel">Ok</div>
-                  </div>
-               </div>
-            </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-error">
-                  <p class="title">Error</p>
-                  <p class="body"></p>
-                  <div class="footer">
-                     <div class="button cancel">Ok</div>
-                  </div>
-               </div>
-            </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-error">
-                  <header class="title">Error</header>
-                  <main class="body traceback"></main>
+            <div role="dialog" class="modal-dialog oe_hidden attend">
+               <div class="popup popup-confirm" style="height: 300px;">
+                  <header class="title">근태관리</header>
+                  <main class="body" style="height: auto;">
+                  	<table align="center">
+                        <tr>
+                        	<td><span>이름 </span></td>
+                         	<td><input type="text" name="employeeName" id="employeeName" placeholder="이름를 입력하세요" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"></td> 
+                         </tr>
+                         <tr>
+                         	<td><span>주민등록번호 </span></td>
+                         	<td><input type="password" name="employeeIdenti" id="employeeIdenti" placeholder="주민등록번호를 입력하세요" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"></td>
+                     	</tr>
+                     </table>    
+                         <input type="radio" name="attend" value="출근" checked="checked" style="margin-top: 20px;"/>출근
+                         <input type="radio" name="attend" value="퇴근"/>퇴근
+            		</main>
                   <footer class="footer">
-                     <div class="button cancel">Ok</div>
-                     <div class="button stop_showing_sync_errors">Don't show
-                        again</div>
+                     <div class="button confirm attend">등록</div>
+                     <div class="button cancel attend">취소</div>
                   </footer>
-               </div>
+               </div>         
             </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-error">
-                  <header class="title">Error</header>
-                  <main class="body traceback"></main>
-                  <footer class="footer">
-                     <div class="button cancel">Ok</div>
-                     <a><div class="button icon download_error_file oe_hidden">
-                           <i class="fa fa-arrow-down" role="img"
-                              aria-label="Download error" title="Download error"></i>
-                        </div></a>
-                     <div class="button icon download">
-                        <i class="fa fa-download" role="img" aria-label="Unduh"
-                           title="Unduh"></i>
-                     </div>
-                     <div class="button icon email">
-                        <i class="fa fa-paper-plane" role="img"
-                           aria-label="Kirim dengan surel" title="Kirim dengan surel"></i>
-                     </div>
-                  </footer>
-               </div>
-            </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-barcode">
-                  <header class="title">
-                     Barcode Tidak Diketahui <br> <span class="barcode"></span>
-                  </header>
-                  <main class="body">Point of Sale tidak dapat menemukan
-                     produk, klien, karyawan atau tindakan yang terkait dengan barcode
-                     yang dipindai.</main>
-                  <footer class="footer">
-                     <div class="button cancel">Ok</div>
-                  </footer>
-               </div>
-            </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
+            <div role="dialog" class="modal-dialog oe_hidden pay">
                <div class="popup popup-confirm">
-                  <header class="title">Confirm ?</header>
-                  <main class="body"></main>
+                  <header class="title">결제</header>
+                  <main class="body">
+                        <span>전화번호</span>
+                         <input type="text" name="phone" id="customerPhone" placeholder="전화번호를 입력해주세요" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"> <br> 
+                         <input type="radio" name="payment" value="현금" style="margin-top: 20px;"/>현금
+                         <input type="radio" name="payment" value="카드" checked="checked" />카드
+            		</main>
                   <footer class="footer">
-                     <div class="button confirm">Konfirmasi</div>
-                     <div class="button cancel">Batalkan</div>
+                     <div class="button confirm pay">결제</div>
+                     <div class="button cancel pay">취소</div>
                   </footer>
-               </div>
+               </div>         
             </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-selection">
-                  <header class="title">Select</header>
-                  <div class="selection scrollable-y touch-scrollable"></div>
+            
+            <div role="dialog" class="modal-dialog oe_hidden coupon">
+               <div class="popup popup-confirm">
+                  <header class="title">쿠폰조회</header>
+                  <main class="body">
+                        <span>전화번호</span>
+                         <input type="text" name="phoneCouponInput" id="phoneCouponInput" placeholder="전화번호를 입력해주세요" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 5px;">
+                         <div class="button check coupon" style="width: 80px; margin-top: 0px; margin-right: 0px;">조회</div>
+                         <br>
+                         <br>
+                         <span id="validCouponText"></span>
+            		</main>
                   <footer class="footer">
-                     <div class="button cancel">Batalkan</div>
+                     <div class="button confirm coupon">사용</div>
+                     <div class="button cancel coupon">취소</div>
                   </footer>
-               </div>
+               </div>         
             </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-textinput">
-                  <header class="title"></header>
-                  <input type="text" value="">
-                  <div class="footer">
-                     <div class="button confirm">Ok</div>
-                     <div class="button cancel">Batalkan</div>
-                  </div>
-               </div>
-            </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-textinput">
-                  <header class="title"></header>
-                  <textarea></textarea>
+
+				<div role="dialog" class="modal-dialog oe_hidden dayend">
+               <div class="popup popup-confirm" style="height: 500px;">
+                  <header class="title">마감정산</header>
+                  <main class="body" style="height: auto;">
+                  	<table align="center">
+                        <tbody><tr>
+                        	<td><span>총 매출액</span></td>
+                         	<td><input type="text" name="totalSell" id="totalSell" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr>
+                         <tr>
+                         	<td><span>현금 매출액</span></td>
+                         	<td><input type="text" name="cashSell" id="cashSell" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td>
+                     	</tr>
+                     <tr>
+                        	<td><span>카드 매출액</span></td>
+                         	<td><input type="text" name="cardSell" id="cardSell" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr><tr>
+                        	<td><span>총 주문 건수</span></td>
+                         	<td><input type="text" name="sellCount" id="sellCount" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr><tr>
+                        	<td><span>영업 시작시간</span></td>
+                         	<td><input type="text" name="startSell" id="startSell" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr><tr>
+                        	<td><span>영업 종료시간</span></td>
+                         	<td><input type="text" name="endSell" id="endSell" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr><tr>
+                        	<td><span>시작 준비금</span></td>
+                         	<td><input type="text" name="readyCost" id="readyCost" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         	<td><input type="hidden" name="reserveId" id="reserveId"  style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"></td>
+                         </tr></tbody></table>    
+                         </main>
                   <footer class="footer">
-                     <div class="button confirm">Ok</div>
-                     <div class="button cancel">Batalkan</div>
+                     <div class="button confirm dayend">등록</div>
+                     <div class="button cancel dayend">취소</div>
                   </footer>
-               </div>
+               </div>         
             </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-text">
-                  <header class="title"></header>
-                  <main class="packlot-lines"></main>
+            
+            <div role="dialog" class="modal-dialog oe_hidden ready">
+               <div class="popup popup-confirm" style="height: 300px;">
+                  <header class="title">영업준비</header>
+                  <main class="body" style="height: auto;">
+                  	<table align="center">
+                        <tbody><tr>
+                        	<td><span>영업 시작시간</span></td>
+                         	<td><input type="text" name="startTime" id="startTime" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr>
+                         <tr>
+                         	<td><span>영업 준비금</span></td>
+                         	<td><input type="text" name="readyMoney" id="readyMoney" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"></td>
+                     	</tr>
+                     </tbody></table>    
+                         </main>
                   <footer class="footer">
-                     <div class="button confirm">Ok</div>
-                     <div class="button cancel">Batalkan</div>
+                     <div class="button confirm ready">등록</div>
+                     <div class="button cancel ready">취소</div>
                   </footer>
-               </div>
+               </div>         
             </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-number">
-                  <header class="title"></header>
-                  <div class="popup-input value active"></div>
-                  <div class="popup-numpad">
-                     <button class="input-button number-char" data-action="1">1</button>
-                     <button class="input-button number-char" data-action="2">2</button>
-                     <button class="input-button number-char" data-action="3">3</button>
-
-                     <button class="mode-button add" data-action="+10">+10</button>
-
-                     <br>
-                     <button class="input-button number-char" data-action="4">4</button>
-                     <button class="input-button number-char" data-action="5">5</button>
-                     <button class="input-button number-char" data-action="6">6</button>
-
-                     <button class="mode-button add" data-action="+20">+20</button>
-
-                     <br>
-                     <button class="input-button number-char" data-action="7">7</button>
-                     <button class="input-button number-char" data-action="8">8</button>
-                     <button class="input-button number-char" data-action="9">9</button>
-
-                     <button class="mode-button add" data-action="+50">+50</button>
-
-                     <br>
-                     <button class="input-button numpad-char" data-action="CLEAR">C</button>
-                     <button class="input-button number-char" data-action="0">0</button>
-                     <button class="input-button number-char dot"></button>
-                     <button class="input-button numpad-backspace"
-                        data-action="BACKSPACE">
-                        <img style="pointer-events: none;"
-                           src="/point_of_sale/static/src/img/backspace.png" width="24"
-                           height="21" alt="Backspace">
-                     </button>
-                     <br>
-                  </div>
-                  <footer class="footer centered">
-                     <div class="button cancel">Batalkan</div>
-                     <div class="button confirm">Ok</div>
-                  </footer>
-               </div>
-            </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-number popup-password">
-                  <header class="title"></header>
-                  <div class="popup-input value active"></div>
-                  <div class="popup-numpad">
-                     <button class="input-button number-char" data-action="1">1</button>
-                     <button class="input-button number-char" data-action="2">2</button>
-                     <button class="input-button number-char" data-action="3">3</button>
-
-                     <button class="mode-button add" data-action="+10">+10</button>
-
-                     <br>
-                     <button class="input-button number-char" data-action="4">4</button>
-                     <button class="input-button number-char" data-action="5">5</button>
-                     <button class="input-button number-char" data-action="6">6</button>
-
-                     <button class="mode-button add" data-action="+20">+20</button>
-
-                     <br>
-                     <button class="input-button number-char" data-action="7">7</button>
-                     <button class="input-button number-char" data-action="8">8</button>
-                     <button class="input-button number-char" data-action="9">9</button>
-
-                     <button class="mode-button add" data-action="+50">+50</button>
-
-                     <br>
-                     <button class="input-button numpad-char" data-action="CLEAR">C</button>
-                     <button class="input-button number-char" data-action="0">0</button>
-                     <button class="input-button number-char dot"></button>
-                     <button class="input-button numpad-backspace"
-                        data-action="BACKSPACE">
-                        <img style="pointer-events: none;"
-                           src="/point_of_sale/static/src/img/backspace.png" width="24"
-                           height="21" alt="Backspace">
-                     </button>
-                     <br>
-                  </div>
-                  <footer class="footer centered">
-                     <div class="button cancel">Batalkan</div>
-                     <div class="button confirm">Ok</div>
-                  </footer>
-               </div>
-            </div>
-            <div role="dialog" class="modal-dialog oe_hidden">
-               <div class="popup popup-import">
-                  <header class="title">Selesai Mengimpor Order</header>
-
-                  <footer class="footer">
-                     <div class="button cancel">Ok</div>
-                  </footer>
-               </div>
-            </div>
-         </div>
+            
 
          <div class="loader oe_hidden" style="opacity: 0;">
             <div class="loader-feedback oe_hidden">

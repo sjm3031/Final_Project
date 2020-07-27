@@ -17,7 +17,7 @@
 		</security:headers>
 		
 		<!-- 관리자 영역 설정 -->
-		<security:intercept-url pattern="/admin/**"
+		<security:intercept-url pattern="/pos/admin/**"
 			access="hasRole('ROLE_ADMIN')"/>
 		
 <!--
@@ -26,9 +26,9 @@
 		-> authentication-failure-handler-ref : 로그인 실패시 참조할 자바 클래스
 		-> default-target-url : 로그인 성공시 호출할 주소
 -->
-		<security:form-login login-page="/pos/login"
+		<security:form-login login-page="/pos/login.cafe"
 			authentication-failure-handler-ref="posLoginFailureHandler"
-			default-target-url="/admin/"
+			default-target-url="/pos/admin/main.cafe"
 		/>
 
 <!-- 
@@ -45,14 +45,14 @@
 		<security:session-management>
 			<security:concurrency-control
 				max-sessions="1" 
-				expired-url="/pos"
+				expired-url="/pos/home.cafe"
 				error-if-maximum-exceeded="true" />
 		</security:session-management>
 		
 		<!-- 로그아웃 관련 처리 -->
 		<security:logout
 			delete-cookies="JSESSIONID"
-			logout-success-url="/pos"
+			logout-success-url="/pos/home.cafe"
 			logout-url="/j_spring_security_logout"
 			invalidate-session="true"
 		/>

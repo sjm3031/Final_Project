@@ -24,5 +24,5 @@ public interface salaryDAO {
 
 	public int getSalaryCount();
 	
-	public int getMaxMonthTotal(HashMap map);
+	public double getMaxMonthTotal(HashMap map);
 }

@@ -14,6 +14,7 @@ public interface salaryService {
 	public List<salaryDTO> getSalaryList(HashMap map);
 
 	public List<salaryDTO> searchSalary(HashMap map);
+	
 
 	public List<empTnaDTO> getMonth();
 
@@ -27,5 +28,5 @@ public interface salaryService {
 
 	public int getSalaryCount();
 	
-	public int getMaxMonthTotal(HashMap map);
+	public double getMaxMonthTotal(HashMap map);
 }

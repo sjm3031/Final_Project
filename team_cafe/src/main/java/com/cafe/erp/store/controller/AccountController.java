@@ -12,16 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.store.model.AccountDTO;
 import com.cafe.erp.store.model.StockDTO;
 import com.cafe.erp.store.service.AccountService;
 
 @Controller
-@RequestMapping("store")
+@RequestMapping("admin/store")
 public class AccountController {
 	
 	@Resource
 	private AccountService accountService;
+	@Resource
+	private ERPController erpController;
 	
 	private AccountDTO dto;
 	
@@ -42,6 +45,7 @@ public class AccountController {
 	
 	@RequestMapping("/accountlist.cafe")
 	public String showlist(HttpServletRequest req) {
+		erpController.menuMethod(req);
 		ModelAndView mav = new ModelAndView();
 
 		int pg = 1;
@@ -100,6 +104,7 @@ public class AccountController {
 	
 	@RequestMapping("/accountupdateform.cafe")
 	public String updateaccountform(int account_number, int pg, Model model) {
+		erpController.menuMethod(model);
 //		System.out.println(account_number);
 		AccountDTO dto = accountService.getAccount(account_number);
 //		System.out.println("number : " + account_number);

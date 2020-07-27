@@ -17,7 +17,7 @@
 	</insert>
 	
 	<select id="getJobList" resultMap="jobMap">
-		select * from cafe_job
+		select * from cafe_job order by job_code desc
 	</select>
 	
 	<select id="getJob" parameterType="Integer" resultType="com.cafe.erp.hr.model.jobDTO">

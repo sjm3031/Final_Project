@@ -11,10 +11,42 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>aaKartRider 매장관리시스템</title>
-    <link href="../../resources/css/bootstrap.css" rel="stylesheet">
-    <link href="../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="../../resources/css/styles.css" rel="stylesheet">
-    <style type="text/css">
+    <link href="../../../resources/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="../../../resources/css/styles.css" rel="stylesheet">
+
+<script type="text/javascript">
+
+   function insert(){
+	
+	      if(document.writeform.customer_name.value==""){
+	         alert("고객 이름을 입력해주세요");
+	      }else if(! document.writeform.customer_phone.value == /^01[0179][0-9]{8}$/.test(document.writeform.customer_phone.value) || document.writeform.customer_phone.value==""){
+	         alert("고객 전화번호를 입력해주세요");
+	         document.writeform.customer_phone.focus();
+	      }else if(! document.writeform.customer_birth.value== /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/g.test(document.writeform.customer_birth.value) || document.writeform.customer_birth.value==""){
+	         alert("고객 생년월일을 입력해주세요");
+	         document.writeform.customer_birth.focus();
+	      }else if(document.writeform.customer_gender.value==""){
+		      alert("고객 성별을 체크해주세요");
+		      document.writeform.customer_gender.focus();
+	      }else if(document.writeform.customer_stamp.value==""){
+	         alert("고객 스템프수을 입력해주세요");
+	         document.writeform.customer_stamp.focus();
+	      }else if(! document.writeform.customer_pwd.value== /^[A-Za-z0-9]{6,12}$/.test(document.writeform.customer_pwd.value) || document.writeform.customer_pwd.value==""){
+	         alert("고객 비밀번호를 입력해주세요");
+	         document.writeform.customer_pwd.focus();
+	      }else{
+	         document.writeform.submit(); 
+	      }
+	
+   }
+</script>
+
+
+
+
+<style type="text/css">
     	.label {
     	 display: inline !important;
     	 position: relative;
@@ -59,9 +91,9 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../../index.cafe">
+          <a class="nav-link" href="../index.cafe">
             <i class="fa fa-fw fa-home"></i>
-            <span>홈</span>
+            <span>홈</span>	
           </a>
         </li>
         
@@ -1045,7 +1077,7 @@
     <div class="modal fade" id="addCafeCustomerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header bg-secondary text-white">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">
               <i class="fa fa-tag"></i>
               신규 고객 등록
@@ -1054,7 +1086,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="write.cafe" method="post" enctype="multipart/form-data">
+          <form name = "writeform" class="" action="write.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
       
               <div class="form-group">
@@ -1103,7 +1135,8 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
+              <!-- <input type="submit" class="btn btn-primary" value="등록"> -->
+              <input type="button" value="등록" onclick="insert()" class="btn btn-primary">
             </div>
           </form>
         </div>
@@ -1115,9 +1148,9 @@
     
     
     
-      <script src="../../resources/js/jquery.min.js"></script>
-      <script src="../../resources/js/bootstrap.bundle.min.js"></script>
-      <script src="../../resources/js/jquery.easing.min.js"></script>
-      <script src="../../resources/js/rc-pos.min.js"></script>
+      <script src="../../../resources/js/jquery.min.js"></script>
+      <script src="../../../resources/js/bootstrap.bundle.min.js"></script>
+      <script src="../../../resources/js/jquery.easing.min.js"></script>
+      <script src="../../../resources/js/rc-pos.min.js"></script>
     </body>
   </html>

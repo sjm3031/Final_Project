@@ -12,10 +12,41 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>aaKartRider 매장관리시스템</title>
-	<link href="../../resources/css/bootstrap.css" rel="stylesheet">
-	<link href="../../resources/css/font-awesome.css" rel="stylesheet"
+	<link href="../../../resources/css/bootstrap.css" rel="stylesheet">
+	<link href="../../../resources/css/font-awesome.css" rel="stylesheet"
 		type="text/css">
-	<link href="../../resources/css/styles.css" rel="stylesheet">
+	<link href="../../../resources/css/styles.css" rel="stylesheet">
+
+<script type="text/javascript">
+
+   function customer_update(){
+	  
+	
+	      if(document.update.customer_name.value==""){
+	    	 
+	         alert("고객 이름을 입력해주세요");
+	      }else if(! document.update.customer_phone.value == /^01[0179][0-9]{8}$/.test(document.update.customer_phone.value) || document.update.customer_phone.value==""){
+	         alert("고객 전화번호를 입력해주세요");
+	         document.update.customer_phone.focus();
+	      }else if(! document.update.customer_birth.value== /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/g.test(document.update.customer_birth.value) || document.update.customer_birth.value==""){
+	         alert("고객 생년월일을 입력해주세요");
+	         document.update.customer_birth.focus();
+	      }else if(document.update.customer_gender.value==""){
+		      alert("고객 성별을 체크해주세요");
+		      document.update.customer_gender.focus();
+	      }else if(document.update.customer_stamp.value==""){
+	         alert("고객 스템프수을 입력해주세요");
+	         document.update.customer_stamp.focus();
+	      }else if(! document.update.customer_pwd.value== /^[A-Za-z0-9]{6,12}$/.test(document.update.customer_pwd.value) || document.update.customer_pwd.value==""){
+	         alert("고객 비밀번호를 입력해주세요");
+	         document.update.customer_pwd.focus();
+	      }else{
+	         document.update.submit(); 
+	      }
+	
+   }
+</script>
+
 	
 	<style type="text/css">
     	.label {
@@ -64,6 +95,8 @@
    			bottom: -25px;
     	}
     </style>
+    
+    
 	
 	
 	
@@ -222,7 +255,8 @@
 						</h7>
 						
 					</div>
-					<form class="" action="update.cafe" method="post" >
+	<form name="update" action="update.cafe" method="post" >
+	<input type="hidden" name="pg" value="${pg}"/>
             <div class="modal-body">
   
               <div class="form-group">
@@ -243,14 +277,8 @@
                 <input type="text" class="form-control" name="customer_birth" value="${b.customer_birth}" required>
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
-              
-              <div class="form-group">
-                <label for="">고객 전화번호</label>
-                <input type="text" class="form-control" name="customer_phone" value="${b.customer_phone}" required>
-                <small class="text-muted">정확히 입력해주세요.</small>
-              </div>
-              
-        
+       
+                     
               <!--  -->
               <div class="form-group">
                 <label for="">고객 성별</label><br>
@@ -315,7 +343,12 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="수정">
+             <!--  <input type="submit" class="btn btn-primary" value="수정"> -->
+               <input type="button" value="수정" onclick="customer_update()" class="btn btn-primary">
+           
+    
+              
+              
               </div>
             
           </form>
@@ -644,6 +677,7 @@
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
               <input type="submit" class="btn btn-primary" value="등록">
+              
             </div>
           </form>
         </div>
@@ -1067,9 +1101,9 @@
 
 
 
-	<script src="../../resources/js/jquery.min.js"></script>
-	<script src="../../resources/js/bootstrap.bundle.min.js"></script>
-	<script src="../../resources/js/jquery.easing.min.js"></script>
-	<script src="../../resources/js/rc-pos.min.js"></script>
+	<script src="../../../resources/js/jquery.min.js"></script>
+	<script src="../../../resources/js/bootstrap.bundle.min.js"></script>
+	<script src="../../../resources/js/jquery.easing.min.js"></script>
+	<script src="../../../resources/js/rc-pos.min.js"></script>
 </body>
 </html>

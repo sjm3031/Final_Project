@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.cs.model.CustomerDTO;
 import com.cafe.erp.cs.service.CustomerService;
 
@@ -17,20 +18,21 @@ import com.cafe.erp.cs.service.CustomerService;
 
 
 @Controller
-@RequestMapping("cs/")
+@RequestMapping("admin/cs/")
 public class CustomerController {
 
 
 	@Resource
 	private CustomerService customerService;
 	
+	@Resource
+	private ERPController erpController;
 
+	
 	@RequestMapping("customer/writeform.cafe")
 	public String writeForm() {
 		
 		return "cs/customer/writeform";
-		
-		
 	}
 	
 	
@@ -39,11 +41,15 @@ public class CustomerController {
 	
 		customerService.insertBoard(dto);
 		
-		return "redirect:/cs/customer/list.cafe";
+		return "redirect:list.cafe";
 	}
 
 	@RequestMapping("customer/list.cafe")
 	public String list(HttpServletRequest request){
+		
+		erpController.menuMethod(request);
+		
+		
 		int pg = 1; 	
 		
 		String strPg = request.getParameter("pg");
@@ -89,6 +95,8 @@ public class CustomerController {
 	}
 	
 	
+
+
 	@RequestMapping("customer/read.cafe")
 	public String read(int customer_code, int pg, Model model) { 
 		
@@ -110,6 +118,7 @@ public class CustomerController {
 	
 	@RequestMapping("customer/updateform.cafe")
 	public String updateform(int  customer_code, int pg, Model model) {
+		erpController.menuMethod(model);
 		CustomerDTO dto = customerService.getBoard(customer_code);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
@@ -125,7 +134,8 @@ public class CustomerController {
 		System.out.println("update ==>"+dto);
 		int result = customerService.updateBoard(dto); 
 		System.out.println("update result=>"+result);
-		String res = "redirect:/cs/customer/list.cafe?pg="+pg;
+		 String res = "redirect:list.cafe?pg="+pg; 
+		
 		
 		if(result == 0) {
 			res = "fail"; 
@@ -147,7 +157,7 @@ public class CustomerController {
 	@RequestMapping("customer/delete.cafe")
 	public String delete(CustomerDTO dto,int pg ) {
 		int result = customerService.deleteBoard(dto); 
-		String res = "redirect:/cs/customer/list.cafe?pg="+pg;
+		String res = "redirect:cs/customer/list.cafe?pg="+pg;
 		if(result == 0) res="fail";
 		return res;
 		

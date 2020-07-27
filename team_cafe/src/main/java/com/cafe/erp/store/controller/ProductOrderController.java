@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.store.model.AccountDTO;
 import com.cafe.erp.store.model.OrderDTO;
 import com.cafe.erp.store.model.ProductOrderDTO;
@@ -19,11 +20,13 @@ import com.cafe.erp.store.service.ProductOrderListSercvice;
 import com.cafe.erp.store.service.ProductOrderService;
 
 @Controller
-@RequestMapping("store")
+@RequestMapping("admin/store")
 public class ProductOrderController {
 
 	@Resource
 	private ProductOrderService productOrderService;
+	@Resource
+	private ERPController erpController;
 	
 	@Resource
 	private OrderService orderService;
@@ -93,6 +96,7 @@ public class ProductOrderController {
 	
 	@RequestMapping("/orderlist.cafe")
 	public String orderlist(HttpServletRequest req) {
+		erpController.menuMethod(req);
 //		System.out.println("orderlist 진입");
 		ModelAndView mav = new ModelAndView();
 
@@ -140,6 +144,7 @@ public class ProductOrderController {
 	
 	@RequestMapping("/detaillist.cafe")
 	public String detaillist(HttpServletRequest req, int productOrder_code) {
+		erpController.menuMethod(req);
 //		System.out.println("detaillist 진입");
 //		String productOrder_code = req.getParameter("productOrder_code");
 //		System.out.println(productOrder_code);

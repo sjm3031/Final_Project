@@ -2,9 +2,9 @@ package com.cafe.erp.hr.model;
 
 public class salaryDTO {
 	
-	private int salary_code, salary_empcode, salary_time , salary_tpay,salary_mpay,salary_date,salary_totalpay,
+	private int salary_code, salary_empcode,salary_tpay,salary_mpay,salary_date,salary_totalpay,
 	salary_month,salary_year;
-	
+	private double salary_time;
 	private String employee_name,employee_jobname;
 
 	
@@ -33,11 +33,11 @@ public class salaryDTO {
 		this.salary_empcode = salary_empcode;
 	}
 
-	public int getSalary_time() {
+	public Double getSalary_time() {
 		return salary_time;
 	}
 
-	public void setSalary_time(int salary_time) {
+	public void setSalary_time(Double salary_time) {
 		this.salary_time = salary_time;
 	}
 

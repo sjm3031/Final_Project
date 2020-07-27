@@ -12,10 +12,10 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>aaKartRider 매장관리시스템</title>
-	<link href="../../resources/css/bootstrap.css" rel="stylesheet">
-	<link href="../../resources/css/font-awesome.css" rel="stylesheet"
+	<link href="../../../resources/css/bootstrap.css" rel="stylesheet">
+	<link href="../../../resources/css/font-awesome.css" rel="stylesheet"
 		type="text/css">
-	<link href="../../resources/css/styles.css" rel="stylesheet">
+	<link href="../../../resources/css/styles.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -46,25 +46,28 @@
           </a>
         </li>
         
-        
-        <li class="nav-item dropdown">
+       <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user"></i>
             <span>
-              인사관리
+            인사관리
               <i class="float-right fa fa-angle-down"></i>
             </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">직원</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addEMPModal"> <i class="fa fa-plus"></i> 직원등록</a>
-            <a class="dropdown-item"  href="../../hr/emp/list.cafe" > <i class="fa fa-user"></i> 직원조회</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addEmpModal"> <i class="fa fa-plus"></i> 직원등록</a>
+            <a class="dropdown-item" href="../../hr/emp/list.cafe"> <i class="fa fa-user"></i> 직원조회</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">직급</h6>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addJobModal"> <i class="fa fa-plus"></i> 직급등록</a>
             <a class="dropdown-item" href="../../hr/job/list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">근태	</h6>
             <a class="dropdown-item" href="../../hr/emptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">급여</h6>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addSalaryModal"> <i class="fa fa-plus"></i> 급여정산</a>
             <a class="dropdown-item" href="../../hr/salary/list.cafe"> <i class="fa fa-tags"></i> 급여 조회</a>
           </div>
         </li>
@@ -937,9 +940,9 @@
     </div>
 
 
-	<script src="../../resources/js/jquery.min.js"></script>
-	<script src="../../resources/js/bootstrap.bundle.min.js"></script>
-	<script src="../../resources/js/jquery.easing.min.js"></script>
-	<script src="../../resources/js/rc-pos.min.js"></script>
+	<script src="../../../resources/js/jquery.min.js"></script>
+	<script src="../../../resources/js/bootstrap.bundle.min.js"></script>
+	<script src="../../../resources/js/jquery.easing.min.js"></script>
+	<script src="../../../resources/js/rc-pos.min.js"></script>
 </body>
 </html>

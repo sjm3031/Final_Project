@@ -20,9 +20,8 @@ public class salaryServiceImpl implements salaryService {
 	
 	
 
-
 	@Override
-	public int getMaxMonthTotal(HashMap map) {
+	public double getMaxMonthTotal(HashMap map) {
 		
 		salaryDAO dao = sqlSession.getMapper(salaryDAO.class);
 				

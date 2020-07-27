@@ -10,9 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>aaKartRider 매장관리시스템</title>
-    <link href="../resources/css/bootstrap.css" rel="stylesheet">
-    <link href="../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="../resources/css/styles.css" rel="stylesheet">
+    <link href="../../resources/css/bootstrap.css" rel="stylesheet">
+    <link href="../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="../../resources/css/styles.css" rel="stylesheet">
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -542,7 +542,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="store/accountinsert.cafe" method="post" >
+          <form class="" action="../store/accountinsert.cafe" method="post" >
             <div class="modal-body">
   
               <div class="form-group">
@@ -993,10 +993,10 @@
       </div>
     </div>
 
-      <script src="../resources/js/jquery.min.js"></script>
-      <script src="../resources/js/bootstrap.bundle.min.js"></script>
-      <script src="../resources/js/jquery.easing.min.js"></script>
-      <script src="../resources/js/rc-pos.min.js"></script>
+      <script src="../../resources/js/jquery.min.js"></script>
+      <script src="../../resources/js/bootstrap.bundle.min.js"></script>
+      <script src="../../resources/js/jquery.easing.min.js"></script>
+      <script src="../../resources/js/rc-pos.min.js"></script>
     </body>
   </html>
 

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe.erp.cs.model.CustomerDTO;
+import com.cafe.erp.cs.service.CustomerService;
 import com.cafe.erp.cs.service.LoginService;
 import com.cafe.erp.sale.model.ProductAddDTO;
 import com.cafe.erp.sale.model.ProductCategoryVO;
@@ -95,7 +96,7 @@ public class UserWebController {
 				session.setAttribute("USERCODE", result.getCustomer_code()); 
 				/* session.setAttribute("USERNAME", result.getCustomer_name()); */
 				
-				mav.setViewName("userWeb/loginSuccess");
+				mav.setViewName("redirect:/userWeb/home.cafe");
 			
 				
 			}else {
@@ -126,7 +127,28 @@ public class UserWebController {
 		
 		
 	@RequestMapping("home.cafe")		//main/home 화면
-	public String home() {
+	public String home(HttpServletRequest request) {
+		 HashMap map = new HashMap();
+		 List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
+		 request.setAttribute("categorylist", list);
+		
+			
+		int product_category_code=1;
+		String product_category_code2 = request.getParameter("category");
+	
+		  
+		if( product_category_code2 != null ) {
+			product_category_code = Integer.parseInt(product_category_code2);
+		}
+		
+		
+		
+		List<ProductVO> list2 = productService.getProductListByCategory(product_category_code);	
+		
+		request.setAttribute("product_category_code", product_category_code);
+		request.setAttribute("list", list2);
+		request.setAttribute("listsize", list2.size());
+		
 		return "userWeb/home";
 	}
 	
@@ -394,29 +416,8 @@ public class UserWebController {
 		 System.out.println(result);*/
 
 		 return "redirect:/userWeb/cartlist.cafe?customer_code="+customer_code; 
-		
-		
-		
-		
-		/*
-		 System.out.println("update ==>"+dto);
-		int result = customerService.updateBoard(dto); 
-		System.out.println("update result=>"+result);
-		String res = "redirect:/list.htm?pg="+pg;
-		
-		if(result == 0) {
-			res = "fail"; 
-
-		}
-		return res;
-		 
-		 
-		 
-		 
-		 
-		  */
 	
-		
+
 	}
 	
 	
@@ -443,15 +444,11 @@ public class UserWebController {
 		System.out.println("customer_code"+"--");
 		
 		  return "redirect:/userWeb/cartlist.cafe?customer_code="+customer_code;
-		 
-		
-	
-			
-		  
-			
-		
-	
+
 		
 	}
+	
+	
+	
 	
 }

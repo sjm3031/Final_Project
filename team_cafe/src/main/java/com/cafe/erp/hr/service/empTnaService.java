@@ -10,11 +10,21 @@ import com.cafe.erp.hr.model.empTnaDTO;
 
 public interface empTnaService {
 
-	public empDTO getEmpTna(empDTO dto);
-
 	public void insertEmpTna(empTnaDTO dto);
 
 	public void updateEmpTna(HashMap map);
+	
+	public int updateEmpTna3(empTnaDTO dto);
+	
+
+	
+	public empTnaDTO getEmpTna(int emptna_code);
+	
+
+	
+	public empTnaDTO selectEmp2(HashMap map);
+	
+	public int selectEmp(HashMap map);
 
 	public List<empTnaDTO> getEmpTnaList(HashMap map);
 
@@ -36,5 +46,5 @@ public interface empTnaService {
 
 	public int getEmpTnaCount();
 
-	public int getTotal(HashMap map);
+
 }

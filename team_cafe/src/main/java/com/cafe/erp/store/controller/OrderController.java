@@ -11,20 +11,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.store.model.OrderDTO;
 import com.cafe.erp.store.model.StockDTO;
 import com.cafe.erp.store.service.OrderService;
 
 @Controller
-@RequestMapping("store")
+@RequestMapping("admin/store")
 public class OrderController {
 
 	@Resource
 	private OrderService orderService;
+	@Resource
+	private ERPController erpController;
 	
 	//발주 신청목록보기
 	@RequestMapping("/stockorder.cafe")
 	public String order(HttpServletRequest req) {
+		erpController.menuMethod(req);
 		ModelAndView mav = new ModelAndView();
 
 		int pg = 1;
@@ -92,6 +96,7 @@ public class OrderController {
 	//임시 발주 테이블 목록
 	@RequestMapping("/stockorderlist.cafe")
 	public String showordercartlist(HttpServletRequest req) {
+		erpController.menuMethod(req);
 		ModelAndView mav = new ModelAndView();
 		int pg = 1;
 		String strPg = req.getParameter("pg");
@@ -139,6 +144,7 @@ public class OrderController {
 	//임시 발주 테이블 목록 수정페이지
 	@RequestMapping("/stockorderupdateform.cafe")
 	public String stockorderupdateform(int cart_number, int pg, Model model) {
+		erpController.menuMethod(model);
 //		System.out.println("stockorderupdateform 진입");
 //		System.out.println("cart_number" + cart_number);
 		OrderDTO dto = orderService.getOrder(cart_number);

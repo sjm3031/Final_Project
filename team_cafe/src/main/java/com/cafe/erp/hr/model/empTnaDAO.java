@@ -7,11 +7,15 @@ import org.apache.ibatis.annotations.Param;
 
 public interface empTnaDAO {
 	
-	public empDTO getEmpTna(empDTO dto); //select
-	
 	public void insertEmpTna(empTnaDTO dto);  //insert
 	
+	public empTnaDTO getEmpTna(int emptna_code);
+	
 	public void updateEmpTna(HashMap map);
+	
+	public int updateEmpTna3(empTnaDTO dto);
+	
+	public int selectEmp(HashMap map);
 	
 	public List<empTnaDTO> getEmpTnaList(HashMap map); 
 	
@@ -33,5 +37,6 @@ public interface empTnaDAO {
 	
 	public int getEmpTnaCount();
 	
-	public int getTotal(HashMap map);
+	public empTnaDTO selectEmp2(HashMap map);
+	
 }

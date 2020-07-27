@@ -1,30 +1,48 @@
 package com.cafe.erp.hr.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.hr.model.empDTO;
+import com.cafe.erp.hr.model.empTnaDTO;
 import com.cafe.erp.hr.model.jobDTO;
 import com.cafe.erp.hr.service.empService;
 import com.cafe.erp.hr.service.jobService;
+import com.cafe.erp.hr.service.salaryService;
+import com.cafe.erp.sale.model.ProductCategoryVO;
+import com.cafe.erp.sale.service.ProductCategoryService;
+import com.cafe.erp.store.model.AccountDTO;
+import com.cafe.erp.store.service.StockService;
 
 
 
 @Controller
+@RequestMapping("admin/")
 public class empController {
 
 	@Resource
 	private empService empService;
 	@Resource
 	private jobService jobService;
+	@Resource
+	private salaryService salaryService;
+	@Resource
+	private StockService stockService;
+	@Resource
+	private ProductCategoryService productCategoryService;
+	@Resource
+	private ERPController erpController;
 	
 	@RequestMapping(value="hr/emp/insert.cafe",method=RequestMethod.GET)
 	public String empInsertForm(Model model) {
@@ -37,15 +55,44 @@ public class empController {
 	}
 
 	@RequestMapping(value="hr/emp/insert.cafe",method=RequestMethod.POST)
-	public String empInsert(empDTO dto) {
+	public String empInsert(empDTO dto,HttpServletResponse resp) throws Exception{
+		
+		List<jobDTO> joblist = jobService.getJobList();
+		
+		if(joblist.isEmpty()) {
+			resp.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = resp.getWriter();
+			out.println("<script>alert('직급을 먼저 등록해주세요');</script>");
+			out.flush();
+
+			return "hr/job/jobListForm"; }
+		
 		empService.insertEmp(dto);
 			
 		return "redirect:/hr/emp/list.cafe";
 	}
 
 	@RequestMapping("hr/emp/list.cafe")
-	public String empList(Model model, HttpServletRequest req) {
+	public String empList(HttpServletRequest req,Model model) {
+		
+		HashMap map = new HashMap();
+		List<ProductCategoryVO> productcategorylist = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", productcategorylist);
 
+		List<AccountDTO> account_list = stockService.getAccountList(map);
+		model.addAttribute("account_list", account_list);
+		
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
+
+		List<empDTO> nameList = salaryService.getName();
+		List<empTnaDTO> yearList = salaryService.getYear();
+		List<empTnaDTO> monthList = salaryService.getMonth();
+
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("yearList", yearList);
+		model.addAttribute("monthList", monthList);
+		
 		int pg = 1;
 		String strPg = req.getParameter("pg");
 
@@ -73,7 +120,7 @@ public class empController {
 			toPage = allPage;
 		}
 
-		HashMap map = new HashMap();
+		
 		map.put("start", start);
 		map.put("end", end);
 
@@ -84,9 +131,6 @@ public class empController {
 		req.setAttribute("block", block);
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
-		
-		List<jobDTO> joblist = jobService.getJobList();
-		model.addAttribute("joblist", joblist);
 
 		return "hr/emp/empListForm";
 	}
@@ -110,10 +154,23 @@ public class empController {
 		model.addAttribute("pg", pg);
 		model.addAttribute("num", num);
 		
-		List<jobDTO> list = jobService.getJobList();
+		HashMap map = new HashMap();
+		List<ProductCategoryVO> productcategorylist = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", productcategorylist);
+
+		List<AccountDTO> account_list = stockService.getAccountList(map);
+		model.addAttribute("account_list", account_list);
 		
-		model.addAttribute("list", list);
-		
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
+
+		List<empDTO> nameList = salaryService.getName();
+		List<empTnaDTO> yearList = salaryService.getYear();
+		List<empTnaDTO> monthList = salaryService.getMonth();
+
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("yearList", yearList);
+		model.addAttribute("monthList", monthList);
 		return "hr/emp/empUpdateForm";
 	}
 
@@ -123,7 +180,7 @@ public class empController {
 		System.out.println(dto.getEmployee_code());
 		System.out.println(dto.getEmployee_name());
 		int result = empService.updateEmp(dto);
-		String res = "redirect:hr/emp/list.cafe?pg=" + pg;
+		String res = "redirect:list.cafe?pg=" + pg;
 		
 		if (result == 0) {
 			res = "fail";
@@ -138,7 +195,7 @@ public class empController {
 		System.out.println(dto.getEmployee_code());
 		System.out.println(dto.getEmployee_name());
 		int result = empService.updateEmp2(dto);
-		String res = "redirect:/hr/emp/list.cafe?pg=" + pg;
+		String res = "redirect:list.cafe?pg=" + pg;
 		
 		if (result == 0) {
 			res = "fail";

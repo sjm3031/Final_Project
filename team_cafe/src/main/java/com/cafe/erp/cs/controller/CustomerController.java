@@ -41,7 +41,7 @@ public class CustomerController {
 	
 		customerService.insertBoard(dto);
 		
-		return "redirect:/cs/customer/list.cafe";
+		return "redirect:list.cafe";
 	}
 
 	@RequestMapping("customer/list.cafe")
@@ -134,7 +134,8 @@ public class CustomerController {
 		System.out.println("update ==>"+dto);
 		int result = customerService.updateBoard(dto); 
 		System.out.println("update result=>"+result);
-		String res = "redirect:/cs/customer/list.cafe?pg="+pg;
+		 String res = "redirect:list.cafe?pg="+pg; 
+		
 		
 		if(result == 0) {
 			res = "fail"; 
@@ -156,7 +157,7 @@ public class CustomerController {
 	@RequestMapping("customer/delete.cafe")
 	public String delete(CustomerDTO dto,int pg ) {
 		int result = customerService.deleteBoard(dto); 
-		String res = "redirect:/cs/customer/list.cafe?pg="+pg;
+		String res = "redirect:cs/customer/list.cafe?pg="+pg;
 		if(result == 0) res="fail";
 		return res;
 		

@@ -5,8 +5,87 @@
 
 <!DOCTYPE html>
 <html><head>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript">
+		function stock_insert(){
+			
+			if(document.stockinsert.stock_productname.value=="선택하세요"){
+				alert("품명을 선택해주세요");
+				
+			}
+			else if(document.stockinsert.stock_detailname.value==""){
+				alert("상세명을 입력해주세요");
+				document.stockinsert.stock_detailname.focus();
+			}
+			else if(document.stockinsert.stock_standard.value==""){
+				alert("규격을 입력해주세요");
+				document.stockinsert.stock_standard.focus();
+			}
+			else if(document.stockinsert.stock_price.value==""){
+				alert("금액을 입력해주세요");
+				document.stockinsert.stock_price.focus();
+			}
+			else if(! document.stockinsert.stock_price.value== /^[0-9]*$/g.test(document.stockinsert.stock_price.value)){
+				alert("금액(원) 입력란에 숫자만 입력해주세요");
+				document.stockinsert.stock_price.focus();
+			}
+			else if(document.stockinsert.account_number.value=="회사명을 선택하세요"){
+				alert("회사명을 선택해주세요");
+				
+			}
+			else if(! document.stockinsert.stock_upimage.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.stockinsert.stock_upimage.value)){
+				alert("이미지 형식의 파일을 선택해주세요")
+			}
+			else{
+				document.stockinsert.submit();  //전송
+			}
+		}
+			
+			
+    </script>
+    
+    <script type="text/javascript">
+
+function account_insert(){
+	
+	if(document.accountinsert.account_number.value==""){
+		alert("사업자 번호를 입력해주세요");
+		document.accountinsert.account_number.focus();
+	}
+	else if(! document.accountinsert.account_number.value == 
+		/^[0-9]*$/g.test(document.accountinsert.account_number.value)){
+		alert("사업자 번호 입력란에 숫자만 입력해주세요")
+		document.accountinsert.account_number.focus();
+	}
+	else if(document.accountinsert.account_name.value==""){
+		alert("업체명을 입력해주세요");
+		document.accountinsert.account_name.focus();
+	}
+	else if(document.accountinsert.account_ceoname.value==""){
+		alert("사업자명을 입력해주세요");
+		document.accountinsert.account_ceoname.focus();
+	}
+	else if(document.accountinsert.account_address.value==""){
+		alert("주소를 입력해주세요");
+		document.accountinsert.account_address.focus();
+	}
+	else if(document.accountinsert.account_email.value==""){
+		alert("email을 입력해주세요");
+		document.accountinsert.account_email.focus();
+	}
+	else if(! document.accountinsert.account_email.value == 
+		/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(document.accountinsert.account_email.value))
+	{
+		alert("email입력 란에 email형식으로 입력해주세요")
+	}
+	else{
+		document.accountinsert.submit(); //전송
+	}
+}
+
+</script>
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -100,7 +179,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">매출</h6>
-            <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
+            <a class="dropdown-item" href="sell/list.cafe"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 뭘넣을까</a>
           </div>
         </li>
@@ -129,24 +208,18 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="payment-reports.do">
+          <a class="nav-link" href="accounting/list.cafe">
             <i class="fa fa-fw fa-money"></i>
             <span>회계/재무관리</span></a>
         </li>
         
-        
         <li class="nav-item">
-          <a class="nav-link" href="export-record.do">
-            <i class="fa fa-fw fa-external-link"></i>
-            <span>전문가 보고서</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="general-settings.do">
+          <a class="nav-link" href="setting.cafe">
             <i class="fa fa-fw fa-cogs"></i>
             <span>설정</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="help.do">
+          <a class="nav-link" href="help.cafe">
             <i class="fa fa-fw fa-life-ring"></i>
             <span>도움말</span></a>
         </li>
@@ -459,7 +532,7 @@
         </div>
       </div>
     </div>
-    
+
     
   
   	 <!-- #addStockModal -->
@@ -475,7 +548,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="store/stockinsert.cafe" method="post" enctype="multipart/form-data">
+          <form name="stockinsert" action="store/stockinsert.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
                <div class="form-group">
                 <label for="">품명</label>
@@ -523,7 +596,7 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
+              <input type="button" class="btn btn-primary" value="등록" onclick="stock_insert()">
             </div>
           </form>
         </div>
@@ -544,7 +617,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="store/accountinsert.cafe" method="post" enctype="multipart/form-data">
+          <form name="accountinsert" action="store/accountinsert.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
   
               <div class="form-group">
@@ -571,7 +644,7 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
+              <input type="button" class="btn btn-primary" value="등록" onclick="account_insert()">
             </div>
           </form>
         </div>
@@ -748,8 +821,8 @@
     <script src="../resources/js/jquery.min.js"></script>
     <script src="../resources/js/bootstrap.bundle.min.js"></script>
     <script src="../resources/js/jquery.easing.min.js"></script>
-<!--     <script src="../resources/js/chart.min.js"></script> -->
+    <script src="../resources/js/chart.min.js"></script>
     <script src="../resources/js/rc-pos.min.js"></script>
-<!--     <script src="../resources/js/chart-area-demo.js"></script> -->
+    <script src="../resources/js/chart-area-demo.js"></script>
   </body>
 </html>

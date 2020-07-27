@@ -22,6 +22,7 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public void insertStock(StockDTO dto) {
 		System.out.println("insertStock 진입");
+		System.out.println(dto.getStock_image()); 
 		StockDAO stockDAO = sqlSession.getMapper(StockDAO.class);
 		stockDAO.insertStock(dto);
 	}

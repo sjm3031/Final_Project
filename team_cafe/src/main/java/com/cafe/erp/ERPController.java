@@ -31,6 +31,9 @@ public class ERPController {
 	private ProductCategoryService productCategoryService;
 	
 	@Resource
+	private ProductOrderService productOrderService;
+	
+	@Resource
 	private jobService jobService;
 		 
 	@Resource
@@ -38,9 +41,6 @@ public class ERPController {
 	
 	@Resource
 	private salaryService salaryService;
-	
-	@Resource
-	private ProductOrderService productOrderService;
 		 
 	@RequestMapping("main.cafe")
 	public String login() {
@@ -69,18 +69,19 @@ public class ERPController {
 		
 	}
 	
-	@RequestMapping("sales-reports.cafe")
-	public String salesreports(Model model){
-		HashMap map = new HashMap();
-		
-		List<AccountDTO> account_list = stockService.getAccountList(map);
-		model.addAttribute("account_list", account_list);
-		
-		int cartcount = productOrderService.cartcount();
-		model.addAttribute("cartcount", cartcount);
-		
-		return "erp/sales-reports";
+	
+	@RequestMapping("help.cafe")
+	public String help(HttpServletRequest request) {
+		menuMethod(request);
+		return "erp/help";
 	}
+	
+	@RequestMapping("setting.cafe")
+	public String setting(HttpServletRequest request) {
+		menuMethod(request);
+		return "erp/setting";
+	}
+
 	
 	
 	public void menuMethod(Model model) {

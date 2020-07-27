@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	public List<OrderWebDTO> getOrderWebListAll(String date); //pos화면에서 오늘날짜의 모든 목록을 가져올때
 	public void updateOrderWebCheck(int order_web_code);		// 해당주문의 주문접수 확인 처리하기
+	public void insertOrderWebListAdd(int orderList_web_code, int product_add_code);			//주문내역테이블에저장
 -->
 
 
@@ -62,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
  select a.orderList_web_code,a.cafe_product_code,a.orderList_web_count,a.order_web_code,nvl(b.PRODUCT_ADD_CODE,0) product_add_code
  from CAFE_ORDERList_web a, CAFE_ORDERLIST_ADD_web b
- where a.orderList_web_code=b.orderlist_web_code(+) and a.order_web_code=#{customer_code} order by a.orderList_web_code,b.product_add_code 
+ where a.orderList_web_code=b.orderlist_web_code(+) and a.order_web_code=#{order_web_code} order by a.orderList_web_code,b.product_add_code 
  
  	</select>
 
@@ -81,5 +82,10 @@ where today=#{date} order by order_web_code desc
  		UPDATE CAFE_ORDER_WEB SET order_web_check =1 where order_web_code=#{order_web_code}
  	</update>
  	
+
+	<insert id="insertOrderWebListAdd2" parameterType="hashmap">
+		insert into CAFE_ORDERLIST_ADD_web values(#{orderList_web_code},#{product_add_code})	
+	</insert>
+	
 	
 </mapper>

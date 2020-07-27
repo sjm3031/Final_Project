@@ -111,6 +111,14 @@ public class OrderWebServiceImpl implements OrderWebService {
 		OrderWebDAO orderWebDAO = sqlSession.getMapper(OrderWebDAO.class);
 		orderWebDAO.updateOrderWebCheck(order_web_code);
 	}
+
+	@Override
+	public void insertOrderWebListAdd2(HashMap map1) {
+		// TODO Auto-generated method stub
+		OrderWebDAO orderWebDAO = sqlSession.getMapper(OrderWebDAO.class);
+		orderWebDAO.insertOrderWebListAdd2(map1);
+		
+	}
 	
 	
 }

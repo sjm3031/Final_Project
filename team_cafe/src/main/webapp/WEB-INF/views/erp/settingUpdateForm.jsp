@@ -157,38 +157,40 @@
              
             
             
-            <!-- Page Content -->
-            <!-- DataTables Example -->
-            <div class="card mb-3">
-              <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
-                <i class="fa fa-table"></i>
-               Pos Password
-               
-              </div>
-              <div class="card-body">
-                <div class="table-responsive" align="center">
-                  <table class="table table-bordered" id="dataTable" style="width: 50% !important; text-align: center;" cellspacing="0" >
-                    <thead>
-                      <tr>
-                        <th>PASSWORD</th>
+           <!-- Page Content -->
 
-                        <th width="20%"></th>
-                      </tr>
-                    </thead>
-                    <tr>
-                       <td>${pwd}</td>
-                        <td><input class="btn btn-primary" type="button" value="수정" onclick="location.href='posPasswordupdateform.cafe'" /></td>
-                    </tr>
-
-                  </table>
-                  
+				<div class="modal-content">
+					<div class="modal-header bg-secondary text-white">
+						<h7 class="modal-title" id="">
+							<i class="fa fa-tag"></i> POS 비밀번호수정
+						</h7>
+						
+					</div>
+					<form class="" action="posPasswordupdate.cafe" method="post" >
+            <div class="modal-body">
   
-                </div>
+              <div class="form-group">
+                <label for="">PASSWORD</label>
+                <input type="text" class="form-control" name="cafe_pospassword" value="${pwd}" required>
+                <small class="text-muted">정확히 입력해주세요.</small>
               </div>
-           <!--    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+              
+       
+              <small class="text-muted"><em>수정을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
-          </div>
-          <br><br><br>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="수정">
+              </div>
+            
+          </form>
+				</div>
+				
+			
+
+			<br>
+			<br>
+			<br>
          <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">
@@ -207,6 +209,8 @@
         </footer>
       </div>
       </div>
+      </div>
+     
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top" style="background: #212529 !important;  ">
       <i class="fa fa-angle-up"></i>

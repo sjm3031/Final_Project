@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cafe.erp.home.service.PosPasswordService;
 import com.cafe.erp.hr.model.empDTO;
 import com.cafe.erp.hr.model.empTnaDTO;
 import com.cafe.erp.hr.model.jobDTO;
@@ -37,6 +38,9 @@ public class ERPController {
 	
 	@Resource
 	private salaryService salaryService;
+	
+	@Resource
+	private PosPasswordService posPasswordService;
 		 
 	@RequestMapping("main.cafe")
 	public String login() {
@@ -73,9 +77,27 @@ public class ERPController {
 	@RequestMapping("setting.cafe")
 	public String setting(HttpServletRequest request) {
 		menuMethod(request);
+		String pwd = posPasswordService.getPosPassword();
+		request.setAttribute("pwd", pwd);
 		return "erp/setting";
 	}
 
+	@RequestMapping("posPasswordupdateform.cafe")
+	public String posPasswordupdateform(HttpServletRequest request) {
+		menuMethod(request);
+		String pwd = posPasswordService.getPosPassword();
+		request.setAttribute("pwd", pwd);
+		return "erp/settingUpdateForm";
+	}
+	//posPasswordupdate.cafe
+	@RequestMapping("posPasswordupdate.cafe")
+	public String posPasswordupdate(HttpServletRequest request) {
+		menuMethod(request);
+		String pwd = request.getParameter("cafe_pospassword");
+		posPasswordService.updatePosPassword(pwd);
+		return "redirect:setting.cafe";
+	}
+	
 
 	
 	

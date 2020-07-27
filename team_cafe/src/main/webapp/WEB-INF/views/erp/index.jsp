@@ -27,79 +27,35 @@
        
 	function stock_insert(){
 		
-		if(document.stockinsert.stock_productname.value=="선택하세요"){
-			alert("품명을 선택해주세요");
-			
-		}
-		else if(document.stockinsert.stock_detailname.value==""){
-			alert("상세명을 입력해주세요");
-			document.stockinsert.stock_detailname.focus();
-		}
-		else if(document.stockinsert.stock_standard.value==""){
-			alert("규격을 입력해주세요");
-			document.stockinsert.stock_standard.focus();
-		}
-		else if(document.stockinsert.stock_price.value==""){
-			alert("금액을 입력해주세요");
-			document.stockinsert.stock_price.focus();
-		}
-		else if(! document.stockinsert.stock_price.value== /^[0-9]*$/g.test(document.stockinsert.stock_price.value)){
+		 if(! document.stockinsert.stock_price.value== /^[0-9]*$/g.test(document.stockinsert.stock_price.value)){
 			alert("금액(원) 입력란에 숫자만 입력해주세요");
-			document.stockinsert.stock_price.focus();
-		}
-		else if(document.stockinsert.account_number.value=="회사명을 선택하세요"){
-			alert("회사명을 선택해주세요");
-			
+			return false;
 		}
 		else if(! document.stockinsert.stock_upimage.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.stockinsert.stock_upimage.value)){
-			alert("이미지 형식의 파일을 선택해주세요")
+			alert("이미지 형식의 파일을 선택해주세요");
+			return false;
 		}
-		else{
-			document.stockinsert.submit();  //전송
-		}
+
 	}
 		
-			
-    </script>
-    
-    <script type="text/javascript">
-function account_insert(){
+	function account_insert(){
+		
+		if(! document.accountinsert.account_number.value == 
+			/^[0-9]*$/g.test(document.accountinsert.account_number.value)){
+			alert("사업자 번호 입력란에 숫자만 입력해주세요");
+			return false;
+		}
+		else if(! document.accountinsert.account_email.value == 
+			/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(document.accountinsert.account_email.value))
+		{
+			alert("email입력 란에 email형식으로 입력해주세요");
+			return false;
+		}
 	
-	if(document.accountinsert.account_number.value==""){
-		alert("사업자 번호를 입력해주세요");
-		document.accountinsert.account_number.focus();
 	}
-	else if(! document.accountinsert.account_number.value == 
-		/^[0-9]*$/g.test(document.accountinsert.account_number.value)){
-		alert("사업자 번호 입력란에 숫자만 입력해주세요")
-		document.accountinsert.account_number.focus();
-	}
-	else if(document.accountinsert.account_name.value==""){
-		alert("업체명을 입력해주세요");
-		document.accountinsert.account_name.focus();
-	}
-	else if(document.accountinsert.account_ceoname.value==""){
-		alert("사업자명을 입력해주세요");
-		document.accountinsert.account_ceoname.focus();
-	}
-	else if(document.accountinsert.account_address.value==""){
-		alert("주소를 입력해주세요");
-		document.accountinsert.account_address.focus();
-	}
-	else if(document.accountinsert.account_email.value==""){
-		alert("email을 입력해주세요");
-		document.accountinsert.account_email.focus();
-	}
-	else if(! document.accountinsert.account_email.value == 
-		/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(document.accountinsert.account_email.value))
-	{
-		alert("email입력 란에 email형식으로 입력해주세요")
-	}
-	else{
-		document.accountinsert.submit(); //전송
-	}
-}
 </script>
+
+
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -502,12 +458,12 @@ function account_insert(){
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="stockinsert" action="store/stockinsert.cafe" method="post" enctype="multipart/form-data">
+          <form name="stockinsert" action="store/stockinsert.cafe" method="post" enctype="multipart/form-data" onsubmit="return stock_insert();">
             <div class="modal-body">
                <div class="form-group">
                 <label for="">품명</label>
                  <select class="form-control text-primary" name="stock_productname" id="stock_productname" required="required">
-                  <option disabled selected>품명을 선택해주세요.</option>
+                  <option  value="" selected>품명을 선택해주세요.</option>
                   <option>음료</option>
                   <option>원두</option>
                   <option>재과</option>
@@ -531,7 +487,7 @@ function account_insert(){
               <div class="form-group">
                 <label>회사명</label>
                 <select class="form-control text-primary" name="account_number" id="account_number" required="required">
-                  <option disabled selected><sub>회사명을 선택해주세요.</sub></option>
+                  <option value="" disabled selected ><sub>회사명을 선택해주세요.</sub></option>
                   <c:forEach var="get" items="${account_list}">
 
 		   		 <option value="${ get.account_number }">${ get.account_name }</option>
@@ -550,7 +506,7 @@ function account_insert(){
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="button" class="btn btn-primary" value="등록" onclick="stock_insert()">
+              <input type="submit" class="btn btn-primary" value="등록">
             </div>
           </form>
         </div>
@@ -571,34 +527,34 @@ function account_insert(){
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="accountinsert" action="store/accountinsert.cafe" method="post" enctype="multipart/form-data">
+          <form name="accountinsert" action="store/accountinsert.cafe" method="post" enctype="multipart/form-data" onsubmit="return account_insert();">
             <div class="modal-body">
   
               <div class="form-group">
                 <label>사업자 번호</label>
-                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number"/>
+                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number" required="required">
               </div>
               <div class="form-group">
                 <label>업체명</label>
-                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name"/>
+                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name" required="required">
               </div>
               <div class="form-group">
                 <label>사업자 명</label>
-                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname"/>
+                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname" required="required">
               </div>
               <div class="form-group">
                 <label>주소</label>
-                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address"/>
+                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address" required="required">
               </div>
               <div class="form-group">
                 <label>email</label>
-                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email"/>
+                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email" required="required">
               </div>
               <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="button" class="btn btn-primary" value="등록" onclick="account_insert()">
+              <input type="submit" class="btn btn-primary" value="등록">
             </div>
           </form>
         </div>

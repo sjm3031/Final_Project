@@ -1096,12 +1096,12 @@
               </div>
               <div class="form-group">
                 <label for="">고객 전화번호</label>
-                <input type="number" class="form-control" name="customer_phone" value="" placeholder="전화번호를 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_phone" value="" placeholder="'-' 빼고 전화번호를 입력해주세요." required>
               </div>
               
                  <div class="form-group">
                 <label for="">고객 생년월일</label>
-                <input type="number" class="form-control" name="customer_birth" value="" placeholder="생년월일을 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_birth" value="" placeholder="생년월일을 입력해주세요. ex)910202" required>
               </div>
         
         
@@ -1121,12 +1121,12 @@
               
               <div class="form-group" >
                 <label for="" class="stamp">고객 스템프수</label>
-                <input type="number" class="form-control" name="customer_stamp" value="" placeholder="스템프수를 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_stamp" value="" placeholder="스템프 수를 입력해주세요." required>
               </div>
               
                 <div class="form-group">
                 <label for="">고객 비밀번호</label>
-                <input type="number" class="form-control" name="customer_pwd" value="" placeholder="비밀번호를 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_pwd" value="" placeholder="숫자와 문자 포함 형태의 6~12자리 이내로 입력해주세요." required>
               </div>
         
         

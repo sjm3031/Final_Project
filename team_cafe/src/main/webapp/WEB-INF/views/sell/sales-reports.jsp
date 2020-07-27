@@ -12,6 +12,10 @@
     <link href="../../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../resources/css/styles.css" rel="stylesheet">
+    
+    
+	<script src="../resources/erp_js/form_validation.js"></script>
+    
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">

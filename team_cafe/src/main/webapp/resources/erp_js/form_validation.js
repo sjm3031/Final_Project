@@ -34,3 +34,20 @@ function account_insert(){
 	}
 
 }
+function customer_insert(){
+	
+    if(! document.writeform.customer_phone.value == /^01[0179][0-9]{8}$/.test(document.writeform.customer_phone.value) || document.writeform.customer_phone.value==""){
+       alert("전화번호를 형식에 맞춰 입력해 주세요.");
+       return false;
+    }else if(! document.writeform.customer_birth.value== /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/g.test(document.writeform.customer_birth.value) || document.writeform.customer_birth.value==""){
+       alert("생년월일을 형식에 맞춰 입력해 주세요.");
+       return false;
+    }else if(document.writeform.customer_gender.value==""){
+	      alert("고객 성별을 체크해주세요");
+	      return false;
+    }else if(! document.writeform.customer_pwd.value== /^[A-Za-z0-9]{6,12}$/.test(document.writeform.customer_pwd.value) || document.writeform.customer_pwd.value==""){
+       alert("비밀번호를 형식에 맞춰 입력해 주세요.");
+       return false;
+    }
+
+}

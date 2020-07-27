@@ -15,44 +15,8 @@
     <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/styles.css" rel="stylesheet">
     
-<script type="text/javascript">
-
-	function addCafeProduct(){
-		var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-		if(! document.addCafeProductModal.cafe_product_img_upload.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.addCafeProductModal.cafe_product_img_upload.value)){
-			alert('이미지 파일을 넣어주세요.');
-			return false;
-		}
-	}
-	function stock_insert(){
-		
-		 if(! document.stockinsert.stock_price.value== /^[0-9]*$/g.test(document.stockinsert.stock_price.value)){
-			alert("금액(원) 입력란에 숫자만 입력해주세요");
-			return false;
-		}
-		else if(! document.stockinsert.stock_upimage.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.stockinsert.stock_upimage.value)){
-			alert("이미지 형식의 파일을 선택해주세요");
-			return false;
-		}
-
-	}
-		
-	function account_insert(){
-		
-		if(! document.accountinsert.account_number.value == 
-			/^[0-9]*$/g.test(document.accountinsert.account_number.value)){
-			alert("사업자 번호 입력란에 숫자만 입력해주세요");
-			return false;
-		}
-		else if(! document.accountinsert.account_email.value == 
-			/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(document.accountinsert.account_email.value))
-		{
-			alert("email입력 란에 email형식으로 입력해주세요");
-			return false;
-		}
-	
-	}
-</script>
+    
+	<script src="../../../resources/erp_js/form_validation.js"></script>
     
     
   </head>
@@ -261,17 +225,17 @@
 			                  <ul class="pagination">
 			                  
 			                  		<c:if test="${pg>1}">  <!-- 5>10 : false / 15>10 : true -->
-										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-					              	  		  Previous
-					                	  </a>
+										<li class="paginate_button page-item ">
+								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    Previous
+					        	         </a>
 					             	    </li>
 									</c:if>
 									<c:if test="${pg<=1}"> <!-- 5<=10 :true / 15<=10:false -->
-										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-						                  <a aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-						              	    Previous
-						                  </a>
+										<li class="paginate_button page-item ">
+						                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    Previous
+					        	         </a>
 					  	               </li>
 									</c:if>          
 					          <c:forEach begin="${fromPage}" end="${toPage}" var="i">
@@ -293,7 +257,7 @@
 					                 
 					                	       
 					       <c:if test="${pg<allPage}"> 
-					           <li class="paginate_button page-item next disabled" id="dataTable_next">
+					           <li class="paginate_button page-item ">
 					                  <a href="list.cafe?pg=${pg+1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
 					                  	Next
 					                  </a>
@@ -301,7 +265,7 @@
 				            </c:if>      
 				            
 				             <c:if test="${pg>=allPage}"> 
-					           <li class="paginate_button page-item next disabled" id="dataTable_next">
+					           <li class="paginate_button page-item ">
 					                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
 					                  	Next
 					                  </a>

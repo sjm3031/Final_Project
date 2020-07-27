@@ -171,6 +171,7 @@ public class empController {
 		model.addAttribute("nameList", nameList);
 		model.addAttribute("yearList", yearList);
 		model.addAttribute("monthList", monthList);
+		
 		return "hr/emp/empUpdateForm";
 	}
 

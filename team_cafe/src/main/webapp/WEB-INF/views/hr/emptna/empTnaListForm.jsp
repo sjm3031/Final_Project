@@ -14,6 +14,106 @@
     <link href="../../../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/styles.css" rel="stylesheet">
+    <script type="text/javascript">
+	function addEmp(){
+		var nameP = /^[가-힣]{2,4}$/;
+		var phoneP = /^01[0179][0-9]{8}$/;
+		var bankP = /^[가-힣]{2,6}$/;
+		var bankaddP= /^[0-9]*$/g;
+		var juminP= /[0-9]{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[01])[012349][0-9]{6}/;
+		
+		if (!document.addEmpForm.employee_name.value ==nameP.test(document.addEmpForm.employee_name.value)) {
+			alert("이름을 확인해주세요");	
+		} else if (document.addEmpForm.employee_name.value =="") {
+			alert("이름을 입력하세요");
+			document.addEmpForm.employee_name.focus();
+		} else if (document.addEmpForm.employee_jumin.value == "") {
+			alert("주민번호를 입력하세요");
+			document.addEmpForm.employee_jumin.focus();
+		}else if (!document.addEmpForm.employee_jumin.value == juminP.test(document.addEmpForm.employee_jumin.value)) {
+			alert("주민번호를 확인하세요");
+			document.addEmpForm.employee_jumin.focus();
+		}else if (document.addEmpForm.employee_phone.value == "") {
+			alert("핸드폰번호를 입력하세요");
+			document.addEmpForm.employee_phone.focus();
+		} else if (!document.addEmpForm.employee_phone.value == phoneP.test(document.addEmpForm.employee_phone.value)) {
+			alert("핸드폰번호를 확인하세요");
+			document.addEmpForm.employee_phone.focus();
+		} else if (document.addEmpForm.employee_address.value == "") {
+			alert("주소를 입력하세요");
+			document.addEmpForm.employee_address.focus();
+		}else if (document.addEmpForm.employee_bank.value == "") {
+			alert("은행명을 입력하세요");
+			document.addEmpForm.employee_bank.focus();
+		}else if (!document.addEmpForm.employee_bank.value == bankP.test(document.addEmpForm.employee_bank.value)) {
+			alert("은행명을 확인하세요");
+			document.addEmpForm.employee_bank.focus();
+		} else if (document.addEmpForm.employee_bankaddress.value == "") {
+			alert("계좌번호를 입력하세요");
+			document.addEmpForm.employee_bankaddress.focus();
+		}else if (!document.addEmpForm.employee_bankaddress.value == bankaddP.test(document.addEmpForm.employee_bankaddress.value)) {
+			alert("계좌번호를 확인하세요");
+			document.addEmpForm.employee_bankaddress.focus();
+		}   else if (document.addEmpForm.employee_jobname.value == "") {
+			alert("직급을 선택하세요");
+			document.addEmpForm.employee_jobname.focus();
+		}else {
+			document.addEmpForm.submit(); //전송
+		}
+		
+		}
+
+	function addJob(){
+		var nameP = /^[가-힣]{1,10}$/;
+		var tpayP = /^[0-9]*$/g;
+		var mpayP = /^[0-9]*$/g;
+		
+		if (document.addJobForm.job_name.value == "") {
+			alert("직급을 입력하세요");
+		}else if (!document.addJobForm.job_name.value == nameP.test(document.addJobForm.job_name.value)) {
+			alert("직급을 확인하세요");
+			document.addJobForm.job_name.focus();
+		}else if (document.addJobForm.job_tpay.value == "") {
+			alert("시급을 입력하세요");
+			document.addJobForm.job_tpay.focus();
+		} else if (!document.addJobForm.job_tpay.value == tpayP.test(document.addJobForm.job_tpay.value)) {
+			alert("시급을 확인하세요");
+			document.addJobForm.job_tpay.focus();
+		}else if (document.addJobForm.job_mpay.value == "") {
+			alert("월급을 입력하세요");
+			document.addJobForm.job_mpay.focus();
+		}else if (!document.addJobForm.job_mpay.value == mpayP.test(document.addJobForm.job_mpay.value)) {
+			alert("월급을 확인하세요");
+			document.addJobForm.job_mpay.focus();
+		}else {
+			document.addJobForm.submit(); //전송
+		}
+	}
+	
+	function addSalary(){
+
+		var timeP= /^\d{1,2}$/;
+		
+		if (document.addSalaryForm.employee_name.value == "") {
+			alert("직원을 선택해주세요");
+		}else if (document.addSalaryForm.salary_year.value == "") {
+			alert("연도를 선택해주세요");
+			document.addSalaryForm.salary_year.focus();
+		}else if (document.addSalaryForm.salary_month.value == "") {
+			alert("월을 선택해주세요");
+			document.addSalaryForm.salary_month.focus();
+		}else if (document.addSalaryForm.salary_date.value == "") {
+			alert("월급지급일을 입력해주세요");
+			document.addSalaryForm.salary_date.focus();
+		}else if (!document.addSalaryForm.salary_date.value == timeP.test(document.addSalaryForm.salary_date.value)) {
+			alert("월급지급일을 확인해주세요");
+			document.addSalaryForm.salary_date.focus();
+		}else {
+			document.addSalaryForm.submit(); //전송
+		}
+	
+	}
+    </script>
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -313,7 +413,7 @@
     </a>
       <!-- Modals -->
       
-      <!-- #addEmpModal -->
+ <!-- #addEmpModal -->
    <div class="modal fade" id="addEmpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -326,35 +426,41 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="../../hr/emp/insert.cafe" method="post">
+          <form name="addEmpForm" action="../../hr/emp/insert.cafe" method="post" >
             <div class="modal-body">
               <div class="form-group">
                 <label>이름</label>
                 <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력하세요" required>
+               
               </div>
               <div class="form-group">
                 <label>주민번호</label>
-                <input type="text" class="form-control" name="employee_jumin"  placeholder="(-)빼고 입력하세요" required>
+                <input type="text" class="form-control" name="employee_jumin" placeholder="(-)빼고 입력하세요" required>
+                
               </div>
               <div class="form-group">
                 <label for="">핸드폰번호</label>
-                <input type="text" class="form-control" name="employee_phone" placeholder="(-)빼고 입력하세요" required>
+                <input type="text" class="form-control" name="employee_phone"  placeholder="(-)빼고 입력하세요" required>
+               
               </div>
               <div class="form-group">
                 <label for="">주소 </label>
-                <input type="text" class="form-control" name="employee_address" placeholder="주소를 입력하세요" required>
+                <input type="text" class="form-control" name="employee_address"  placeholder="주소를 입력하세요" required>
+                
               </div>
               <div class="form-group">
                 <label for="">은행 </label>
-                <input type="text" class="form-control" name="employee_bank" placeholder="급여 받을 은행을 입력해주세요." required>
+                <input type="text" class="form-control" name="employee_bank"  placeholder="급여 받을 은행을 입력해주세요." required>
+                
               </div>
               <div class="form-group">
                 <label for="">계좌번호</label>
-                <input type="text" class="form-control" name="employee_bankaddress" placeholder="계좌번호를 (-)빼고 입력해주세요." required>
+                <input type="text" class="form-control" name="employee_bankaddress"  placeholder="계좌번호를 (-)빼고 입력해주세요." required>
+                
               </div>
               <div class="form-group">
                 <label for="">직급</label>
-                <select name="employee_jobname" required>
+                <select name="employee_jobname"  >
 						<option value="">선택하세요</option>
 					<c:forEach var="emp" items="${joblist}">
 						<option  value="${emp.job_name}">${emp.job_name}</option>
@@ -366,12 +472,112 @@
              </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="button" class="btn btn-primary" value="등록" onclick="addEmp()">
             </div>
           </form>
         </div>
       </div>
-    </div><!-- #searchMonthModal -->
+    </div>
+      <!-- #addjobModal -->
+   <div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+              직급등록
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form name="addJobForm" action="../../hr/job/list.cafe" method="post">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>직급</label>
+                <input type="text" class="form-control" name="job_name"  placeholder="직급을 입력하세요" required>
+              </div>
+              <div class="form-group">
+                <label>시급</label>
+                <input type="text" class="form-control" name="job_tpay"  placeholder="없으면 0을 입력하세요" required>
+                <small class="text-muted">급여를 계산할 때 필요하니 꼭 입력해주세요.</small>
+              </div>
+              <div class="form-group">
+                <label for="">월급</label>
+                <input type="text" class="form-control" name="job_mpay" placeholder="없으면 0을 입력하세요" required>
+                <small class="text-muted">급여를 계산할 때 필요하니 꼭 입력해주세요.</small>
+              </div>
+              </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="button" class="btn btn-primary" value="등록" onclick="addJob()">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> 
+      <!-- #addSalaryModal -->
+   <div class="modal fade" id="addSalaryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+              급여정산
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form name="addSalaryForm" action="../../hr/salary/insert.cafe" method="post"  >
+            <div class="modal-body">
+              <div class="form-group">
+                <label>직원이름</label>
+                	<select name="employee_name" required>
+					<option value="">이름을 선택하세요</option>
+		
+					<c:forEach var="t" items="${nameList }">
+					<option value="${t.employee_name }">${t.employee_name }</option>
+					</c:forEach>
+					</select><br><br>
+              </div>
+              <div class="form-group">
+                <label>근무 연도</label>
+                <select name="salary_year" required>
+					<option value="">연도를 선택하세요</option>
+		
+					<c:forEach var="t" items="${yearList }">
+					<option value="${t.emptna_year }">${t.emptna_year }</option>
+					</c:forEach>
+				</select><br><br>
+              </div>
+              
+              <div class="form-group">
+                <label for="">근무 월</label>
+                	<select name="salary_month" required>
+						<option value="">월을 선택하세요</option>
+		
+							<c:forEach var="t" items="${monthList }">
+							<option value="${t.emptna_month }">${t.emptna_month }</option>
+						</c:forEach>
+					</select><br><br>
+              </div>
+              <div class="form-group">
+                <label for="">급여일</label>
+                <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
+              
+              <br>
+             </div>
+             </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="button" class="btn btn-primary" value="정산" onclick="addSalary()">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>   
+<!-- #searchMonthModal -->
    <div class="modal fade" id="searchMonthModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -473,105 +679,7 @@
         </div>
       </div>
     </div> 
-      <!-- #addjobModal -->
-   <div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-tag"></i>
-              직급등록
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form action="../../hr/job/list.cafe" method="post">
-            <div class="modal-body">
-              <div class="form-group">
-                <label>직급</label>
-                <input type="text" class="form-control" name="job_name"  placeholder="직급을 입력하세요" required>
-              </div>
-              <div class="form-group">
-                <label>시급</label>
-                <input type="text" class="form-control" name="job_tpay"  placeholder="없으면 0을 입력하세요" required>
-                <small class="text-muted">급여를 계산할 때 필요하니 꼭 입력해주세요.</small>
-              </div>
-              <div class="form-group">
-                <label for="">월급</label>
-                <input type="text" class="form-control" name="job_mpay" placeholder="없으면 0을 입력하세요" required>
-                <small class="text-muted">급여를 계산할 때 필요하니 꼭 입력해주세요.</small>
-              </div>
-              </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div> 
-      <!-- #addSalaryModal -->
-   <div class="modal fade" id="addSalaryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-tag"></i>
-              급여정산
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form action="../../hr/salary/insert.cafe" method="post">
-            <div class="modal-body">
-              <div class="form-group">
-                <label>직원이름</label>
-                	<select name="employee_name" required>
-					<option value="">이름을 선택하세요</option>
-		
-					<c:forEach var="t" items="${nameList }">
-					<option value="${t.employee_name }">${t.employee_name }</option>
-					</c:forEach>
-					</select><br><br>
-              </div>
-              <div class="form-group">
-                <label>근무 연도</label>
-                <select name="salary_year" required>
-					<option value="">연도를 선택하세요</option>
-		
-					<c:forEach var="t" items="${yearList }">
-					<option value="${t.emptna_year }">${t.emptna_year }</option>
-					</c:forEach>
-				</select><br><br>
-              </div>
-              
-              <div class="form-group">
-                <label for="">근무 월</label>
-                	<select name="salary_month" required>
-						<option value="">월을 선택하세요</option>
-		
-							<c:forEach var="t" items="${monthList }">
-							<option value="${t.emptna_month }">${t.emptna_month }</option>
-						</c:forEach>
-					</select><br><br>
-              </div>
-              <div class="form-group">
-                <label for="">급여일</label>
-                <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
-              
-              <br>
-             </div>
-             </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+      
     
       <!-- #addCafeProductModal -->
     <div class="modal fade" id="addCafeProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

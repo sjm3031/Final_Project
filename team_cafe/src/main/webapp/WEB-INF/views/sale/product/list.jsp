@@ -14,6 +14,19 @@
     <link href="../../../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/styles.css" rel="stylesheet">
+    
+<script type="text/javascript">
+
+	function addCafeProduct(){
+		var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+		if(! document.addCafeProductModal.cafe_product_img_upload.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.addCafeProductModal.cafe_product_img_upload.value)){
+			alert('이미지 파일을 넣어주세요.');
+			return false;
+		}
+	}
+</script>
+    
+    
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -318,12 +331,12 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="write.cafe" method="post" enctype="multipart/form-data">
+          <form id="addCafeProductModal" name="addCafeProductModal" action="sale/product/write.cafe" method="post" enctype="multipart/form-data" onsubmit="return addCafeProduct();">
             <div class="modal-body">
               <div class="form-group">
                 <label>카테고리</label>
-                <select class="form-control text-primary" name="product_category_code" id="product_category_code">
-                  <option disabled selected><sub>제품 카테고리를 선택해주세요.</sub></option>
+                <select class="form-control text-primary" name="product_category_code" id="product_category_code" required="required">
+                  <option value="" disabled selected><sub>제품 카테고리를 선택해주세요.</sub></option>
                   <c:forEach var="pcl" items="${productcategorylist}">
 
 		    <option value="${ pcl.product_category_code }">${ pcl.product_category_name }</option>
@@ -335,17 +348,17 @@
               </div>
               <div class="form-group">
                 <label for="">제품명</label>
-                <input type="text" class="form-control" name="cafe_product_name" value="" placeholder="제품명 입력" required>
+                <input type="text" class="form-control" id="cafe_product_name" name="cafe_product_name" value="" placeholder="제품명 입력" required="required">
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
               <div class="form-group">
                 <label for="">제품 가격 <small class="text-muted">(개당 가격)</small> </label>
-                <input type="number" class="form-control" name="cafe_product_price" value="" placeholder="단가를 입력해주세요" required>
+                <input type="number" class="form-control" name="cafe_product_price" value="" placeholder="단가를 입력해주세요" required="required">
               </div>
               <div class="form-group">
                 <label for="">제품 이미지</label><br>
-			<input type="file" name="cafe_product_img_upload">
-			<input type="hidden" name="cafe_product_img"  value = ""/><br>
+			<input type="file" name="cafe_product_img_upload" required="required">
+			<input type="hidden" name="cafe_product_img"  value = "" ><br>
 	          <small class="text-muted">재품 이미지를 정확히 입력해주세요.</small>
               </div>
        
@@ -353,7 +366,7 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
@@ -377,7 +390,7 @@
   
               <div class="form-group">
                 <label for="">카테고리명</label>
-                <input type="text" class="form-control" name="product_category_name" value="" placeholder="제품명 입력" required>
+                <input type="text" class="form-control" name="product_category_name" value="" placeholder="제품명 입력" required="required">
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
              
@@ -410,12 +423,12 @@
             <div class="modal-body">
               <div class="form-group">
                 <label for="">옵션(추가사항) 명</label>
-                <input type="text" class="form-control" name="product_add_name" value="" placeholder="제품명 입력" required>
+                <input type="text" class="form-control" name="product_add_name" value="" placeholder="제품명 입력" required="required">
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
               <div class="form-group">
                 <label for="">옵션(추가사항) 가격 <small class="text-muted">(개당 가격)</small> </label>
-                <input type="number" class="form-control" name="product_add_price" value="" placeholder="단가를 입력해주세요" required>
+                <input type="number" class="form-control" name="product_add_price" value="" placeholder="단가를 입력해주세요" required="required">
               </div>       
               <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>

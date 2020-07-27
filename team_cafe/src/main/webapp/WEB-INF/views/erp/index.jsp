@@ -14,6 +14,92 @@
     <link href="../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../resources/css/styles.css" rel="stylesheet">
+    
+<script type="text/javascript">
+
+	function addCafeProduct(){
+		var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+		if(! document.addCafeProductModal.cafe_product_img_upload.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.addCafeProductModal.cafe_product_img_upload.value)){
+			alert('이미지 파일을 넣어주세요.');
+			return false;
+		}
+	}
+       
+	function stock_insert(){
+		
+		if(document.stockinsert.stock_productname.value=="선택하세요"){
+			alert("품명을 선택해주세요");
+			
+		}
+		else if(document.stockinsert.stock_detailname.value==""){
+			alert("상세명을 입력해주세요");
+			document.stockinsert.stock_detailname.focus();
+		}
+		else if(document.stockinsert.stock_standard.value==""){
+			alert("규격을 입력해주세요");
+			document.stockinsert.stock_standard.focus();
+		}
+		else if(document.stockinsert.stock_price.value==""){
+			alert("금액을 입력해주세요");
+			document.stockinsert.stock_price.focus();
+		}
+		else if(! document.stockinsert.stock_price.value== /^[0-9]*$/g.test(document.stockinsert.stock_price.value)){
+			alert("금액(원) 입력란에 숫자만 입력해주세요");
+			document.stockinsert.stock_price.focus();
+		}
+		else if(document.stockinsert.account_number.value=="회사명을 선택하세요"){
+			alert("회사명을 선택해주세요");
+			
+		}
+		else if(! document.stockinsert.stock_upimage.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.stockinsert.stock_upimage.value)){
+			alert("이미지 형식의 파일을 선택해주세요")
+		}
+		else{
+			document.stockinsert.submit();  //전송
+		}
+	}
+		
+			
+    </script>
+    
+    <script type="text/javascript">
+function account_insert(){
+	
+	if(document.accountinsert.account_number.value==""){
+		alert("사업자 번호를 입력해주세요");
+		document.accountinsert.account_number.focus();
+	}
+	else if(! document.accountinsert.account_number.value == 
+		/^[0-9]*$/g.test(document.accountinsert.account_number.value)){
+		alert("사업자 번호 입력란에 숫자만 입력해주세요")
+		document.accountinsert.account_number.focus();
+	}
+	else if(document.accountinsert.account_name.value==""){
+		alert("업체명을 입력해주세요");
+		document.accountinsert.account_name.focus();
+	}
+	else if(document.accountinsert.account_ceoname.value==""){
+		alert("사업자명을 입력해주세요");
+		document.accountinsert.account_ceoname.focus();
+	}
+	else if(document.accountinsert.account_address.value==""){
+		alert("주소를 입력해주세요");
+		document.accountinsert.account_address.focus();
+	}
+	else if(document.accountinsert.account_email.value==""){
+		alert("email을 입력해주세요");
+		document.accountinsert.account_email.focus();
+	}
+	else if(! document.accountinsert.account_email.value == 
+		/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(document.accountinsert.account_email.value))
+	{
+		alert("email입력 란에 email형식으로 입력해주세요")
+	}
+	else{
+		document.accountinsert.submit(); //전송
+	}
+}
+</script>
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -291,12 +377,12 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/product/write.cafe" method="post" enctype="multipart/form-data">
+          <form id="addCafeProductModal" name="addCafeProductModal" action="sale/product/write.cafe" method="post" enctype="multipart/form-data" onsubmit="return addCafeProduct();">
             <div class="modal-body">
               <div class="form-group">
                 <label>카테고리</label>
-                <select class="form-control text-primary" name="product_category_code" id="product_category_code">
-                  <option disabled selected><sub>제품 카테고리를 선택해주세요.</sub></option>
+                <select class="form-control text-primary" name="product_category_code" id="product_category_code" required="required">
+                  <option value="" disabled selected><sub>제품 카테고리를 선택해주세요.</sub></option>
                   <c:forEach var="pcl" items="${productcategorylist}">
 
 		    <option value="${ pcl.product_category_code }">${ pcl.product_category_name }</option>
@@ -308,17 +394,17 @@
               </div>
               <div class="form-group">
                 <label for="">제품명</label>
-                <input type="text" class="form-control" name="cafe_product_name" value="" placeholder="제품명 입력" required>
+                <input type="text" class="form-control" id="cafe_product_name" name="cafe_product_name" value="" placeholder="제품명 입력" required="required">
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
               <div class="form-group">
                 <label for="">제품 가격 <small class="text-muted">(개당 가격)</small> </label>
-                <input type="number" class="form-control" name="cafe_product_price" value="" placeholder="단가를 입력해주세요" required>
+                <input type="number" class="form-control" name="cafe_product_price" value="" placeholder="단가를 입력해주세요" required="required">
               </div>
               <div class="form-group">
                 <label for="">제품 이미지</label><br>
-			<input type="file" name="cafe_product_img_upload">
-			<input type="hidden" name="cafe_product_img"  value = ""/><br>
+			<input type="file" name="cafe_product_img_upload" required="required">
+			<input type="hidden" name="cafe_product_img"  value = "" ><br>
 	          <small class="text-muted">재품 이미지를 정확히 입력해주세요.</small>
               </div>
        
@@ -326,7 +412,7 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
@@ -350,7 +436,7 @@
   
               <div class="form-group">
                 <label for="">카테고리명</label>
-                <input type="text" class="form-control" name="product_category_name" value="" placeholder="제품명 입력" required>
+                <input type="text" class="form-control" name="product_category_name" value="" placeholder="제품명 입력" required="required">
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
              
@@ -383,12 +469,12 @@
             <div class="modal-body">
               <div class="form-group">
                 <label for="">옵션(추가사항) 명</label>
-                <input type="text" class="form-control" name="product_add_name" value="" placeholder="제품명 입력" required>
+                <input type="text" class="form-control" name="product_add_name" value="" placeholder="제품명 입력" required="required">
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
               <div class="form-group">
                 <label for="">옵션(추가사항) 가격 <small class="text-muted">(개당 가격)</small> </label>
-                <input type="number" class="form-control" name="product_add_price" value="" placeholder="단가를 입력해주세요" required>
+                <input type="number" class="form-control" name="product_add_price" value="" placeholder="단가를 입력해주세요" required="required">
               </div>       
               <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
@@ -403,7 +489,7 @@
     
     
   
-  	 <!-- #addStockModal -->
+<!-- #addStockModal -->
     <div class="modal fade" id="addStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -416,11 +502,11 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="store/stockinsert.cafe" method="post" enctype="multipart/form-data">
+          <form name="stockinsert" action="store/stockinsert.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
                <div class="form-group">
                 <label for="">품명</label>
-                 <select class="form-control text-primary" name="stock_productname" id="stock_productname">
+                 <select class="form-control text-primary" name="stock_productname" id="stock_productname" required="required">
                   <option disabled selected>품명을 선택해주세요.</option>
                   <option>음료</option>
                   <option>원두</option>
@@ -430,21 +516,21 @@
               </div>
               <div class="form-group">
                 <label>상세명</label>
-                <input type="text" placeholder="상세명을 입력해주세요" class="form-control" id="stock_detailname" name="stock_detailname"/>
+                <input type="text" placeholder="상세명을 입력해주세요" class="form-control" id="stock_detailname" name="stock_detailname" required="required"/>
               </div>
               
               <div class="form-group">
                 <label>규격</label>
-                <input type="text" placeholder="규격을 입력해주세요" class="form-control" id="stock_standard" name="stock_standard"/>
+                <input type="text" placeholder="규격을 입력해주세요" class="form-control" id="stock_standard" name="stock_standard" required="required"/>
               </div>
               
               <div class="form-group">
                 <label>금액(원)</label>
-                <input type="text" placeholder="금액(원)을 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
+                <input type="text" placeholder="금액(원)을 입력해주세요" class="form-control" id="stock_price" name="stock_price" required="required"/>
               </div>
               <div class="form-group">
                 <label>회사명</label>
-                <select class="form-control text-primary" name="account_number" id="account_number">
+                <select class="form-control text-primary" name="account_number" id="account_number" required="required">
                   <option disabled selected><sub>회사명을 선택해주세요.</sub></option>
                   <c:forEach var="get" items="${account_list}">
 
@@ -458,13 +544,13 @@
               
               <div class="form-group">
                 <label>이미지 등록</label>
-                <input type="file" id="stock_upimage" name="stock_upimage" />
+                <input type="file" id="stock_upimage" name="stock_upimage"   required="required"/>
               </div>
               <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
+              <input type="button" class="btn btn-primary" value="등록" onclick="stock_insert()">
             </div>
           </form>
         </div>
@@ -485,7 +571,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="store/accountinsert.cafe" method="post" enctype="multipart/form-data">
+          <form name="accountinsert" action="store/accountinsert.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
   
               <div class="form-group">
@@ -512,12 +598,13 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
+              <input type="button" class="btn btn-primary" value="등록" onclick="account_insert()">
             </div>
           </form>
         </div>
       </div>
     </div>
+    
     
     
     <!-- #addEmpModal -->

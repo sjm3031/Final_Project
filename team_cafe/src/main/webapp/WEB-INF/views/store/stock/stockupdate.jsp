@@ -66,7 +66,7 @@
 				alert("금액(원) 입력란에 숫자만 입력해주세요");
 				document.stockupdate.stock_price.focus();
 			}
-			else if(document.stockupdate.account_number.value==""){
+			else if(document.stockupdate.account_number.value=="선택하세요"){
 				alert("회사명을 선택해주세요");
 				
 			}

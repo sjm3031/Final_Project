@@ -185,7 +185,7 @@ function account_insert(){
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="cs/customer/list.cafe">
+          <a class="nav-link" href="../cs/customer/list.cafe">
             <i class="fa fa-fw fa-users"></i>
             <span>고객관리</span>
           </a>
@@ -202,18 +202,18 @@ function account_insert(){
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">직원</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addEmpModal"> <i class="fa fa-plus"></i> 직원등록</a>
-            <a class="dropdown-item" href="hr/emp/list.cafe"> <i class="fa fa-user"></i> 직원조회</a>
+            <a class="dropdown-item" href="../hr/emp/list.cafe"> <i class="fa fa-user"></i> 직원조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">직급</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addJobModal"> <i class="fa fa-plus"></i> 직급등록</a>
-            <a class="dropdown-item" href="hr/job/list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
+            <a class="dropdown-item" href="../hr/job/list.cafe"> <i class="fa fa-tags"></i> 직급 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">근태	</h6>
-            <a class="dropdown-item" href="hr/emptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
+            <a class="dropdown-item" href="../hr/emptna/list.cafe"> <i class="fa fa-tags"></i> 근태일지 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">급여</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addSalaryModal"> <i class="fa fa-plus"></i> 급여정산</a>
-            <a class="dropdown-item" href="hr/salary/list.cafe"> <i class="fa fa-tags"></i> 급여 조회</a>
+            <a class="dropdown-item" href="../hr/salary/list.cafe"> <i class="fa fa-tags"></i> 급여 조회</a>
           </div>
         </li>
         
@@ -227,12 +227,12 @@ function account_insert(){
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">상품 타입</h6>
-            <a class="dropdown-item" href="sale/productCategory/list.cafe"> <i class="fa fa-tags"></i> 상품 카테고리 조회</a>
-            <a class="dropdown-item" href="sale/productAdd/list.cafe"> <i class="fa fa-tags"></i> 상품 옵션 조회</a>
+            <a class="dropdown-item" href="../sale/productCategory/list.cafe"> <i class="fa fa-tags"></i> 상품 카테고리 조회</a>
+            <a class="dropdown-item" href="../sale/productAdd/list.cafe"> <i class="fa fa-tags"></i> 상품 옵션 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">판매 상품</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addCafeProductModal"> <i class="fa fa-plus"></i> 판매 상품 추가</a>
-            <a class="dropdown-item" href="sale/product/list.cafe"> <i class="fa fa-tags"></i> 상품 조회</a>
+            <a class="dropdown-item" href="../sale/product/list.cafe"> <i class="fa fa-tags"></i> 상품 조회</a>
           </div>
         </li>
         
@@ -247,7 +247,7 @@ function account_insert(){
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">매출</h6>
-            <a class="dropdown-item" href="sell/list.cafe"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
+            <a class="dropdown-item" href="list.cafe"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 뭘넣을까</a>
           </div>
         </li>
@@ -263,15 +263,15 @@ function account_insert(){
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">거래처</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addAccountModal"> <i class="fa fa-plus"></i> 거래처 등록</a>
-            <a class="dropdown-item" href="store/accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
+            <a class="dropdown-item" href="../store/accountlist.cafe"> <i class="fa fa-industry"></i>거래처 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">원재료 품목</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addStockModal"> <i class="fa fa-plus"></i> 재료 품목 추가</a>
-            <a class="dropdown-item" href="store/stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
+            <a class="dropdown-item" href="../store/stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">발주</h6>
-            <a class="dropdown-item" href="store/stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
-            <a class="dropdown-item" href="store/orderlist.cafe" > <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
+            <a class="dropdown-item" href="../store/stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
+            <a class="dropdown-item" href="../store/orderlist.cafe" > <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
           </div>
         </li>
         

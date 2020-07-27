@@ -175,7 +175,7 @@ function account_insert(){
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">매출</h6>
-            <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
+            <a class="dropdown-item" href="../../sell/list.cafe"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 뭘넣을까</a>
           </div>
         </li>

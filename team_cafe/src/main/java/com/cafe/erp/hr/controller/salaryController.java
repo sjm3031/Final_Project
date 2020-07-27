@@ -13,11 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cafe.erp.ERPController;
 import com.cafe.erp.hr.model.empDTO;
 import com.cafe.erp.hr.model.empTnaDTO;
 import com.cafe.erp.hr.model.jobDTO;
 import com.cafe.erp.hr.model.salaryDTO;
+import com.cafe.erp.hr.service.empTnaService;
 import com.cafe.erp.hr.service.jobService;
 import com.cafe.erp.hr.service.salaryService;
 import com.cafe.erp.sale.model.ProductCategoryVO;
@@ -38,7 +38,7 @@ public class salaryController {
 	@Resource
 	private StockService stockService;
 	@Resource
-	private ERPController erpController;
+	private empTnaService empTnaService;
 	
 	@RequestMapping("hr/salary/list.cafe")
 	public String SalaryListForm(HttpServletRequest req,Model model) {
@@ -122,6 +122,9 @@ public class salaryController {
 		List<jobDTO> joblist = jobService.getJobList();
 		model.addAttribute("joblist", joblist);
 		
+		List<AccountDTO> account_list = stockService.getAccountList(map);
+		model.addAttribute("account_list", account_list);
+		
 		List<empDTO> nameList = salaryService.getName();
 		List<empTnaDTO> yearList = salaryService.getYear();
 		List<empTnaDTO> monthList = salaryService.getMonth();
@@ -179,6 +182,7 @@ public class salaryController {
 	}
 	
 	
+	
 	@RequestMapping(value="hr/salary/insert.cafe",method=RequestMethod.GET)
 	public String insertForm(Model model) {
 		
@@ -197,13 +201,47 @@ public class salaryController {
 	@RequestMapping(value="hr/salary/insert.cafe",method=RequestMethod.POST)
 	public String insert(salaryDTO dto,Model model,String employee_name,int salary_year,int salary_month,int
 			salary_date,HttpServletResponse resp) throws Exception{
-		
 		HashMap map = new HashMap();
+		List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
+		model.addAttribute("productcategorylist", list);
+
+		List<jobDTO> joblist = jobService.getJobList();
+		model.addAttribute("joblist", joblist);
+		
+		
+		List<empDTO> nameList = salaryService.getName();
+		List<empTnaDTO> yearList = salaryService.getYear();
+		List<empTnaDTO> monthList = salaryService.getMonth();
+
+		model.addAttribute("nameList", nameList);
+		model.addAttribute("yearList", yearList);
+		model.addAttribute("monthList", monthList);
+		
+		List<empTnaDTO> list4 = empTnaService.getYear();
+		List<empTnaDTO> list1 = empTnaService.getMonth();
+		List<empTnaDTO> list2 = empTnaService.getDay();
+		List<empTnaDTO> list3 = empTnaService.getName();
+		model.addAttribute("list", list4);
+		model.addAttribute("list1", list1);
+		model.addAttribute("list2", list2);
+		model.addAttribute("list3", list3);
+		
 		map.put("employee_name", employee_name);
 		map.put("salary_year", salary_year);
 		map.put("salary_month", salary_month);
 		map.put("salary_date", salary_date);
 		
+		List<salaryDTO> salary = salaryService.checkSalary(map);
+		
+		if(salary.isEmpty()) {
+			
+			resp.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = resp.getWriter();
+			out.println("<script>alert('근무시간이 없습니다.');location.href='list.cafe';</script>");
+			out.flush();
+			
+			return null;
+		}else {
 		double monthtotal = salaryService.getMaxMonthTotal(map);
 		map.put("monthtotal", monthtotal);
 		
@@ -213,12 +251,12 @@ public class salaryController {
 			
 			resp.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = resp.getWriter();
-			out.println("<script>alert('근무시간이 없습니다.');</script>");
+			out.println("<script>alert('근무시간이 없습니다.');location.href='list.cafe';</script>");
 			out.flush();
 
-			return "hr/emptna/empTnaUpdateForm";
+			return null;
 		}
-		
+		}
 //		model.addAttribute("salary_date", salary_date);
 //		System.out.println(salary_date);
 		return "redirect:list.cafe";

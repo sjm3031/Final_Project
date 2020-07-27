@@ -17,6 +17,7 @@ public interface salaryDAO {
 	
 	public List<empDTO> getName();
 	
+	public List<salaryDTO> checkSalary(HashMap map);
 	
 	public salaryDTO getSalary(int salary_code);
 

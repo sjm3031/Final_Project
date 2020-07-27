@@ -21,6 +21,14 @@ public class salaryServiceImpl implements salaryService {
 	
 
 	@Override
+	public List<salaryDTO> checkSalary(HashMap map) {
+
+		salaryDAO dao = sqlSession.getMapper(salaryDAO.class);
+		
+		return dao.checkSalary(map);
+	}
+
+	@Override
 	public double getMaxMonthTotal(HashMap map) {
 		
 		salaryDAO dao = sqlSession.getMapper(salaryDAO.class);

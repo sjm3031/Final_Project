@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.hr.model.empDTO;
 import com.cafe.erp.hr.model.empTnaDTO;
 import com.cafe.erp.hr.model.jobDTO;
@@ -37,6 +38,8 @@ public class salaryController {
 	private jobService jobService;
 	@Resource
 	private StockService stockService;
+	@Resource
+	private ERPController erpController;
 	@Resource
 	private empTnaService empTnaService;
 	
@@ -122,9 +125,6 @@ public class salaryController {
 		List<jobDTO> joblist = jobService.getJobList();
 		model.addAttribute("joblist", joblist);
 		
-		List<AccountDTO> account_list = stockService.getAccountList(map);
-		model.addAttribute("account_list", account_list);
-		
 		List<empDTO> nameList = salaryService.getName();
 		List<empTnaDTO> yearList = salaryService.getYear();
 		List<empTnaDTO> monthList = salaryService.getMonth();
@@ -180,7 +180,6 @@ public class salaryController {
 		req.setAttribute("toPage", toPage);
 		return "hr/salary/salaryListForm";
 	}
-	
 	
 	
 	@RequestMapping(value="hr/salary/insert.cafe",method=RequestMethod.GET)

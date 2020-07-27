@@ -17,6 +17,7 @@ public interface salaryService {
 	
 	public List<salaryDTO> checkSalary(HashMap map);
 	
+
 	public List<empTnaDTO> getMonth();
 
 	public List<empTnaDTO> getYear();

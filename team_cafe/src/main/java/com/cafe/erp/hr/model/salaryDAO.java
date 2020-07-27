@@ -11,13 +11,14 @@ public interface salaryDAO {
 	
 	public List<salaryDTO> searchSalary(HashMap map);
 	
+	public List<salaryDTO> checkSalary(HashMap map);
+	
 	public List<empTnaDTO> getMonth();
 	
 	public List<empTnaDTO> getYear();
 	
 	public List<empDTO> getName();
 	
-	public List<salaryDTO> checkSalary(HashMap map);
 	
 	public salaryDTO getSalary(int salary_code);
 

@@ -67,12 +67,17 @@ public class StockController {
 		
 			//n.setFileSrc(fname); //파일이름 
 		}
-		
+		else {
+		dto.setStock_image("");
 		System.out.println("insert controller 진입");
 		stockService.insertStock(dto);
 		System.out.println("insert 완료");
+		}
 		return "redirect:stocklist.cafe";
+		
 	}
+		
+		
 	
 
 	@RequestMapping("/stocklist.cafe")

@@ -323,7 +323,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form id="addCafeProductModal" name="addCafeProductModal" action="sale/product/write.cafe" method="post" enctype="multipart/form-data" onsubmit="return addCafeProduct();">
+          <form id="addCafeProductModal" name="addCafeProductModal" action="write.cafe" method="post" enctype="multipart/form-data" onsubmit="return addCafeProduct();">
             <div class="modal-body">
               <div class="form-group">
                 <label>카테고리</label>

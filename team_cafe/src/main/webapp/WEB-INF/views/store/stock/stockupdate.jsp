@@ -44,6 +44,44 @@
     </script>
     
     <script type="text/javascript">
+		function stock_update(){
+			
+			if(document.stockupdate.stock_productname.value==""){
+				alert("품명을 선택해주세요");
+				
+			}
+			else if(document.stockupdate.stock_detailname.value==""){
+				alert("상세명을 입력해주세요");
+				document.stockupdate.stock_detailname.focus();
+			}
+			else if(document.stockupdate.stock_standard.value==""){
+				alert("규격을 입력해주세요");
+				document.stockupdate.stock_standard.focus();
+			}
+			else if(document.stockupdate.stock_price.value==""){
+				alert("금액을 입력해주세요");
+				document.stockupdate.stock_price.focus();
+			}
+			else if(! document.stockupdate.stock_price.value== /^[0-9]*$/g.test(document.stockupdate.stock_price.value)){
+				alert("금액(원) 입력란에 숫자만 입력해주세요");
+				document.stockupdate.stock_price.focus();
+			}
+			else if(document.stockupdate.account_number.value==""){
+				alert("회사명을 선택해주세요");
+				
+			}
+			else if(! document.stockupdate.stock_image.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.stockupdate.stock_image.value)){
+				alert("이미지 형식의 파일을 선택해주세요")
+			}
+			else{
+				document.stockupdate.submit();  //전송
+			}
+		}
+			
+			
+    </script>
+    
+    <script type="text/javascript">
 
 function account_insert(){
 	
@@ -242,7 +280,7 @@ function account_insert(){
 						</h7>
 						
 					</div>
-					<form class="" action="stockupdate.cafe" method="post">
+					<form name="stockupdate" action="stockupdate.cafe" method="post">
 						<div class="modal-body">
 							<div class="form-group">
 							
@@ -295,7 +333,7 @@ function account_insert(){
 						<div class="modal-footer">
 							<button class="btn btn-secondary" type="button"
 								data-dismiss="modal">취소</button>
-							<input type="submit" class="btn btn-primary" value="수정">
+							<input type="button" class="btn btn-primary" value="수정" onclick="stock_update()">
 						</div>
 					</form>
 				</div>

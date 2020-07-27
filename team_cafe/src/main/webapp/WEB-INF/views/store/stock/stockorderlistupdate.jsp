@@ -84,6 +84,27 @@ function account_insert(){
 
 </script>
 
+<script type="text/javascript">
+
+function stockorderlist_update(){
+	
+	if(document.stockorderlistupdate.cart_stock_quantity.value==""){
+		alert("수량을 입력해주세요");
+		document.stockorderlistupdate.cart_stock_quantity.focus();
+	}
+	else if(! document.stockorderlistupdate.cart_stock_quantity.value == 
+		/^[0-9]*$/g.test(document.stockorderlistupdate.cart_stock_quantity.value)){
+		alert("수량 입력란에 숫자만 입력해주세요")
+		document.stockorderlistupdate.cart_stock_quantity.focus();
+	}
+	else{
+		document.stockorderlistupdate.submit(); //전송
+	}
+}
+
+</script>
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -242,7 +263,7 @@ function account_insert(){
 						</h7>
 						
 					</div>
-					<form class="" action="stockorderlistupdate.cafe" method="post">
+					<form name="stockorderlistupdate" action="stockorderlistupdate.cafe" method="post">
 						<div class="modal-body">
 							<div class="form-group">
 							
@@ -279,7 +300,7 @@ function account_insert(){
 						<div class="modal-footer">
 							<button class="btn btn-secondary" type="button"
 								data-dismiss="modal">취소</button>
-							<input type="submit" class="btn btn-primary" value="수정">
+							<input type="button" class="btn btn-primary" value="수정" onclick="stockorderlist_update()">
 						</div>
 					</form>
 				</div>

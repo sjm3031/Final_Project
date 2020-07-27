@@ -83,6 +83,49 @@ function account_insert(){
 }
 
 </script>
+
+
+<script type="text/javascript">
+
+function account_update(){
+	
+	if(document.accountupdate.account_number.value==""){
+		alert("사업자 번호를 입력해주세요");
+		document.accountupdate.account_number.focus();
+	}
+	else if(! document.accountupdate.account_number.value == 
+		/^[0-9]*$/g.test(document.accountupdate.account_number.value)){
+		alert("사업자 번호 입력란에 숫자만 입력해주세요")
+		document.accountupdate.account_number.focus();
+	}
+	else if(document.accountupdate.account_name.value==""){
+		alert("업체명을 입력해주세요");
+		document.accountupdate.account_name.focus();
+	}
+	else if(document.accountupdate.account_ceoname.value==""){
+		alert("사업자명을 입력해주세요");
+		document.accountupdate.account_ceoname.focus();
+	}
+	else if(document.accountupdate.account_address.value==""){
+		alert("주소를 입력해주세요");
+		document.accountupdate.account_address.focus();
+	}
+	else if(document.accountupdate.account_email.value==""){
+		alert("email을 입력해주세요");
+		document.accountupdate.account_email.focus();
+	}
+	else if(! document.accountupdate.account_email.value == 
+		/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(document.accountupdate.account_email.value))
+	{
+		alert("email입력 란에 email형식으로 입력해주세요")
+	}
+	else{
+		document.accountupdate.submit(); //전송
+	}
+}
+
+</script>
+
 	
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -242,7 +285,7 @@ function account_insert(){
 						</h7>
 						
 					</div>
-					<form class="" action="accountupdate.cafe" method="post">
+					<form name="accountupdate" action="accountupdate.cafe" method="post">
 						<div class="modal-body">
 							<div class="form-group">
 							
@@ -280,7 +323,7 @@ function account_insert(){
 						<div class="modal-footer">
 							<button class="btn btn-secondary" type="button"
 								data-dismiss="modal">취소</button>
-							<input type="submit" class="btn btn-primary" value="수정">
+							<input type="button" class="btn btn-primary" value="수정" onclick="account_update()">
 						</div>
 					</form>
 				</div>

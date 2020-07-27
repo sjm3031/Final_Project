@@ -193,11 +193,11 @@ function account_insert(){
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">원재료 품목</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addStockModal"> <i class="fa fa-plus"></i> 재료 품목 추가</a>
-            <a class="dropdown-item" href="../../store/stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
+            <a class="dropdown-item" href="../store/stocklist.cafe"> <i class="fa fa-tags"></i> 재료 품목 조회</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">발주</h6>
-            <a class="dropdown-item" href="../../store/stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
-            <a class="dropdown-item" href="../../store/orderlist.cafe" > <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
+            <a class="dropdown-item" href="../store/stockorder.cafe"><i class="fa fa-plus"></i> 발주 신청</a>
+            <a class="dropdown-item" href="../store/orderlist.cafe" > <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
           </div>
         </li>
         

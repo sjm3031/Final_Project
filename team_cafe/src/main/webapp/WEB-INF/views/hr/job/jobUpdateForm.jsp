@@ -14,7 +14,7 @@
     <link href="../../../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/styles.css" rel="stylesheet">
-    <script type="text/javascript">
+   <script type="text/javascript">
 	function addEmp(){
 		var nameP = /^[가-힣]{2,4}$/;
 		var phoneP = /^01[0179][0-9]{8}$/;
@@ -25,19 +25,19 @@
 		if (!document.addEmpForm.employee_name.value ==nameP.test(document.addEmpForm.employee_name.value)) {
 			alert("이름을 확인해주세요");	
 		} else if (document.addEmpForm.employee_name.value =="") {
-			alert("이름을 입력하세요");
+			alert("이름을 2~4글자의 한글로 입력하세요");
 			document.addEmpForm.employee_name.focus();
 		} else if (document.addEmpForm.employee_jumin.value == "") {
 			alert("주민번호를 입력하세요");
 			document.addEmpForm.employee_jumin.focus();
 		}else if (!document.addEmpForm.employee_jumin.value == juminP.test(document.addEmpForm.employee_jumin.value)) {
-			alert("주민번호를 확인하세요");
+			alert("주민번호를 (-)을 빼고 13자리 숫자로 입력하세요");
 			document.addEmpForm.employee_jumin.focus();
 		}else if (document.addEmpForm.employee_phone.value == "") {
 			alert("핸드폰번호를 입력하세요");
 			document.addEmpForm.employee_phone.focus();
 		} else if (!document.addEmpForm.employee_phone.value == phoneP.test(document.addEmpForm.employee_phone.value)) {
-			alert("핸드폰번호를 확인하세요");
+			alert("핸드폰번호를 (-)을 빼고 11자리 숫자로 입력하세요");
 			document.addEmpForm.employee_phone.focus();
 		} else if (document.addEmpForm.employee_address.value == "") {
 			alert("주소를 입력하세요");
@@ -46,13 +46,13 @@
 			alert("은행명을 입력하세요");
 			document.addEmpForm.employee_bank.focus();
 		}else if (!document.addEmpForm.employee_bank.value == bankP.test(document.addEmpForm.employee_bank.value)) {
-			alert("은행명을 확인하세요");
+			alert("은행명을 (은행)을 제외한 한글로 입력하세요");
 			document.addEmpForm.employee_bank.focus();
 		} else if (document.addEmpForm.employee_bankaddress.value == "") {
 			alert("계좌번호를 입력하세요");
 			document.addEmpForm.employee_bankaddress.focus();
 		}else if (!document.addEmpForm.employee_bankaddress.value == bankaddP.test(document.addEmpForm.employee_bankaddress.value)) {
-			alert("계좌번호를 확인하세요");
+			alert("계좌번호를 (-)을 뺀 숫자로 입력하세요");
 			document.addEmpForm.employee_bankaddress.focus();
 		}   else if (document.addEmpForm.employee_jobname.value == "") {
 			alert("직급을 선택하세요");
@@ -71,19 +71,19 @@
 		if (document.addJobForm.job_name.value == "") {
 			alert("직급을 입력하세요");
 		}else if (!document.addJobForm.job_name.value == nameP.test(document.addJobForm.job_name.value)) {
-			alert("직급을 확인하세요");
+			alert("직급을 한글로 입력하세요");
 			document.addJobForm.job_name.focus();
 		}else if (document.addJobForm.job_tpay.value == "") {
 			alert("시급을 입력하세요");
 			document.addJobForm.job_tpay.focus();
 		} else if (!document.addJobForm.job_tpay.value == tpayP.test(document.addJobForm.job_tpay.value)) {
-			alert("시급을 확인하세요");
+			alert("시급을 숫자로 입력하세요");
 			document.addJobForm.job_tpay.focus();
 		}else if (document.addJobForm.job_mpay.value == "") {
 			alert("월급을 입력하세요");
 			document.addJobForm.job_mpay.focus();
 		}else if (!document.addJobForm.job_mpay.value == mpayP.test(document.addJobForm.job_mpay.value)) {
-			alert("월급을 확인하세요");
+			alert("월급을 숫자로 입력하세요");
 			document.addJobForm.job_mpay.focus();
 		}else {
 			document.addJobForm.submit(); //전송
@@ -106,13 +106,14 @@
 			alert("월급지급일을 입력해주세요");
 			document.addSalaryForm.salary_date.focus();
 		}else if (!document.addSalaryForm.salary_date.value == timeP.test(document.addSalaryForm.salary_date.value)) {
-			alert("월급지급일을 확인해주세요");
+			alert("월급지급일을 제대로 입력해주세요");
 			document.addSalaryForm.salary_date.focus();
 		}else {
 			document.addSalaryForm.submit(); //전송
 		}
 	
 	}
+    
 
 	function updateJob(){
 		
@@ -123,19 +124,19 @@
 		if (document.updateJobForm.job_name.value == "") {
 			alert("직급을 입력하세요");
 		}else if (!document.updateJobForm.job_name.value == nameP.test(document.updateJobForm.job_name.value)) {
-			alert("직급을 확인하세요");
+			alert("직급을 한글로 입력하세요");
 			document.updateJobForm.job_name.focus();
 		}else if (document.updateJobForm.job_tpay.value == "") {
 			alert("시급을 입력하세요");
 			document.updateJobForm.job_tpay.focus();
 		} else if (!document.updateJobForm.job_tpay.value == tpayP.test(document.updateJobForm.job_tpay.value)) {
-			alert("시급을 확인하세요");
+			alert("시급을 숫자로 입력하세요");
 			document.updateJobForm.job_tpay.focus();
 		}else if (document.updateJobForm.job_mpay.value == "") {
 			alert("월급을 입력하세요");
 			document.updateJobForm.job_mpay.focus();
 		}else if (!document.updateJobForm.job_mpay.value == mpayP.test(document.updateJobForm.job_mpay.value)) {
-			alert("월급을 확인하세요");
+			alert("월급을 숫자로 입력하세요");
 			document.updateJobForm.job_mpay.focus();
 		}else {
 			document.updateJobForm.submit(); //전송

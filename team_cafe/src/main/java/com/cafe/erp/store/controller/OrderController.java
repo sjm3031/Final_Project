@@ -70,6 +70,7 @@ public class OrderController {
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 		
+		
 		return "store/stock/stockorder";
 	}
 	

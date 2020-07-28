@@ -83,11 +83,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 	
     </div> 
 
-<c:forEach var="o" items="${orderlist}">
-
  	 <div align="center" class="w3-container menu w3-white" style="display: block; margin-bottom: 30px; padding-left: 0px;padding-right: 0px;padding-bottom: 2em; ">
      <h1 style="background-color: #a95858;margin: 0px; padding:10px; color: white;"><b class="aaa"> 접수중</b> </h1>
 <br>
+<c:forEach var="o" items="${orderlist}">
+
 <c:if test="${o.order_web_check ==0}">
 
 	<a href="orderlistview.cafe?orderWebCode=${o.order_web_code}"> 
@@ -100,10 +100,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 	</div>
 	</a>
 </c:if>
+</c:forEach> 
+</div>
+
+
 
  	 <div align="center" class="w3-container menu w3-white" style="display: block; margin-bottom: 30px; padding-left: 0px;padding-right: 0px;padding-bottom: 2em; ">
      <h1 style="background-color: #a95858;margin: 0px; padding:10px; color: white;"><b class="aaa"> 접수 완료</b> </h1>
 <br>
+<c:forEach var="o" items="${orderlist}">
 <c:if test="${o.order_web_check ==1}">
 	
 	<a href="orderlistview.cafe?orderWebCode=${o.order_web_code}"> 
@@ -118,10 +123,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 </c:if>
 
 
+</c:forEach>  
 
   	 </div>
   
-</c:forEach>  
+
   </div>
 </div>
 

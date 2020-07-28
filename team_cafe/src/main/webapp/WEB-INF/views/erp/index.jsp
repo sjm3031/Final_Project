@@ -4,88 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html><head>
-  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-    <script type="text/javascript">
-		function stock_insert(){
-			
-			if(document.stockinsert.stock_productname.value=="선택하세요"){
-				alert("품명을 선택해주세요");
-				
-			}
-			else if(document.stockinsert.stock_detailname.value==""){
-				alert("상세명을 입력해주세요");
-				document.stockinsert.stock_detailname.focus();
-			}
-			else if(document.stockinsert.stock_standard.value==""){
-				alert("규격을 입력해주세요");
-				document.stockinsert.stock_standard.focus();
-			}
-			else if(document.stockinsert.stock_price.value==""){
-				alert("금액을 입력해주세요");
-				document.stockinsert.stock_price.focus();
-			}
-			else if(! document.stockinsert.stock_price.value== /^[0-9]*$/g.test(document.stockinsert.stock_price.value)){
-				alert("금액(원) 입력란에 숫자만 입력해주세요");
-				document.stockinsert.stock_price.focus();
-			}
-			else if(document.stockinsert.account_number.value=="회사명을 선택하세요"){
-				alert("회사명을 선택해주세요");
-				
-			}
-			else if(! document.stockinsert.stock_upimage.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.stockinsert.stock_upimage.value)){
-				alert("이미지 형식의 파일을 선택해주세요")
-			}
-			else{
-				document.stockinsert.submit();  //전송
-			}
-		}
-			
-			
-    </script>
-    
-    <script type="text/javascript">
-
-function account_insert(){
-	
-	if(document.accountinsert.account_number.value==""){
-		alert("사업자 번호를 입력해주세요");
-		document.accountinsert.account_number.focus();
-	}
-	else if(! document.accountinsert.account_number.value == 
-		/^[0-9]*$/g.test(document.accountinsert.account_number.value)){
-		alert("사업자 번호 입력란에 숫자만 입력해주세요")
-		document.accountinsert.account_number.focus();
-	}
-	else if(document.accountinsert.account_name.value==""){
-		alert("업체명을 입력해주세요");
-		document.accountinsert.account_name.focus();
-	}
-	else if(document.accountinsert.account_ceoname.value==""){
-		alert("사업자명을 입력해주세요");
-		document.accountinsert.account_ceoname.focus();
-	}
-	else if(document.accountinsert.account_address.value==""){
-		alert("주소를 입력해주세요");
-		document.accountinsert.account_address.focus();
-	}
-	else if(document.accountinsert.account_email.value==""){
-		alert("email을 입력해주세요");
-		document.accountinsert.account_email.focus();
-	}
-	else if(! document.accountinsert.account_email.value == 
-		/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(document.accountinsert.account_email.value))
-	{
-		alert("email입력 란에 email형식으로 입력해주세요")
-	}
-	else{
-		document.accountinsert.submit(); //전송
-	}
-}
-
-</script>
-    
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -95,6 +14,13 @@ function account_insert(){
     <link href="../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../resources/css/styles.css" rel="stylesheet">
+    
+    
+	<script src="../resources/erp_js/form_validation.js"></script>
+
+
+
+
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -229,7 +155,7 @@ function account_insert(){
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item" >
-              <a href="index.cafe" style="color: #A95858 !important;">Home</a>
+              <a href="index.do" style="color: #A95858 !important;">Home</a>
             </li>
             <li class="breadcrumb-item active">Overview</li>
           </ol>
@@ -330,58 +256,7 @@ function account_insert(){
               <i class="fa fa-chart-area"></i>
               월별차트샘플()</div>
             <div class="card-body">
-              <canvas id="myChart" width="100%" height="30"></canvas>
-              <script language = "javaScript">
-	var ctx = document.getElementById('myChart');
-	var myLineChart = new Chart(ctx, {
-		  type: 'line',
-		  data: {
-		    labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-		    datasets: [{
-		      label: "Profit",
-		      lineTension: 0.3,
-		      backgroundColor: "#00a63f",
-		      borderColor: "#00a63f",
-		      pointRadius: 5,
-		      pointBackgroundColor: "#00a63f",
-		      pointBorderColor: "rgba(255,255,255,0.8)",
-		      pointHoverRadius: 5,
-		      pointHoverBackgroundColor: "#00a63f",
-		      pointHitRadius: 50,
-		      pointBorderWidth: 2,
-		      data: [${cartcount}, 30162, 26263, 18394, 5000, 9000, 10, 30162, 26263, 18394, 5000, ${cartcount}],
-		    }],
-		  },
-		  options: {
-		    scales: {
-		      xAxes: [{
-		        time: {
-		          unit: 'date'
-		        },
-		        gridLines: {
-		          display: false
-		        },
-		        ticks: {
-		          maxTicksLimit: 12
-		        }
-		      }],
-		      yAxes: [{
-		        ticks: {
-		          min: 0,
-		          max: 500000,
-		          maxTicksLimit: 16
-		        },
-		        gridLines: {
-		          color: "rgba(0, 0, 0, .125)",
-		        }
-		      }],
-		    },
-		    legend: {
-		      display: false
-		    }
-		  }
-		});
-</script>
+              <canvas id="myAreaChart" width="100%" height="30"></canvas>
             </div>
             <div class="card-footer small text-muted">db연결(마지막상품 업데이트 시간찍기)</div>
           </div>
@@ -423,12 +298,12 @@ function account_insert(){
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/product/write.cafe" method="post" enctype="multipart/form-data">
+          <form id="addCafeProductModal" name="addCafeProductModal" action="sale/product/write.cafe" method="post" enctype="multipart/form-data" onsubmit="return addCafeProduct();">
             <div class="modal-body">
               <div class="form-group">
                 <label>카테고리</label>
-                <select class="form-control text-primary" name="product_category_code" id="product_category_code">
-                  <option disabled selected><sub>제품 카테고리를 선택해주세요.</sub></option>
+                <select class="form-control text-primary" name="product_category_code" id="product_category_code" required="required">
+                  <option value="" disabled selected><sub>제품 카테고리를 선택해주세요.</sub></option>
                   <c:forEach var="pcl" items="${productcategorylist}">
 
 		    <option value="${ pcl.product_category_code }">${ pcl.product_category_name }</option>
@@ -440,17 +315,17 @@ function account_insert(){
               </div>
               <div class="form-group">
                 <label for="">제품명</label>
-                <input type="text" class="form-control" name="cafe_product_name" value="" placeholder="제품명 입력" required>
+                <input type="text" class="form-control" id="cafe_product_name" name="cafe_product_name" value="" placeholder="제품명 입력" required="required">
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
               <div class="form-group">
                 <label for="">제품 가격 <small class="text-muted">(개당 가격)</small> </label>
-                <input type="number" class="form-control" name="cafe_product_price" value="" placeholder="단가를 입력해주세요" required>
+                <input type="number" class="form-control" name="cafe_product_price" value="" placeholder="단가를 입력해주세요" required="required">
               </div>
               <div class="form-group">
                 <label for="">제품 이미지</label><br>
-			<input type="file" name="cafe_product_img_upload">
-			<input type="hidden" name="cafe_product_img"  value = ""/><br>
+			<input type="file" name="cafe_product_img_upload" required="required">
+			<input type="hidden" name="cafe_product_img"  value = "" ><br>
 	          <small class="text-muted">재품 이미지를 정확히 입력해주세요.</small>
               </div>
        
@@ -458,7 +333,7 @@ function account_insert(){
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
@@ -482,7 +357,7 @@ function account_insert(){
   
               <div class="form-group">
                 <label for="">카테고리명</label>
-                <input type="text" class="form-control" name="product_category_name" value="" placeholder="제품명 입력" required>
+                <input type="text" class="form-control" name="product_category_name" value="" placeholder="제품명 입력" required="required">
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
              
@@ -515,12 +390,12 @@ function account_insert(){
             <div class="modal-body">
               <div class="form-group">
                 <label for="">옵션(추가사항) 명</label>
-                <input type="text" class="form-control" name="product_add_name" value="" placeholder="제품명 입력" required>
+                <input type="text" class="form-control" name="product_add_name" value="" placeholder="제품명 입력" required="required">
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
               <div class="form-group">
                 <label for="">옵션(추가사항) 가격 <small class="text-muted">(개당 가격)</small> </label>
-                <input type="number" class="form-control" name="product_add_price" value="" placeholder="단가를 입력해주세요" required>
+                <input type="number" class="form-control" name="product_add_price" value="" placeholder="단가를 입력해주세요" required="required">
               </div>       
               <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
@@ -532,10 +407,10 @@ function account_insert(){
         </div>
       </div>
     </div>
-
+    
     
   
-  	 <!-- #addStockModal -->
+<!-- #addStockModal -->
     <div class="modal fade" id="addStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -548,12 +423,12 @@ function account_insert(){
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="stockinsert" action="store/stockinsert.cafe" method="post" enctype="multipart/form-data">
+          <form name="stockinsert" action="store/stockinsert.cafe" method="post" enctype="multipart/form-data" onsubmit="return stock_insert();">
             <div class="modal-body">
                <div class="form-group">
                 <label for="">품명</label>
-                 <select class="form-control text-primary" name="stock_productname" id="stock_productname">
-                  <option disabled selected>품명을 선택해주세요.</option>
+                 <select class="form-control text-primary" name="stock_productname" id="stock_productname" required="required">
+                  <option  value="" selected>품명을 선택해주세요.</option>
                   <option>음료</option>
                   <option>원두</option>
                   <option>재과</option>
@@ -562,22 +437,22 @@ function account_insert(){
               </div>
               <div class="form-group">
                 <label>상세명</label>
-                <input type="text" placeholder="상세명을 입력해주세요" class="form-control" id="stock_detailname" name="stock_detailname"/>
+                <input type="text" placeholder="상세명을 입력해주세요" class="form-control" id="stock_detailname" name="stock_detailname" required="required"/>
               </div>
               
               <div class="form-group">
                 <label>규격</label>
-                <input type="text" placeholder="규격을 입력해주세요" class="form-control" id="stock_standard" name="stock_standard"/>
+                <input type="text" placeholder="규격을 입력해주세요" class="form-control" id="stock_standard" name="stock_standard" required="required"/>
               </div>
               
               <div class="form-group">
                 <label>금액(원)</label>
-                <input type="text" placeholder="금액(원)을 입력해주세요" class="form-control" id="stock_price" name="stock_price"/>
+                <input type="text" placeholder="금액(원)을 입력해주세요" class="form-control" id="stock_price" name="stock_price" required="required"/>
               </div>
               <div class="form-group">
                 <label>회사명</label>
-                <select class="form-control text-primary" name="account_number" id="account_number">
-                  <option disabled selected><sub>회사명을 선택해주세요.</sub></option>
+                <select class="form-control text-primary" name="account_number" id="account_number" required="required">
+                  <option value="" disabled selected ><sub>회사명을 선택해주세요.</sub></option>
                   <c:forEach var="get" items="${account_list}">
 
 		   		 <option value="${ get.account_number }">${ get.account_name }</option>
@@ -590,13 +465,13 @@ function account_insert(){
               
               <div class="form-group">
                 <label>이미지 등록</label>
-                <input type="file" id="stock_upimage" name="stock_upimage" />
+                <input type="file" id="stock_upimage" name="stock_upimage"   required="required"/>
               </div>
               <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="button" class="btn btn-primary" value="등록" onclick="stock_insert()">
+              <input type="submit" class="btn btn-primary" value="등록">
             </div>
           </form>
         </div>
@@ -617,34 +492,34 @@ function account_insert(){
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="accountinsert" action="store/accountinsert.cafe" method="post" enctype="multipart/form-data">
+          <form name="accountinsert" action="store/accountinsert.cafe" method="post" enctype="multipart/form-data" onsubmit="return account_insert();">
             <div class="modal-body">
   
               <div class="form-group">
                 <label>사업자 번호</label>
-                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number"/>
+                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number" required="required">
               </div>
               <div class="form-group">
                 <label>업체명</label>
-                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name"/>
+                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name" required="required">
               </div>
               <div class="form-group">
                 <label>사업자 명</label>
-                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname"/>
+                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname" required="required">
               </div>
               <div class="form-group">
                 <label>주소</label>
-                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address"/>
+                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address" required="required">
               </div>
               <div class="form-group">
                 <label>email</label>
-                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email"/>
+                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email" required="required">
               </div>
               <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="button" class="btn btn-primary" value="등록" onclick="account_insert()">
+              <input type="submit" class="btn btn-primary" value="등록">
             </div>
           </form>
         </div>
@@ -652,7 +527,8 @@ function account_insert(){
     </div>
     
     
-    <!-- #addEmpModal -->
+    
+      <!-- #addEmpModal -->
    <div class="modal fade" id="addEmpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -665,36 +541,44 @@ function account_insert(){
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/emp/insert.cafe" method="post">
+          <form name="addEmpForm" action="hr/emp/insert.cafe" method="post" onsubmit="return addEmp();">
             <div class="modal-body">
               <div class="form-group">
                 <label>이름</label>
-                <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력하세요" required>
+                <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력해주세요." required>
+               
               </div>
               <div class="form-group">
-                <label>주민번호</label>
-                <input type="text" class="form-control" name="employee_jumin"  placeholder="(-)빼고 입력하세요" required>
+                <label>주민번호 <small class="text-muted">(-) 빼고 입력하세요</small> </label>
+                <input type="text" class="form-control" name="employee_jumin" placeholder="주민번호를 입력해주세요." required>
+                
               </div>
               <div class="form-group">
-                <label for="">핸드폰번호</label>
-                <input type="text" class="form-control" name="employee_phone" placeholder="(-)빼고 입력하세요" required>
+                <label for="">핸드폰번호 <small class="text-muted">(-) 빼고 입력하세요</small> </label>
+                <input type="text" class="form-control" name="employee_phone"  placeholder="전화번호를 입력해주세요." required>
+               
               </div>
               <div class="form-group">
                 <label for="">주소 </label>
-                <input type="text" class="form-control" name="employee_address" placeholder="주소를 입력하세요" required>
+                <input type="text" class="form-control" name="employee_address"  placeholder="주소를 입력해주세요." required>
+                
               </div>
               <div class="form-group">
                 <label for="">은행 </label>
-                <input type="text" class="form-control" name="employee_bank" placeholder="급여 받을 은행을 입력해주세요." required>
+                <input type="text" class="form-control" name="employee_bank"  placeholder="급여 받을 은행을 입력해주세요." required>
+                
               </div>
               <div class="form-group">
-                <label for="">계좌번호</label>
-                <input type="text" class="form-control" name="employee_bankaddress" placeholder="계좌번호를 (-)빼고 입력해주세요." required>
+                <label for="">계좌번호<small class="text-muted">(-) 빼고 입력하세요</small> </label>
+                <input type="text" class="form-control" name="employee_bankaddress"  placeholder="계좌번호를  입력해주세요." required>
+                
               </div>
+                        
+              
               <div class="form-group">
                 <label for="">직급</label>
-                <select name="employee_jobname" required>
-						<option>선택하세요</option>
+                <select class="form-control text-primary" name="employee_jobname" required="required" >
+						<option value=""selected>직급을 선택해주세요.</option>
 					<c:forEach var="emp" items="${joblist}">
 						<option  value="${emp.job_name}">${emp.job_name}</option>
 					</c:forEach>
@@ -705,15 +589,12 @@ function account_insert(){
              </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
       </div>
     </div>
-    
-    
-    
       <!-- #addjobModal -->
    <div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -727,7 +608,7 @@ function account_insert(){
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/job/list.cafe" method="post">
+          <form name="addJobForm" action="hr/job/list.cafe" method="post" onsubmit="return addJob();">
             <div class="modal-body">
               <div class="form-group">
                 <label>직급</label>
@@ -746,7 +627,7 @@ function account_insert(){
               </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
@@ -765,12 +646,12 @@ function account_insert(){
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/salary/insert.cafe" method="post">
+          <form name="addSalaryForm" action="hr/salary/insert.cafe" method="post" onsubmit="return addSalary();" >
             <div class="modal-body">
               <div class="form-group">
                 <label>직원이름</label>
                 	<select name="employee_name" required>
-					<option>이름을 선택하세요</option>
+					<option value="">이름을 선택하세요</option>
 		
 					<c:forEach var="t" items="${nameList }">
 					<option value="${t.employee_name }">${t.employee_name }</option>
@@ -780,7 +661,7 @@ function account_insert(){
               <div class="form-group">
                 <label>근무 연도</label>
                 <select name="salary_year" required>
-					<option>연도를 선택하세요</option>
+					<option value="">연도를 선택하세요</option>
 		
 					<c:forEach var="t" items="${yearList }">
 					<option value="${t.emptna_year }">${t.emptna_year }</option>
@@ -791,7 +672,7 @@ function account_insert(){
               <div class="form-group">
                 <label for="">근무 월</label>
                 	<select name="salary_month" required>
-						<option>월을 선택하세요</option>
+						<option value="">월을 선택하세요</option>
 		
 							<c:forEach var="t" items="${monthList }">
 							<option value="${t.emptna_month }">${t.emptna_month }</option>
@@ -804,19 +685,17 @@ function account_insert(){
               
               <br>
              </div>
+             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="정산" >
             </div>
           </form>
         </div>
       </div>
     </div>
-    
 
-  
-  
-  
+ 
 
     <script src="../resources/js/jquery.min.js"></script>
     <script src="../resources/js/bootstrap.bundle.min.js"></script>

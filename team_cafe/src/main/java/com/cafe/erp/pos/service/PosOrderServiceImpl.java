@@ -53,8 +53,6 @@ public class PosOrderServiceImpl implements PosOrderService {
 		return 0;
 	}
 
-
-
 	@Override
 	public List<PosOrderVO> listOrder() {
 		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
@@ -62,15 +60,82 @@ public class PosOrderServiceImpl implements PosOrderService {
 		return null;
 	}
 
+	@Override
+	public void insertAttend(HashMap map) {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		dao.insertAttend(map);
+	}
 
+	@Override
+	public void updateAttend(HashMap map) {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		dao.updateAttend(map);
+		
+	}
 
+	@Override
+	public int checkAttend(HashMap map) {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		return dao.checkAttend(map);
+	}
 
+	@Override
+	public HashMap checkOffWork(HashMap map) {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		return dao.checkOffWork(map);
+	}
 
+	@Override
+	public int isEmployee(HashMap map) {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		return dao.isEmployee(map);
+	}
 
+	@Override
+	public List sellByGroup() {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		return dao.sellByGroup();
+	}
 
+	@Override
+	public HashMap getEndTime() {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		return dao.getEndTime();
+	}
 
+	@Override
+	public HashMap getPosStartInfo() {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		return dao.getPosStartInfo();
+	}
 
+	@Override
+	public void insertPosEndInfo(HashMap map) {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		dao.insertPosEndInfo(map);
+	}
 
+	@Override
+	public int hasTodayPosEnd() {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		return dao.hasTodayPosEnd();
+	}
 
+	@Override
+	public int hasTodayPosStart() {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		return dao.hasTodayPosStart();
+	}
 
+	@Override
+	public void insertPosStartInfo(HashMap map) {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		dao.insertPosStartInfo(map);
+	}
+
+	@Override
+	public void updatePosStartEnd(HashMap map) {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		dao.updatePosStartEnd(map);
+	}
 }

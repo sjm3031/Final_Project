@@ -41,12 +41,5 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
 		return dao.getaccountnumber();
 	}
-
-	@Override
-	public int cartcount() {
-		ProductOrderDAO dao = sqlSession.getMapper(ProductOrderDAO.class);
-		
-		return dao.cartcount();
-	}
 	
 }

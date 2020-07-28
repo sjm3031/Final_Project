@@ -4,87 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html><head>
-
-	<script type="text/javascript">
-		function stock_insert(){
-			
-			if(document.stockinsert.stock_productname.value=="선택하세요"){
-				alert("품명을 선택해주세요");
-				
-			}
-			else if(document.stockinsert.stock_detailname.value==""){
-				alert("상세명을 입력해주세요");
-				document.stockinsert.stock_detailname.focus();
-			}
-			else if(document.stockinsert.stock_standard.value==""){
-				alert("규격을 입력해주세요");
-				document.stockinsert.stock_standard.focus();
-			}
-			else if(document.stockinsert.stock_price.value==""){
-				alert("금액을 입력해주세요");
-				document.stockinsert.stock_price.focus();
-			}
-			else if(! document.stockinsert.stock_price.value== /^[0-9]*$/g.test(document.stockinsert.stock_price.value)){
-				alert("금액(원) 입력란에 숫자만 입력해주세요");
-				document.stockinsert.stock_price.focus();
-			}
-			else if(document.stockinsert.account_number.value=="회사명을 선택하세요"){
-				alert("회사명을 선택해주세요");
-				
-			}
-			else if(! document.stockinsert.stock_upimage.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.stockinsert.stock_upimage.value)){
-				alert("이미지 형식의 파일을 선택해주세요")
-			}
-			else{
-				document.stockinsert.submit();  //전송
-			}
-		}
-			
-			
-    </script>
-    
-    <script type="text/javascript">
-
-function account_insert(){
-	
-	if(document.accountinsert.account_number.value==""){
-		alert("사업자 번호를 입력해주세요");
-		document.accountinsert.account_number.focus();
-	}
-	else if(! document.accountinsert.account_number.value == 
-		/^[0-9]*$/g.test(document.accountinsert.account_number.value)){
-		alert("사업자 번호 입력란에 숫자만 입력해주세요")
-		document.accountinsert.account_number.focus();
-	}
-	else if(document.accountinsert.account_name.value==""){
-		alert("업체명을 입력해주세요");
-		document.accountinsert.account_name.focus();
-	}
-	else if(document.accountinsert.account_ceoname.value==""){
-		alert("사업자명을 입력해주세요");
-		document.accountinsert.account_ceoname.focus();
-	}
-	else if(document.accountinsert.account_address.value==""){
-		alert("주소를 입력해주세요");
-		document.accountinsert.account_address.focus();
-	}
-	else if(document.accountinsert.account_email.value==""){
-		alert("email을 입력해주세요");
-		document.accountinsert.account_email.focus();
-	}
-	else if(! document.accountinsert.account_email.value == 
-		/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(document.accountinsert.account_email.value))
-	{
-		alert("email입력 란에 email형식으로 입력해주세요")
-	}
-	else{
-		document.accountinsert.submit(); //전송
-	}
-}
-
-</script>
-
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -94,7 +14,39 @@ function account_insert(){
     <link href="../../../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/styles.css" rel="stylesheet">
-    <style type="text/css">
+
+<script type="text/javascript">
+
+   function insert(){
+	
+	      if(document.writeform.customer_name.value==""){
+	         alert("고객 이름을 입력해주세요");
+	      }else if(! document.writeform.customer_phone.value == /^01[0179][0-9]{8}$/.test(document.writeform.customer_phone.value) || document.writeform.customer_phone.value==""){
+	         alert("고객 전화번호를 입력해주세요");
+	         document.writeform.customer_phone.focus();
+	      }else if(! document.writeform.customer_birth.value== /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/g.test(document.writeform.customer_birth.value) || document.writeform.customer_birth.value==""){
+	         alert("고객 생년월일을 입력해주세요");
+	         document.writeform.customer_birth.focus();
+	      }else if(document.writeform.customer_gender.value==""){
+		      alert("고객 성별을 체크해주세요");
+		      document.writeform.customer_gender.focus();
+	      }else if(document.writeform.customer_stamp.value==""){
+	         alert("고객 스템프수을 입력해주세요");
+	         document.writeform.customer_stamp.focus();
+	      }else if(! document.writeform.customer_pwd.value== /^[A-Za-z0-9]{6,12}$/.test(document.writeform.customer_pwd.value) || document.writeform.customer_pwd.value==""){
+	         alert("고객 비밀번호를 입력해주세요");
+	         document.writeform.customer_pwd.focus();
+	      }else{
+	         document.writeform.submit(); 
+	      }
+	
+   }
+</script>
+
+
+
+
+<style type="text/css">
     	.label {
     	 display: inline !important;
     	 position: relative;
@@ -139,9 +91,9 @@ function account_insert(){
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../../index.cafe">
+          <a class="nav-link" href="../index.cafe">
             <i class="fa fa-fw fa-home"></i>
-            <span>홈</span>
+            <span>홈</span>	
           </a>
         </li>
         
@@ -206,7 +158,7 @@ function account_insert(){
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">매출</h6>
-            <a class="dropdown-item" href="../../sell/list.cafe"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
+            <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 뭘넣을까</a>
           </div>
         </li>
@@ -656,8 +608,57 @@ function account_insert(){
     </div>
     
     
-    
-    <!-- #addStockModal -->
+  
+    <!-- #addAccountModal -->
+     <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+              거래처 등록
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form class="" action="store/accountinsert.cafe" method="post" >
+            <div class="modal-body">
+  
+              <div class="form-group">
+                <label>사업자 번호</label>
+                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number"/>
+              </div>
+              <div class="form-group">
+                <label>업체명</label>
+                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name"/>
+              </div>
+              <div class="form-group">
+                <label>사업자 명</label>
+                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname"/>
+              </div>
+              <div class="form-group">
+                <label>주소</label>
+                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address"/>
+              </div>
+              <div class="form-group">
+                <label>email</label>
+                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email"/>
+              </div>
+             
+       
+              <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+              <input type="submit" class="btn btn-primary" value="등록">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+        <!-- #addStockModal -->
      <div class="modal fade" id="addStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -670,7 +671,7 @@ function account_insert(){
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="stockinsert" action="../../store/stockinsert.cafe" method="post" >
+          <form class="" action="store/stockinsert.cafe" method="post" >
             <div class="modal-body">
   
              <div class="form-group">
@@ -721,7 +722,7 @@ function account_insert(){
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="button" class="btn btn-primary" value="등록" onclick="stock_insert()">
+              <input type="submit" class="btn btn-primary" value="등록">
             </div>
           </form>
         </div>
@@ -729,56 +730,6 @@ function account_insert(){
     </div>
     
     
-  
-    <!-- #addAccountModal -->
-     <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <i class="fa fa-tag"></i>
-              거래처 등록
-            </h5>
-            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form name="accountinsert" action="../../store/accountinsert.cafe" method="post" >
-            <div class="modal-body">
-  
-              <div class="form-group">
-                <label>사업자 번호</label>
-                <input type="text" placeholder="사업자 번호를 입력해주세요" class="form-control" id="account_number" name="account_number"/>
-              </div>
-              <div class="form-group">
-                <label>업체명</label>
-                <input type="text" placeholder="업체명을 입력해주세요" class="form-control" id="account_name" name="account_name"/>
-              </div>
-              <div class="form-group">
-                <label>사업자 명</label>
-                <input type="text" placeholder="사업자 명을 입력해주세요" class="form-control" id="account_ceoname" name="account_ceoname"/>
-              </div>
-              <div class="form-group">
-                <label>주소</label>
-                <input type="text" placeholder="주소을 입력해주세요" class="form-control" id="account_address" name="account_address"/>
-              </div>
-              <div class="form-group">
-                <label>email</label>
-                <input type="text" placeholder="email을 입력해주세요" class="form-control" id="account_email" name="account_email"/>
-              </div>
-             
-       
-              <small class="text-muted"><em>등록을 누르시기전에 한번 더 체크해주세요.</em></small>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="button" class="btn btn-primary" value="등록" onclick="account_insert()">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
     
     
     
@@ -1135,7 +1086,7 @@ function account_insert(){
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="write.cafe" method="post" enctype="multipart/form-data">
+          <form name = "writeform" class="" action="write.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
       
               <div class="form-group">
@@ -1145,12 +1096,12 @@ function account_insert(){
               </div>
               <div class="form-group">
                 <label for="">고객 전화번호</label>
-                <input type="number" class="form-control" name="customer_phone" value="" placeholder="전화번호를 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_phone" value="" placeholder="'-' 빼고 전화번호를 입력해주세요." required>
               </div>
               
                  <div class="form-group">
                 <label for="">고객 생년월일</label>
-                <input type="number" class="form-control" name="customer_birth" value="" placeholder="생년월일을 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_birth" value="" placeholder="생년월일을 입력해주세요. ex)910202" required>
               </div>
         
         
@@ -1170,12 +1121,12 @@ function account_insert(){
               
               <div class="form-group" >
                 <label for="" class="stamp">고객 스템프수</label>
-                <input type="number" class="form-control" name="customer_stamp" value="" placeholder="스템프수를 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_stamp" value="" placeholder="스템프 수를 입력해주세요." required>
               </div>
               
                 <div class="form-group">
                 <label for="">고객 비밀번호</label>
-                <input type="number" class="form-control" name="customer_pwd" value="" placeholder="비밀번호를 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_pwd" value="" placeholder="숫자와 문자 포함 형태의 6~12자리 이내로 입력해주세요." required>
               </div>
         
         
@@ -1184,7 +1135,8 @@ function account_insert(){
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
+              <!-- <input type="submit" class="btn btn-primary" value="등록"> -->
+              <input type="button" value="등록" onclick="insert()" class="btn btn-primary">
             </div>
           </form>
         </div>

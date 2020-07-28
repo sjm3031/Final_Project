@@ -4,12 +4,6 @@
 	
 	<mapper namespace="com.cafe.erp.store.model.ProductOrderDAO">
 
-	<!-- 임시발주 목록에 등록되어있는 상품수 확인 -->
-	<select id="cartcount" resultType="integer">
-		select count(*) from cafe_order_cart
-	</select>
-	
-	<!-- 발주 내역에 등록 -->
 	<insert id="orderinsert" parameterType="com.cafe.erp.store.model.ProductOrderDTO">
 		insert into cafe_productorder (productOrder_code, productOrder_date, prodectOrder_total)
 		values((select NVL(max(productOrder_code),0) + 1 from cafe_productorder), sysdate, #{prodectOrder_total})

@@ -31,5 +31,6 @@ public interface OrderWebService {
 	
 	public List<OrderWebDTO> getOrderWebListAll(String date); //pos화면에서 오늘날짜의 모든 목록을 가져올때
 	public void updateOrderWebCheck(int order_web_code);		// 해당주문의 주문접수 확인 처리하기
+	public void insertOrderWebListAdd2(HashMap map1);			//주문내역테이블에저장
 
 }

@@ -1,12 +1,10 @@
 package com.cafe.erp.store.controller;
 
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,31 +35,15 @@ public class ProductOrderController {
 	private ProductOrderListSercvice productOrderListSercvice;
 	
 	@RequestMapping("/orderinsert.cafe")
-	public String orderinsert(ProductOrderDTO dto, ProductOrderListDTO dto1, HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		System.out.println("orderinsert 진입");
+	public String orderinsert(ProductOrderDTO dto, ProductOrderListDTO dto1, HttpServletRequest req) throws Exception {
+//		System.out.println("orderinsert 진입");
 		
-		//임시 발주목록에 등록 된것이 있는지 확인 후 없으면 진행 안함
-		int cartcount =  productOrderService.cartcount();
-		System.out.println("cartcount : " + cartcount);
-		
-		if (cartcount == 0) {
-			resp.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = resp.getWriter();
-			out.print("<script>");
-			out.print("alert('발주 장바구니 목록에 신청할게 없습니다, 신청할 품목을 등록후 발주 신청해주세요.');");
-			out.print("location.href='stockorderlist.cafe'; ");
-			out.print("</script>");
-			out.close();
-			return null;
-		}
-		else {
 		//발주 등록
     	productOrderService.orderinsert(dto);
-    	System.out.println("발주 등록 완료");
+//    	System.out.println("발주 등록 완료");
 	
 		//임시 발주 목록에 발주 등록번호를 업데이트 해줌
 		orderService.updatecode();
-		System.out.println("update 완료");
 		int pg = 1;
 		String strPg = req.getParameter("pg");
 
@@ -104,13 +86,11 @@ public class ProductOrderController {
 		}
 		//임시 발주 목록을 그대로 복사해서 상세내역 테이블에 복사 insert함
 		productOrderListSercvice.orderlistinsert(dto1);
-		System.out.println("발주 상세내역 등록 완료");
+//		System.out.println("발주 상세내역 등록 완료");
 		//임시 발주 목록을 삭제해서 초기화
 		orderService.deleteorderlistcart();
-		System.out.println("임시 발주 목록 초기화 완료");
+//		System.out.println("임시 발주 목록 초기화 완료");
 		return "redirect:stockorderlist.cafe";
-		}
-		
 	}
 	
 	

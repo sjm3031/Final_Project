@@ -18,6 +18,8 @@ import com.cafe.erp.hr.model.jobDTO;
 import com.cafe.erp.hr.service.*;
 import com.cafe.erp.sale.model.ProductCategoryVO;
 import com.cafe.erp.sale.service.ProductCategoryService;
+import com.cafe.erp.sell.model.SellDTO;
+import com.cafe.erp.sell.service.SellReportsService;
 import com.cafe.erp.store.model.AccountDTO;
 import com.cafe.erp.store.service.StockService;
 
@@ -41,6 +43,9 @@ public class ERPController {
 	
 	@Resource
 	private PosPasswordService posPasswordService;
+	
+	@Resource
+	private SellReportsService sellReprtsService;
 		 
 	@RequestMapping("main.cafe")
 	public String login() {
@@ -51,6 +56,9 @@ public class ERPController {
 	@RequestMapping("index.cafe")
 	public String index(Model model) {
 		menuMethod(model);
+		List<SellDTO> accountslist = sellReprtsService.accountslist();
+		model.addAttribute("accountslist", accountslist);
+		
 		return "erp/index";
 		
 	}

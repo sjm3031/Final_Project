@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html><head>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
@@ -298,20 +299,33 @@ function account_insert(){
               <div class="card mb-3">
                 <div class="card-header">
                   <i class="fa fa-chart-bar"></i>
-                 바 그래프 예시</div>
+                 최근 12일간 총매출액</div>
                 <div class="card-body">
                   <canvas id="myBarChart" width="100%" height="50"></canvas>
+                  <script type="text/javascript">
+									var accounttotal = new Array();
+									var startsell = new Array();
+									<c:forEach var = "get" items="${accountslist}">
+										accounttotal.push('<c:out value="${get.accounts_total}"/>');
+										var format = '<fmt:formatDate pattern="yy/MM/dd" value="${get.accounts_startsell}"/>';								
+										//startsell.push('<c:out value="${get.accounts_startsell}"/>');
+										startsell.push(format);
+										console.log(format);
+									</c:forEach>
+									console.log(accounttotal);
+									console.log(startsell);
+				  </script>
                   <script language = "javaScript">
                   var ctx = document.getElementById("myBarChart");
                   var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+    labels: startsell,
     datasets: [{
       label: "Revenue",
       backgroundColor: "#00a63f",
       borderColor: "rgba(2,117,216,1)",
-      data: [10215, 22312, 33251, 44841, 44421, 54984, 66000, 74984, 84984, 80984, 80984, 80984],
+      data: accounttotal,
     }],
   },
   options: {
@@ -329,8 +343,8 @@ function account_insert(){
       }],
       yAxes: [{
         ticks: {
-          min: 1000,
-          max: 100000,
+          min: 200000,
+          max: 700000,
           maxTicksLimit: 40
         },
         gridLines: {
@@ -369,7 +383,6 @@ function account_insert(){
 									console.log(listname);
 									console.log(pcount);
 								</script>
-
 				<script language = "javaScript">
                   var ctx = document.getElementById("myPieChart");
                   var myPieChart = new Chart(ctx, {

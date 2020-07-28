@@ -26,6 +26,12 @@ public class SellReportsServiceImpl implements SellReportsService {
 		SellReportsDAO dao = sqlSession.getMapper(SellReportsDAO.class);
 		return dao.pcounttotal();
 	}
+
+	@Override
+	public List<SellDTO> accountslist() {
+		SellReportsDAO dao = sqlSession.getMapper(SellReportsDAO.class);
+		return dao.accountslist();
+	}
 	
 	
 

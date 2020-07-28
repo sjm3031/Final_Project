@@ -31,13 +31,20 @@ public class SellController {
 		List<SellDTO> list = sellReprtsService.pcount();
 		int total = sellReprtsService.pcounttotal();
 		
+		List<SellDTO> accountslist = sellReprtsService.accountslist();
+		
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println("name : " + list.get(i).getName());
+		}
+		
+		for (int i = 0; i < accountslist.size(); i++) {
+			System.err.println("date : " + accountslist.get(i).getAccounts_startsell());
 		}
 		
 		System.out.println("list : " + list);		
 		System.out.println("total : " + total);
 		
+		request.setAttribute("accountslist", accountslist);
 		request.setAttribute("list", list);
 		request.setAttribute("total", total);
 		

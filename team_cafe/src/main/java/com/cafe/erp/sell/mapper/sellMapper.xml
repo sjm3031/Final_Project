@@ -16,4 +16,10 @@
 		select count(*) from cafe_orderlist
 	</select>
 	
+	<!-- 최근 12일동안 총 판매액 -->
+	<select id="accountslist" resultType="com.cafe.erp.sell.model.SellDTO">
+		select accounts_total, accounts_startsell from cafe_accounts where to_char(accounts_startsell, 'yy/mm/dd') 
+   		between to_date(sysdate-12) and to_date(sysdate) order by accounts_startsell asc
+	</select>
+	
 	</mapper>

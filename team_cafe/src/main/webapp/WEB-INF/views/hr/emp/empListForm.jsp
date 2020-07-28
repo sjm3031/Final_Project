@@ -306,6 +306,7 @@
         </footer>
       </div>
     </div>
+    
   <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top" style="background: #212529 !important;  ">
       <i class="fa fa-angle-up"></i>

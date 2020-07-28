@@ -53,7 +53,7 @@ public class AccountingController {
 		//int allPage = total/rowSize + (total % rowSize == 0?0:1)
 		
 
-		int block = 10;		// 한페이지에 보여줄 페이징 갯수	ex) << [1] [2] [3] [4] [5] ..>>
+		int block = 5;		// 한페이지에 보여줄 페이징 갯수	ex) << [1] [2] [3] [4] [5] ..>>
 		
 		int fromPage = ((pg-1) / block*block) + 1;
 		int toPage = ( (pg-1) / block*block) + block; 

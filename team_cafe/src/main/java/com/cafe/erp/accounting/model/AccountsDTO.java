@@ -1,10 +1,13 @@
 package com.cafe.erp.accounting.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class AccountsDTO {
 	private int accounts_code,accounts_total,accounts_card,accounts_cash,accounts_saleCount,reserveFund_code;
-	private Timestamp accounts_startSell,accounts_endSell;
+	private Date accounts_startSell,accounts_endSell;
+	
+	
 	public int getAccounts_code() {
 		return accounts_code;
 	}
@@ -41,18 +44,19 @@ public class AccountsDTO {
 	public void setReserveFund_code(int reserveFund_code) {
 		this.reserveFund_code = reserveFund_code;
 	}
-	public Timestamp getAccounts_startSell() {
+	public Date getAccounts_startSell() {
 		return accounts_startSell;
 	}
-	public void setAccounts_startSell(Timestamp accounts_startSell) {
+	public void setAccounts_startSell(Date accounts_startSell) {
 		this.accounts_startSell = accounts_startSell;
 	}
-	public Timestamp getAccounts_endSell() {
+	public Date getAccounts_endSell() {
 		return accounts_endSell;
 	}
-	public void setAccounts_endSell(Timestamp accounts_endSell) {
+	public void setAccounts_endSell(Date accounts_endSell) {
 		this.accounts_endSell = accounts_endSell;
 	}
+	
 	
 	  
 	

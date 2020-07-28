@@ -55,7 +55,9 @@
                         <td>${o.order_web_code}</td>
                         <td>${o.order_web_count}</td>
                         <td>${o.order_web_total}</td>
-                        <td>${o.order_web_date}</td>
+                
+			<fmt:formatDate value="${o.order_web_date}" var="order_web_date" pattern="yyyy-MM-dd HH:ss"/>
+                        <td>${order_web_date}</td>
                         
                    <c:if test="${o.order_web_check == 0}">
                           <td><input class="btn btn-primary" type="button" value="미접수" onclick="location.href='orderlistview.cafe?orderWebCode=${o.order_web_code}'" /></td>        

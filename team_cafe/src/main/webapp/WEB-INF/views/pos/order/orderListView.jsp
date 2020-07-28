@@ -139,7 +139,8 @@
 	                  <div class="col-sm-12 col-md-7">
 		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
 			                 <input class="btn btn-secondary" type="button" value="list" onclick="location.href='orderlist.cafe'" />
-			                     
+			                
+			                  
 			                 <input class="btn btn-primary" type="button" value="접수" onclick="location.href='orderconfirm.cafe?orderWebCode=${orderWebCode}'" />
 			                      
               

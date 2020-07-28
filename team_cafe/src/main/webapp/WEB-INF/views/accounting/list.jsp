@@ -174,8 +174,10 @@
                    
           <c:forEach var="b" items="${list}">
           
+           <fmt:formatDate value="${b.accounts_startSell}" var="accounts_startSell" pattern="yyyy-MM-dd"/>
+			
                       <tr>
-                        <td>${b.accounts_startSell}</td>
+                        <td>${accounts_startSell}</td>
                         <td>${b.accounts_total}</td>
                         <td>${b.accounts_card}</td>
                         <td>${b.accounts_cash}</td>
@@ -196,20 +198,26 @@
                   <div align="center">
 	                  
 	                  <div class="col-sm-12 col-md-7" >
+	                  <br>
 		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate" >
-			                  <ul class="pagination" style="text-align: center;">
-			                  
+			                  <ul class="pagination" style="text-align: center; width: 350px !important;" >
+			                 		
+			                 			 <li class="paginate_button page-item " >
+								           <a href="list.cafe?pg=1" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link" >
+					             		   	&lt;&lt;
+					        	         </a>
+			
 			                  		<c:if test="${pg>1}">  <!-- 5>10 : false / 15>10 : true -->
 										<li class="paginate_button page-item ">
 								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					             		    Previous
-					        	         </a>
+					             		    &lt;
+					             		    </a>
 					             	    </li>
 									</c:if>
 									<c:if test="${pg<=1}"> <!-- 5<=10 :true / 15<=10:false -->
 										<li class="paginate_button page-item ">
 						                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					             		    Previous
+					             		    &lt;
 					        	         </a>
 					  	               </li>
 									</c:if>          
@@ -234,7 +242,7 @@
 					       <c:if test="${pg<allPage}"> 
 					           <li class="paginate_button page-item ">
 					                  <a href="list.cafe?pg=${pg+1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	Next
+					                  	>
 					                  </a>
 				                  </li>
 				            </c:if>      
@@ -242,13 +250,17 @@
 				             <c:if test="${pg>=allPage}"> 
 					           <li class="paginate_button page-item ">
 					                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	Next
+					                  	>
 					                  </a>
 				                  </li>
 				            </c:if>    
 				            
 				 
-				                  
+				               <li class="paginate_button page-item ">
+								           <a href="list.cafe?pg=${allPage}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    >>
+					        	         </a>
+					           </li>   
 				                  
 				                  
 				                  

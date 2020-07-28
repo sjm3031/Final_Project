@@ -99,67 +99,67 @@ public class PosController {
 	@ResponseBody
 	@RequestMapping("webOrderCheck.cafe")
 	public String webOrderCheck(){
-		int check=orderWebService.getOrderWebCheck();
-		String result = "null";
-		if (check !=0) {
-			result = "exit";
-		}
-		return result;			//null이면 접수안된 주문이 없는것
+	int check=orderWebService.getOrderWebCheck();
+	String result = "null";
+	if (check !=0) {
+	result = "exit";
+	}
+	return result;			//null이면 접수안된 주문이 없는것
 	}
 	
 	@RequestMapping("orderlist.cafe")				//주문 list 불러오기
 	public String orderlist(HttpServletRequest request) {
-		//주문테이블에 오늘날짜의 주문 list 가져오기
-
-		String pattern = "yyyy/MM/dd";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		String date = simpleDateFormat.format(new Date());
-		date =date.substring(2);
-		
-		List<OrderWebDTO> orderlist = orderWebService.getOrderWebListAll(date);
-		request.setAttribute("orderlist", orderlist);
+	//주문테이블에 오늘날짜의 주문 list 가져오기
 	
-		return "pos/order/orderList";
+	String pattern = "yyyy/MM/dd";
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+	String date = simpleDateFormat.format(new Date());
+	date =date.substring(2);
+	
+	List<OrderWebDTO> orderlist = orderWebService.getOrderWebListAll(date);
+	request.setAttribute("orderlist", orderlist);
+	
+	return "pos/order/orderList";
 	}
 	
 	
 	@RequestMapping("orderlistview.cafe")				//주문 list 불러오기
 	public String orderlistview(HttpServletRequest request) {
-		int order_web_code = Integer.parseInt(request.getParameter("orderWebCode"));
-		request.setAttribute("orderWebCode", order_web_code);
-		
-		List<ProductVO> productlist = productCartService.getProductList();
-		request.setAttribute("productlist", productlist);
-
-		HashMap map = new HashMap();
-		List<ProductAddDTO> addlist = productAddService.getProductAddList(map);
-		request.setAttribute("addlist", addlist);
-
-		//주문내역 테이블 가져오기 
-		//주문내역 추가사항내역테이블 가져오기
-		//join..
-		List<OrderWebListAddJoinDTO> list = orderWebService.getOrderWebListAddJoinList(order_web_code);
-		request.setAttribute("list", list);
+	int order_web_code = Integer.parseInt(request.getParameter("orderWebCode"));
+	request.setAttribute("orderWebCode", order_web_code);
 	
-		return "pos/order/orderListView";
+	List<ProductVO> productlist = productCartService.getProductList();
+	request.setAttribute("productlist", productlist);
+	
+	HashMap map = new HashMap();
+	List<ProductAddDTO> addlist = productAddService.getProductAddList(map);
+	request.setAttribute("addlist", addlist);
+	
+	//주문내역 테이블 가져오기 
+	//주문내역 추가사항내역테이블 가져오기
+	//join..
+	List<OrderWebListAddJoinDTO> list = orderWebService.getOrderWebListAddJoinList(order_web_code);
+	request.setAttribute("list", list);
+	
+	return "pos/order/orderListView";
 	}
 	
 	@RequestMapping("orderconfirm.cafe")
 	public String orderconfirm(HttpServletRequest request) {
-		int order_web_code = Integer.parseInt(request.getParameter("orderWebCode"));
-		orderWebService.updateOrderWebCheck(order_web_code);
-		return "redirect:/pos/orderlist.cafe";
-		
+	int order_web_code = Integer.parseInt(request.getParameter("orderWebCode"));
+	orderWebService.updateOrderWebCheck(order_web_code);
+	return "redirect:/pos/orderlist.cafe";
+	
 	}
 	
-
+	
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//											pos
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
-	
+
 	
 	// 음료 타입 선택시 리스트를 생성하여 보냄
 	@ResponseBody

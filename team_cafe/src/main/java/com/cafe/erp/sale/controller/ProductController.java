@@ -106,7 +106,7 @@ public class ProductController {
 		}
 	
 		
-		int rowSize = 3;			// 한페이지에 보여줄 record 수
+		int rowSize = 5;			// 한페이지에 보여줄 record 수
 		int start = (pg*rowSize) - (rowSize-1);			//sql문에서 실행될 변수.. xml 에서 변수명이 같아야한다.
 		int end = pg*rowSize;							//sql문에서 실행될 변수.. xml 에서 변수명이 같아야한다.
 		
@@ -115,7 +115,7 @@ public class ProductController {
 		int allPage = (int)Math.ceil(total / (double)rowSize);			//총 페이지수..
 		//int allPage = total/rowSize + (total % rowSize == 0?0:1)
 		
-		int block = 3;		// 한페이지에 보여줄 페이징 갯수	ex) << [1] [2] [3] [4] [5] ..>>
+		int block = 10;		// 한페이지에 보여줄 페이징 갯수	ex) << [1] [2] [3] [4] [5] ..>>
 		
 		int fromPage = ((pg-1) / block*block) + 1;
 		int toPage = ( (pg-1) / block*block) + block; 

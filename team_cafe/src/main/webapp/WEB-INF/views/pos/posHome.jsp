@@ -29,7 +29,14 @@
 
 <hr>
 <div class="area" id="one">
-
+	<table>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
 </div>
 
 <div class="area" id="two">

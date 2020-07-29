@@ -4,7 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-  <head>
+<html><head>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,45 +17,10 @@
     <link href="../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../resources/css/styles.css" rel="stylesheet">
     
-<script type="text/javascript">
+    
+	<script src="../resources/erp_js/form_validation.js"></script>
 
-	function addCafeProduct(){
-		var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-		if(! document.addCafeProductModal.cafe_product_img_upload.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.addCafeProductModal.cafe_product_img_upload.value)){
-			alert('이미지 파일을 넣어주세요.');
-			return false;
-		}
-	}
-       
-	function stock_insert(){
-		
-		 if(! document.stockinsert.stock_price.value== /^[0-9]*$/g.test(document.stockinsert.stock_price.value)){
-			alert("금액(원) 입력란에 숫자만 입력해주세요");
-			return false;
-		}
-		else if(! document.stockinsert.stock_upimage.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.stockinsert.stock_upimage.value)){
-			alert("이미지 형식의 파일을 선택해주세요");
-			return false;
-		}
 
-	}
-		
-	function account_insert(){
-		
-		if(! document.accountinsert.account_number.value == 
-			/^[0-9]*$/g.test(document.accountinsert.account_number.value)){
-			alert("사업자 번호 입력란에 숫자만 입력해주세요");
-			return false;
-		}
-		else if(! document.accountinsert.account_email.value == 
-			/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(document.accountinsert.account_email.value))
-		{
-			alert("email입력 란에 email형식으로 입력해주세요");
-			return false;
-		}
-	
-	}
-</script>
 
 
   </head>
@@ -67,7 +34,7 @@
     </nav>
     
     
-    <div id="wrapper">
+   <div id="wrapper">
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
@@ -141,7 +108,6 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">매출</h6>
             <a class="dropdown-item" href="sell/list.cafe"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
-            <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 뭘넣을까</a>
           </div>
         </li>
         
@@ -178,12 +144,7 @@
           <a class="nav-link" href="setting.cafe">
             <i class="fa fa-fw fa-cogs"></i>
             <span>설정</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="help.cafe">
-            <i class="fa fa-fw fa-life-ring"></i>
-            <span>도움말</span></a>
-        </li>
+        </li> 
       </ul>
       <div id="content-wrapper" style="padding: 2em;">
         <div class="container-fluid">
@@ -285,19 +246,76 @@
               </div>
             </div>
           </div>
-          <!-- Area Chart Example-->
+         <!-- Area Chart Example-->
           <div class="card mb-3">
             <div class="card-header">
               <i class="fa fa-chart-area"></i>
-              월별차트샘플()</div>
+              최근 12일간 매출액</div>
             <div class="card-body">
-              <canvas id="myAreaChart" width="100%" height="30"></canvas>
+             <canvas id="myBarChart" width="100%" height="50"></canvas>
+                  <script type="text/javascript">
+                           var accounttotal = new Array();
+                           var startsell = new Array();
+                           <c:forEach var = "get" items="${accountslist}">
+                              accounttotal.push('<c:out value="${get.accounts_total}"/>');
+                              var format = '<fmt:formatDate pattern="yy/MM/dd" value="${get.accounts_startsell}"/>';                        
+                              //startsell.push('<c:out value="${get.accounts_startsell}"/>');
+                              startsell.push(format);
+                              console.log(format);
+                           </c:forEach>
+                           console.log(accounttotal);
+                           console.log(startsell);
+              </script>
+                  <script language = "javaScript">
+                  var ctx = document.getElementById("myBarChart");
+                  var myLineChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: startsell,
+    datasets: [{
+      label: "Revenue",
+      backgroundColor: "#00a63f",
+      borderColor: "rgba(2,117,216,1)",
+      data: accounttotal,
+    }],
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'month'
+        },
+        gridLines: {
+          display: false
+        },
+        ticks: {
+          maxTicksLimit: 12
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 200000,
+          max: 600000,
+          maxTicksLimit: 40
+        },
+        gridLines: {
+          display: true
+        }
+      }],
+    },
+    legend: {
+      display: false
+    }
+  }
+});
+                  </script>
             </div>
             <div class="card-footer small text-muted">db연결(마지막상품 업데이트 시간찍기)</div>
           </div>
         </div>
         <br><br><br>
         <!-- Sticky Footer -->
+        <br><br><br>
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">
@@ -563,7 +581,7 @@
     
     
     
-    <!-- #addEmpModal -->
+      <!-- #addEmpModal -->
    <div class="modal fade" id="addEmpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -576,36 +594,44 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/emp/insert.cafe" method="post">
+          <form name="addEmpForm" action="hr/emp/insert.cafe" method="post" onsubmit="return addEmp();">
             <div class="modal-body">
               <div class="form-group">
                 <label>이름</label>
-                <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력하세요" required>
+                <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력해주세요." required>
+               
               </div>
               <div class="form-group">
-                <label>주민번호</label>
-                <input type="text" class="form-control" name="employee_jumin"  placeholder="(-)빼고 입력하세요" required>
+                <label>주민번호 <small class="text-muted">(-) 빼고 입력하세요</small> </label>
+                <input type="text" class="form-control" name="employee_jumin" placeholder="주민번호를 입력해주세요." required>
+                
               </div>
               <div class="form-group">
-                <label for="">핸드폰번호</label>
-                <input type="text" class="form-control" name="employee_phone" placeholder="(-)빼고 입력하세요" required>
+                <label for="">핸드폰번호 <small class="text-muted">(-) 빼고 입력하세요</small> </label>
+                <input type="text" class="form-control" name="employee_phone"  placeholder="전화번호를 입력해주세요." required>
+               
               </div>
               <div class="form-group">
                 <label for="">주소 </label>
-                <input type="text" class="form-control" name="employee_address" placeholder="주소를 입력하세요" required>
+                <input type="text" class="form-control" name="employee_address"  placeholder="주소를 입력해주세요." required>
+                
               </div>
               <div class="form-group">
                 <label for="">은행 </label>
-                <input type="text" class="form-control" name="employee_bank" placeholder="급여 받을 은행을 입력해주세요." required>
+                <input type="text" class="form-control" name="employee_bank"  placeholder="급여 받을 은행을 입력해주세요." required>
+                
               </div>
               <div class="form-group">
-                <label for="">계좌번호</label>
-                <input type="text" class="form-control" name="employee_bankaddress" placeholder="계좌번호를 (-)빼고 입력해주세요." required>
+                <label for="">계좌번호<small class="text-muted">(-) 빼고 입력하세요</small> </label>
+                <input type="text" class="form-control" name="employee_bankaddress"  placeholder="계좌번호를  입력해주세요." required>
+                
               </div>
+                        
+              
               <div class="form-group">
                 <label for="">직급</label>
-                <select name="employee_jobname" required>
-						<option>선택하세요</option>
+                <select class="form-control text-primary" name="employee_jobname" required="required" >
+						<option value=""selected>직급을 선택해주세요.</option>
 					<c:forEach var="emp" items="${joblist}">
 						<option  value="${emp.job_name}">${emp.job_name}</option>
 					</c:forEach>
@@ -616,15 +642,12 @@
              </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
       </div>
     </div>
-    
-    
-    
       <!-- #addjobModal -->
    <div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -638,7 +661,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/job/list.cafe" method="post">
+          <form name="addJobForm" action="hr/job/list.cafe" method="post" onsubmit="return addJob();">
             <div class="modal-body">
               <div class="form-group">
                 <label>직급</label>
@@ -657,7 +680,7 @@
               </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="등록" >
             </div>
           </form>
         </div>
@@ -676,12 +699,12 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form action="hr/salary/insert.cafe" method="post">
+          <form name="addSalaryForm" action="hr/salary/insert.cafe" method="post" onsubmit="return addSalary();" >
             <div class="modal-body">
               <div class="form-group">
                 <label>직원이름</label>
                 	<select name="employee_name" required>
-					<option>이름을 선택하세요</option>
+					<option value="">이름을 선택하세요</option>
 		
 					<c:forEach var="t" items="${nameList }">
 					<option value="${t.employee_name }">${t.employee_name }</option>
@@ -691,7 +714,7 @@
               <div class="form-group">
                 <label>근무 연도</label>
                 <select name="salary_year" required>
-					<option>연도를 선택하세요</option>
+					<option value="">연도를 선택하세요</option>
 		
 					<c:forEach var="t" items="${yearList }">
 					<option value="${t.emptna_year }">${t.emptna_year }</option>
@@ -702,7 +725,7 @@
               <div class="form-group">
                 <label for="">근무 월</label>
                 	<select name="salary_month" required>
-						<option>월을 선택하세요</option>
+						<option value="">월을 선택하세요</option>
 		
 							<c:forEach var="t" items="${monthList }">
 							<option value="${t.emptna_month }">${t.emptna_month }</option>
@@ -715,25 +738,23 @@
               
               <br>
              </div>
+             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="확인">
+              <input type="submit" class="btn btn-primary" value="정산" >
             </div>
           </form>
         </div>
       </div>
     </div>
-    
 
-  
-  
-  
+ 
 
     <script src="../resources/js/jquery.min.js"></script>
     <script src="../resources/js/bootstrap.bundle.min.js"></script>
     <script src="../resources/js/jquery.easing.min.js"></script>
-    <script src="../resources/js/chart.min.js"></script>
+
     <script src="../resources/js/rc-pos.min.js"></script>
-    <script src="../resources/js/chart-area-demo.js"></script>
+
   </body>
 </html>

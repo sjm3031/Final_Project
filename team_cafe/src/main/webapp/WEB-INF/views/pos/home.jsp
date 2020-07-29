@@ -44,11 +44,54 @@ body {
 <link type="text/css" rel="stylesheet"
    href="/erp/resources/web/content/302-2b1892c/point_of_sale.assets.css" />
 
+<script type="text/javascript">
+
+window.onload = setInterval(function(){webOrder()},2000);
+
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+	document.getElementById("myAudio").play(); 
+} 
+
+function pauseAudio() { 
+	document.getElementById("myAudio").pause(); 
+} 
+
+function webOrder(){
+	$.ajax(
+	         {
+	            url: './webOrderCheck.cafe',
+	            type: 'get',
+	            //data: {code : code},
+	            dataType: "text",
+	            success: function(data){
+	              if(data == 'exit'){
+	            	  document.getElementById("orderBtn").setAttribute("style","background-color: red;");
+
+		          }else{
+		        	  document.getElementById("orderBtn").setAttribute("style","background-color: #6EC89B;");
+
+
+			      }
+	            },
+	            error: function(error){
+	               console.log('error');
+	            }
+	         }
+	      );
+}
+
+	
+
+</script>
 
 
 <script type="text/javascript">
 	var num = 0;
 	var total = 0;
+   var original = total;
+   var couprice = 0;
 
 	// Opt. 버튼을 눌렀을때 optionList.cafe로 이동하여 옵션 목록을 비동기 처리해여 가져옴
 	$(function(){
@@ -119,24 +162,29 @@ body {
 	   });
 	});
 
-	//************07 23 5시에 수정
+	
 	// 왼쪽 리스트에서 항목을 클릭하면 그 항목의 금액만큼 차감한 후 리스트에서 삭제
  	$(document).on('click', '.orderline', function(event){
  		var test = $(this).children('.price').text();
  		total = total - test;
-/*  		var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
-		info3 += '<span class="badge">Total: </span> <span class="value">$ ' + total + '</span>';
+      original = original - test;
+ 		var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
+		if(total < 0){
+			info3 += '<span class="badge">Total: </span> <span class="value">' + 0 + ' 원</span>';
+		} else {
+			info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
+		}
+ 		
+      info3 += '<div class="subentry unit">원가 : <span>' + original + ' 원</span>';
+      info3 += '<div class="subentry discount">쿠폰 : <span>' + couprice + ' 원</span>';
 		info3 += '</div></div></div>';
-		$(".order2").html(info3); */	
-
-		$(".value").html(total);
+		$(".order2").html(info3);	
 		$(event.currentTarget).remove();
 	});
 
- 	//************07 23 5시에 수정
+ 	
 	// 음료 리스트에서 한 음료를 클릭 시 비동기 처리로 DB에서 음료의 정보를 가져온 뒤 왼쪽 리스트에 추가함
 	$(document).on('click', '.product.beverage', function(){
-		$(".order2").show();  // 0723 6시 추가부분*************************
 	   var id = $(this).data('product-id');
 		var info = '';
 	   list = '';
@@ -147,26 +195,15 @@ body {
 	      data: {id : id},
 	      dataType: "json",
 	      success: function(data){
-				total += data.cafe_product_price;
-				
 				if(num == 0){
 					/* 단 한번만 초기화 */
 					$(".order").empty();
-					//$(".order2").show(); 
 					num=1;
 	
 					/* 아웃라인 */
 					var info2 = '<ul class="orderlines">';
 					info2 += '</ul>';
 					$(".order").html(info2);	
-
-					/* 토탈화면출력 */
-					var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
-					info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
-					info3 += '<div class="subentry">현금 : <span class="value2"> </span></div>';
-					info3 += '</div></div></div>';
-					$(".order2").html(info3);
-					$(".subentry").hide();
 				}
 	
 				info = '<li class="orderline">';
@@ -175,47 +212,32 @@ body {
 				info += '<span class="price">' + data.cafe_product_price + '</span>';
 				info += '<span class="info-list">Option : </span>';
 				info +='</li>';
-
+				total += data.cafe_product_price;
+            original += data.cafe_product_price;
 				$(".orderlines").append(info);
-				$(".value").html(total);
+			
+				/* 토탈화면출력 */
+				var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
 
+				if(total < 0){
+					info3 += '<span class="badge">Total: </span> <span class="value">' + 0 + ' 원</span>';
+				} else {
+					info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
+				}
+				
+            info3 += '<div class="subentry unit">원가 : <span>' + original + ' 원</span>';
+            info3 += '<div class="subentry discount">쿠폰 : <span>' + couprice + ' 원</span>';
+				info3 += '</div></div></div>';
+				$(".order2").html(info3);
 	      },
 	      error: function(error){
 	         console.log('error');
 	      }
 	   });
 	});
-	
-	// 쿠폰 버튼 클릭
-/* 	$(document).on('click', '.mode-button', function(event){
-		alert("준비중");
-	}); */
-	//************07 23 5시에 추가
-	//넘패드 번호 입력
-	$(document).on('click', '.input-button.number-char', function(event){
-		var num = $(this).text();
-		$(".subentry").show();
 
-		if($('.value2').text() == '0'){
-			$(".value2").html(num);
-		} else {
-			$(".value2").append(num);
-		}
-	});
-	//넘패드 현금 부분 삭제
-	$(document).on('click', '.input-button.numpad-backspace', function(event){
-		var date = $(this).text();
-		$(".value2").html("0");
-		});
-
-/* 		$( document ).ready(function() {
-		if($('.orderline').length == 0){
-			alert($('.orderline').length)
-			$(".order2").hide(); 
-			}
-	});  */
 	
-	/* 클릭한 데이터 값 */
+	// 옵션을 클릭 시 왼쪽리스트에 등록된 음료 리스트의 맨 마지막에 해당 옵션을 부여함
 	$(document).on('click', '.product.option', function(){
 	   var id = $(this).data('product-id');
 	   list = '';
@@ -235,10 +257,11 @@ body {
 			      price = Number(price);
 			      price += data.product_add_price;
 			      total += data.product_add_price;
+               original += data.product_add_price;
 			      $('.orderline:last').children('.price').html(price);
 			      $('.orderline:last').append(extra);
 			      $('.entry.total').children('.value').html(total + ' 원');
-			      //alert(price);
+               $('.subentry.unit').children('span').html(original + ' 원');
 			      $('.info-list:last').append(data.product_add_name + ' ');
 		      },
 		      error: function(error){
@@ -247,6 +270,24 @@ body {
 		});
 	});
 
+
+	// 결제 버튼 클릭시 물품의 여부에 따라 모달 창을 띄움
+	$(document).on('click', '.button.pay', function(){
+		   if($('.orderline').length == 0){
+		      alert('등록된 물품이 없습니다.');
+		      return;
+		   }
+			
+			$('.modal-dialog.oe_hidden.pay').attr('class', 'modal-dialog pay');
+	});
+
+
+	// 결제 모달에서 취소 누르면 모달 창을 숨김
+	$(document).on('click', '.button.cancel.pay', function(){
+		$('.modal-dialog.pay').attr('class', 'modal-dialog oe_hidden pay');
+	});
+
+	
 	// 결제 버튼 누를시 상품주문 리스트를 가지고 PosController로 전송
 	$(document).on('click', '.button.confirm.pay', function(){
 		var orderJson = {
@@ -289,11 +330,11 @@ body {
          contentType: 'application/json; charset=utf-8',
          dataType: 'text',
          success: function(data){
-            if(data == "fail"){
-				alert("등록된 회원을 찾지 못했습니다. 다시 확인해주세요.");
+         	if(data == "fail"){
+            	alert("등록된 회원을 찾지 못했습니다. 다시 확인해주세요.");
             } else {
-				alert("결제가 완료되었습니다.");
-				location.href = "./home.cafe";
+            	alert("결제가 완료되었습니다.");
+            	location.href = "./home.cafe";
             }
          },
          error: function(error){
@@ -302,27 +343,234 @@ body {
       });
 	});
 
-	$(document).on('click', '.button.pay', function(){
-		if($('.orderline').length == 0){
-			alert('등록된 물품이 없습니다.');
-			return;
-		}
-		
-		$('.modal-dialog.oe_hidden.pay').attr('class', 'modal-dialog pay');
-	});
-
-	$(document).on('click', '.button.cancel.pay', function(){
-		$('.modal-dialog.pay').attr('class', 'modal-dialog oe_hidden pay');
-	});
-
+	
+	// 출근/퇴근 버튼을 누르면 근태 모달창을 띄움
 	$(document).on('click', '.button.attend', function(){
 		$('.modal-dialog.oe_hidden.attend').attr('class', 'modal-dialog attend');
 	});
 
+
+	// 출퇴근 모달창의 취소를 누르면 근태 모달창을 숨김
 	$(document).on('click', '.button.cancel.attend', function(){
 		$('.modal-dialog.attend').attr('class', 'modal-dialog oe_hidden attend');
 	});
+	
 
+	// 근태 모달창에서 등록을 누르면 입력된 값에 따라 출/퇴근 정보를 Controller로 보냄
+	$(document).on('click', '.button.confirm.attend', function(){
+		var attendJson = {
+			name : $('#employeeName').val(),
+			jumin : $('#employeeIdenti').val(),
+			inout : $("input[name='attend']:checked").val()
+		};
+
+		$.ajax({
+			url: './attendInsert.cafe',
+			type: 'post',
+			data: JSON.stringify(attendJson),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'text',
+			success: function(data){
+				alert(data);
+			},
+			error: function(error){
+				console.log('error');
+			}
+		});
+	});
+
+
+   // 스탬프 갯수 조회
+   $(document).on('click', '.button.check.coupon', function(){
+      if($('.orderline').length == 0){
+       	alert('상품을 먼저 등록해주세요!');
+         return;
+      }
+
+      var phone = $('#phoneCouponInput').val();
+
+      $.ajax({
+         url: './selectStamp.cafe',
+         type: 'post',
+         data: {phone : phone},
+         dataType: 'json',
+         success: function(data){
+            if(data.msg == "yes"){
+               $('#validCouponText').html('쿠폰 사용 가능합니다.<br>스탬프 : ' + data.count + '개');
+               $('#validCouponText').css('color', 'green');
+            } else {
+               $('#validCouponText').html('사용 가능한 쿠폰이 없습니다.<br>스탬프 : ' + data.count + '개');
+               $('#validCouponText').css('color', 'red');
+            }
+         },
+         error: function(error){
+            console.log("error");
+         }
+      });
+   });
+
+
+   // 스탬프 사용
+   $(document).on('click', '.button.confirm.coupon', function(){
+	   if($('.orderline').length == 0){
+	       	alert('상품을 먼저 등록해주세요!');
+	         return;
+	   }
+	   
+      var phone = $('#phoneCouponInput').val();
+
+      $.ajax({
+         url: './coupon.cafe',
+         type: 'post',
+         data: {phone : phone},
+         dataType: 'text',
+         success: function(data){
+            if(data == 'yes'){
+               alert('쿠폰이 적용되었습니다!');
+               couprice = 5000;
+               total = total - couprice;
+
+               if(total < 0){
+                  $('.entry.total').children('.value').html(0 + ' 원');
+               } else {
+                  $('.entry.total').children('.value').html(total + ' 원');
+               }
+               
+               $('.subentry.discount span').html(couprice + ' 원');
+               $('.modal-dialog.coupon').attr('class', 'modal-dialog oe_hidden coupon');
+            } else {
+               alert("사용 할 수 있는 쿠폰이 없습니다!")
+            }
+         }
+      });
+   });
+
+
+
+	// 쿠폰 버튼을 누르면 쿠폰 모달창을 띄움
+	$(document).on('click', '.mode-button.coupon', function(){
+		$('.modal-dialog.oe_hidden.coupon').attr('class', 'modal-dialog coupon');
+	});
+
+
+	// 쿠폰 모달 창에서 취소 버튼을 누르면 쿠폰 모달창을 숨김
+	$(document).on('click', '.button.cancel.coupon', function(){
+		$('.modal-dialog.coupon').attr('class', 'modal-dialog oe_hidden coupon');
+	});
+
+
+	// 준비 버튼을 누르면 현재 시각을 불러와 모달창에 보여줌
+	$(document).on('click', '.mode-button.ready', function(){
+		$.ajax({
+			url: './dayStart.cafe',
+			type: 'post',
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			success: function(data){
+				$('#startTime').attr('value', data.NOWTIME);
+			},
+			error: function(error){
+				console.log('error');
+			}
+		});
+
+		$('.modal-dialog.oe_hidden.ready').attr('class', 'modal-dialog ready');
+	});
+
+
+	// 준비 모달창의 등록을 누르면 현재 시각과 입력한 준비금을 controller로 보냄
+	$(document).on('click', '.button.confirm.ready', function(){
+		var startData = {
+			startTime : $('#startTime').val(),
+			startMoney : $('#readyMoney').val()
+		}
+
+		$.ajax({
+			url: './dayStartSubmit.cafe',
+			type: 'post',
+			contentType: 'application/json; charset=utf-8',
+			data: JSON.stringify(startData),
+			dataType: 'text',
+			success: function(data){
+				alert(data);
+				$('.modal-dialog.ready').attr('class', 'modal-dialog oe_hidden ready');
+			},
+			error: function(error){
+				console.log('error');
+			}
+		});
+	});
+
+
+	// 준비 모달창 숨김
+	$(document).on('click', '.button.cancel.ready', function(){
+		$('.modal-dialog.ready').attr('class', 'modal-dialog oe_hidden ready');
+	});
+	
+
+	// 정산 버튼을 누르면 POS 시작 정보, 매출정보, 마감시간을 가져와 모달창에 보여줌
+	$(document).on('click', '.mode-button.dayend', function(){
+		$.ajax({
+			url: './dayend.cafe',
+			type: 'post',
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			success: function(data){
+
+				$('#totalSell').attr('value', data[2].SELLTOTAL);
+				$('#cashSell').attr('value', data[1].SELLTOTAL);
+				$('#cardSell').attr('value', data[0].SELLTOTAL);
+				$('#sellCount').attr('value', data[2].SELLCOUNT);
+				$('#endSell').attr('value', data[3].NOWTIME);
+				$('#startSell').attr('value', data[4].STARTTIME)
+				$('#readyCost').attr('value', data[4].RESERVEFUND_TOTAL)
+				$('#reserveId').attr('value', data[4].RESERVEFUND_CODE)
+				$('.modal-dialog.oe_hidden.dayend').attr('class', 'modal-dialog dayend');
+			},
+			error: function(error){
+				alert('POS 준비를 먼저 실행해주세요!');
+				return;
+			}
+		});	
+	});
+
+
+	// 정산 모달창의 등록버튼을 누를시 input에 있는 값들을 controller로 전송
+	$(document).on('click', '.button.confirm.dayend', function(){
+		var endData = {
+			totalSell : $('#totalSell').val(),
+			cashSell : $('#cashSell').val(),
+			cardSell : $('#cardSell').val(),
+			sellCount : $('#sellCount').val(),
+			endSell : $('#endSell').val(),
+			startSell : $('#startSell').val(),
+			reserveId : $('#reserveId').val()
+		};
+
+		$.ajax({
+			url: './dayendSubmit.cafe',
+			type: 'post',
+			data: JSON.stringify(endData),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'text',
+			success: function(data){
+				alert(data);
+				$('.modal-dialog.dayend').attr('class', 'modal-dialog oe_hidden dayend');
+			},
+			error: function(error){
+				console.log('error');
+			}
+		});
+	});
+
+
+	// 정산 모달의 취소 창을 누르면 정산 모달을 숨김
+	$(document).on('click', '.button.cancel.dayend', function(){
+		$('.modal-dialog.dayend').attr('class', 'modal-dialog oe_hidden dayend');
+	});
+
+
+	// 어드민 ERP 페이지로 이동하기 위한 로그인
 	$(document).on('click', '.header-button', function(){
 		location.href = "./login.cafe";
 	});
@@ -397,7 +645,7 @@ body {
                         aria-label="Synchronisation Error" title="Synchronisation Error"></i>
                   </div>
                </div>
-               <div class="header-button">Close</div>
+               <div class="header-button">로그인</div>
             </div>
          </div>
 
@@ -469,32 +717,26 @@ body {
                                              </button>
                                           </div>
                                           <div class="numpad">
-                                             <button class="input-button number-char" >1</button>
-                                             <button class="input-button number-char" >2</button>
+                                             <button class="input-button number-char">1</button>
+                                             <button class="input-button number-char">2</button>
                                              <button class="input-button number-char">3</button>
-                                             <button class="mode-button selected-mode"
-                                                data-mode="quantity">쿠폰</button>
+                                             <button class="mode-button selected-mode" id="orderBtn" name="orderBtn"  onclick="window.open('orderlist.cafe','orderWeb','width=800,height=500')"
+                                                data-mode="quantity">web</button>
                                              <br>
                                              <button class="input-button number-char">4</button>
                                              <button class="input-button number-char">5</button>
                                              <button class="input-button number-char">6</button>
-                                             <button class="mode-button" data-mode="discount">정산</button>
+                                             <button class="mode-button coupon" data-mode="discount">쿠폰</button>
                                              <br>
                                              <button class="input-button number-char">7</button>
                                              <button class="input-button number-char">8</button>
                                              <button class="input-button number-char">9</button>
-                                             <button class="mode-button" data-mode="price">미정</button>
+                                             <button class="mode-button dayend" data-mode="price">정산</button>
                                              <br>
                                              <button class="input-button numpad-minus">+/-</button>
                                              <button class="input-button number-char">0</button>
                                              <button class="input-button number-char">.</button>
-                                             <button class="input-button numpad-backspace">
-                                            <i class="fa fa-eraser" role="img" aria-label="Shopping cart" title="Shopping cart"></i>
-
-                                                <!-- <img style="pointer-events: none;"
-                                                   src="/point_of_sale/static/src/img/backspace.png"
-                                                   width="24" height="21" alt="Backspace"> -->
-                                             </button>
+                                             <button class="mode-button ready">준비</button>
                                           </div>
                                        </div>
                                     </div>
@@ -506,30 +748,6 @@ body {
                               <table class="layout-table">
 
                                  <tbody>
-                                    <tr class="header-row">
-                                       <td class="header-cell">
-                                          <div>
-                                             <header class="rightpane-header">
-                                                <div class="breadcrumbs">
-                                                   <span class="breadcrumb"> <span
-                                                      class=" breadcrumb-button breadcrumb-home js-category-switch">
-                                                         <i class="fa fa-home" role="img" aria-label="Beranda"
-                                                         title="Beranda"></i>
-                                                   </span>
-                                                   </span>
-
-                                                </div>
-                                                <div class="searchbox">
-                                                   <input placeholder="Cari Produk"> <span
-                                                      class="search-clear left"> <i
-                                                      class="fa fa-search"></i>
-                                                   </span>
-                                                </div>
-                                             </header>
-
-                                          </div>
-                                       </td>
-                                    </tr>
 
                                     <tr class="content-row">
                                        <td class="content-cell">
@@ -810,12 +1028,12 @@ body {
                   <main class="body" style="height: auto;">
                   	<table align="center">
                         <tr>
-                        	<td><span>직원 ID </span></td>
-                         	<td><input type="text" name="employeeId" id="employeeId" placeholder="아이디를 입력하세요" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"></td> 
+                        	<td><span>이름 </span></td>
+                         	<td><input type="text" name="employeeName" id="employeeName" placeholder="이름를 입력하세요" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"></td> 
                          </tr>
                          <tr>
-                         	<td><span>패스워드 </span></td>
-                         	<td><input type="password" name="employeePwd" id="employeePwd" placeholder="비밀번호를 입력하세요" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"></td>
+                         	<td><span>주민등록번호 </span></td>
+                         	<td><input type="password" name="employeeIdenti" id="employeeIdenti" placeholder="주민등록번호를 입력하세요" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"></td>
                      	</tr>
                      </table>    
                          <input type="radio" name="attend" value="출근" checked="checked" style="margin-top: 20px;"/>출근
@@ -842,6 +1060,84 @@ body {
                   </footer>
                </div>         
             </div>
+            
+            <div role="dialog" class="modal-dialog oe_hidden coupon">
+               <div class="popup popup-confirm">
+                  <header class="title">쿠폰조회</header>
+                  <main class="body">
+                        <span>전화번호</span>
+                         <input type="text" name="phoneCouponInput" id="phoneCouponInput" placeholder="전화번호를 입력해주세요" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 5px;">
+                         <div class="button check coupon" style="width: 80px; margin-top: 0px; margin-right: 0px;">조회</div>
+                         <br>
+                         <span id="validCouponText"></span>
+            		</main>
+                  <footer class="footer">
+                     <div class="button confirm coupon">사용</div>
+                     <div class="button cancel coupon">취소</div>
+                  </footer>
+               </div>         
+            </div>
+
+				<div role="dialog" class="modal-dialog oe_hidden dayend">
+               <div class="popup popup-confirm" style="height: 500px;">
+                  <header class="title">마감정산</header>
+                  <main class="body" style="height: auto;">
+                  	<table align="center">
+                        <tbody><tr>
+                        	<td><span>총 매출액</span></td>
+                         	<td><input type="text" name="totalSell" id="totalSell" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr>
+                         <tr>
+                         	<td><span>현금 매출액</span></td>
+                         	<td><input type="text" name="cashSell" id="cashSell" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td>
+                     	</tr>
+                     <tr>
+                        	<td><span>카드 매출액</span></td>
+                         	<td><input type="text" name="cardSell" id="cardSell" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr><tr>
+                        	<td><span>총 주문 건수</span></td>
+                         	<td><input type="text" name="sellCount" id="sellCount" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr><tr>
+                        	<td><span>영업 시작시간</span></td>
+                         	<td><input type="text" name="startSell" id="startSell" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr><tr>
+                        	<td><span>영업 종료시간</span></td>
+                         	<td><input type="text" name="endSell" id="endSell" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr><tr>
+                        	<td><span>시작 준비금</span></td>
+                         	<td><input type="text" name="readyCost" id="readyCost" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         	<td><input type="hidden" name="reserveId" id="reserveId"  style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"></td>
+                         </tr></tbody></table>    
+                         </main>
+                  <footer class="footer">
+                     <div class="button confirm dayend">등록</div>
+                     <div class="button cancel dayend">취소</div>
+                  </footer>
+               </div>         
+            </div>
+            
+            <div role="dialog" class="modal-dialog oe_hidden ready">
+               <div class="popup popup-confirm" style="height: 300px;">
+                  <header class="title">영업준비</header>
+                  <main class="body" style="height: auto;">
+                  	<table align="center">
+                        <tbody><tr>
+                        	<td><span>영업 시작시간</span></td>
+                         	<td><input type="text" name="startTime" id="startTime" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;" readonly="readonly"></td> 
+                         </tr>
+                         <tr>
+                         	<td><span>영업 준비금</span></td>
+                         	<td><input type="text" name="readyMoney" id="readyMoney" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 20px;"></td>
+                     	</tr>
+                     </tbody></table>    
+                         </main>
+                  <footer class="footer">
+                     <div class="button confirm ready">등록</div>
+                     <div class="button cancel ready">취소</div>
+                  </footer>
+               </div>         
+            </div>
+            
 
          <div class="loader oe_hidden" style="opacity: 0;">
             <div class="loader-feedback oe_hidden">

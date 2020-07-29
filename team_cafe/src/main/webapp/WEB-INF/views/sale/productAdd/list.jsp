@@ -15,17 +15,8 @@
     <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/styles.css" rel="stylesheet">
     
-<script type="text/javascript">
-
-	function addCafeProduct(){
-		var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-		if(! document.addCafeProductModal.cafe_product_img_upload.value== /(\.gif|\.png|\.jpg|\.jpeg)$/i.test(document.addCafeProductModal.cafe_product_img_upload.value)){
-			alert('이미지 파일을 넣어주세요.');
-			return false;
-		}
-	}
-</script>    
     
+	<script src="../../../resources/erp_js/form_validation.js"></script>
     
   </head>
   <body id="page-top">

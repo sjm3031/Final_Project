@@ -14,7 +14,39 @@
     <link href="../../../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/styles.css" rel="stylesheet">
-    <style type="text/css">
+
+<script type="text/javascript">
+
+   function insert(){
+	
+	      if(document.writeform.customer_name.value==""){
+	         alert("고객 이름을 입력해주세요");
+	      }else if(! document.writeform.customer_phone.value == /^01[0179][0-9]{8}$/.test(document.writeform.customer_phone.value) || document.writeform.customer_phone.value==""){
+	         alert("고객 전화번호를 입력해주세요");
+	         document.writeform.customer_phone.focus();
+	      }else if(! document.writeform.customer_birth.value== /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/g.test(document.writeform.customer_birth.value) || document.writeform.customer_birth.value==""){
+	         alert("고객 생년월일을 입력해주세요");
+	         document.writeform.customer_birth.focus();
+	      }else if(document.writeform.customer_gender.value==""){
+		      alert("고객 성별을 체크해주세요");
+		      document.writeform.customer_gender.focus();
+	      }else if(document.writeform.customer_stamp.value==""){
+	         alert("고객 스템프수을 입력해주세요");
+	         document.writeform.customer_stamp.focus();
+	      }else if(! document.writeform.customer_pwd.value== /^[A-Za-z0-9]{6,12}$/.test(document.writeform.customer_pwd.value) || document.writeform.customer_pwd.value==""){
+	         alert("고객 비밀번호를 입력해주세요");
+	         document.writeform.customer_pwd.focus();
+	      }else{
+	         document.writeform.submit(); 
+	      }
+	
+   }
+</script>
+
+
+
+
+<style type="text/css">
     	.label {
     	 display: inline !important;
     	 position: relative;
@@ -61,7 +93,7 @@
         <li class="nav-item">
           <a class="nav-link" href="../index.cafe">
             <i class="fa fa-fw fa-home"></i>
-            <span>홈</span>
+            <span>홈</span>	
           </a>
         </li>
         
@@ -127,7 +159,6 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">매출</h6>
             <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
-            <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 뭘넣을까</a>
           </div>
         </li>
         
@@ -171,11 +202,7 @@
             <i class="fa fa-fw fa-cogs"></i>
             <span>설정</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="help.do">
-            <i class="fa fa-fw fa-life-ring"></i>
-            <span>도움말</span></a>
-        </li>
+
       </ul>
       <div id="content-wrapper" style="padding: 2em;">	
           <div class="container-fluid">
@@ -245,28 +272,30 @@
 		
 		
 		
-                  <div class="row">
-	                  <div class="col-sm-12 col-md-5">
-		                  <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-		              
-		                  </div>
-	                  </div>
-	                  <div class="col-sm-12 col-md-7">
-		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-			                  <ul class="pagination">
-			                  
+                  <div align="center">
+	                  
+	                  <div class="col-sm-12 col-md-7" >
+	                  <br>
+		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate" >
+			                  <ul class="pagination" style="text-align: center; width: 350px !important;" >
+			                 		
+			                 			 <li class="paginate_button page-item " >
+								           <a href="list.cafe?pg=1" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link" >
+					             		   	&lt;&lt;
+					        	         </a>
+			
 			                  		<c:if test="${pg>1}">  <!-- 5>10 : false / 15>10 : true -->
-										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-					              	  		  Previous
-					                	  </a>
+										<li class="paginate_button page-item ">
+								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    &lt;
+					             		    </a>
 					             	    </li>
 									</c:if>
 									<c:if test="${pg<=1}"> <!-- 5<=10 :true / 15<=10:false -->
-										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-						                  <a aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-						              	    Previous
-						                  </a>
+										<li class="paginate_button page-item ">
+						                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    &lt;
+					        	         </a>
 					  	               </li>
 									</c:if>          
 					          <c:forEach begin="${fromPage}" end="${toPage}" var="i">
@@ -288,23 +317,27 @@
 					                 
 					                	       
 					       <c:if test="${pg<allPage}"> 
-					           <li class="paginate_button page-item next disabled" id="dataTable_next">
+					           <li class="paginate_button page-item ">
 					                  <a href="list.cafe?pg=${pg+1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	Next
+					                  	>
 					                  </a>
 				                  </li>
 				            </c:if>      
 				            
 				             <c:if test="${pg>=allPage}"> 
-					           <li class="paginate_button page-item next disabled" id="dataTable_next">
+					           <li class="paginate_button page-item ">
 					                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	Next
+					                  	>
 					                  </a>
 				                  </li>
 				            </c:if>    
 				            
 				 
-				                  
+				               <li class="paginate_button page-item ">
+								           <a href="list.cafe?pg=${allPage}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    >>
+					        	         </a>
+					           </li>   
 				                  
 				                  
 				                  
@@ -1054,7 +1087,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="write.cafe" method="post" enctype="multipart/form-data">
+          <form name = "writeform" class="" action="write.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
       
               <div class="form-group">
@@ -1064,12 +1097,12 @@
               </div>
               <div class="form-group">
                 <label for="">고객 전화번호</label>
-                <input type="number" class="form-control" name="customer_phone" value="" placeholder="전화번호를 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_phone" value="" placeholder="'-' 빼고 전화번호를 입력해주세요." required>
               </div>
               
                  <div class="form-group">
                 <label for="">고객 생년월일</label>
-                <input type="number" class="form-control" name="customer_birth" value="" placeholder="생년월일을 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_birth" value="" placeholder="생년월일을 입력해주세요. ex)910202" required>
               </div>
         
         
@@ -1089,12 +1122,12 @@
               
               <div class="form-group" >
                 <label for="" class="stamp">고객 스템프수</label>
-                <input type="number" class="form-control" name="customer_stamp" value="" placeholder="스템프수를 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_stamp" value="" placeholder="스템프 수를 입력해주세요." required>
               </div>
               
                 <div class="form-group">
                 <label for="">고객 비밀번호</label>
-                <input type="number" class="form-control" name="customer_pwd" value="" placeholder="비밀번호를 입력해주세요." required>
+                <input type="number" class="form-control" name="customer_pwd" value="" placeholder="숫자와 문자 포함 형태의 6~12자리 이내로 입력해주세요." required>
               </div>
         
         
@@ -1103,7 +1136,8 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="submit" class="btn btn-primary" value="등록">
+              <!-- <input type="submit" class="btn btn-primary" value="등록"> -->
+              <input type="button" value="등록" onclick="insert()" class="btn btn-primary">
             </div>
           </form>
         </div>

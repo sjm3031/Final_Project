@@ -318,6 +318,7 @@ CREATE TABLE CAFE_ACCOUNTS
 ----------------------------------------------------------------------------------------------------------------------------
 --                                                      insert
 ----------------------------------------------------------------------------------------------------------------------------
+--제품관리
 insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(1,'샷추가',500);
 insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(2,'시럽추가',500);
 insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(3,'버블추가',700);
@@ -326,12 +327,41 @@ insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRIC
 insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(1,'coffe');
 insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(2,'non-coffe');
 insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(3,'juice');
+
+insert into CAFE_PRODUCT values(1,'에스프레소',2500,'에스프레소.jpg',1);
+insert into CAFE_PRODUCT values(2,'아이스아메리카노',4000,'아아.png',1);
+insert into CAFE_PRODUCT values(3,'아이스라떼',4500,'라떼.jpg',1);
+insert into CAFE_PRODUCT values(4,'카푸치노',4500,'카푸치노.jpg',1);
+insert into CAFE_PRODUCT values(5,'카라멜마끼아또',5000,'카라멜마끼아또.jpg',1);
+insert into CAFE_PRODUCT values(6,'아이스카페모카',5000,'카페모카.jpg',1);
+
+insert into CAFE_PRODUCT values(7,'그린티라떼',5500,'그린티.jpg',2);
+insert into CAFE_PRODUCT values(8,'오곡라떼',5500,'오곡라떼.jpg',2);
+insert into CAFE_PRODUCT values(9,'딸기라떼',5500,'딸기라떼.jpg',2);
+insert into CAFE_PRODUCT values(10,'자몽에이드',4000,'자몽에이드.jpg',2);
+insert into CAFE_PRODUCT values(11,'레몬에이드',4000,'레몬에이드.jpg',2);
+insert into CAFE_PRODUCT values(12,'오렌지에이드',4000,'오렌지에이드.jpg',2);
+insert into CAFE_PRODUCT values(13,'아이스티',2500,'아이스티.jpg',2);
+insert into CAFE_PRODUCT values(14,'홍차',2500,'tea.jpg',2);
+
+insert into CAFE_PRODUCT values(15,'키위주스',6000,'키위주스.png',3);
+insert into CAFE_PRODUCT values(16,'바닐라쉐이크',6000,'바닐라쉐이크.jpg',3);
+insert into CAFE_PRODUCT values(17,'초코쉐이크',6000,'초코쉐이크.jpg',3);
+insert into CAFE_PRODUCT values(18,'쿠키쉐이크',6000,'초코쿠키쉐이크.jpg',3);
  
+ 
+--직원관리
 INSERT INTO CAFE_JOB VALUES (1,'매니저',0,2000000);
 INSERT INTO CAFE_JOB VALUES (2,'아르바이트',8590,0);
 INSERT INTO CAFE_JOB VALUES (3,'아르바이트pro',9000,0);
 
+
+--pos 비밀번호
 INSERT INTO CAFE_POSPASSWORD VALUES ('PASSWORD');
+
+-- pos 주문과 주문내역 >> erp main 화면의 bestseller 출력을 위해
+INSERT INTO CAFE_ORDER VALUES (1,4000,1,'현금',sysdate,'');
+INSERT INTO CAFE_ORDERList VALUES (1,2,1,1);
  
 commit;
 

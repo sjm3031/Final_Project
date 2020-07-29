@@ -630,12 +630,12 @@ $(document).on('click', '.input-button.numpad-minus', function(){
                     <span class="orders touch-scrollable">
                      <span
                         class="order-button select-order selected beverage"
-                        data-uid="1">HOT
+                        data-uid="1">Coffe
                      </span>
 
                      <span
                         class="order-button select-order selected beverage"
-                        data-uid="2">ICE
+                        data-uid="2">NON - Coffe
                      </span>
 
                      <span
@@ -643,10 +643,6 @@ $(document).on('click', '.input-button.numpad-minus', function(){
                         data-uid="3">JUICE
                      </span>
 
-                     <span
-                        class="order-button select-order selected beverage"
-                        data-uid="4">TEA
-                     </span>
 
                      <span
                         class="order-button select-order selected option"
@@ -717,7 +713,7 @@ $(document).on('click', '.input-button.numpad-minus', function(){
                                        <div class="subwindow-container-fix">
                                           <div class="order-container">
                                              <div class="order-scroller touch-scrollable">
-                                                <div class="order">						
+                                                <div class="order" style="width: 100% !important;">						
 			 				                        <div class="order-empty">
 							                            <i class="fa fa-shopping-cart" role="img" aria-label="Shopping cart" title="Shopping cart"></i>
 							                            <h1>물건을 선택하면 리스트에 등록됩니다.</h1>

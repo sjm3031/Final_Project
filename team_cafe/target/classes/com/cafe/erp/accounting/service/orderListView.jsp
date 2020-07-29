@@ -32,8 +32,7 @@
             <div class="card mb-3">
               <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
                 <i class="fa fa-table"></i>
-               Web 주문 List
-                
+               Web 주문 상세보기
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -41,39 +40,89 @@
                     <thead>
                       <tr>
                         <th>주문번호</th>
-                        <th>총 주문 상품 수량</th>
-                        <th>총 금액</th>
-                        <th>날짜</th>
-                        <th>접수 상태</th>
+                        <th>제품 명</th>
+                        <th>총 수량</th>
+                        <th>추가 사항</th>
                       </tr>
                     </thead>
                     
                    
-          <c:forEach var="o" items="${orderlist}">
+ 
+<c:set var="before" value="0"/>
 
-                      <tr onclick="location.href='orderlistview.cafe?orderWebCode=${o.order_web_code}'">
-                        <td>${o.order_web_code}</td>
-                        <td>${o.order_web_count}</td>
-                        <td>${o.order_web_total}</td>
+<c:forEach var="order" items="${list}">
+
+<c:set var="present" value="${order.orderList_web_code}"/>
+	
+	<c:if test="${before != present}">
+	
+           <tr>
+           <td>${order.orderList_web_code}</td>
+	<c:forEach var="p" items="${productlist}">
+			<c:if test="${order.cafe_product_code == p.cafe_product_code}">
+			
+
+           
+                        <td>${p.cafe_product_name}</td>
+                        
+      </c:if>
+		</c:forEach>	
+                        <td>${order.orderList_web_count}</td>
+                        
+                        
+ <c:if test="${order.product_add_code == 0}">
+                        
+                        <td>추가 사항 없음.</td>
+    	</c:if>
+		
+		<c:if test="${order.product_add_code != 0}">
+		   <c:forEach var="a" items="${addlist}">
+				<c:if test="${order.product_add_code == a.product_add_code}">
+				                 
+                        <td>${a.product_add_name}</td>
+                       
+                   </c:if>
+			</c:forEach>    
+			
+			
+		</c:if>
+		
+</tr>
+	</c:if>	
+	
+	<c:if test="${before == present}">	
+
+		<c:if test="${order.product_add_code != 0}">
+		
+			<c:forEach var="a" items="${addlist}">
+				<c:if test="${order.product_add_code == a.product_add_code}">
+					<br>
+					<tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>${a.product_add_name}</td>
+                      </tr>
+					
+				
+				
+				
+					<br>
+				</c:if>
+			</c:forEach>
+			
+		</c:if>
+	</c:if>
+	
+	<c:set var="before" value="${order.orderList_web_code}"/>
+
+
+
+	</c:forEach>
+	
+		
+		 
                 
-			<fmt:formatDate value="${o.order_web_date}" var="order_web_date" pattern="yyyy-MM-dd HH:ss"/>
-                        <td>${order_web_date}</td>
-                        
-                   <c:if test="${o.order_web_check == 0}">
-                          <td><input class="btn btn-primary" type="button" value="미접수" onclick="location.href='orderlistview.cafe?orderWebCode=${o.order_web_code}'" /></td>        
-                   </c:if>   
-                   <c:if test="${o.order_web_check == 1}">
-                          <td><input class="btn btn-secondary" type="button" value="접수 완료" onclick="location.href='orderlistview.cafe?orderWebCode=${o.order_web_code}'" /></td>
-            
-                   </c:if>    
-                        
-                    </tr>
-                    
-                      
-                    
-                      
-            </c:forEach>   
-                  
                    
                   </table>
                   
@@ -89,7 +138,11 @@
 	                  </div>
 	                  <div class="col-sm-12 col-md-7">
 		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-			                  
+			                 <input class="btn btn-secondary" type="button" value="list" onclick="location.href='orderlist.cafe'" />
+			                     
+			                 <input class="btn btn-primary" type="button" value="접수" onclick="location.href='orderconfirm.cafe?orderWebCode=${orderWebCode}'" />
+			                      
+              
 		                  </div>
 	                  </div>
                   </div>

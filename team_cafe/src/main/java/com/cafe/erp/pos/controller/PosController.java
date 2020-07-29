@@ -335,6 +335,25 @@ public class PosController {
 		}
 		
 		List dayEndMap = posOrderService.sellByGroup();
+		if(dayEndMap.isEmpty()) {
+	          HashMap card = new HashMap();
+	          HashMap cash = new HashMap();
+	          HashMap total = new HashMap();
+	          card.put("ORDER_ACCOUNTTYPE", "카드");
+	          card.put("SELLTOTAL", "0");
+	          card.put("SELLCOUNT", "0");
+	          
+	          cash.put("ORDER_ACCOUNTTYPE", "현금");
+	          cash.put("SELLTOTAL", "0");
+	          cash.put("SELLCOUNT", "0");
+	          
+	          total.put("SELLTOTAL", "0");
+	          total.put("SELLCOUNT", "0");
+	          
+	          dayEndMap.add(card);
+	          dayEndMap.add(cash);
+	          dayEndMap.add(total);
+		}		
 		HashMap endtime = posOrderService.getEndTime();
 		HashMap startInfo = posOrderService.getPosStartInfo();
 		dayEndMap.add(endtime);

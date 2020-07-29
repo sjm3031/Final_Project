@@ -25,4 +25,5 @@ public interface OrderService {
 	public String getemail(HashMap map);
 	public List<OrderDTO> getOrderListByNumber(HashMap map);
 	public void sendEmail(String email, List<OrderDTO> stockorderlist) throws Exception;
+	public int cafeordercartcount();
 }

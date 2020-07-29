@@ -22,4 +22,5 @@ public interface OrderDAO {
 	public List<OrderDTO> getStockOrderListaccountnumber();
 	public String getemail(HashMap map);
 	public List<OrderDTO> getOrderListByNumber(HashMap map);
+	public int cafeordercartcount();
 }

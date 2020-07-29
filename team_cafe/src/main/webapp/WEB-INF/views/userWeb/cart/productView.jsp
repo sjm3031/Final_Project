@@ -101,7 +101,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 	<input type="hidden" name="cafe_product_code" value="${vo.cafe_product_code}"/>
     
     <div align="center" class="w3-container menu w3-padding-32 w3-white" style="display: block; margin-bottom: 60px; ">
-     <img src="../sale/upload/${vo.cafe_product_img}" style="width:150px">
+     <img src="../sale/upload/${vo.cafe_product_img}" style="width:50%">
 	
      <br><br>
       <h1> <span class="w3-right w3-tag w3-dark-grey w3-round">${vo.cafe_product_price} ₩</span></h1>

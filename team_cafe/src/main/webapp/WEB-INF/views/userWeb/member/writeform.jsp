@@ -80,7 +80,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
          <div class="wrap-login100">
             <form class="login100-form validate-form"  name = "writeform" action="write.cafe" method="post">
                <span class="login100-form-title p-b-26 bbb">
-               <img src="resources/images/icon1.png" alt="" ><b style="font-size: xx-large;">Sign Up</b>
+               <img src="resources/images/icon1.png" alt="" ><b style="font-size: xx-large;">Register</b>
                </span>
                <!-- <span class="login100-form-title p-b-48">
                   <i class="zmdi zmdi-font"></i>
@@ -88,8 +88,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                
    
                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                  <input class="input100" type="text" name="customer_phone" id="customer_phone">
-                  <span class="focus-input100 aaa" data-placeholder="전화번호 : 010-1234-1234"></span>
+                  <input class="input100" type="text" name="customer_phone" id="customer_phone" placeholder="전화번호 : 010-1234-1234" required="required">
+                  <span class="focus-input100 aaa"></span>
                </div>
                
                <div>
@@ -103,23 +103,23 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                   <span class="btn-show-pass">
                      <i class="zmdi zmdi-eye"></i>
                   </span>
-                  <input class="input100" type="password" name="customer_pwd" id="customer_pwd">
-                  <span class="focus-input100 aaa" data-placeholder="비밀번호"></span>
+                  <input class="input100" type="password" name="customer_pwd" id="customer_pwd"  placeholder="비밀번호" required="required">
+                  <span class="focus-input100 aaa" ></span>
                </div>
                
                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                  <input class="input100" type="text" name="customer_name" id="customer_name">
-                  <span class="focus-input100 aaa" data-placeholder="이름"></span>
+                  <input class="input100" type="text" name="customer_name" id="customer_name"  placeholder="이름" required="required">
+                  <span class="focus-input100 aaa" ></span>
                </div>
                
                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                  <input class="input100" type="text" name="customer_birth" id="customer_birth">
-                  <span class="focus-input100 aaa" data-placeholder="생년월일 : 2020.07.22"></span>
+                  <input class="input100" type="text" name="customer_birth" id="customer_birth"  placeholder="생년월일 : 2020.07.22" required="required">
+                  <span class="focus-input100 aaa"></span>
                </div>
                
                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                  <input class="input100" type="text" name="customer_gender" id="customer_gender">
-                  <span class="focus-input100 aaa" data-placeholder="성별 : f or m"></span>
+                  <input class="input100" type="text" name="customer_gender" id="customer_gender"  placeholder="성별 : f or m" required="required">
+                  <span class="focus-input100 aaa"></span>
                </div>
                
                <div >
@@ -131,7 +131,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                <div class="container-login100-form-btn">
                   <div class="wrap-login100-form-btn">
                      <div class="login100-form-bgbtn"></div>
-                     <input type="submit"  class="login100-form-btn aaa" style="background-color: #a95858;" value="SIGN UP">
+                     <input type="submit"  class="login100-form-btn aaa" style="background-color: #a95858;" value="REGISTER">
   
                      
                   </div>

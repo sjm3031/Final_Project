@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
- <html>
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,107 +14,6 @@
     <link href="../../../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/styles.css" rel="stylesheet">
-    
-   <script type="text/javascript">
-	function addEmp(){
-		var nameP = /^[가-힣]{2,4}$/;
-		var phoneP = /^01[0179][0-9]{8}$/;
-		var bankP = /^[가-힣]{2,6}$/;
-		var bankaddP= /^[0-9]*$/g;
-		var juminP= /[0-9]{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[01])[012349][0-9]{6}/;
-		
-		if (!document.addEmpForm.employee_name.value ==nameP.test(document.addEmpForm.employee_name.value)) {
-			alert("이름을 확인해주세요");	
-		} else if (document.addEmpForm.employee_name.value =="") {
-			alert("이름을 2~4글자의 한글로 입력하세요");
-			document.addEmpForm.employee_name.focus();
-		} else if (document.addEmpForm.employee_jumin.value == "") {
-			alert("주민번호를 입력하세요");
-			document.addEmpForm.employee_jumin.focus();
-		}else if (!document.addEmpForm.employee_jumin.value == juminP.test(document.addEmpForm.employee_jumin.value)) {
-			alert("주민번호를 (-)을 빼고 13자리 숫자로 입력하세요");
-			document.addEmpForm.employee_jumin.focus();
-		}else if (document.addEmpForm.employee_phone.value == "") {
-			alert("핸드폰번호를 입력하세요");
-			document.addEmpForm.employee_phone.focus();
-		} else if (!document.addEmpForm.employee_phone.value == phoneP.test(document.addEmpForm.employee_phone.value)) {
-			alert("핸드폰번호를 (-)을 빼고 11자리 숫자로 입력하세요");
-			document.addEmpForm.employee_phone.focus();
-		} else if (document.addEmpForm.employee_address.value == "") {
-			alert("주소를 입력하세요");
-			document.addEmpForm.employee_address.focus();
-		}else if (document.addEmpForm.employee_bank.value == "") {
-			alert("은행명을 입력하세요");
-			document.addEmpForm.employee_bank.focus();
-		}else if (!document.addEmpForm.employee_bank.value == bankP.test(document.addEmpForm.employee_bank.value)) {
-			alert("은행명을 (은행)을 제외한 한글로 입력하세요");
-			document.addEmpForm.employee_bank.focus();
-		} else if (document.addEmpForm.employee_bankaddress.value == "") {
-			alert("계좌번호를 입력하세요");
-			document.addEmpForm.employee_bankaddress.focus();
-		}else if (!document.addEmpForm.employee_bankaddress.value == bankaddP.test(document.addEmpForm.employee_bankaddress.value)) {
-			alert("계좌번호를 (-)을 뺀 숫자로 입력하세요");
-			document.addEmpForm.employee_bankaddress.focus();
-		}   else if (document.addEmpForm.employee_jobname.value == "") {
-			alert("직급을 선택하세요");
-			document.addEmpForm.employee_jobname.focus();
-		}else {
-			document.addEmpForm.submit(); //전송
-		}
-		
-		}
-
-	function addJob(){
-		var nameP = /^[가-힣]{1,10}$/;
-		var tpayP = /^[0-9]*$/g;
-		var mpayP = /^[0-9]*$/g;
-		
-		if (document.addJobForm.job_name.value == "") {
-			alert("직급을 입력하세요");
-		}else if (!document.addJobForm.job_name.value == nameP.test(document.addJobForm.job_name.value)) {
-			alert("직급을 한글로 입력하세요");
-			document.addJobForm.job_name.focus();
-		}else if (document.addJobForm.job_tpay.value == "") {
-			alert("시급을 입력하세요");
-			document.addJobForm.job_tpay.focus();
-		} else if (!document.addJobForm.job_tpay.value == tpayP.test(document.addJobForm.job_tpay.value)) {
-			alert("시급을 숫자로 입력하세요");
-			document.addJobForm.job_tpay.focus();
-		}else if (document.addJobForm.job_mpay.value == "") {
-			alert("월급을 입력하세요");
-			document.addJobForm.job_mpay.focus();
-		}else if (!document.addJobForm.job_mpay.value == mpayP.test(document.addJobForm.job_mpay.value)) {
-			alert("월급을 숫자로 입력하세요");
-			document.addJobForm.job_mpay.focus();
-		}else {
-			document.addJobForm.submit(); //전송
-		}
-	}
-	
-	function addSalary(){
-
-		var timeP= /^\d{1,2}$/;
-		
-		if (document.addSalaryForm.employee_name.value == "") {
-			alert("직원을 선택해주세요");
-		}else if (document.addSalaryForm.salary_year.value == "") {
-			alert("연도를 선택해주세요");
-			document.addSalaryForm.salary_year.focus();
-		}else if (document.addSalaryForm.salary_month.value == "") {
-			alert("월을 선택해주세요");
-			document.addSalaryForm.salary_month.focus();
-		}else if (document.addSalaryForm.salary_date.value == "") {
-			alert("월급지급일을 입력해주세요");
-			document.addSalaryForm.salary_date.focus();
-		}else if (!document.addSalaryForm.salary_date.value == timeP.test(document.addSalaryForm.salary_date.value)) {
-			alert("월급지급일을 제대로 입력해주세요");
-			document.addSalaryForm.salary_date.focus();
-		}else {
-			document.addSalaryForm.submit(); //전송
-		}
-	
-	}
-    </script>
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -427,53 +325,47 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="addEmpForm" action="insert.cafe" method="post" >
+          <form action="insert.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>이름</label>
                 <input type="text" class="form-control" name="employee_name"  placeholder="이름을 입력하세요" required>
-               
               </div>
               <div class="form-group">
                 <label>주민번호</label>
-                <input type="text" class="form-control" name="employee_jumin" placeholder="(-)빼고 입력하세요" required>
-                
+                <input type="text" class="form-control" name="employee_jumin"  placeholder="(-)빼고 입력하세요" required>
               </div>
               <div class="form-group">
                 <label for="">핸드폰번호</label>
-                <input type="text" class="form-control" name="employee_phone"  placeholder="(-)빼고 입력하세요" required>
-               
+                <input type="text" class="form-control" name="employee_phone" placeholder="(-)빼고 입력하세요" required>
               </div>
               <div class="form-group">
                 <label for="">주소 </label>
-                <input type="text" class="form-control" name="employee_address"  placeholder="주소를 입력하세요" required>
-                
+                <input type="text" class="form-control" name="employee_address" placeholder="주소를 입력하세요" required>
               </div>
               <div class="form-group">
                 <label for="">은행 </label>
-                <input type="text" class="form-control" name="employee_bank"  placeholder="급여 받을 은행을 입력해주세요." required>
-                
+                <input type="text" class="form-control" name="employee_bank" placeholder="급여 받을 은행을 입력해주세요." required>
               </div>
               <div class="form-group">
                 <label for="">계좌번호</label>
-                <input type="text" class="form-control" name="employee_bankaddress"  placeholder="계좌번호를 (-)빼고 입력해주세요." required>
-                
+                <input type="text" class="form-control" name="employee_bankaddress" placeholder="계좌번호를 (-)빼고 입력해주세요." required>
               </div>
               <div class="form-group">
                 <label for="">직급</label>
-                <select name="employee_jobname"  >
+                <select name="employee_jobname" required>
 						<option value="">선택하세요</option>
 					<c:forEach var="emp" items="${joblist}">
 						<option  value="${emp.job_name}">${emp.job_name}</option>
 					</c:forEach>
  				</select>
- 				<small class="float-right">찾는 직급이 없으신가요?<a href="#"data-toggle="modal" data-target="#addJobModal">추가하기</a> </small>
+ 				<small class="float-right">찾는 카테고리가 없으신가요?<a href="#"data-toggle="modal" data-target="#addJobModal">추가하기</a> </small>
               </div>
               <br>
              </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="button" class="btn btn-primary" value="등록" onclick="addEmp()">
+              <input type="submit" class="btn btn-primary" value="확인">
             </div>
           </form>
         </div>
@@ -492,7 +384,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="addJobForm" action="../../hr/job/list.cafe" method="post">
+          <form action="../../hr/job/list.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>직급</label>
@@ -511,7 +403,7 @@
               </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="button" class="btn btn-primary" value="등록" onclick="addJob()">
+              <input type="submit" class="btn btn-primary" value="확인">
             </div>
           </form>
         </div>
@@ -530,7 +422,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="addSalaryForm" action="../../hr/salary/insert.cafe" method="post"  >
+          <form action="../../hr/salary/insert.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label>직원이름</label>
@@ -572,7 +464,7 @@
              </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-              <input type="button" class="btn btn-primary" value="정산" onclick="addSalary()">
+              <input type="submit" class="btn btn-primary" value="확인">
             </div>
           </form>
         </div>

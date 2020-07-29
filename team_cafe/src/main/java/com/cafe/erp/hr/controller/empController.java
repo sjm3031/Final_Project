@@ -69,7 +69,7 @@ public class empController {
 		
 		empService.insertEmp(dto);
 			
-		return "redirect:list.cafe";
+		return "redirect:/hr/emp/list.cafe";
 	}
 
 	@RequestMapping("hr/emp/list.cafe")
@@ -171,7 +171,6 @@ public class empController {
 		model.addAttribute("nameList", nameList);
 		model.addAttribute("yearList", yearList);
 		model.addAttribute("monthList", monthList);
-		
 		return "hr/emp/empUpdateForm";
 	}
 

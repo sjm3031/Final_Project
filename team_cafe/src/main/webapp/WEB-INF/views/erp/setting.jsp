@@ -143,17 +143,53 @@
             <span>도움말</span></a>
         </li>
       </ul>
-      <div id="content-wrapper" style="padding: 2em;">
-        <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item" >
-              <a href="index.do" style="color: #A95858 !important;">Home</a>
-            </li>
-            <li class="breadcrumb-item active">설정</li>
-          </ol>
+      <div id="content-wrapper" style="padding: 2em;">	
+          <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            
+            
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.cafe" style="color: #A95858 !important;">Home</a>
+              </li>
+              <li class="breadcrumb-item active">설정</li>
+            </ol>
+             
+            
+            
+            <!-- Page Content -->
+            <!-- DataTables Example -->
+            <div class="card mb-3">
+              <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
+                <i class="fa fa-table"></i>
+               Pos Password
+               
+              </div>
+              <div class="card-body">
+                <div class="table-responsive" align="center">
+                  <table class="table table-bordered" id="dataTable" style="width: 50% !important; text-align: center;" cellspacing="0" >
+                    <thead>
+                      <tr>
+                        <th>PASSWORD</th>
+
+                        <th width="20%"></th>
+                      </tr>
+                    </thead>
+                    <tr>
+                       <td>${pwd}</td>
+                        <td><input class="btn btn-primary" type="button" value="수정" onclick="location.href='posPasswordupdateform.cafe'" /></td>
+                    </tr>
+
+                  </table>
+                  
   
-        <!-- Sticky Footer -->
+                </div>
+              </div>
+           <!--    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+            </div>
+          </div>
+          <br><br><br>
+         <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">
@@ -170,7 +206,7 @@
           </div>
         </footer>
       </div>
-    </div>
+      </div>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top" style="background: #212529 !important;  ">
       <i class="fa fa-angle-up"></i>

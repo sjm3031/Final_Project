@@ -235,11 +235,30 @@ public class PosController {
 		}
 		
 		List dayEndMap = posOrderService.sellByGroup();
+		if(dayEndMap.isEmpty()) {
+			HashMap card = new HashMap();
+			HashMap cash = new HashMap();
+			HashMap total = new HashMap();
+			card.put("ORDER_ACCOUNTTYPE", "카드");
+			card.put("SELLTOTAL", "0");
+			card.put("SELLCOUNT", "0");
+			
+			cash.put("ORDER_ACCOUNTTYPE", "현금");
+			cash.put("SELLTOTAL", "0");
+			cash.put("SELLCOUNT", "0");
+			
+			total.put("SELLTOTAL", "0");
+			total.put("SELLCOUNT", "0");
+			
+			dayEndMap.add(card);
+			dayEndMap.add(cash);
+			dayEndMap.add(total);
+		}
+		
 		HashMap endtime = posOrderService.getEndTime();
 		HashMap startInfo = posOrderService.getPosStartInfo();
 		dayEndMap.add(endtime);
 		dayEndMap.add(startInfo);
-
 		return dayEndMap;
 	}
 	
@@ -277,6 +296,48 @@ public class PosController {
 		
 		posOrderService.insertPosStartInfo(map);
 		return "POS 시작 준비가 등록되었습니다!";
+	}
+	
+	// 회원의 스탬프 개수 조회
+	@ResponseBody
+	@RequestMapping("selectStamp.cafe")
+	public HashMap selectStamp(@RequestParam(value = "phone") String phone) {
+		String msg = null;
+		HashMap map = new HashMap();
+		int result = posOrderService.selectStamp(phone);
+		
+		if(result >= 10) {
+			msg = "yes";
+			map.put("msg", msg);
+			map.put("count", result);
+		} else if(result < 10) {
+			msg = "no";
+			map.put("msg", msg);
+			map.put("count", result);
+		}
+		
+		return map;
+	}
+	
+	
+	// 쿠폰 사용 처리
+	@ResponseBody
+	@RequestMapping("coupon.cafe")
+	public String coupon(@RequestParam(value = "phone") String phone) {
+		String msg = null;
+		HashMap map = new HashMap();
+		int stamp = posOrderService.selectStamp(phone);
+		map.put("customer_phone", phone);
+		map.put("customer_stamp", stamp);
+		
+		if(stamp < 10) {
+			msg = "no";
+			return msg;
+		} else if(stamp >= 10) {
+			posOrderService.useStamp(map);
+			msg = "yes";
+		}
+		return msg;
 	}
 	
 	

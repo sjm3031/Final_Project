@@ -75,12 +75,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
+	<!-- 쿠폰 적용 -->
+	<!-- 입력받은 전화번호로 스탬프 조회 -->
+	<select id="selectStamp" resultType="Integer" parameterType="String">
+		select customer_stamp from cafe_customer where customer_phone = #{phone}
+	</select>
+	
+	<!-- 쿠폰 사용 -->
+	<update id="useStamp" parameterType="hashmap">
+		update cafe_customer set customer_stamp = #{customer_stamp} - 10 where customer_phone = #{customer_phone}
+	</update>
+	
 	
 	
 	<!-- 정산 -->
 	<!-- 각 결제유형 별로 총액과 총개수를 구함 (total, 카드, 현금) -->
 	<select id="sellByGroup" resultType="hashmap">
-		select order_accounttype, sum(order_total) sellTotal, count(*) sellCount from cafe_order group by rollup(order_accounttype) order by order_accounttype
+		select order_accounttype, sum(order_total) sellTotal, count(*) sellCount from cafe_order 
+		where to_char(order_date, 'yy/mm/dd') = to_char(sysdate, 'yy/mm/dd') group by rollup(order_accounttype) order by order_accounttype
 	</select>
 	
 	<!-- POS 시작 시간과 준비금을 등록 -->

@@ -16,6 +16,8 @@
 	<link href="../../../resources/css/font-awesome.css" rel="stylesheet"
 		type="text/css">
 	<link href="../../../resources/css/styles.css" rel="stylesheet">
+	
+		<script src="../../../resources/erp_js/form_validation.js"></script>
 
 <script type="text/javascript">
 
@@ -186,7 +188,6 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">매출</h6>
             <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
-            <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 뭘넣을까</a>
           </div>
         </li>
         
@@ -230,11 +231,7 @@
             <i class="fa fa-fw fa-cogs"></i>
             <span>설정</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="help.do">
-            <i class="fa fa-fw fa-life-ring"></i>
-            <span>도움말</span></a>
-        </li>
+
       </ul>
 		
 		<div id="content-wrapper" style="margin: 2em;">

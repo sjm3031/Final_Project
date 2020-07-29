@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.cs.model.CustomerDTO;
 import com.cafe.erp.cs.service.CustomerService;
 
@@ -17,28 +18,38 @@ import com.cafe.erp.cs.service.CustomerService;
 
 
 @Controller
+@RequestMapping("admin/cs/")
 public class CustomerController {
 
 
 	@Resource
 	private CustomerService customerService;
 	
-	@RequestMapping("writeform.htm")
+	@Resource
+	private ERPController erpController;
+
+	
+	@RequestMapping("customer/writeform.cafe")
 	public String writeForm() {
 		
-		return "writeform";
+		return "cs/customer/writeform";
 	}
 	
-	@RequestMapping("write.htm")
+	
+	@RequestMapping("customer/write.cafe")
 	public String write(CustomerDTO dto) {
 	
 		customerService.insertBoard(dto);
 		
-		return "redirect:/list.htm";
+		return "redirect:list.cafe";
 	}
-	
-	@RequestMapping("list.htm")
+
+	@RequestMapping("customer/list.cafe")
 	public String list(HttpServletRequest request){
+		
+		erpController.menuMethod(request);
+		
+		
 		int pg = 1; 	
 		
 		String strPg = request.getParameter("pg");
@@ -77,13 +88,16 @@ public class CustomerController {
 		  request.setAttribute("fromPage", fromPage);
 		  request.setAttribute("toPage", toPage);
 
-		return "list";
+		return "cs/customer/list";
 		
 		
 		
 	}
 	
-	@RequestMapping("/read.htm")
+	
+
+
+	@RequestMapping("customer/read.cafe")
 	public String read(int customer_code, int pg, Model model) { 
 		
 		CustomerDTO dto = customerService.getBoard(customer_code); 
@@ -93,7 +107,7 @@ public class CustomerController {
 		model.addAttribute("pg", pg);
 		
 		
-		return "read"; 
+		return "cs/customer/read"; 
 		
 		
 	}
@@ -101,22 +115,27 @@ public class CustomerController {
 	
 
 	
-	@RequestMapping("updateform.htm")
+	
+	@RequestMapping("customer/updateform.cafe")
 	public String updateform(int  customer_code, int pg, Model model) {
+		erpController.menuMethod(model);
 		CustomerDTO dto = customerService.getBoard(customer_code);
 		model.addAttribute("b", dto);
 		model.addAttribute("pg", pg);
 		
-		return "updateform"; 
+		return "cs/customer/updateform"; 
+		
 	}
 	
 	
-	@RequestMapping("update.htm")
+	
+	@RequestMapping("customer/update.cafe")
 	public String update(CustomerDTO dto, int pg) {
 		System.out.println("update ==>"+dto);
 		int result = customerService.updateBoard(dto); 
 		System.out.println("update result=>"+result);
-		String res = "redirect:/list.htm?pg="+pg;
+		 String res = "redirect:list.cafe?pg="+pg; 
+		
 		
 		if(result == 0) {
 			res = "fail"; 
@@ -127,16 +146,18 @@ public class CustomerController {
 		
 	}
 	
-	@RequestMapping("deleteform.htm")
+
+	@RequestMapping("customer/deleteform.cafe")
 	public String deleteform() {
 		
-		return "deleteform";
+		return "cs/customer/deleteform";
 	}
 	
-	@RequestMapping("delete.htm")
+	
+	@RequestMapping("customer/delete.cafe")
 	public String delete(CustomerDTO dto,int pg ) {
 		int result = customerService.deleteBoard(dto); 
-		String res = "redirect:/list.htm?pg="+pg;
+		String res = "redirect:cs/customer/list.cafe?pg="+pg;
 		if(result == 0) res="fail";
 		return res;
 		

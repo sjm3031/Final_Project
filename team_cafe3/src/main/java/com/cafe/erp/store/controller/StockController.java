@@ -16,16 +16,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.store.model.AccountDTO;
 import com.cafe.erp.store.model.StockDTO;
 import com.cafe.erp.store.service.StockService;
 
 @Controller
-@RequestMapping("store")
+@RequestMapping("admin/store")
 public class StockController {
 
 	@Resource
 	private StockService stockService;
+	@Resource
+	private ERPController erpController;
 
 	
 	private StockDTO dto;
@@ -63,17 +66,26 @@ public class StockController {
 			fs.close();
 		
 			//n.setFileSrc(fname); //파일이름 
+			System.out.println("insert controller 진입");
+			stockService.insertStock(dto);
+			System.out.println("insert 완료");
 		}
-		
+		else {
+		dto.setStock_image("");
 		System.out.println("insert controller 진입");
 		stockService.insertStock(dto);
 		System.out.println("insert 완료");
+		}
 		return "redirect:stocklist.cafe";
+		
 	}
+		
+		
 	
 
 	@RequestMapping("/stocklist.cafe")
 	public String showlist(HttpServletRequest req) {
+		erpController.menuMethod(req);
 		ModelAndView mav = new ModelAndView();
 
 		int pg = 1;
@@ -133,6 +145,7 @@ public class StockController {
 
 	@RequestMapping("/stockupdateform.cafe")
 	public String updatestockform(int stock_code, int pg, Model model) {
+		erpController.menuMethod(model);
 		HashMap map = new HashMap();
 		List<AccountDTO> account_list = stockService.getAccountList(map);
 		StockDTO dto = stockService.getStock(stock_code);

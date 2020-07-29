@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.store.model.AccountDTO;
 import com.cafe.erp.store.model.OrderDTO;
 import com.cafe.erp.store.model.ProductOrderDTO;
@@ -19,11 +20,13 @@ import com.cafe.erp.store.service.ProductOrderListSercvice;
 import com.cafe.erp.store.service.ProductOrderService;
 
 @Controller
-@RequestMapping("store")
+@RequestMapping("admin/store")
 public class ProductOrderController {
 
 	@Resource
 	private ProductOrderService productOrderService;
+	@Resource
+	private ERPController erpController;
 	
 	@Resource
 	private OrderService orderService;
@@ -33,11 +36,11 @@ public class ProductOrderController {
 	
 	@RequestMapping("/orderinsert.cafe")
 	public String orderinsert(ProductOrderDTO dto, ProductOrderListDTO dto1, HttpServletRequest req) throws Exception {
-		System.out.println("orderinsert 진입");
+//		System.out.println("orderinsert 진입");
 		
 		//발주 등록
     	productOrderService.orderinsert(dto);
-    	System.out.println("발주 등록 완료");
+//    	System.out.println("발주 등록 완료");
 	
 		//임시 발주 목록에 발주 등록번호를 업데이트 해줌
 		orderService.updatecode();
@@ -83,17 +86,18 @@ public class ProductOrderController {
 		}
 		//임시 발주 목록을 그대로 복사해서 상세내역 테이블에 복사 insert함
 		productOrderListSercvice.orderlistinsert(dto1);
-		System.out.println("발주 상세내역 등록 완료");
+//		System.out.println("발주 상세내역 등록 완료");
 		//임시 발주 목록을 삭제해서 초기화
 		orderService.deleteorderlistcart();
-		System.out.println("임시 발주 목록 초기화 완료");
-		return "redirect:stockorderlist.cafe";
+//		System.out.println("임시 발주 목록 초기화 완료");
+		return "redirect:stockorder.cafe";
 	}
 	
 	
 	@RequestMapping("/orderlist.cafe")
 	public String orderlist(HttpServletRequest req) {
-		System.out.println("orderlist 진입");
+		erpController.menuMethod(req);
+//		System.out.println("orderlist 진입");
 		ModelAndView mav = new ModelAndView();
 
 		int pg = 1;
@@ -108,12 +112,12 @@ public class ProductOrderController {
 		int end = pg * rowSize;
 
 		int total = productOrderService.getordercount(); // 총 게시글수
-		System.out.println("start : " + start + "end : " + end);
-		System.out.println("write count : " + total);
+//		System.out.println("start : " + start + "end : " + end);
+//		System.out.println("write count : " + total);
 
 		int allPage = (int) Math.ceil(total / (double) rowSize); // 페이지수
 		int totalPage = total / rowSize + (total % rowSize == 0 ? 0 : 1);
-		System.out.println("page count : " + allPage);
+//		System.out.println("page count : " + allPage);
 
 		int block = 10; // 한페이지에 보여줄 범위 [1][2][3]~~[10]
 		int fromPage = ((pg - 1) / block * block) + 1; // 보여줄 페이지의 시작
@@ -140,7 +144,8 @@ public class ProductOrderController {
 	
 	@RequestMapping("/detaillist.cafe")
 	public String detaillist(HttpServletRequest req, int productOrder_code) {
-		System.out.println("detaillist 진입");
+		erpController.menuMethod(req);
+//		System.out.println("detaillist 진입");
 //		String productOrder_code = req.getParameter("productOrder_code");
 //		System.out.println(productOrder_code);
 		ModelAndView mav = new ModelAndView();
@@ -157,12 +162,12 @@ public class ProductOrderController {
 		int end = pg * rowSize;
 		
 		int total = productOrderListSercvice.detailcount(productOrder_code); // 총 게시글수
-		System.out.println("start : " + start + "end : " + end);
-		System.out.println("write count : " + total);
+//		System.out.println("start : " + start + "end : " + end);
+//		System.out.println("write count : " + total);
 
 		int allPage = (int) Math.ceil(total / (double) rowSize); // 페이지수
 		int totalPage = total / rowSize + (total % rowSize == 0 ? 0 : 1);
-		System.out.println("page count : " + allPage);
+//		System.out.println("page count : " + allPage);
 
 		int block = 10; // 한페이지에 보여줄 범위 [1][2][3]~~[10]
 		int fromPage = ((pg - 1) / block * block) + 1; // 보여줄 페이지의 시작

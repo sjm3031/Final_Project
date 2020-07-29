@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cafe.erp.ERPController;
 import com.cafe.erp.sale.model.ProductCategoryVO;
 import com.cafe.erp.sale.model.ProductVO;
 import com.cafe.erp.sale.service.ProductService;
@@ -24,14 +25,16 @@ import com.cafe.erp.sale.service.ProductService;
 import com.cafe.erp.sale.service.*;
 
 @Controller
-@RequestMapping("sale/")
+@RequestMapping("admin/sale/")
 public class ProductController {
 
 	@Resource
 	private ProductService productService;
-	
 	@Resource
 	private ProductCategoryService productCategoryService;
+	@Resource
+	private ERPController erpController;
+	
 	
 	@RequestMapping("product/writeform.cafe")
 	public String writeForm(Model model) {
@@ -39,8 +42,8 @@ public class ProductController {
 		 List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
 	//	 model.setAttribute("list", list);
 		 model.addAttribute("categorylist", list);
-		 System.out.println();
-		 System.out.println(list);
+	//	 System.out.println();
+	//	 System.out.println(list);
 		 
 		return "sale/product/writeform";
 	}
@@ -86,13 +89,14 @@ public class ProductController {
 
 		
 		productService.insertProduct(vo);
-		return "redirect:/sale/product/list.cafe";
+		return "redirect:/admin/sale/product/list.cafe";
 		
 		
 	}
 	
 	@RequestMapping("product/list.cafe")
 	public String list(HttpServletRequest request){
+		erpController.menuMethod(request);
 		int pg = 1; 	// 처음엔 무조건 1페이지
 		
 		String strPg = request.getParameter("pg");
@@ -102,7 +106,7 @@ public class ProductController {
 		}
 	
 		
-		int rowSize = 3;			// 한페이지에 보여줄 record 수
+		int rowSize = 5;			// 한페이지에 보여줄 record 수
 		int start = (pg*rowSize) - (rowSize-1);			//sql문에서 실행될 변수.. xml 에서 변수명이 같아야한다.
 		int end = pg*rowSize;							//sql문에서 실행될 변수.. xml 에서 변수명이 같아야한다.
 		
@@ -111,7 +115,7 @@ public class ProductController {
 		int allPage = (int)Math.ceil(total / (double)rowSize);			//총 페이지수..
 		//int allPage = total/rowSize + (total % rowSize == 0?0:1)
 		
-		int block = 3;		// 한페이지에 보여줄 페이징 갯수	ex) << [1] [2] [3] [4] [5] ..>>
+		int block = 10;		// 한페이지에 보여줄 페이징 갯수	ex) << [1] [2] [3] [4] [5] ..>>
 		
 		int fromPage = ((pg-1) / block*block) + 1;
 		int toPage = ( (pg-1) / block*block) + block; 
@@ -139,8 +143,8 @@ public class ProductController {
 	
 	@RequestMapping("product/updateform.cafe")
 	public String updateform(HttpServletRequest request) {
+		erpController.menuMethod(request);
 		int num = Integer.parseInt(request.getParameter("num"));
-		int pg = Integer.parseInt(request.getParameter("pg"));
 		ProductVO vo = productService.getProductByCode(num);
 		
 		 HashMap map = new HashMap();
@@ -149,18 +153,15 @@ public class ProductController {
 		// model.addAttribute("categorylist", list);
 		 System.out.println();
 		 System.out.println(categorylist);
-		 
-		 
-		 
-		request.setAttribute("pg", pg);
+
 		request.setAttribute("b", vo);
 		return "sale/product/updateform";
 	}	
 	
 	@RequestMapping("product/update.cafe")
-	public String update(ProductVO vo,int pg) {
+	public String update(ProductVO vo) {
 		int result = productService.updateProduct(vo);		// 0: 실패 1:성공
-		return "redirect:/sale/product/list.cafe";	
+		return "redirect:/admin/sale/product/list.cafe";	
 	}
 		
 	
@@ -169,7 +170,7 @@ public class ProductController {
 		int num = Integer.parseInt(request.getParameter("num"));
 		vo.setCafe_product_code(num);
 		productService.deleteProduct(vo);
-		return "redirect:/sale/product/list.cafe";	
+		return "redirect:/admin/sale/product/list.cafe";	
 	}
 	
 

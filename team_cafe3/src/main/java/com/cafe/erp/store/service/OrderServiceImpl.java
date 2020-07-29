@@ -107,6 +107,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public int getstockcode(int stock_code) {
 		System.out.println("기존에 있는지 확인");
+		OrderDTO dto = new OrderDTO();
 		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
 		return dao.getstockcode(stock_code);
 	}
@@ -190,6 +191,12 @@ public class OrderServiceImpl implements OrderService {
         mimeMessage.setText(sb.toString()); //내용셋팅
         Transport.send(mimeMessage); //javax.mail.Transport.send() 이용 
 		
+	}
+
+	@Override
+	public int cafeordercartcount() {
+		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
+		return dao.cafeordercartcount();
 	}
 
 

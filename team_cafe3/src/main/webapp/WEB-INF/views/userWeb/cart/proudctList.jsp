@@ -11,7 +11,7 @@
 <body>
 <c:forEach var="c" items="${categorylist}">
 
-<a href="order.cafe?category=${c.product_category_code}">${c.product_category_name}</a>
+<a href="productlist.cafe?category=${c.product_category_code}">${c.product_category_name}</a>
 
 
 </c:forEach>

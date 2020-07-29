@@ -15,9 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe.erp.cs.model.CustomerDTO;
+import com.cafe.erp.cs.service.CustomerService;
 import com.cafe.erp.cs.service.LoginService;
 import com.cafe.erp.sale.model.ProductAddDTO;
 import com.cafe.erp.sale.model.ProductCategoryVO;
@@ -26,10 +29,13 @@ import com.cafe.erp.sale.service.ProductAddService;
 import com.cafe.erp.sale.service.ProductCategoryService;
 import com.cafe.erp.sale.service.ProductService;
 import com.cafe.erp.userWeb.model.OrderWebDTO;
+import com.cafe.erp.userWeb.model.OrderWebListAddJoinDTO;
+import com.cafe.erp.userWeb.model.OrderWebListDTO;
 import com.cafe.erp.userWeb.model.ProductCartAddDTO;
 import com.cafe.erp.userWeb.model.ProductCartAddJoinDTO;
 import com.cafe.erp.userWeb.model.ProductCartDTO;
 import com.cafe.erp.userWeb.model.ProductCartDTOMulti;
+import com.cafe.erp.userWeb.service.MemberService;
 import com.cafe.erp.userWeb.service.OrderWebService;
 import com.cafe.erp.userWeb.service.ProductCartService;
 
@@ -62,21 +68,14 @@ public class UserWebController {
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//														로그인 관련
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-	
+
+
 		
 		@RequestMapping("login.cafe")
 		public String login() {
 			return "userWeb/login";
 			
 		}
-		/*
-		@RequestMapping("order.cafe")
-		public String order() {
-			return "userWeb/order";
-			
-		}
-		*/
 		
 		@RequestMapping("main.cafe")
 		public String main() {
@@ -84,7 +83,6 @@ public class UserWebController {
 			
 		}
 		
-
 		//로그인 처리
 		@RequestMapping("loginCheck.cafe")
 		public ModelAndView loginCheck(@ModelAttribute CustomerDTO dto, HttpSession session) {
@@ -99,7 +97,7 @@ public class UserWebController {
 				session.setAttribute("USERCODE", result.getCustomer_code()); 
 				/* session.setAttribute("USERNAME", result.getCustomer_name()); */
 				
-				mav.setViewName("userWeb/loginSuccess");
+				mav.setViewName("redirect:/userWeb/home.cafe");
 			
 				
 			}else {
@@ -130,7 +128,28 @@ public class UserWebController {
 		
 		
 	@RequestMapping("home.cafe")		//main/home 화면
-	public String home() {
+	public String home(HttpServletRequest request) {
+		 HashMap map = new HashMap();
+		 List<ProductCategoryVO> list = productCategoryService.getProductCategoryList(map);
+		 request.setAttribute("categorylist", list);
+		
+			
+		int product_category_code=1;
+		String product_category_code2 = request.getParameter("category");
+	
+		  
+		if( product_category_code2 != null ) {
+			product_category_code = Integer.parseInt(product_category_code2);
+		}
+		
+		
+		
+		List<ProductVO> list2 = productService.getProductListByCategory(product_category_code);	
+		
+		request.setAttribute("product_category_code", product_category_code);
+		request.setAttribute("list", list2);
+		request.setAttribute("listsize", list2.size());
+		
 		return "userWeb/home";
 	}
 	
@@ -286,7 +305,7 @@ public class UserWebController {
 	}
 	
 
-	@RequestMapping("order.cafe")				//장바구니 list 불러오기
+	@RequestMapping("order.cafe")			
 	public String order(HttpServletRequest request) {
 		
 		OrderWebDTO dto = new OrderWebDTO();
@@ -295,10 +314,11 @@ public class UserWebController {
 		//해당고객의 주문 총 건수(음료잔수)
 		dto.setOrder_web_count(orderWebService.getOrderWebCount(customer_code));
 		//해당고객의 주문 총 금액
-		dto.setOrder_web_total(orderWebService.getOrderWebTotal(customer_code));
+		dto.setOrder_web_total(Integer.parseInt(request.getParameter("totalprice")));
+		//dto.setOrder_web_total(orderWebService.getOrderWebCount(customer_code));
 		//주문 테이블에 저장
 		orderWebService.insertOrderWeb(dto);
-		//주문 내역테이블에 저장
+		//주문 테이블에 저장
 		
 		//주문테이블 주문코드 가져오기
 		int order_web_code = orderWebService.getOrderWebRecent();
@@ -315,17 +335,141 @@ public class UserWebController {
 		}
 		
 		//주문 내역테이블의 옵션내역테이블에 저장
-		//장바구니옵션내역 테이블 가져오기
-		List<ProductCartAddDTO> addlist = orderWebService.getProductCartAddList();
-		for (int i = 0; i < addlist.size(); i++) {
-			ProductCartAddDTO adddto = addlist.get(i);
-			//주문내역의 옵션내역 테이블에 저장
+
+		//주문코드에 해당하는 주문내역테이블의 주문 내역 코드 불러오기
+		List<OrderWebListAddJoinDTO> orderWeblist= orderWebService.getOrderWebListAddJoinList(order_web_code);
+
+		List<ProductCartAddJoinDTO> cartjoinlist =productCartService.getCartListByCustomer(customer_code);
+
+		for (int j = 0; j < orderWeblist.size(); j++) {
 			
+		
+			for (int i = 0; i < cartjoinlist.size(); i++) {
+				if (orderWeblist.get(j).getCafe_product_code() == cartjoinlist.get(i).getCafe_product_code()) {
+					if (cartjoinlist.get(i).getProduct_add_code() != 0) {
+						int orderList_web_code = orderWeblist.get(j).getOrderList_web_code();
+						int product_add_code = cartjoinlist.get(i).getProduct_add_code();
+						System.out.println();
+						System.out.print(orderWeblist.get(j).getOrderList_web_code());
+						System.out.println(cartjoinlist.get(i).getProduct_add_code());
+						System.out.println();
+						HashMap map1 = new HashMap();
+						map1.put("orderList_web_code", orderList_web_code);
+						map1.put("product_add_code", product_add_code);
+						orderWebService.insertOrderWebListAdd2(map1);
+					}
+				}
+			}
 		}
 		
+		//장바구니 내역 삭제..
+		List<ProductCartAddJoinDTO> delelist = productCartService.getCartListByCustomer(customer_code);
+		for (int i = 0; i < delelist.size(); i++) {
+			int cart_num = delelist.get(i).getCart_code();
+			if( delelist.get(i).getProduct_add_code() !=0) {
+				productCartService.deleteProductCartAddAll(cart_num);
+			}
+		}
+		productCartService.deleteProductCartAll(customer_code);
 		
+		
+		return "redirect:/userWeb/orderlist.cafe?customer_code="+customer_code;
+	}
+	
+	
+	
+	@RequestMapping("orderlist.cafe")				//주문 list 불러오기
+	public String orderlist(HttpServletRequest request) {
+		int customer_code = Integer.parseInt(request.getParameter("customer_code"));
+		//주문테이블에 해당 고객의 list 가져오기.
+		List<OrderWebDTO> orderlist = orderWebService.getOrderWebList(customer_code);
+		request.setAttribute("orderlist", orderlist);
+	
 		return "userWeb/order/orderList";
 	}
+	
+	
+	@RequestMapping("orderlistview.cafe")				//주문 list 불러오기
+	public String orderlistview(HttpServletRequest request) {
+		int order_web_code = Integer.parseInt(request.getParameter("orderWebCode"));
+		
+		
+		List<ProductVO> productlist = productCartService.getProductList();
+		request.setAttribute("productlist", productlist);
+		
+
+		HashMap map = new HashMap();
+		List<ProductAddDTO> addlist = productAddService.getProductAddList(map);
+		request.setAttribute("addlist", addlist);
+		
+
+		//주문내역 테이블 가져오기 
+		//주문내역 추가사항내역테이블 가져오기
+		//join..
+		List<OrderWebListAddJoinDTO> list = orderWebService.getOrderWebListAddJoinList(order_web_code);
+		request.setAttribute("list", list);
+		
+		
+		
+		
+		return "userWeb/order/orderListView";
+	}
+	
+	
+	@RequestMapping("update.cafe")
+	public String updateListCount(HttpServletRequest request, ProductCartDTO dto) {
+		int customer_code = Integer.parseInt(request.getParameter("customer_code"));	
+		int cartNum = Integer.parseInt(request.getParameter("cart_num"));
+	System.out.println(cartNum);
+	
+	System.out.println(dto.getCart_code());
+	System.out.println(dto.getCart_num());
+//		dto.setCart_code(Integer.parseInt(request.getParameter("cartCode")));
+	//	dto.setCart_num(Integer.parseInt(request.getParameter("cartNum")));
+		HashMap Map = new HashMap();
+		Map.put("cart_num", dto.getCart_num());
+		Map.put("cart_code", dto.getCart_code());
+		System.out.println("================================");
+		
+		productCartService.updateListCount(Map);
+	/*	
+		 int result = Integer.parseInt(productCartService.updateListCount(dto)); 
+		 System.out.println(result);*/
+
+		 return "redirect:/userWeb/cartlist.cafe?customer_code="+customer_code; 
+	
+
+	}
+	
+	
+	
+	@RequestMapping("delete.cafe")
+	public String deleteListProduct(HttpServletRequest request ) {
+		int customer_code = Integer.parseInt(request.getParameter("customer_code"));
+		System.out.println("customer_code"+"code");
+		int cart_code =Integer.parseInt(request.getParameter("cart_code"));
+		System.out.println("customer_code"+"code2");
+		
+		
+		//실행만
+		productCartService.deleteListCartAdd(cart_code);
+		productCartService.deleteListProduct(cart_code);
+		
+	
+			/*
+			 * productCartSersvice.deleteListCartAdd(cart_code);
+			 * productCartService.deleteListProduct(cart_code);
+			 * 
+			 */ 
+		
+		System.out.println("customer_code"+"--");
+		
+		  return "redirect:/userWeb/cartlist.cafe?customer_code="+customer_code;
+
+		
+	}
+	
+	
 	
 	
 }

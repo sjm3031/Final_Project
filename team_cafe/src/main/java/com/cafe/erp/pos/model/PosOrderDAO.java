@@ -16,6 +16,8 @@ public interface PosOrderDAO {
 	public void insertAnonymous(HashMap map2); 				// 익명 신규 회원 등록
 	public int phoneCheck(String phone); 					// 기존 등록된 회원 확인
 	public void updateStamp(HashMap map);					// 스탬프 적립
+	public int selectStamp(String phone);					// 스탬프 조회
+	public void useStamp(HashMap map);						// 스탬프 사용
 	
 	
 	/* 직원 근태 관련 메소드 */

@@ -4,7 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-  <head>
+<html><head>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +34,7 @@
     </nav>
     
     
-    <div id="wrapper">
+   <div id="wrapper">
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
@@ -142,8 +144,7 @@
           <a class="nav-link" href="setting.cafe">
             <i class="fa fa-fw fa-cogs"></i>
             <span>설정</span></a>
-        </li>
-
+        </li> 
       </ul>
       <div id="content-wrapper" style="padding: 2em;">
         <div class="container-fluid">
@@ -245,19 +246,76 @@
               </div>
             </div>
           </div>
-          <!-- Area Chart Example-->
+         <!-- Area Chart Example-->
           <div class="card mb-3">
             <div class="card-header">
               <i class="fa fa-chart-area"></i>
-              월별차트샘플()</div>
+              최근 12일간 매출액</div>
             <div class="card-body">
-              <canvas id="myAreaChart" width="100%" height="30"></canvas>
+             <canvas id="myBarChart" width="100%" height="50"></canvas>
+                  <script type="text/javascript">
+                           var accounttotal = new Array();
+                           var startsell = new Array();
+                           <c:forEach var = "get" items="${accountslist}">
+                              accounttotal.push('<c:out value="${get.accounts_total}"/>');
+                              var format = '<fmt:formatDate pattern="yy/MM/dd" value="${get.accounts_startsell}"/>';                        
+                              //startsell.push('<c:out value="${get.accounts_startsell}"/>');
+                              startsell.push(format);
+                              console.log(format);
+                           </c:forEach>
+                           console.log(accounttotal);
+                           console.log(startsell);
+              </script>
+                  <script language = "javaScript">
+                  var ctx = document.getElementById("myBarChart");
+                  var myLineChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: startsell,
+    datasets: [{
+      label: "Revenue",
+      backgroundColor: "#00a63f",
+      borderColor: "rgba(2,117,216,1)",
+      data: accounttotal,
+    }],
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'month'
+        },
+        gridLines: {
+          display: false
+        },
+        ticks: {
+          maxTicksLimit: 12
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 200000,
+          max: 600000,
+          maxTicksLimit: 40
+        },
+        gridLines: {
+          display: true
+        }
+      }],
+    },
+    legend: {
+      display: false
+    }
+  }
+});
+                  </script>
             </div>
             <div class="card-footer small text-muted">db연결(마지막상품 업데이트 시간찍기)</div>
           </div>
         </div>
         <br><br><br>
         <!-- Sticky Footer -->
+        <br><br><br>
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">
@@ -695,8 +753,8 @@
     <script src="../resources/js/jquery.min.js"></script>
     <script src="../resources/js/bootstrap.bundle.min.js"></script>
     <script src="../resources/js/jquery.easing.min.js"></script>
-    <script src="../resources/js/chart.min.js"></script>
+
     <script src="../resources/js/rc-pos.min.js"></script>
-    <script src="../resources/js/chart-area-demo.js"></script>
+
   </body>
 </html>

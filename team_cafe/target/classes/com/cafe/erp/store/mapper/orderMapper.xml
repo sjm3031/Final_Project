@@ -29,6 +29,11 @@
 		cart_stock_quantity, stock_code, account_number) values( (select NVL(max(cart_number),0) + 1 from Cafe_order_cart), 
 		#{cart_stock_productname}, #{cart_stock_detailname}, #{cart_stock_price}, #{cart_stock_quantity}, #{stock_code}, #{account_number})
 	</insert>
+	
+	<!-- 임시 발주 테이블 count -->
+	<select id="cafeordercartcount" resultType="integer">
+		select count(*) from cafe_order_cart
+	</select>
 	<!-- 임시로 발주한 목록 불러오기 -->
 	<select id="getStockOrderList" parameterType="hashmap" resultType="com.cafe.erp.store.model.OrderDTO">
 		select * from

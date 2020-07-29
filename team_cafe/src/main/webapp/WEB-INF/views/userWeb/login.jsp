@@ -39,12 +39,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 .bbb {font-family: "Amatic SC", sans-serif}
 </style>
 
+<script type="text/javascript">
+function login(){
+	
+    if(! document.writeform.customer_phone.value == /^01[0179][0-9]{8}$/.test(document.writeform.customer_phone.value) || document.writeform.customer_phone.value==""){
+       alert("전화번호를 형식에 맞춰 입력해 주세요.");
+       return false;
+    }
+}
+</script>
+
 <body>
    
    <div class="limiter">
       <div class="container-login100">
          <div class="wrap-login100">
-            <form class="login100-form validate-form"  action="loginCheck.cafe" method="POST">
+            <form name="writeform" class="login100-form validate-form"  action="loginCheck.cafe" method="POST" onsubmit="return login();">
                <span class="login100-form-title p-b-26 bbb">
                <img src="resources/images/icon1.png" alt="" ><b style="font-size: xx-large;">Welcome</b>
                </span>
@@ -54,7 +64,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                
    
                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                  <input class="input100" type="text" name="customer_phone" placeholder="전화번호 : 010-1234-1234" required="required" >
+                  <input class="input100" type="text" name="customer_phone" placeholder="전화번호 : 01012341234" required="required" >
                   <span class="focus-input100 aaa" 																></span>
                </div>
 

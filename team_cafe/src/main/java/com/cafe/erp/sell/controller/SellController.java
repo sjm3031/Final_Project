@@ -41,8 +41,8 @@ public class SellController {
 			System.err.println("date : " + accountslist.get(i).getAccounts_startsell());
 		}
 		
-		System.out.println("list : " + list);		
-		System.out.println("total : " + total);
+		//System.out.println("list : " + list);		
+		//System.out.println("total : " + total);
 		
 		request.setAttribute("accountslist", accountslist);
 		request.setAttribute("list", list);

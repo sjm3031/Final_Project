@@ -32,7 +32,13 @@ public class SellReportsServiceImpl implements SellReportsService {
 		SellReportsDAO dao = sqlSession.getMapper(SellReportsDAO.class);
 		return dao.accountslist();
 	}
-	
+
+	@Override
+	public SellDTO accountslistYesterday() {
+		SellReportsDAO dao = sqlSession.getMapper(SellReportsDAO.class);
+		return dao.accountslistYesterday();
+	}
+
 	
 
 }

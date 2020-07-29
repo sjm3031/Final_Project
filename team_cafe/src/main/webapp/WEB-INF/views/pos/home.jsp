@@ -88,493 +88,528 @@ function webOrder(){
 
 
 <script type="text/javascript">
-	var num = 0;
-	var total = 0;
-   var original = total;
-   var couprice = 0;
+var num = 0;
+var total = 0;
+var original = total;
+var couprice = 0;
+var cash = 0;
+var exchange = 0;
 
-	// Opt. 버튼을 눌렀을때 optionList.cafe로 이동하여 옵션 목록을 비동기 처리해여 가져옴
-	$(function(){
-	   $('.order-button.select-order.selected.option').click(function(){
-			
-	      info = '';
-	       
-	      $.ajax(
-	         {
-	            url: './optionList.cafe',
-	            type: 'get',
-	            //data: {code : code},
-	            dataType: "json",
-	            success: function(data){
-	               for(var i in data){
-	                  info += '<article class="product option" data-product-id="'
-	                     + data[i].product_add_code +'" tabindex="0" aria-labelledby="article_product_' + data[i].product_add_code + '">';
-	                  info += '<div class="product-img"><i class="fa fa-camera fa-5x" role="img" aria-label="Shopping cart" title="Shopping cart"></i>';
-	                  info += '<span class="price-tag">' + data[i].product_add_price + '</span>';
-	                  info += '</div>';
-	                  info += '<div class="product-name" id="article_product_' + data[i].product_add_code + '">' + data[i].product_add_name + '</div>';
-	                  info += '</article>';
-	               }
-	                
-	               $('.product-list').html(info);
-	                
-	            },
-	            error: function(error){
-	               console.log('error');
-	            }
-	         }
-	      );
-	   });
-	});
-
-	// 상단에 음료 타입을 클릭시 타입에 맞는 음료 리스트를 비동기 처리하여 가져옴
-	$(function(){
-	   $('.order-button.select-order.selected.beverage').click(function(){
-	      var code = $(this).data('uid');
-			
-	      info = '';
-	       
-	      $.ajax(
-	         {
-	            url: './typeSelect.cafe',
-	            type: 'get',
-	            data: {code : code},
-	            dataType: "json",
-	            success: function(data){
-	               for(var i in data){
-	                  info += '<article class="product beverage" data-product-id="'
-	                     + data[i].cafe_product_code +'" tabindex="0" aria-labelledby="article_product_' + data[i].cafe_product_code + '">';
-	                  info += '<div class="product-img"><img src="/erp/sale/upload/' + data[i].cafe_product_img + '" alt="Product image">';
-	                  info += '<span class="price-tag">' + data[i].cafe_product_price + '</span>';
-	                  info += '</div>';
-	                  info += '<div class="product-name" id="article_product_' + data[i].cafe_product_code + '">' + data[i].cafe_product_name + '</div>';
-	                  info += '</article>';
-	               }
-	                
-	               $('.product-list').html(info);
-	                
-	            },
-	            error: function(error){
-	               console.log('error');
-	            }
-	         }
-	      );
-	   });
-	});
-
-	
-	// 왼쪽 리스트에서 항목을 클릭하면 그 항목의 금액만큼 차감한 후 리스트에서 삭제
- 	$(document).on('click', '.orderline', function(event){
- 		var test = $(this).children('.price').text();
- 		total = total - test;
-      original = original - test;
- 		var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
-		if(total < 0){
-			info3 += '<span class="badge">Total: </span> <span class="value">' + 0 + ' 원</span>';
-		} else {
-			info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
-		}
- 		
-      info3 += '<div class="subentry unit">원가 : <span>' + original + ' 원</span>';
-      info3 += '<div class="subentry discount">쿠폰 : <span>' + couprice + ' 원</span>';
-		info3 += '</div></div></div>';
-		$(".order2").html(info3);	
-		$(event.currentTarget).remove();
-	});
-
- 	
-	// 음료 리스트에서 한 음료를 클릭 시 비동기 처리로 DB에서 음료의 정보를 가져온 뒤 왼쪽 리스트에 추가함
-	$(document).on('click', '.product.beverage', function(){
-	   var id = $(this).data('product-id');
-		var info = '';
-	   list = '';
-		
-	   $.ajax({
-	      url: './productSelect.cafe',
-	      type: 'get',
-	      data: {id : id},
-	      dataType: "json",
-	      success: function(data){
-				if(num == 0){
-					/* 단 한번만 초기화 */
-					$(".order").empty();
-					num=1;
-	
-					/* 아웃라인 */
-					var info2 = '<ul class="orderlines">';
-					info2 += '</ul>';
-					$(".order").html(info2);	
-				}
-	
-				info = '<li class="orderline">';
-				info += '<span class="product-id" hidden="true">' + data.cafe_product_code + '</span>';
-				info += '<span class="product-name">' + data.cafe_product_name + '</span>';
-				info += '<span class="price">' + data.cafe_product_price + '</span>';
-				info += '<span class="info-list">Option : </span>';
-				info +='</li>';
-				total += data.cafe_product_price;
-            original += data.cafe_product_price;
-				$(".orderlines").append(info);
-			
-				/* 토탈화면출력 */
-				var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
-
-				if(total < 0){
-					info3 += '<span class="badge">Total: </span> <span class="value">' + 0 + ' 원</span>';
-				} else {
-					info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
-				}
-				
-            info3 += '<div class="subentry unit">원가 : <span>' + original + ' 원</span>';
-            info3 += '<div class="subentry discount">쿠폰 : <span>' + couprice + ' 원</span>';
-				info3 += '</div></div></div>';
-				$(".order2").html(info3);
-	      },
-	      error: function(error){
-	         console.log('error');
-	      }
-	   });
-	});
-
-	
-	// 옵션을 클릭 시 왼쪽리스트에 등록된 음료 리스트의 맨 마지막에 해당 옵션을 부여함
-	$(document).on('click', '.product.option', function(){
-	   var id = $(this).data('product-id');
-	   list = '';
-
-	   if($('.orderline').length == 0){
-			return;
-		}
-		
-	   $.ajax({
-		      url: './optionSelect.cafe',
-		      type: 'get',
-		      data: {id : id},
-		      dataType: "json",
-		      success: function(data){
-			      extra = '<span class="option-code" hidden="true">' + data.product_add_code + '</span>';
-			      var price = $('.orderline:last').children('.price').text();
-			      price = Number(price);
-			      price += data.product_add_price;
-			      total += data.product_add_price;
-               original += data.product_add_price;
-			      $('.orderline:last').children('.price').html(price);
-			      $('.orderline:last').append(extra);
-			      $('.entry.total').children('.value').html(total + ' 원');
-               $('.subentry.unit').children('span').html(original + ' 원');
-			      $('.info-list:last').append(data.product_add_name + ' ');
-		      },
-		      error: function(error){
-		         console.log('error');
-		      }
-		});
-	});
-
-
-	// 결제 버튼 클릭시 물품의 여부에 따라 모달 창을 띄움
-	$(document).on('click', '.button.pay', function(){
-		   if($('.orderline').length == 0){
-		      alert('등록된 물품이 없습니다.');
-		      return;
-		   }
-			
-			$('.modal-dialog.oe_hidden.pay').attr('class', 'modal-dialog pay');
-	});
-
-
-	// 결제 모달에서 취소 누르면 모달 창을 숨김
-	$(document).on('click', '.button.cancel.pay', function(){
-		$('.modal-dialog.pay').attr('class', 'modal-dialog oe_hidden pay');
-	});
-
-	
-	// 결제 버튼 누를시 상품주문 리스트를 가지고 PosController로 전송
-	$(document).on('click', '.button.confirm.pay', function(){
-		var orderJson = {
-				order : [],
-				total : '',
-				count : '',
-				customer : '',
-				payment : ''
-		};
-		
-		$('.orderline').each(function(){
-      	var orderlist = {
-	         code : '',
-	         name : '',
-	         price : '',
-	         option : []
-         };
-
-         orderlist.code = $(this).children('.product-id').text();
-			orderlist.name = $(this).children('.product-name').text();
-         orderlist.price = $(this).children('.price').text();
-         
-         $(this).children('.option-code').each(function(){
-            orderlist.option.push($(this).text());
-         });
-         
-         orderJson.order.push(orderlist);
-      });
-	      
-      var totalPrice = $('.entry.total').children('.value').text().split(' ');
-      orderJson.total = totalPrice[0];
-      orderJson.count = orderJson.order.length;
-      orderJson.customer = $('#customerPhone').val();
-      orderJson.payment = $("input[name='payment']:checked").val();
-
-      $.ajax({
-         url: './orderData.cafe',
-         type: 'post',
-         data: JSON.stringify(orderJson),
-         contentType: 'application/json; charset=utf-8',
-         dataType: 'text',
-         success: function(data){
-         	if(data == "fail"){
-            	alert("등록된 회원을 찾지 못했습니다. 다시 확인해주세요.");
-            } else {
-            	alert("결제가 완료되었습니다.");
-            	location.href = "./home.cafe";
+// Opt. 버튼을 눌렀을때 optionList.cafe로 이동하여 옵션 목록을 비동기 처리해여 가져옴
+$(function(){
+   $('.order-button.select-order.selected.option').click(function(){
+      
+      info = '';
+       
+      $.ajax(
+         {
+            url: './optionList.cafe',
+            type: 'get',
+            //data: {code : code},
+            dataType: "json",
+            success: function(data){
+               for(var i in data){
+                  info += '<article class="product option" data-product-id="'
+                     + data[i].product_add_code +'" tabindex="0" aria-labelledby="article_product_' + data[i].product_add_code + '">';
+                  info += '<div class="product-img"><i class="fa fa-camera fa-5x" role="img" aria-label="Shopping cart" title="Shopping cart"></i>';
+                  info += '<span class="price-tag">' + data[i].product_add_price + '</span>';
+                  info += '</div>';
+                  info += '<div class="product-name" id="article_product_' + data[i].product_add_code + '">' + data[i].product_add_name + '</div>';
+                  info += '</article>';
+               }
+                
+               $('.product-list').html(info);
+                
+            },
+            error: function(error){
+               console.log('error');
             }
+         }
+      );
+   });
+});
+
+// 상단에 음료 타입을 클릭시 타입에 맞는 음료 리스트를 비동기 처리하여 가져옴
+$(function(){
+   $('.order-button.select-order.selected.beverage').click(function(){
+      var code = $(this).data('uid');
+      
+      info = '';
+       
+      $.ajax(
+         {
+            url: './typeSelect.cafe',
+            type: 'get',
+            data: {code : code},
+            dataType: "json",
+            success: function(data){
+               for(var i in data){
+                  info += '<article class="product beverage" data-product-id="'
+                     + data[i].cafe_product_code +'" tabindex="0" aria-labelledby="article_product_' + data[i].cafe_product_code + '">';
+                  info += '<div class="product-img"><img src="/erp/sale/upload/' + data[i].cafe_product_img + '" alt="Product image">';
+                  info += '<span class="price-tag">' + data[i].cafe_product_price + '</span>';
+                  info += '</div>';
+                  info += '<div class="product-name" id="article_product_' + data[i].cafe_product_code + '">' + data[i].cafe_product_name + '</div>';
+                  info += '</article>';
+               }
+                
+               $('.product-list').html(info);
+                
+            },
+            error: function(error){
+               console.log('error');
+            }
+         }
+      );
+   });
+});
+
+
+// 왼쪽 리스트에서 항목을 클릭하면 그 항목의 금액만큼 차감한 후 리스트에서 삭제
+ $(document).on('click', '.orderline', function(event){
+    var test = $(this).children('.price').text();
+    total = total - test;
+   original = original - test;
+    var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
+   if(total < 0){
+      info3 += '<span class="badge">Total: </span> <span class="value">' + 0 + ' 원</span>';
+   } else {
+      info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
+   }
+    
+   info3 += '<div class="subentry unit">원가 : <span>' + original + ' 원</span></div>';
+   info3 += '<div class="subentry discount">쿠폰 : <span>' + couprice + ' 원</span></div>';
+   info3 += '<div class="subentry cash">현금 : <span>' + cash + '</span> 원</div>';
+   info3 += '</div></div></div>';
+   $(".order2").html(info3);   
+   $(event.currentTarget).remove();
+});
+
+ 
+// 음료 리스트에서 한 음료를 클릭 시 비동기 처리로 DB에서 음료의 정보를 가져온 뒤 왼쪽 리스트에 추가함
+$(document).on('click', '.product.beverage', function(){
+   var id = $(this).data('product-id');
+   var info = '';
+   list = '';
+   
+   $.ajax({
+      url: './productSelect.cafe',
+      type: 'get',
+      data: {id : id},
+      dataType: "json",
+      success: function(data){
+         if(num == 0){
+            /* 단 한번만 초기화 */
+            $(".order").empty();
+            num=1;
+
+            /* 아웃라인 */
+            var info2 = '<ul class="orderlines">';
+            info2 += '</ul>';
+            $(".order").html(info2);   
+         }
+
+         info = '<li class="orderline">';
+         info += '<span class="product-id" hidden="true">' + data.cafe_product_code + '</span>';
+         info += '<span class="product-name">' + data.cafe_product_name + '</span>';
+         info += '<span class="price">' + data.cafe_product_price + '</span>';
+         info += '<span class="info-list">Option : </span>';
+         info +='</li>';
+         total += data.cafe_product_price;
+         original += data.cafe_product_price;
+         $(".orderlines").append(info);
+      
+         /* 토탈화면출력 */
+         var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
+
+         if(total < 0){
+            info3 += '<span class="badge">Total: </span> <span class="value">' + 0 + ' 원</span>';
+         } else {
+            info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
+         }
+         
+         info3 += '<div class="subentry unit">원가 : <span>' + original + ' 원</span></div>';
+         info3 += '<div class="subentry discount">쿠폰 : <span>' + couprice + ' 원</span></div>';
+         info3 += '<div class="subentry cash">현금 : <span>' + cash + '</span> 원</div>';
+         info3 += '</div></div></div>';
+         $(".order2").html(info3);
+      },
+      error: function(error){
+         console.log('error');
+      }
+   });
+});
+
+
+// 옵션을 클릭 시 왼쪽리스트에 등록된 음료 리스트의 맨 마지막에 해당 옵션을 부여함
+$(document).on('click', '.product.option', function(){
+   var id = $(this).data('product-id');
+   list = '';
+
+   if($('.orderline').length == 0){
+      return;
+   }
+   
+   $.ajax({
+         url: './optionSelect.cafe',
+         type: 'get',
+         data: {id : id},
+         dataType: "json",
+         success: function(data){
+            extra = '<span class="option-code" hidden="true">' + data.product_add_code + '</span>';
+            var price = $('.orderline:last').children('.price').text();
+            price = Number(price);
+            price += data.product_add_price;
+            total += data.product_add_price;
+            original += data.product_add_price;
+            $('.orderline:last').children('.price').html(price);
+            $('.orderline:last').append(extra);
+            $('.entry.total').children('.value').html(total + ' 원');
+            $('.subentry.unit').children('span').html(original + ' 원');
+            $('.info-list:last').append(data.product_add_name + ' ');
          },
          error: function(error){
             console.log('error');
          }
-      });
-	});
-
-	
-	// 출근/퇴근 버튼을 누르면 근태 모달창을 띄움
-	$(document).on('click', '.button.attend', function(){
-		$('.modal-dialog.oe_hidden.attend').attr('class', 'modal-dialog attend');
-	});
+   });
+});
 
 
-	// 출퇴근 모달창의 취소를 누르면 근태 모달창을 숨김
-	$(document).on('click', '.button.cancel.attend', function(){
-		$('.modal-dialog.attend').attr('class', 'modal-dialog oe_hidden attend');
-	});
-	
-
-	// 근태 모달창에서 등록을 누르면 입력된 값에 따라 출/퇴근 정보를 Controller로 보냄
-	$(document).on('click', '.button.confirm.attend', function(){
-		var attendJson = {
-			name : $('#employeeName').val(),
-			jumin : $('#employeeIdenti').val(),
-			inout : $("input[name='attend']:checked").val()
-		};
-
-		$.ajax({
-			url: './attendInsert.cafe',
-			type: 'post',
-			data: JSON.stringify(attendJson),
-			contentType: 'application/json; charset=utf-8',
-			dataType: 'text',
-			success: function(data){
-				alert(data);
-			},
-			error: function(error){
-				console.log('error');
-			}
-		});
-	});
-
-
-   // 스탬프 갯수 조회
-   $(document).on('click', '.button.check.coupon', function(){
+// 결제 버튼 클릭시 물품의 여부에 따라 모달 창을 띄움
+$(document).on('click', '.button.pay', function(){
       if($('.orderline').length == 0){
-       	alert('상품을 먼저 등록해주세요!');
+         alert('등록된 물품이 없습니다.');
          return;
       }
+      
+      $('.modal-dialog.oe_hidden.pay').attr('class', 'modal-dialog pay');
+});
 
-      var phone = $('#phoneCouponInput').val();
 
-      $.ajax({
-         url: './selectStamp.cafe',
-         type: 'post',
-         data: {phone : phone},
-         dataType: 'json',
-         success: function(data){
-            if(data.msg == "yes"){
-               $('#validCouponText').html('쿠폰 사용 가능합니다.<br>스탬프 : ' + data.count + '개');
-               $('#validCouponText').css('color', 'green');
-            } else {
-               $('#validCouponText').html('사용 가능한 쿠폰이 없습니다.<br>스탬프 : ' + data.count + '개');
-               $('#validCouponText').css('color', 'red');
-            }
-         },
-         error: function(error){
-            console.log("error");
-         }
+// 결제 모달에서 취소 누르면 모달 창을 숨김
+$(document).on('click', '.button.cancel.pay', function(){
+   $('.modal-dialog.pay').attr('class', 'modal-dialog oe_hidden pay');
+});
+
+
+// 결제 버튼 누를시 상품주문 리스트를 가지고 PosController로 전송
+$(document).on('click', '.button.confirm.pay', function(){
+   var orderJson = {
+         order : [],
+         total : '',
+         count : '',
+         customer : '',
+         payment : ''
+   };
+   
+   $('.orderline').each(function(){
+      var orderlist = {
+         code : '',
+         name : '',
+         price : '',
+         option : []
+      };
+
+      orderlist.code = $(this).children('.product-id').text();
+      orderlist.name = $(this).children('.product-name').text();
+      orderlist.price = $(this).children('.price').text();
+      
+      $(this).children('.option-code').each(function(){
+         orderlist.option.push($(this).text());
       });
+      
+      orderJson.order.push(orderlist);
+   });
+      
+   var totalPrice = $('.entry.total').children('.value').text().split(' ');
+   orderJson.total = totalPrice[0];
+   orderJson.count = orderJson.order.length;
+   orderJson.customer = $('#customerPhone').val();
+   orderJson.payment = $("input[name='payment']:checked").val();
+
+   $.ajax({
+      url: './orderData.cafe',
+      type: 'post',
+      data: JSON.stringify(orderJson),
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'text',
+      success: function(data){
+         if(data == "fail"){
+            alert("등록된 회원을 찾지 못했습니다. 다시 확인해주세요.");
+         } else {
+            alert("결제가 완료되었습니다.");
+            location.href = "./home.cafe";
+         }
+      },
+      error: function(error){
+         console.log('error');
+      }
+   });
+});
+
+
+// 출근/퇴근 버튼을 누르면 근태 모달창을 띄움
+$(document).on('click', '.button.attend', function(){
+   $('.modal-dialog.oe_hidden.attend').attr('class', 'modal-dialog attend');
+});
+
+
+// 출퇴근 모달창의 취소를 누르면 근태 모달창을 숨김
+$(document).on('click', '.button.cancel.attend', function(){
+   $('.modal-dialog.attend').attr('class', 'modal-dialog oe_hidden attend');
+});
+
+
+// 근태 모달창에서 등록을 누르면 입력된 값에 따라 출/퇴근 정보를 Controller로 보냄
+$(document).on('click', '.button.confirm.attend', function(){
+   var attendJson = {
+      name : $('#employeeName').val(),
+      jumin : $('#employeeIdenti').val(),
+      inout : $("input[name='attend']:checked").val()
+   };
+
+   $.ajax({
+      url: './attendInsert.cafe',
+      type: 'post',
+      data: JSON.stringify(attendJson),
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'text',
+      success: function(data){
+         alert(data);
+      },
+      error: function(error){
+         console.log('error');
+      }
+   });
+});
+
+
+// 스탬프 갯수 조회
+$(document).on('click', '.button.check.coupon', function(){
+   if($('.orderline').length == 0){
+       alert('상품을 먼저 등록해주세요!');
+      return;
+   }
+
+   var phone = $('#phoneCouponInput').val();
+
+   $.ajax({
+      url: './selectStamp.cafe',
+      type: 'post',
+      data: {phone : phone},
+      dataType: 'json',
+      success: function(data){
+         if(data.msg == "yes"){
+            $('#validCouponText').html('쿠폰 사용 가능합니다.<br>스탬프 : ' + data.count + '개');
+            $('#validCouponText').css('color', 'green');
+         } else {
+            $('#validCouponText').html('사용 가능한 쿠폰이 없습니다.<br>스탬프 : ' + data.count + '개');
+            $('#validCouponText').css('color', 'red');
+         }
+      },
+      error: function(error){
+         console.log("error");
+      }
+   });
+});
+
+
+// 스탬프 사용
+$(document).on('click', '.button.confirm.coupon', function(){
+   if($('.orderline').length == 0){
+          alert('상품을 먼저 등록해주세요!');
+         return;
+   }
+   
+   var phone = $('#phoneCouponInput').val();
+
+   $.ajax({
+      url: './coupon.cafe',
+      type: 'post',
+      data: {phone : phone},
+      dataType: 'text',
+      success: function(data){
+         if(data == 'yes'){
+            alert('쿠폰이 적용되었습니다!');
+            couprice = 5000;
+            total = total - couprice;
+
+            if(total < 0){
+               $('.entry.total').children('.value').html(0 + ' 원');
+            } else {
+               $('.entry.total').children('.value').html(total + ' 원');
+            }
+            
+            $('.subentry.discount span').html(couprice + ' 원');
+            $('.modal-dialog.coupon').attr('class', 'modal-dialog oe_hidden coupon');
+         } else {
+            alert("사용 할 수 있는 쿠폰이 없습니다!")
+         }
+      }
+   });
+});
+
+
+
+// 쿠폰 버튼을 누르면 쿠폰 모달창을 띄움
+$(document).on('click', '.mode-button.coupon', function(){
+   $('.modal-dialog.oe_hidden.coupon').attr('class', 'modal-dialog coupon');
+});
+
+
+// 쿠폰 모달 창에서 취소 버튼을 누르면 쿠폰 모달창을 숨김
+$(document).on('click', '.button.cancel.coupon', function(){
+   $('.modal-dialog.coupon').attr('class', 'modal-dialog oe_hidden coupon');
+});
+
+
+// 준비 버튼을 누르면 현재 시각을 불러와 모달창에 보여줌
+$(document).on('click', '.mode-button.ready', function(){
+   $.ajax({
+      url: './dayStart.cafe',
+      type: 'post',
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      success: function(data){
+         $('#startTime').attr('value', data.NOWTIME);
+      },
+      error: function(error){
+         console.log('error');
+      }
    });
 
+   $('.modal-dialog.oe_hidden.ready').attr('class', 'modal-dialog ready');
+});
 
-   // 스탬프 사용
-   $(document).on('click', '.button.confirm.coupon', function(){
-	   if($('.orderline').length == 0){
-	       	alert('상품을 먼저 등록해주세요!');
-	         return;
-	   }
-	   
-      var phone = $('#phoneCouponInput').val();
 
-      $.ajax({
-         url: './coupon.cafe',
-         type: 'post',
-         data: {phone : phone},
-         dataType: 'text',
-         success: function(data){
-            if(data == 'yes'){
-               alert('쿠폰이 적용되었습니다!');
-               couprice = 5000;
-               total = total - couprice;
+// 준비 모달창의 등록을 누르면 현재 시각과 입력한 준비금을 controller로 보냄
+$(document).on('click', '.button.confirm.ready', function(){
+   var startData = {
+      startTime : $('#startTime').val(),
+      startMoney : $('#readyMoney').val()
+   }
 
-               if(total < 0){
-                  $('.entry.total').children('.value').html(0 + ' 원');
-               } else {
-                  $('.entry.total').children('.value').html(total + ' 원');
-               }
-               
-               $('.subentry.discount span').html(couprice + ' 원');
-               $('.modal-dialog.coupon').attr('class', 'modal-dialog oe_hidden coupon');
-            } else {
-               alert("사용 할 수 있는 쿠폰이 없습니다!")
-            }
-         }
-      });
+   $.ajax({
+      url: './dayStartSubmit.cafe',
+      type: 'post',
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(startData),
+      dataType: 'text',
+      success: function(data){
+         alert(data);
+         $('.modal-dialog.ready').attr('class', 'modal-dialog oe_hidden ready');
+      },
+      error: function(error){
+         console.log('error');
+      }
    });
+});
 
 
-
-	// 쿠폰 버튼을 누르면 쿠폰 모달창을 띄움
-	$(document).on('click', '.mode-button.coupon', function(){
-		$('.modal-dialog.oe_hidden.coupon').attr('class', 'modal-dialog coupon');
-	});
-
-
-	// 쿠폰 모달 창에서 취소 버튼을 누르면 쿠폰 모달창을 숨김
-	$(document).on('click', '.button.cancel.coupon', function(){
-		$('.modal-dialog.coupon').attr('class', 'modal-dialog oe_hidden coupon');
-	});
+// 준비 모달창 숨김
+$(document).on('click', '.button.cancel.ready', function(){
+   $('.modal-dialog.ready').attr('class', 'modal-dialog oe_hidden ready');
+});
 
 
-	// 준비 버튼을 누르면 현재 시각을 불러와 모달창에 보여줌
-	$(document).on('click', '.mode-button.ready', function(){
-		$.ajax({
-			url: './dayStart.cafe',
-			type: 'post',
-			contentType: 'application/json; charset=utf-8',
-			dataType: 'json',
-			success: function(data){
-				$('#startTime').attr('value', data.NOWTIME);
-			},
-			error: function(error){
-				console.log('error');
-			}
-		});
+// 정산 버튼을 누르면 POS 시작 정보, 매출정보, 마감시간을 가져와 모달창에 보여줌
+$(document).on('click', '.mode-button.dayend', function(){
+   $.ajax({
+      url: './dayend.cafe',
+      type: 'post',
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      success: function(data){
 
-		$('.modal-dialog.oe_hidden.ready').attr('class', 'modal-dialog ready');
-	});
-
-
-	// 준비 모달창의 등록을 누르면 현재 시각과 입력한 준비금을 controller로 보냄
-	$(document).on('click', '.button.confirm.ready', function(){
-		var startData = {
-			startTime : $('#startTime').val(),
-			startMoney : $('#readyMoney').val()
-		}
-
-		$.ajax({
-			url: './dayStartSubmit.cafe',
-			type: 'post',
-			contentType: 'application/json; charset=utf-8',
-			data: JSON.stringify(startData),
-			dataType: 'text',
-			success: function(data){
-				alert(data);
-				$('.modal-dialog.ready').attr('class', 'modal-dialog oe_hidden ready');
-			},
-			error: function(error){
-				console.log('error');
-			}
-		});
-	});
+         $('#totalSell').attr('value', data[2].SELLTOTAL);
+         $('#cashSell').attr('value', data[1].SELLTOTAL);
+         $('#cardSell').attr('value', data[0].SELLTOTAL);
+         $('#sellCount').attr('value', data[2].SELLCOUNT);
+         $('#endSell').attr('value', data[3].NOWTIME);
+         $('#startSell').attr('value', data[4].STARTTIME)
+         $('#readyCost').attr('value', data[4].RESERVEFUND_TOTAL)
+         $('#reserveId').attr('value', data[4].RESERVEFUND_CODE)
+         $('.modal-dialog.oe_hidden.dayend').attr('class', 'modal-dialog dayend');
+      },
+      error: function(error){
+         alert('POS 준비를 먼저 실행해주세요!');
+         return;
+      }
+   });   
+});
 
 
-	// 준비 모달창 숨김
-	$(document).on('click', '.button.cancel.ready', function(){
-		$('.modal-dialog.ready').attr('class', 'modal-dialog oe_hidden ready');
-	});
-	
+// 정산 모달창의 등록버튼을 누를시 input에 있는 값들을 controller로 전송
+$(document).on('click', '.button.confirm.dayend', function(){
+   var endData = {
+      totalSell : $('#totalSell').val(),
+      cashSell : $('#cashSell').val(),
+      cardSell : $('#cardSell').val(),
+      sellCount : $('#sellCount').val(),
+      endSell : $('#endSell').val(),
+      startSell : $('#startSell').val(),
+      reserveId : $('#reserveId').val()
+   };
 
-	// 정산 버튼을 누르면 POS 시작 정보, 매출정보, 마감시간을 가져와 모달창에 보여줌
-	$(document).on('click', '.mode-button.dayend', function(){
-		$.ajax({
-			url: './dayend.cafe',
-			type: 'post',
-			contentType: 'application/json; charset=utf-8',
-			dataType: 'json',
-			success: function(data){
-
-				$('#totalSell').attr('value', data[2].SELLTOTAL);
-				$('#cashSell').attr('value', data[1].SELLTOTAL);
-				$('#cardSell').attr('value', data[0].SELLTOTAL);
-				$('#sellCount').attr('value', data[2].SELLCOUNT);
-				$('#endSell').attr('value', data[3].NOWTIME);
-				$('#startSell').attr('value', data[4].STARTTIME)
-				$('#readyCost').attr('value', data[4].RESERVEFUND_TOTAL)
-				$('#reserveId').attr('value', data[4].RESERVEFUND_CODE)
-				$('.modal-dialog.oe_hidden.dayend').attr('class', 'modal-dialog dayend');
-			},
-			error: function(error){
-				alert('POS 준비를 먼저 실행해주세요!');
-				return;
-			}
-		});	
-	});
+   $.ajax({
+      url: './dayendSubmit.cafe',
+      type: 'post',
+      data: JSON.stringify(endData),
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'text',
+      success: function(data){
+         alert(data);
+         $('.modal-dialog.dayend').attr('class', 'modal-dialog oe_hidden dayend');
+      },
+      error: function(error){
+         console.log('error');
+      }
+   });
+});
 
 
-	// 정산 모달창의 등록버튼을 누를시 input에 있는 값들을 controller로 전송
-	$(document).on('click', '.button.confirm.dayend', function(){
-		var endData = {
-			totalSell : $('#totalSell').val(),
-			cashSell : $('#cashSell').val(),
-			cardSell : $('#cardSell').val(),
-			sellCount : $('#sellCount').val(),
-			endSell : $('#endSell').val(),
-			startSell : $('#startSell').val(),
-			reserveId : $('#reserveId').val()
-		};
-
-		$.ajax({
-			url: './dayendSubmit.cafe',
-			type: 'post',
-			data: JSON.stringify(endData),
-			contentType: 'application/json; charset=utf-8',
-			dataType: 'text',
-			success: function(data){
-				alert(data);
-				$('.modal-dialog.dayend').attr('class', 'modal-dialog oe_hidden dayend');
-			},
-			error: function(error){
-				console.log('error');
-			}
-		});
-	});
+// 정산 모달의 취소 창을 누르면 정산 모달을 숨김
+$(document).on('click', '.button.cancel.dayend', function(){
+   $('.modal-dialog.dayend').attr('class', 'modal-dialog oe_hidden dayend');
+});
 
 
-	// 정산 모달의 취소 창을 누르면 정산 모달을 숨김
-	$(document).on('click', '.button.cancel.dayend', function(){
-		$('.modal-dialog.dayend').attr('class', 'modal-dialog oe_hidden dayend');
-	});
+// 어드민 ERP 페이지로 이동하기 위한 로그인
+$(document).on('click', '.header-button', function(){
+   location.href = "./login.cafe";
+});
+
+$(document).on('click', '.input-button.number-char', function(){
+   var num = $(this).text();
+
+   if($('.subentry.cash span').text() == '0'){
+      $('.subentry.cash span').html(num);
+   } else {
+      $('.subentry.cash span').append(num);
+   }
+});
+
+$(document).on('click', '.input-button.numpad-result', function(){
+   cash = $('.subentry.cash span').text();
+   exchange = cash - total;
+   
+   if($('.subentry.exchange').length == 0){
+      info = '<div class="subentry exchange">거스름돈 : <span>' + exchange + '</span> 원</div>';
+      $('.entry.total').append(info);
+      
+   } else {
+      $('.subentry.exchange span').html(exchange);
+   }
+});
+
+$(document).on('click', '.input-button.numpad-minus', function(){
+   cash = 0;
+   exchange = 0;
+   $('.subentry.cash span').html(cash);
+   $('.subentry.exchange span').html(exchange);
+});
 
 
-	// 어드민 ERP 페이지로 이동하기 위한 로그인
-	$(document).on('click', '.header-button', function(){
-		location.href = "./login.cafe";
-	});
-	
 </script>
         
 </head>
@@ -733,9 +768,9 @@ function webOrder(){
                                              <button class="input-button number-char">9</button>
                                              <button class="mode-button dayend" data-mode="price">정산</button>
                                              <br>
-                                             <button class="input-button numpad-minus">+/-</button>
+                                             <button class="input-button numpad-minus">del</button>
                                              <button class="input-button number-char">0</button>
-                                             <button class="input-button number-char">.</button>
+                                             <button class="input-button numpad-result">=</button>
                                              <button class="mode-button ready">준비</button>
                                           </div>
                                        </div>

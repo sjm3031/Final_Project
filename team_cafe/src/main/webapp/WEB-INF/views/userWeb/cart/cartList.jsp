@@ -231,9 +231,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 	<br><br>
 	<hr>
       
-
+<fmt:formatNumber value="${ totalprice }" var="totalprice_p" pattern="#,###" />
 <h3 class="aaa">총 수량 : ${ totalcount } </h3>
-<h3 class="aaa">총 가격 : ${ totalprice } </h3>
+<h3 class="aaa">총 가격 : ${ totalprice_p } ₩ </h3>
 
    	<br>
 

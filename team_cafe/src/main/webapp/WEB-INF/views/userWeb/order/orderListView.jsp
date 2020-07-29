@@ -66,7 +66,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
   <div class="w3-content">
   
-      <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Cart List</h1>
+      <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Order List View</h1>
  
     <div class="w3-row w3-center w3-border w3-border-dark-grey">
 
@@ -75,11 +75,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
       </a>
       
       <a href="cartlist.cafe?customer_code=${sessionScope.USERCODE}" >
-        <div class="w3-col s4 tablink w3-padding-large w3-hover-red" style="background-color: #a95858 !important;">Cart</div>
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Cart</div>
       </a>
       
       <a href="orderlist.cafe?customer_code=${sessionScope.USERCODE}" >
-        <div class="w3-col s4 tablink w3-padding-large w3-hover-red" >Order</div>
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red"  style="background-color: #a95858 !important;" >Order</div>
       </a>
 
 
@@ -196,9 +196,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 	<br><br>
 	<hr>
       
-
+<fmt:formatNumber value="${ totalprice }" var="totalprice_p" pattern="#,###" />
 <h3 class="aaa">총 수량 : ${ totalcount } </h3>
-<h3 class="aaa">총 가격 : ${ totalprice } </h3>
+<h3 class="aaa">총 가격 : ${ totalprice_p } ₩  </h3>
 
 
 	</div>

@@ -92,13 +92,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 
 	<a href="orderlistview.cafe?orderWebCode=${o.order_web_code}"> 
 	<div align="left" class="w3-container menu w3-white"  style="display: block;">
-	      <h4 class="w3-text-grey aaa">주문번호 : ${o.order_web_code}</h14>
-	      <h4 class="w3-text-grey aaa">총 주문 상품 수량 : ${o.order_web_count}</h14>
-	      <h4 class="w3-text-grey aaa">총 금액 : ${o.order_web_total}  ₩</h14>
+	      <h4 class="w3-text-grey aaa">주문번호 : ${o.order_web_code}</h4>
+	      <h4 class="w3-text-grey aaa">총 주문 상품 수량 : ${o.order_web_count}</h4>
+	      
+	      <fmt:formatNumber value="${o.order_web_total}" var="order_web_total" pattern="#,###" />
+	      <h4 class="w3-text-grey aaa">총 금액 : ${order_web_total}  ₩</h4>
 	      
 	      <fmt:formatDate value="${o.order_web_date}" var="order_web_date" pattern="yyyy-MM-dd HH:ss"/>
 	      
-	      <h4 class="w3-text-grey aaa">날짜 : ${order_web_date}</h14>
+	      <h4 class="w3-text-grey aaa">날짜 : ${order_web_date}</h4>
 	      <hr>
 	</div>
 	</a>
@@ -116,12 +118,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 	
 	<a href="orderlistview.cafe?orderWebCode=${o.order_web_code}"> 
 	<div align="left" class="w3-container menu w3-white"  style="display: block;">
-	      <h4 class="w3-text-grey aaa">주문번호 : ${o.order_web_code}</h14>
-	      <h4 class="w3-text-grey aaa">총 주문 상품 수량 : ${o.order_web_count}</h14>
-	      <h4 class="w3-text-grey aaa">총 금액 : ${o.order_web_total}  ₩</h14>
+	      <h4 class="w3-text-grey aaa">주문번호 : ${o.order_web_code}</h4>
+	      <h4 class="w3-text-grey aaa">총 주문 상품 수량 : ${o.order_web_count}</h4>
+	       <fmt:formatNumber value="${o.order_web_total}" var="order_web_total" pattern="#,###" />
+	      <h4 class="w3-text-grey aaa">총 금액 : ${order_web_total}  ₩</h4>
 	     <fmt:formatDate value="${o.order_web_date}" var="order_web_date" pattern="yyyy-MM-dd HH:ss"/>
 	      
-	      <h4 class="w3-text-grey aaa">날짜 : ${order_web_date}</h14>
+	      <h4 class="w3-text-grey aaa">날짜 : ${order_web_date}</h4>
 	      <hr>
 	</div>
 	</a>

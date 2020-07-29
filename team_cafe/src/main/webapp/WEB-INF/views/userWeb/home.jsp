@@ -110,7 +110,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
     <c:forEach var="b" items="${list}">
     	<a href="productview.cafe?productcode=${b.cafe_product_code}">
 
-	      <h1><b class="aaa">${b.cafe_product_name}</b> <span class="w3-tag w3-red w3-round">Hot!</span><span class="w3-right w3-tag w3-dark-grey w3-round">${b.cafe_product_price} ₩</span></h1>
+	      <h1><b class="aaa">${b.cafe_product_name}</b> <span class="w3-tag w3-red w3-round">Hot!</span>
+	      
+	       <fmt:formatNumber value="${ b.cafe_product_price }" var="cafe_product_price" pattern="#,###" />
+	      <span class="w3-right w3-tag w3-dark-grey w3-round">${cafe_product_price} ₩</span></h1>
 	     <div align="center">
 	      <img src="../sale/upload/${b.cafe_product_img}" style="width:30%">
 	     </div>

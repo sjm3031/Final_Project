@@ -18,6 +18,7 @@ import com.cafe.erp.hr.model.jobDTO;
 import com.cafe.erp.hr.service.*;
 import com.cafe.erp.sale.model.ProductCategoryVO;
 import com.cafe.erp.sale.service.ProductCategoryService;
+import com.cafe.erp.sell.controller.SellController;
 import com.cafe.erp.sell.model.SellDTO;
 import com.cafe.erp.sell.service.SellReportsService;
 import com.cafe.erp.store.model.AccountDTO;
@@ -58,7 +59,10 @@ public class ERPController {
 		menuMethod(model);
 		List<SellDTO> accountslist = sellReprtsService.accountslist();
 		model.addAttribute("accountslist", accountslist);
-		
+		List<SellDTO> list = sellReprtsService.pcount();
+		model.addAttribute("bestseller", list.get(0).getName());
+		SellDTO yesterday = sellReprtsService.accountslistYesterday();
+		model.addAttribute("yesterday", yesterday);
 		return "erp/index";
 		
 	}

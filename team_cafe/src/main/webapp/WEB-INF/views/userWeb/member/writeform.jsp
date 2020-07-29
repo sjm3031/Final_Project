@@ -71,14 +71,25 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 
 
 </script>
-
+<script type="text/javascript">
+function register(){
+	
+    if(! document.writeform.customer_phone.value == /^01[0179][0-9]{8}$/.test(document.writeform.customer_phone.value) || document.writeform.customer_phone.value==""){
+       alert("전화번호를 형식에 맞춰 입력해 주세요.");
+       return false;
+    }else if(! document.writeform.customer_birth.value== /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/g.test(document.writeform.customer_birth.value) || document.writeform.customer_birth.value==""){
+        alert("생년월일을 형식에 맞춰 입력해 주세요.");
+        return false;
+     }
+}
+</script>
 
 <body>
    
    <div class="limiter">
       <div class="container-login100">
          <div class="wrap-login100">
-            <form class="login100-form validate-form"  name = "writeform" action="write.cafe" method="post">
+            <form class="login100-form validate-form"  name ="writeform" action="write.cafe" method="post" onsubmit="return register();">
                <span class="login100-form-title p-b-26 bbb">
                <img src="resources/images/icon1.png" alt="" ><b style="font-size: xx-large;">Register</b>
                </span>
@@ -88,7 +99,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                
    
                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                  <input class="input100" type="text" name="customer_phone" id="customer_phone" placeholder="전화번호 : 010-1234-1234" required="required">
+                  <input class="input100" type="text" name="customer_phone" id="customer_phone" placeholder="전화번호 : 01012341234" required="required">
                   <span class="focus-input100 aaa"></span>
                </div>
                
@@ -113,7 +124,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
                </div>
                
                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                  <input class="input100" type="text" name="customer_birth" id="customer_birth"  placeholder="생년월일 : 2020.07.22" required="required">
+                  <input class="input100" type="text" name="customer_birth" id="customer_birth"  placeholder="생년월일 : 20200722" required="required">
                   <span class="focus-input100 aaa"></span>
                </div>
                

@@ -13,4 +13,7 @@ public interface SellReportsService {
 	
 	//총 판매한 건수
 	public int pcounttotal();
+	
+	//총판매량 하루전
+	public SellDTO accountslistYesterday();
 }

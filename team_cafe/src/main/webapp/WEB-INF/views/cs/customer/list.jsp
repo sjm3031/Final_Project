@@ -15,33 +15,7 @@
     <link href="../../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../../resources/css/styles.css" rel="stylesheet">
 
-<script type="text/javascript">
-
-   function insert(){
-	
-	      if(document.writeform.customer_name.value==""){
-	         alert("고객 이름을 입력해주세요");
-	      }else if(! document.writeform.customer_phone.value == /^01[0179][0-9]{8}$/.test(document.writeform.customer_phone.value) || document.writeform.customer_phone.value==""){
-	         alert("고객 전화번호를 입력해주세요");
-	         document.writeform.customer_phone.focus();
-	      }else if(! document.writeform.customer_birth.value== /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/g.test(document.writeform.customer_birth.value) || document.writeform.customer_birth.value==""){
-	         alert("고객 생년월일을 입력해주세요");
-	         document.writeform.customer_birth.focus();
-	      }else if(document.writeform.customer_gender.value==""){
-		      alert("고객 성별을 체크해주세요");
-		      document.writeform.customer_gender.focus();
-	      }else if(document.writeform.customer_stamp.value==""){
-	         alert("고객 스템프수을 입력해주세요");
-	         document.writeform.customer_stamp.focus();
-	      }else if(! document.writeform.customer_pwd.value== /^[A-Za-z0-9]{6,12}$/.test(document.writeform.customer_pwd.value) || document.writeform.customer_pwd.value==""){
-	         alert("고객 비밀번호를 입력해주세요");
-	         document.writeform.customer_pwd.focus();
-	      }else{
-	         document.writeform.submit(); 
-	      }
-	
-   }
-</script>
+	<script src="../../../resources/erp_js/form_validation.js"></script>
 
 
 
@@ -80,7 +54,7 @@
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href="../../index.cafe">Cafe Home</a>
+      <a class="navbar-brand mr-1" href="../../index.cafe">Cafe ERP</a>
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fa fa-bars"></i>
       </button>
@@ -91,7 +65,7 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../index.cafe">
+          <a class="nav-link" href="../../index.cafe">
             <i class="fa fa-fw fa-home"></i>
             <span>홈</span>	
           </a>
@@ -192,11 +166,6 @@
         </li>
         
         
-        <li class="nav-item">
-          <a class="nav-link" href="export-record.do">
-            <i class="fa fa-fw fa-external-link"></i>
-            <span>전문가 보고서</span></a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="general-settings.do">
             <i class="fa fa-fw fa-cogs"></i>
@@ -387,7 +356,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/product/write.cafe" method="post" enctype="multipart/form-data">
+          <form class="" action="../../sale/product/write.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <div class="form-group">
                 <label>카테고리</label>
@@ -441,7 +410,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/productCategory/write.cafe" method="post" >
+          <form class="" action="../../sale/productCategory/write.cafe" method="post" >
             <div class="modal-body">
   
               <div class="form-group">
@@ -463,7 +432,7 @@
     </div>
     
 	 <!-- #addCafeProductAddModal -->
-    <div class="modal fade" id="addCafeProductAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="../../addCafeProductAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header bg-primary text-white">
@@ -475,7 +444,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/productAdd/write.cafe" method="post">
+          <form class="" action="../../sale/productAdd/write.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label for="">옵션(추가사항) 명</label>
@@ -511,7 +480,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="hr/emp/write.cafe" method="post" enctype="multipart/form-data">
+          <form class="" action="../../hr/emp/write.cafe" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <div class="form-group">
                 <label>직급</label>

@@ -14,10 +14,12 @@
     <link href="../../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../resources/css/styles.css" rel="stylesheet">
+    
+    <script src="../../resources/erp_js/form_validation.js"></script>
   </head>
  <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href="../index.cafe">Cafe Home</a>
+      <a class="navbar-brand mr-1" href="../index.cafe">Cafe ERP</a>
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fa fa-bars"></i>
       </button>
@@ -91,13 +93,12 @@
             <i class="fa fa-fw fa-line-chart"></i>
             <span>
               매출관리
-              <i class="float-right fa fa-angle-down"></i>
+               <i class="float-right fa fa-angle-down"></i>
             </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">매출</h6>
-            <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
-            <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> 뭘넣을까</a>
+            <a class="dropdown-item" href="../sell/list.cafe"> <i class="fa fa-fw fa-bar-chart"></i> 판매 현황</a>
           </div>
         </li>
         
@@ -135,11 +136,7 @@
             <i class="fa fa-fw fa-cogs"></i>
             <span>설정</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../help.cafe">
-            <i class="fa fa-fw fa-life-ring"></i>
-            <span>도움말</span></a>
-        </li>
+        
       </ul>
       <div id="content-wrapper" style="margin: 2em;">	
           <div class="container-fluid">
@@ -310,7 +307,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form id="addCafeProductModal" name="addCafeProductModal" action="sale/product/write.cafe" method="post" enctype="multipart/form-data" onsubmit="return addCafeProduct();">
+          <form id="addCafeProductModal" name="addCafeProductModal" action="../sale/product/write.cafe" method="post" enctype="multipart/form-data" onsubmit="return addCafeProduct();">
             <div class="modal-body">
               <div class="form-group">
                 <label>카테고리</label>
@@ -364,7 +361,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/productCategory/write.cafe" method="post" >
+          <form class="" action="../sale/productCategory/write.cafe" method="post" >
             <div class="modal-body">
   
               <div class="form-group">
@@ -398,7 +395,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form class="" action="sale/productAdd/write.cafe" method="post">
+          <form class="" action="../sale/productAdd/write.cafe" method="post">
             <div class="modal-body">
               <div class="form-group">
                 <label for="">옵션(추가사항) 명</label>
@@ -435,7 +432,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="stockinsert" action="store/stockinsert.cafe" method="post" enctype="multipart/form-data" onsubmit="return stock_insert();">
+          <form name="stockinsert" action="../store/stockinsert.cafe" method="post" enctype="multipart/form-data" onsubmit="return stock_insert();">
             <div class="modal-body">
                <div class="form-group">
                 <label for="">품명</label>
@@ -504,7 +501,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="accountinsert" action="store/accountinsert.cafe" method="post" enctype="multipart/form-data" onsubmit="return account_insert();">
+          <form name="accountinsert" action="../store/accountinsert.cafe" method="post" enctype="multipart/form-data" onsubmit="return account_insert();">
             <div class="modal-body">
   
               <div class="form-group">
@@ -553,7 +550,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="addEmpForm" action="hr/emp/insert.cafe" method="post" onsubmit="return addEmp();">
+          <form name="addEmpForm" action="../hr/emp/insert.cafe" method="post" onsubmit="return addEmp();">
             <div class="modal-body">
               <div class="form-group">
                 <label>이름</label>
@@ -620,7 +617,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="addJobForm" action="hr/job/list.cafe" method="post" onsubmit="return addJob();">
+          <form name="addJobForm" action="../hr/job/list.cafe" method="post" onsubmit="return addJob();">
             <div class="modal-body">
               <div class="form-group">
                 <label>직급</label>
@@ -658,7 +655,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <form name="addSalaryForm" action="hr/salary/insert.cafe" method="post" onsubmit="return addSalary();" >
+          <form name="addSalaryForm" action="../hr/salary/insert.cafe" method="post" onsubmit="return addSalary();" >
             <div class="modal-body">
               <div class="form-group">
                 <label>직원이름</label>
@@ -706,6 +703,7 @@
         </div>
       </div>
     </div>
+
 
     
     

@@ -90,6 +90,8 @@ function webOrder(){
 <script type="text/javascript">
 	var num = 0;
 	var total = 0;
+   var original = total;
+   var couprice = 0;
 
 	// Opt. 버튼을 눌렀을때 optionList.cafe로 이동하여 옵션 목록을 비동기 처리해여 가져옴
 	$(function(){
@@ -165,8 +167,16 @@ function webOrder(){
  	$(document).on('click', '.orderline', function(event){
  		var test = $(this).children('.price').text();
  		total = total - test;
+      original = original - test;
  		var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
-		info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
+		if(total < 0){
+			info3 += '<span class="badge">Total: </span> <span class="value">' + 0 + ' 원</span>';
+		} else {
+			info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
+		}
+ 		
+      info3 += '<div class="subentry unit">원가 : <span>' + original + ' 원</span>';
+      info3 += '<div class="subentry discount">쿠폰 : <span>' + couprice + ' 원</span>';
 		info3 += '</div></div></div>';
 		$(".order2").html(info3);	
 		$(event.currentTarget).remove();
@@ -203,11 +213,20 @@ function webOrder(){
 				info += '<span class="info-list">Option : </span>';
 				info +='</li>';
 				total += data.cafe_product_price;
+            original += data.cafe_product_price;
 				$(".orderlines").append(info);
 			
 				/* 토탈화면출력 */
 				var info3 = '<div class="summary clearfix"><div class="line"><div class="entry total">';
-				info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
+
+				if(total < 0){
+					info3 += '<span class="badge">Total: </span> <span class="value">' + 0 + ' 원</span>';
+				} else {
+					info3 += '<span class="badge">Total: </span> <span class="value">' + total + ' 원</span>';
+				}
+				
+            info3 += '<div class="subentry unit">원가 : <span>' + original + ' 원</span>';
+            info3 += '<div class="subentry discount">쿠폰 : <span>' + couprice + ' 원</span>';
 				info3 += '</div></div></div>';
 				$(".order2").html(info3);
 	      },
@@ -238,9 +257,11 @@ function webOrder(){
 			      price = Number(price);
 			      price += data.product_add_price;
 			      total += data.product_add_price;
+               original += data.product_add_price;
 			      $('.orderline:last').children('.price').html(price);
 			      $('.orderline:last').append(extra);
 			      $('.entry.total').children('.value').html(total + ' 원');
+               $('.subentry.unit').children('span').html(original + ' 원');
 			      $('.info-list:last').append(data.product_add_name + ' ');
 		      },
 		      error: function(error){
@@ -359,6 +380,73 @@ function webOrder(){
 	});
 
 
+   // 스탬프 갯수 조회
+   $(document).on('click', '.button.check.coupon', function(){
+      if($('.orderline').length == 0){
+       	alert('상품을 먼저 등록해주세요!');
+         return;
+      }
+
+      var phone = $('#phoneCouponInput').val();
+
+      $.ajax({
+         url: './selectStamp.cafe',
+         type: 'post',
+         data: {phone : phone},
+         dataType: 'json',
+         success: function(data){
+            if(data.msg == "yes"){
+               $('#validCouponText').html('쿠폰 사용 가능합니다.<br>스탬프 : ' + data.count + '개');
+               $('#validCouponText').css('color', 'green');
+            } else {
+               $('#validCouponText').html('사용 가능한 쿠폰이 없습니다.<br>스탬프 : ' + data.count + '개');
+               $('#validCouponText').css('color', 'red');
+            }
+         },
+         error: function(error){
+            console.log("error");
+         }
+      });
+   });
+
+
+   // 스탬프 사용
+   $(document).on('click', '.button.confirm.coupon', function(){
+	   if($('.orderline').length == 0){
+	       	alert('상품을 먼저 등록해주세요!');
+	         return;
+	   }
+	   
+      var phone = $('#phoneCouponInput').val();
+
+      $.ajax({
+         url: './coupon.cafe',
+         type: 'post',
+         data: {phone : phone},
+         dataType: 'text',
+         success: function(data){
+            if(data == 'yes'){
+               alert('쿠폰이 적용되었습니다!');
+               couprice = 5000;
+               total = total - couprice;
+
+               if(total < 0){
+                  $('.entry.total').children('.value').html(0 + ' 원');
+               } else {
+                  $('.entry.total').children('.value').html(total + ' 원');
+               }
+               
+               $('.subentry.discount span').html(couprice + ' 원');
+               $('.modal-dialog.coupon').attr('class', 'modal-dialog oe_hidden coupon');
+            } else {
+               alert("사용 할 수 있는 쿠폰이 없습니다!")
+            }
+         }
+      });
+   });
+
+
+
 	// 쿠폰 버튼을 누르면 쿠폰 모달창을 띄움
 	$(document).on('click', '.mode-button.coupon', function(){
 		$('.modal-dialog.oe_hidden.coupon').attr('class', 'modal-dialog coupon');
@@ -405,6 +493,7 @@ function webOrder(){
 			dataType: 'text',
 			success: function(data){
 				alert(data);
+				$('.modal-dialog.ready').attr('class', 'modal-dialog oe_hidden ready');
 			},
 			error: function(error){
 				console.log('error');
@@ -426,7 +515,8 @@ function webOrder(){
 			type: 'post',
 			contentType: 'application/json; charset=utf-8',
 			dataType: 'json',
-			success: function(data){				
+			success: function(data){
+
 				$('#totalSell').attr('value', data[2].SELLTOTAL);
 				$('#cashSell').attr('value', data[1].SELLTOTAL);
 				$('#cardSell').attr('value', data[0].SELLTOTAL);
@@ -465,6 +555,7 @@ function webOrder(){
 			dataType: 'text',
 			success: function(data){
 				alert(data);
+				$('.modal-dialog.dayend').attr('class', 'modal-dialog oe_hidden dayend');
 			},
 			error: function(error){
 				console.log('error');
@@ -629,7 +720,6 @@ function webOrder(){
                                              <button class="input-button number-char">1</button>
                                              <button class="input-button number-char">2</button>
                                              <button class="input-button number-char">3</button>
-                                             
                                              <button class="mode-button selected-mode" id="orderBtn" name="orderBtn"  onclick="window.open('orderlist.cafe','orderWeb','width=800,height=500')"
                                                 data-mode="quantity">web</button>
                                              <br>
@@ -978,7 +1068,6 @@ function webOrder(){
                         <span>전화번호</span>
                          <input type="text" name="phoneCouponInput" id="phoneCouponInput" placeholder="전화번호를 입력해주세요" style="box-shadow: 0px 0px 0px 1px rgb(220, 220, 220) inset; margin-left: 5px;">
                          <div class="button check coupon" style="width: 80px; margin-top: 0px; margin-right: 0px;">조회</div>
-                         <br>
                          <br>
                          <span id="validCouponText"></span>
             		</main>

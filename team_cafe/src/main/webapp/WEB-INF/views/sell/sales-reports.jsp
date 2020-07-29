@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html><head>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
@@ -233,85 +234,98 @@ function account_insert(){
             </ol>
             <!-- Page Content -->
             <!-- Area Chart Example-->
-          <div class="card mb-3">
-            <div class="card-header">
-              <i class="fa fa-chart-area"></i>
-              면적 그래프 예시</div>
-            <div class="card-body">
-                            <canvas id="myChart" width="100%" height="30"></canvas>
-              <script language = "javaScript">
-	var ctx = document.getElementById('myChart');
-	var myLineChart = new Chart(ctx, {
-		  type: 'line',
-		  data: {
-		    labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-		    datasets: [{
-		      label: "Profit",
-		      lineTension: 0.3,
-		      backgroundColor: "#00a63f",
-		      borderColor: "#00a63f",
-		      pointRadius: 5,
-		      pointBackgroundColor: "#00a63f",
-		      pointBorderColor: "rgba(255,255,255,0.8)",
-		      pointHoverRadius: 5,
-		      pointHoverBackgroundColor: "#00a63f",
-		      pointHitRadius: 50,
-		      pointBorderWidth: 2,
-		      data: [${cartcount}, 30162, 26263, 18394, 5000, 9000, 10, 30162, 26263, 18394, 5000, ${cartcount}],
-		    }],
-		  },
-		  options: {
-		    scales: {
-		      xAxes: [{
-		        time: {
-		          unit: 'date'
-		        },
-		        gridLines: {
-		          display: false
-		        },
-		        ticks: {
-		          maxTicksLimit: 12
-		        }
-		      }],
-		      yAxes: [{
-		        ticks: {
-		          min: 0,
-		          max: 500000,
-		          maxTicksLimit: 16
-		        },
-		        gridLines: {
-		          color: "rgba(0, 0, 0, .125)",
-		        }
-		      }],
-		    },
-		    legend: {
-		      display: false
-		    }
-		  }
-		});
-</script>
-            </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-          </div>
+<!--           <div class="card mb-3"> -->
+<!--             <div class="card-header"> -->
+<!--               <i class="fa fa-chart-area"></i> -->
+<!--               면적 그래프 예시</div> -->
+<!--             <div class="card-body"> -->
+<!--                             <canvas id="myChart" width="100%" height="30"></canvas> -->
+<!--               <script language = "javaScript"> -->
+<!-- // 	var ctx = document.getElementById('myChart'); -->
+<!-- // 	var myLineChart = new Chart(ctx, { -->
+<!-- // 		  type: 'line', -->
+<!-- // 		  data: { -->
+<!-- // 		    labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"], -->
+<!-- // 		    datasets: [{ -->
+<!-- // 		      label: "Profit", -->
+<!-- // 		      lineTension: 0.3, -->
+<!-- // 		      backgroundColor: "#00a63f", -->
+<!-- // 		      borderColor: "#00a63f", -->
+<!-- // 		      pointRadius: 5, -->
+<!-- // 		      pointBackgroundColor: "#00a63f", -->
+<!-- // 		      pointBorderColor: "rgba(255,255,255,0.8)", -->
+<!-- // 		      pointHoverRadius: 5, -->
+<!-- // 		      pointHoverBackgroundColor: "#00a63f", -->
+<!-- // 		      pointHitRadius: 50, -->
+<!-- // 		      pointBorderWidth: 2, -->
+<%-- // 		      data: [${cartcount}, 30162, 26263, 18394, 5000, 9000, 10, 30162, 26263, 18394, 5000, ${cartcount}], --%>
+<!-- // 		    }], -->
+<!-- // 		  }, -->
+<!-- // 		  options: { -->
+<!-- // 		    scales: { -->
+<!-- // 		      xAxes: [{ -->
+<!-- // 		        time: { -->
+<!-- // 		          unit: 'date' -->
+<!-- // 		        }, -->
+<!-- // 		        gridLines: { -->
+<!-- // 		          display: false -->
+<!-- // 		        }, -->
+<!-- // 		        ticks: { -->
+<!-- // 		          maxTicksLimit: 12 -->
+<!-- // 		        } -->
+<!-- // 		      }], -->
+<!-- // 		      yAxes: [{ -->
+<!-- // 		        ticks: { -->
+<!-- // 		          min: 0, -->
+<!-- // 		          max: 500000, -->
+<!-- // 		          maxTicksLimit: 16 -->
+<!-- // 		        }, -->
+<!-- // 		        gridLines: { -->
+<!-- // 		          color: "rgba(0, 0, 0, .125)", -->
+<!-- // 		        } -->
+<!-- // 		      }], -->
+<!-- // 		    }, -->
+<!-- // 		    legend: { -->
+<!-- // 		      display: false -->
+<!-- // 		    } -->
+<!-- // 		  } -->
+<!-- // 		}); -->
+<!-- </script> -->
+<!--             </div> -->
+<!--             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+<!--           </div> -->
           <div class="row">
             <div class="col-lg-8">
               <div class="card mb-3">
                 <div class="card-header">
                   <i class="fa fa-chart-bar"></i>
-                 바 그래프 예시</div>
+                 최근 12일간 총매출액</div>
                 <div class="card-body">
                   <canvas id="myBarChart" width="100%" height="50"></canvas>
+                  <script type="text/javascript">
+									var accounttotal = new Array();
+									var startsell = new Array();
+									<c:forEach var = "get" items="${accountslist}">
+										accounttotal.push('<c:out value="${get.accounts_total}"/>');
+										var format = '<fmt:formatDate pattern="yy/MM/dd" value="${get.accounts_startsell}"/>';								
+										//startsell.push('<c:out value="${get.accounts_startsell}"/>');
+										startsell.push(format);
+										console.log(format);
+									</c:forEach>
+									console.log(accounttotal);
+									console.log(startsell);
+				  </script>
                   <script language = "javaScript">
                   var ctx = document.getElementById("myBarChart");
                   var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+    labels: startsell,
     datasets: [{
       label: "Revenue",
       backgroundColor: "#00a63f",
       borderColor: "rgba(2,117,216,1)",
-      data: [10215, 22312, 33251, 44841, 44421, 54984, 66000, 74984, 84984, 80984, 80984, 80984],
+      data: accounttotal,
     }],
   },
   options: {
@@ -329,8 +343,8 @@ function account_insert(){
       }],
       yAxes: [{
         ticks: {
-          min: 1000,
-          max: 100000,
+          min: 200000,
+          max: 700000,
           maxTicksLimit: 40
         },
         gridLines: {
@@ -352,17 +366,31 @@ function account_insert(){
               <div class="card mb-3">
                 <div class="card-header">
                   <i class="fa fa-chart-pie"></i>
-                  원형 그래프 예시</div>
+                  상품당 판매수(백분위%)</div>
                 <div class="card-body">
                   <canvas id="myPieChart" width="100%" height="100"></canvas>
-                  <script language = "javaScript">
+								<script type="text/javascript">
+									var listname = new Array();
+									var pcount = new Array();
+									var total = new Array();
+									total.push("${total}");
+									<c:forEach var = "lis" items="${list}">
+										var count = <c:out value="${lis.pcount}"/>;
+										var total2=(count/total*100).toFixed(2);
+										listname.push('<c:out value="${lis.name}"/>');
+										pcount.push(total2);
+									</c:forEach>
+									console.log(listname);
+									console.log(pcount);
+								</script>
+				<script language = "javaScript">
                   var ctx = document.getElementById("myPieChart");
                   var myPieChart = new Chart(ctx, {
                     type: 'pie',
                     data: {
-                      labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                      labels: listname,
                       datasets: [{
-                        data: [2.21, 4.58, 8.25, 16.32, 32.32, 100.32, 1.32, 2.32, 3.32, 4.32, 5.32, 6.00],
+                        data: pcount,
                         backgroundColor: ['#d35400', '#00a63f', '#900C3F', '#2e4053', '#1a5276', '#FF69B4','#8e44ad','#DAF7A6','#34eb13','#eb1d13','#0a0101', '#f4d03f'],
                       }],
                     },

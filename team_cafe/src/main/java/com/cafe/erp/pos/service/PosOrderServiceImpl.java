@@ -138,4 +138,16 @@ public class PosOrderServiceImpl implements PosOrderService {
 		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
 		dao.updatePosStartEnd(map);
 	}
+
+	@Override
+	public int selectStamp(String phone) {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		return dao.selectStamp(phone);
+	}
+
+	@Override
+	public void useStamp(HashMap map) {
+		PosOrderDAO dao = sqlSession.getMapper(PosOrderDAO.class);
+		dao.useStamp(map);
+	}
 }

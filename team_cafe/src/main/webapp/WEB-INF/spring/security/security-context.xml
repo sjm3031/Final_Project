@@ -46,7 +46,7 @@
          <security:concurrency-control
             max-sessions="1" 
             expired-url="/pos/home.cafe"
-            error-if-maximum-exceeded="true" />
+            />
       </security:session-management>
       
       <!-- 로그아웃 관련 처리 -->

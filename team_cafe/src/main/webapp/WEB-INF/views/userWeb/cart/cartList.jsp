@@ -42,12 +42,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 
 
 
- 	function Modify(cart_code, customer_code) {
+ 	function Modify(cart_code, customer_code,i) {
 	 
 	 	var Num = cart_code;
+	 	var i = i;
 	 	
-	 	 var Num1 = document.getElementById('cartNum').value; 
-	 	// alert(Num1); 
+	 	 var Num1 = document.getElementById('cartNum'+i).value; 
+	 	alert(Num1); 
 	
 		/* var count = update.cart_code.value; */
  		
@@ -120,9 +121,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
  <c:set var="totalcount" value="0"/>
  <c:set var="totalprice" value="0"/>
 
+<c:set var="i" value="0"/>
 <c:forEach var="cart" items="${list}">
 
-
+<c:set var="i" value="${ i+1 }"/>
 
 <c:set var="present" value="${cart.cart_code}"/>
 	
@@ -152,9 +154,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 		
 		
      <br><br>
-        <h3 class="aaa">수량 : <input type ="number" id="cartNum" name="cartNum" value="${cart.cart_num}"/></h3>
+        <h3 class="aaa">수량 : <input type ="number" id="cartNum${ i }" name="cartNum" value="${cart.cart_num}"/></h3>
 <br>
-   		<input class="w3-button w3-xlarge w3-black aaa" type="button" value="수정" onclick="Modify(${cart.cart_code},${cart.customer_code})">
+   		<input class="w3-button w3-xlarge w3-black aaa" type="button" value="수정" onclick="Modify(${cart.cart_code},${cart.customer_code},${i })">
 	    <input class="w3-button w3-xlarge w3-black aaa" type="button" value="삭제" onclick="del(${cart.cart_code},${cart.customer_code})"> 
    <br>
    
@@ -245,7 +247,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 
 
 </div>
-</div>
+
 
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-48 w3-xxlarge">

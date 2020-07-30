@@ -231,10 +231,8 @@
             
             
           
-                   </div>         
           <br><br><br>
          <!-- Sticky Footer -->
-         <br><br><br>
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">
@@ -655,7 +653,7 @@
               <div class="form-group">
                 <label for="">급여일</label>
                 <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
-              
+              <small class="text-muted">급여지급일을 1~30(일)안에 해당하는 숫자만 입력하세요</small>
               <br>
              </div>
              </div>
@@ -671,9 +669,9 @@
     
     
     
-      <script src="../../../resources/js/jquery.min.js"></script>
-      <script src="../../../resources/js/bootstrap.bundle.min.js"></script>
-      <script src="../../../resources/js/jquery.easing.min.js"></script>
-      <script src="../../../resources/js/rc-pos.min.js"></script>
+      <script src="../../resources/js/jquery.min.js"></script>
+      <script src="../../resources/js/bootstrap.bundle.min.js"></script>
+      <script src="../../resources/js/jquery.easing.min.js"></script>
+      <script src="../../resources/js/rc-pos.min.js"></script>
     </body>
   </html>

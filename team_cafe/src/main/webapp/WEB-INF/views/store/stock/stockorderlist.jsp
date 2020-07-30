@@ -17,6 +17,23 @@
     <link href="../../resources/css/styles.css" rel="stylesheet">
     
     <script src="../../resources/erp_js/form_validation.js"></script>
+    
+    <script type="text/javascript">
+
+    function order_insert(){
+    	if (confirm("발주 신청 하시겠습니까?") == true){    //확인
+    	    document.getElementById('orderinsert').submit();
+    	}else{   //취소
+    	    return;
+    	}
+//    		}
+//    	alert("ㅁㄴㅇㅁㄴㅇ");
+    	}
+
+
+</script>
+    
+    
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -164,7 +181,7 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                <form action="orderinsert.cafe" method="post">
+                <form action="orderinsert.cafe" method="post" name="orderinsert" id="orderinsert">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
@@ -287,7 +304,7 @@
                   
 					총 금액 : ${cart_total}(원)
 				  <input type="hidden" name="prodectOrder_total" id="prodectOrder_total" value="${cart_total}"/>
-                  <input type="submit" value="발주 신청" class="btn btn-secondary"/>
+                   <input type="button" value="발주 신청" class="btn btn-secondary" id="orderinsert" onclick="order_insert()"/>
                   
                   </form>
                 </div>
@@ -719,7 +736,7 @@
               <div class="form-group">
                 <label for="">급여일</label>
                 <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
-              
+               <small class="text-muted">급여지급일을 1~30(일)안에 해당하는 숫자만 입력하세요</small>
               <br>
              </div>
              </div>

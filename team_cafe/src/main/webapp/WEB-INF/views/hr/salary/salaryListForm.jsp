@@ -178,7 +178,7 @@
 	
 	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		<tr>
-			<th>급여코드</th>
+			
 			<th>이름</th>
 			<th>직급</th>
 			<th>근무 년</th>
@@ -188,6 +188,7 @@
 			<th>월근무시간</th>
 			<th>총급여</th>
 			<th>월급 지급일</th>
+			<th></th>
 			
 
 		</tr>
@@ -197,7 +198,7 @@
 
 			<tr>
 				
-				<td>${list.salary_code}</td>
+				
 				<td>${list.employee_name}</td>
 				<td>${list.employee_jobname}</td>
 				<td>${list.salary_year}</td>
@@ -209,16 +210,14 @@
 				<td>${list.salary_date}</td>
 				
 				<td> 
-				<input type="button" value="수정" onclick="location.href='update.cafe?salary_code=${list.salary_code}&pg=${pg}'">
+				<input type="button"  class="btn btn-primary" value="수정" onclick="location.href='update.cafe?salary_code=${list.salary_code}&pg=${pg}'">
 				<%-- 				<input type="button" value="삭제" onclick="location.href='empDelete.cafe?employee_code=${emp.employee_code}&pg=${pg}'"> --%>
 				</td> 
 			</tr>
 		</c:forEach>
 
 	</table>
-	
-	<br>
-	<br>
+
 	 <div align="center">
 	                  
 	                  <div class="col-sm-12 col-md-7" >
@@ -294,11 +293,13 @@
                   </div>
                 </div>
               </div>
+
 <!--               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
             </div>
           </div>
           <br><br><br>
          <!-- Sticky Footer -->
+        <br><br><br>
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">
@@ -719,7 +720,7 @@
               <div class="form-group">
                 <label for="">급여일</label>
                 <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
-              
+              <small class="text-muted">급여지급일을 1~30(일)안에 해당하는 숫자만 입력하세요</small>
               <br>
              </div>
              </div>

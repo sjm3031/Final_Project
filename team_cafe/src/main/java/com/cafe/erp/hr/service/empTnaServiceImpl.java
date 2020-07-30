@@ -17,15 +17,26 @@ public class empTnaServiceImpl implements empTnaService {
 	@Autowired
 	private SqlSession sqlSession;
 
-//	@Override
-//	public empTnaDTO getempTna(int emptna_code) {
-//		
-//		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
-//
-//		return dao.getempTna(emptna_code);
-//	}
 	
 	
+	
+	@Override
+	public int getEmpTnaDayCount(HashMap map) {
+
+		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
+
+		return dao.getEmpTnaDayCount(map);
+
+	}
+	@Override
+	public int getEmpTnaMonthCount(HashMap map) {
+
+		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);
+
+		return dao.getEmpTnaMonthCount(map);
+	}
+
+
 	@Override
 	public List<empTnaDTO> getDay() {
 		empTnaDAO dao = sqlSession.getMapper(empTnaDAO.class);

@@ -325,38 +325,58 @@ public class PosController {
 	@ResponseBody
 	@RequestMapping("dayend.cafe")
 	public List posDayEnd() {
-		int check = posOrderService.hasTodayPosStart();
-		
-		if(check == 0) {
-			return null;
-		}
-		
-		List dayEndMap = posOrderService.sellByGroup();
-		if(dayEndMap.isEmpty()) {
-			HashMap card = new HashMap();
-			HashMap cash = new HashMap();
-			HashMap total = new HashMap();
-			card.put("ORDER_ACCOUNTTYPE", "카드");
-			card.put("SELLTOTAL", "0");
-			card.put("SELLCOUNT", "0");
-			
-			cash.put("ORDER_ACCOUNTTYPE", "현금");
-			cash.put("SELLTOTAL", "0");
-			cash.put("SELLCOUNT", "0");
-			
-			total.put("SELLTOTAL", "0");
-			total.put("SELLCOUNT", "0");
-			
-			dayEndMap.add(card);
-			dayEndMap.add(cash);
-			dayEndMap.add(total);
-		}
-		
-		HashMap endtime = posOrderService.getEndTime();
-		HashMap startInfo = posOrderService.getPosStartInfo();
-		dayEndMap.add(endtime);
-		dayEndMap.add(startInfo);
-		return dayEndMap;
+	      HashMap card = new HashMap();
+	      HashMap cash = new HashMap();
+	      int check = posOrderService.hasTodayPosStart();
+	      
+	      if(check == 0) {
+	         return null;
+	      }
+	      
+	      List dayEndMap = posOrderService.sellByGroup();
+	      
+	      if(dayEndMap.size() == 2) {
+	         HashMap sellInfo = (HashMap)dayEndMap.get(0);
+	         
+	         if(sellInfo.get("ORDER_ACCOUNTTYPE").equals("카드")) {
+	            cash.put("ORDER_ACCOUNTTYPE", "현금");
+	            cash.put("SELLTOTAL", "0");
+	            cash.put("SELLCOUNT", "0");
+	            dayEndMap.add(1, cash);
+	            
+	         } else if(sellInfo.get("ORDER_ACCOUNTTYPE").equals("현금")) {
+	            card.put("ORDER_ACCOUNTTYPE", "카드");
+	            card.put("SELLTOTAL", "0");
+	            card.put("SELLCOUNT", "0");
+	            dayEndMap.add(0, card);
+	         }
+	      }
+	      
+	      
+	      if(dayEndMap.isEmpty()) {
+	         HashMap total = new HashMap();
+	         card.put("ORDER_ACCOUNTTYPE", "카드");
+	         card.put("SELLTOTAL", "0");
+	         card.put("SELLCOUNT", "0");
+	         
+	         cash.put("ORDER_ACCOUNTTYPE", "현금");
+	         cash.put("SELLTOTAL", "0");
+	         cash.put("SELLCOUNT", "0");
+	         
+	         total.put("SELLTOTAL", "0");
+	         total.put("SELLCOUNT", "0");
+	         
+	         dayEndMap.add(card);
+	         dayEndMap.add(cash);
+	         dayEndMap.add(total);
+	      }
+	      
+	      HashMap endtime = posOrderService.getEndTime();
+	      HashMap startInfo = posOrderService.getPosStartInfo();
+	      dayEndMap.add(endtime);
+	      dayEndMap.add(startInfo);
+	      
+	      return dayEndMap;
 	}
 	
 	// 마감 정산 모달창에서 확인을 누를시 정보를 DB에 저장

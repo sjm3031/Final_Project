@@ -14,6 +14,25 @@
     <link href="../../resources/css/bootstrap.css" rel="stylesheet">
     <link href="../../resources/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="../../resources/css/styles.css" rel="stylesheet">
+    
+<script src="../../resources/erp_js/form_validation.js"></script>
+    
+    <script type="text/javascript">
+
+    function ordercart_insert(){
+    	var count = $('#cart_stock_quantity').val();
+//    	var count = document.getElementById('cart_stock_detailname').value
+    	var name = $('#cart_stock_detailname').val();
+    	alert("발주 목록에 " + name +" "+ count + "개를 담았습니다.");
+    	document.getElementById('ordercartinsert').submit();
+    	}
+
+
+</script>  
+    
+    
+    
+    
   </head>
 
   <body id="page-top">
@@ -149,7 +168,7 @@
               </li>
               <li class="breadcrumb-item active">Product Brands</li>
             </ol>
-            <!-- Page Content -->
+         <!-- Page Content -->
             <!-- DataTables Example -->
             <div class="card mb-3">
               <div class="card-header bg-primary text-white" style="background-color:#787878  !important;">
@@ -180,7 +199,7 @@
                     <tbody>
                     <c:forEach var="b" items="${list}">
 		<tr>
-    	<form action="ordercartinsert.cafe" name="ordercartinsert" method="post">
+    	<form action="ordercartinsert.cafe" name="ordercartinsert" id="ordercartinsert" method="post">
 		<td>
 		${b.stock_productname}
 		<input type="hidden" name="cart_stock_productname" id="cart_stock_productname" value="${b.stock_productname}"/>
@@ -203,11 +222,11 @@
 		
 		<td>
 		<input type="hidden" name="stock_code" value="${b.stock_code}">
-		<input type="number" value="0" size="5" id="cart_stock_quantity" name="cart_stock_quantity"/>
+		<input type="text" size="5" id="cart_stock_quantity" name="cart_stock_quantity"/>
 		<input type="hidden" name="account_number" value="${b.account_number}"/>
 		</td>
 		<td>
-		<input type="submit" value="품목담기" class="btn btn-primary"/>
+		<input type="button" value="품목담기" class="btn btn-primary" onclick="ordercart_insert()"/>
 		</td>
 		</form>
 		</tr>
@@ -215,28 +234,31 @@
                     </tbody>
                   </table>
                   
-                  <div class="row">
-	                  <div class="col-sm-12 col-md-5">
-		                  <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-		              
-		                  </div>
-	                  </div>
-                   <div class="col-sm-12 col-md-7">
-		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-			                  <ul class="pagination">
-			                  
+                 
+                  <div align="center">
+	                  
+	                  <div class="col-sm-12 col-md-7" >
+	                  <br>
+		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate" >
+			                  <ul class="pagination" style="text-align: center; width: 350px !important;" >
+			                 		
+			                 			 <li class="paginate_button page-item " >
+								           <a href="list.cafe?pg=1" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link" >
+					             		   	&lt;&lt;
+					        	         </a>
+			
 			                  		<c:if test="${pg>1}">  <!-- 5>10 : false / 15>10 : true -->
-										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-					              	  		  Previous
-					                	  </a>
+										<li class="paginate_button page-item ">
+								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    &lt;
+					             		    </a>
 					             	    </li>
 									</c:if>
 									<c:if test="${pg<=1}"> <!-- 5<=10 :true / 15<=10:false -->
-										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-						                  <a aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-						              	    Previous
-						                  </a>
+										<li class="paginate_button page-item ">
+						                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    &lt;
+					        	         </a>
 					  	               </li>
 									</c:if>          
 					          <c:forEach begin="${fromPage}" end="${toPage}" var="i">
@@ -258,37 +280,41 @@
 					                 
 					                	       
 					       <c:if test="${pg<allPage}"> 
-					           <li class="paginate_button page-item next disabled" id="dataTable_next">
+					           <li class="paginate_button page-item ">
 					                  <a href="list.cafe?pg=${pg+1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	Next
+					                  	>
 					                  </a>
 				                  </li>
 				            </c:if>      
 				            
 				             <c:if test="${pg>=allPage}"> 
-					           <li class="paginate_button page-item next disabled" id="dataTable_next">
+					           <li class="paginate_button page-item ">
 					                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	Next
+					                  	>
 					                  </a>
 				                  </li>
 				            </c:if>    
 				            
 				 
-				                  
+				               <li class="paginate_button page-item ">
+								           <a href="list.cafe?pg=${allPage}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    >>
+					        	         </a>
+					           </li>   
 				                  
 				                  
 				                  
 			                  </ul>
 		                  </div>
 	                  </div>
-                </div>
+                  </div>
                   
                 </div>
               </div>
               <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
             </div>
           </div>
-          <br><br><br>
+
         <!-- Sticky Footer -->
         <br><br><br>
         <footer class="sticky-footer">
@@ -711,7 +737,7 @@
               <div class="form-group">
                 <label for="">급여일</label>
                 <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
-              
+               <small class="text-muted">급여지급일을 1~30(일)안에 해당하는 숫자만 입력하세요</small>
               <br>
              </div>
              </div>

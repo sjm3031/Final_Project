@@ -149,6 +149,12 @@ public class empTnaController {
 		model.addAttribute("list2", list2);
 		model.addAttribute("list3", list3);
 		
+		
+		HashMap map = new HashMap();
+		map.put("emptna_year", emptna_year);
+		map.put("emptna_month", emptna_month);
+		map.put("employee_name", employee_name);
+		
 		int pg = 1;
 		String strPg = req.getParameter("pg");
 
@@ -160,7 +166,7 @@ public class empTnaController {
 		int start = (pg * rowSize) - (rowSize - 1);
 		int end = pg * rowSize;
 
-		int total = empTnaService.getEmpTnaCount(); // 총 게시글수
+		int total = empTnaService.getEmpTnaMonthCount(map); // 총 게시글수
 		System.out.println("start : " + start + "end : " + end);
 		System.out.println("write count : " + total);
 
@@ -176,24 +182,24 @@ public class empTnaController {
 			toPage = allPage;
 		}
 
-		HashMap map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);
-		map.put("emptna_year", emptna_year);
-		map.put("emptna_month", emptna_month);
-		map.put("employee_name", employee_name);
 		
-		List<empTnaDTO> empTnaList = empTnaService.getMonthRead(map);
+		
+		
+		List<empTnaDTO> empTnaList1 = empTnaService.getMonthRead(map);
 
-		req.setAttribute("empTnaList", empTnaList);
-
+		req.setAttribute("empTnaList", empTnaList1);
+		req.setAttribute("emptna_year", emptna_year);
+		req.setAttribute("emptna_month", emptna_month);
+		req.setAttribute("employee_name", employee_name);
 		req.setAttribute("pg", pg);
 		req.setAttribute("allPage", allPage);
 		req.setAttribute("block", block);
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 
-		return "hr/emptna/empTnaListForm";
+		return "hr/emptna/empTnaMonthForm";
 	}
 
 	@RequestMapping("hr/emptna/dayRead.cafe")
@@ -208,6 +214,11 @@ public class empTnaController {
 		model.addAttribute("list2", list2);
 		model.addAttribute("list3", list3);
 		
+		HashMap map = new HashMap();
+		map.put("emptna_year", emptna_year);
+		map.put("emptna_month", emptna_month);
+		map.put("emptna_day", emptna_day);
+		
 		int pg = 1;
 		String strPg = req.getParameter("pg");
 
@@ -219,7 +230,7 @@ public class empTnaController {
 		int start = (pg * rowSize) - (rowSize - 1);
 		int end = pg * rowSize;
 
-		int total = empTnaService.getEmpTnaCount(); // 총 게시글수
+		int total = empTnaService.getEmpTnaDayCount(map); // 총 게시글수
 		System.out.println("start : " + start + "end : " + end);
 		System.out.println("write count : " + total);
 
@@ -235,24 +246,25 @@ public class empTnaController {
 			toPage = allPage;
 		}
 
-		HashMap map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);
-		map.put("emptna_year", emptna_year);
-		map.put("emptna_month", emptna_month);
-		map.put("emptna_day", emptna_day);
+		
+		
 
-		List<empTnaDTO> empTnaList = empTnaService.getDayRead(map);
+		List<empTnaDTO> empTnaList2 = empTnaService.getDayRead(map);
 
-		req.setAttribute("empTnaList", empTnaList);
-
+		req.setAttribute("empTnaList", empTnaList2);
+		req.setAttribute("emptna_year", emptna_year);
+		req.setAttribute("emptna_month", emptna_month);
+		req.setAttribute("emptna_day", emptna_day);
+		
 		req.setAttribute("pg", pg);
 		req.setAttribute("allPage", allPage);
 		req.setAttribute("block", block);
 		req.setAttribute("fromPage", fromPage);
 		req.setAttribute("toPage", toPage);
 
-		return "hr/emptna/empTnaListForm";
+		return "hr/emptna/empTnaDayForm";
 	}
 	
 	@RequestMapping("hr/emptna/list.cafe")
@@ -316,9 +328,9 @@ public class empTnaController {
 		map.put("start", start);
 		map.put("end", end);
 
-		List<empTnaDTO> empTnaList= empTnaService.getEmpTnaList(map);
+		List<empTnaDTO> empTnaList3= empTnaService.getEmpTnaList(map);
 
-		req.setAttribute("empTnaList", empTnaList);
+		req.setAttribute("empTnaList", empTnaList3);
 
 		req.setAttribute("pg", pg);
 		req.setAttribute("allPage", allPage);

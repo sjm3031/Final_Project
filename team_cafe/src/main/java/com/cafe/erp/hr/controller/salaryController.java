@@ -246,14 +246,7 @@ public class salaryController {
 		
 		if (monthtotal!=0) {
 			salaryService.insertSalary(map);
-		}else {
-			
-			resp.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = resp.getWriter();
-			out.println("<script>alert('근무시간이 없습니다.');location.href='list.cafe';</script>");
-			out.flush();
-
-			return null;
+		
 		}
 		}
 //		model.addAttribute("salary_date", salary_date);

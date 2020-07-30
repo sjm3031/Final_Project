@@ -94,11 +94,14 @@ function addJob(){
 	}
 }
 
+
 function addSalary(){
 	var timeP= /^\d{2}$/;
-	
+	var timeP= /^\d{1,2}$/;
+
 	 if (!document.addSalaryForm.salary_date.value == timeP.test(document.addSalaryForm.salary_date.value)) {
 		alert("월급지급일을 확인해주세요");
+		alert("월급지급일을 1~30까지만 입력해주세요" );
 		return false; 
 	}
 }

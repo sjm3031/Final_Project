@@ -16,6 +16,22 @@
     <link href="../../resources/css/styles.css" rel="stylesheet">
     
     <script src="../../resources/erp_js/form_validation.js"></script>
+    
+        
+<script type="text/javascript">
+
+	function stock_delete(){
+		if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+		    document.getElementById('stockdelete').submit();
+		}else{   //취소
+		    return;
+		}
+		}
+
+</script>
+    
+    
+    
   </head>
   <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -180,6 +196,8 @@
                     
                     <tbody>
                     <c:forEach var="b" items="${list}">
+                     <form action="stockdelete.cafe?stock_code=${b.stock_code}&pg=${pg}" name="stockdelete" id="stockdelete" method="post">
+     
                       <tr>
                         <td>${b.stock_code}</td>
 						<td>${b.stock_productname}</td>
@@ -191,10 +209,11 @@
 						<img alt="제품" src="../../store/upload/${b.stock_image}" height="50" width="60">
 						</td>
 						<td>
-						<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='stockdelete.cafe?stock_code=${b.stock_code}&pg=${pg}'"/>
+						<input type="button" value="삭제" class="btn btn-primary" onclick="stock_delete()"/>
 						<input type="button" value="수정" class="btn btn-primary" onclick="location.href='stockupdateform.cafe?stock_code=${b.stock_code}&pg=${pg}'"/>
 						</td>
                       </tr>
+                      </form>
                     </c:forEach>  
                     </tbody>
                   </table>

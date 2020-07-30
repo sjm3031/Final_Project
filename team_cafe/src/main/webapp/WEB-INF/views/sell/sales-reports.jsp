@@ -32,7 +32,7 @@
     <div id="wrapper">
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="../index.cafe">
             <i class="fa fa-fw fa-home"></i>
             <span>홈</span>
@@ -92,7 +92,7 @@
         </li>
         
          
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-line-chart"></i>
             <span>
@@ -277,7 +277,7 @@
 });
                   </script>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                <div class="card-footer small text-muted"></div>
               </div>
             </div>
             <div class="col-lg-4">
@@ -315,15 +315,14 @@
                   });
                   </script>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                <div class="card-footer small text-muted"></div>
               </div>
             </div>
           </div>
           <p class="small text-center text-muted my-5">
             <em>More chart examples coming soon...</em>
           </p>
-            <hr>
-            <p>This is a great starting point for new custom pages.</p>
+          
           </div>
           <br><br><br>
          <!-- Sticky Footer -->
@@ -347,7 +346,7 @@
       </div>
     </div>
       <!-- Scroll to Top Button-->
-      <a class="scroll-to-top rounded" href="#page-top">
+      <a class="scroll-to-top rounded" href="#page-top" style="background: rgb(33, 37, 41) !important;">
         <i class="fa fa-angle-up"></i>
       </a>
       

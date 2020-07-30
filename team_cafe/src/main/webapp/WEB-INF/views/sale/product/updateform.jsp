@@ -198,7 +198,7 @@
 							</div>
 							<div class="form-group">
 								<label for="">제품명</label>
-								<input type="hidden" name="cafe_product_code" value="${b.cafe_product_code}"/>
+								<input type="hidden" name="cafe_product_code" value="${b.cafe_product_code}" />
 			 
 								<input type="text"
 									class="form-control" name="cafe_product_name" value="${b.cafe_product_name}"

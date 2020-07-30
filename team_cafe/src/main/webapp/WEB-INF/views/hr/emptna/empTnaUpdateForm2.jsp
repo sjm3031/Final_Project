@@ -24,9 +24,6 @@
 		
 		if(document.updateEmptnaForm.starttime.value == ""){
 			alert("출근시간을 입력하세요");
-		}else if(document.updateEmptnaForm.endtime.value ==""){
-			alert("퇴근시간을 입력하세요");
-			document.updateEmptnaForm.endtime.focus();
 		}else if (!document.updateEmptnaForm.starttime.value == timeP.test(document.updateEmptnaForm.starttime.value)) {
 			alert("출근시간을 (YYYY-MM-DD HH:MM)형식으로 입력해주세요");
 			document.updateEmptnaForm.starttime.focus();
@@ -210,7 +207,7 @@
               
               <div class="form-group">
                 <label for="">퇴근시간</label>
-               <input type="text" class="form-control" name="endtime" value="<fmt:formatDate value="${dto.emptna_endtime}" pattern="yyyy-MM-dd HH:mm" />" required>
+               <input type="text" class="form-control" name="endtime" value="<fmt:formatDate value="${dto.emptna_endtime}" pattern="yyyy-MM-dd HH:mm" />" >
                 <small class="text-muted">정확히 입력해주세요.</small>
               </div>
               

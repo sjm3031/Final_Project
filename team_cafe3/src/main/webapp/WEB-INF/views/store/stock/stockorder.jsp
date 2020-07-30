@@ -81,13 +81,12 @@ function account_insert(){
 	}
 }
 
-	function ordercart_insert(){
-	var count = $('#cart_stock_quantity').val();
-//	var count = document.getElementById('cart_stock_detailname').value
-	var name = $('#cart_stock_detailname').val();
-	alert("발주 목록에 " + name +" "+ count + "개를 담았습니다.");
-	document.getElementById('ordercartinsert').submit();
-	}
+// 	function ordercart_insert(){
+// 	var count = $('#cart_stock_quantity').val();
+// 	var name = $('#cart_stock_detailname').val();
+// 	alert("발주 목록에 " + name +" "+ count + "개를 담았습니다.");
+// 	document.getElementById('ordercartinsert').submit();
+// 	}
 
 </script>
 
@@ -274,7 +273,7 @@ function account_insert(){
                     <tbody>
                     <c:forEach var="b" items="${list}">
 		<tr>
-    	<form action="ordercartinsert.cafe" name="ordercartinsert" id="ordercartinsert" method="post">
+    	<form action="ordercartinsert.cafe" name="ordercartinsert" method="post">
 		<td>
 		${b.stock_productname}
 		<input type="hidden" name="cart_stock_productname" id="cart_stock_productname" value="${b.stock_productname}"/>
@@ -297,11 +296,11 @@ function account_insert(){
 		
 		<td>
 		<input type="hidden" name="stock_code" value="${b.stock_code}">
-		<input type="text" size="5" id="cart_stock_quantity" name="cart_stock_quantity"/>
+		<input type="text" value="0" size="5" id="cart_stock_quantity" name="cart_stock_quantity"/>
 		<input type="hidden" name="account_number" value="${b.account_number}"/>
 		</td>
 		<td>
-		<input type="button" value="품목담기" class="btn btn-primary" onclick="ordercart_insert()"/>
+		<input type="submit" value="품목담기" class="btn btn-primary"/>
 		</td>
 		</form>
 		</tr>

@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 직원 퇴근 등록 (퇴근일시, (퇴근일시 - 출근일시) -> 일한 시간..) -->
 	<update id="updateAttend" parameterType="hashmap" >
    	update cafe_emptna set emptna_endtime=sysdate,
-   	emptna_daytotaltime=(select round((sysdate-to_date(emptna_starttime))*24,1) from cafe_emptna where emptna_year=(to_number(to_char(sysdate,'yyyy'))) 
+   	emptna_daytotaltime=(select round((sysdate-emptna_starttime)*24,1) from cafe_emptna where emptna_year=(to_number(to_char(sysdate,'yyyy'))) 
     	and emptna_month=(to_number(to_char(sysdate,'mm'))) 
     	and emptna_day=(to_number(to_char(sysdate,'dd')))
      	and emptna_empcode=(select distinct b.emptna_empcode from cafe_employee a inner join cafe_emptna b 

@@ -232,18 +232,20 @@
             
           
           <br><br><br>
-         <!-- Sticky Footer -->
+          <!-- Sticky Footer -->
+        <br><br><br>
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">
               <br><br><br>
               <small class="text-muted">
-                1.0버전을 사용중입니다. <a href="#"> <i class="fa fa-external-link"></i> 업데이트</a>를 확인하세요. 버그 제보 및 건의 <a href="https://github.com/vruqa/rc-pos/issues">here.</a>
+                1.0버전을 사용중입니다. <a href="https://github.com/KOSTA200-Team3/Final_Project"> <i class="fa fa-external-link"></i> 업데이트</a>를 확인하세요. 버그 제보 및 건의 <a href="https://github.com/KOSTA200-Team3/Final_Project">here.</a>
                 <br><br><br>
-                <a href="#">Legal</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Advertisements</a>
-              </small>
+                
+              <span>Copyright &copy; Kostaedu 200th team3.</span>
               <br><br><br>
-              <span>Copyright &copy; 2013-2020 <a href="#">Gasan Digital Complex, Inoplex.</a>, 2013 / <a href="https://vruqa.github.io">LYS Designs</a>, 2020 <a href="https://appzaib.github.io">Copyrights</a>. All rights reserved.</span>
+              <a href="https://github.com/KOSTA200-Team3/Final_Project/tree/선윤하">선윤하</a> | <a href="https://github.com/KOSTA200-Team3/Final_Project/tree/강현제">강현제</a> | <a href="https://github.com/KOSTA200-Team3/Final_Project/tree/woo804-patch-1">박만규</a> | <a href="https://github.com/KOSTA200-Team3/Final_Project/tree/손종민">손종민</a> | <a href="https://github.com/KOSTA200-Team3/Final_Project/tree/김진호">김진호</a> | <a href="https://github.com/KOSTA200-Team3/Final_Project/tree/origin/이유신">이유신</a> | <a href="https://github.com/KOSTA200-Team3/Final_Project/tree/장윤하">장윤하</a>
+              </small>
               <br><br><br>
             </div>
           </div>
@@ -669,9 +671,9 @@
     
     
     
-      <script src="../../resources/js/jquery.min.js"></script>
-      <script src="../../resources/js/bootstrap.bundle.min.js"></script>
-      <script src="../../resources/js/jquery.easing.min.js"></script>
-      <script src="../../resources/js/rc-pos.min.js"></script>
+      <script src="../../../resources/js/jquery.min.js"></script>
+      <script src="../../../resources/js/bootstrap.bundle.min.js"></script>
+      <script src="../../../resources/js/jquery.easing.min.js"></script>
+      <script src="../../../resources/js/rc-pos.min.js"></script>
     </body>
   </html>

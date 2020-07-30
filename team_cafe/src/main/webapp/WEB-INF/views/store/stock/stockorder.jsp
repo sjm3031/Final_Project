@@ -111,7 +111,7 @@
           </div>
         </li>
         
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown active">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-folder"></i>
             <span>
@@ -209,7 +209,7 @@
 		
 		<td>
 		<input type="hidden" name="stock_code" value="${b.stock_code}">
-		<input type="text" size="5" id="cart_stock_quantity" name="cart_stock_quantity"/>
+		<input type="number" id="cart_stock_quantity" name="cart_stock_quantity"/>
 		<input type="hidden" name="account_number" value="${b.account_number}"/>
 		</td>
 		<td>

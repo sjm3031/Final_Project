@@ -1,6 +1,12 @@
 # Final_Project
 KOSTA 200기 3팀 파이널 프로젝트
 
+
+
+# 2020-07-30 (목)
+erp - pageContent a tag 링크 삭제 예정..
+
+
 # 2020-07-07 (화)
 지금까지 수정된 db 올렸습니다.
 

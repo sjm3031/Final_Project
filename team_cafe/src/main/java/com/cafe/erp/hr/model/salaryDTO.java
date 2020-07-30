@@ -5,25 +5,11 @@ public class salaryDTO {
 	private int salary_code, salary_empcode,salary_tpay,salary_mpay,salary_date,salary_totalpay,
 	salary_month,salary_year;
 	private double salary_time;
-	private String employee_name,employee_jobname,employee_bank,employee_bankaddress;
+	private String employee_name,employee_jobname;
 	
 	
 	
-	public String getEmployee_bank() {
-		return employee_bank;
-	}
-
-	public void setEmployee_bank(String employee_bank) {
-		this.employee_bank = employee_bank;
-	}
-
-	public String getEmployee_bankaddress() {
-		return employee_bankaddress;
-	}
-
-	public void setEmployee_bankaddress(String employee_bankaddress) {
-		this.employee_bankaddress = employee_bankaddress;
-	}
+	
 
 	public int getSalary_year() {
 		return salary_year;

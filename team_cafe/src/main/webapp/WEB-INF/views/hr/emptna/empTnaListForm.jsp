@@ -171,7 +171,7 @@
                 
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		<tr>
-			<th>근태코드</th>
+			
 			<th>이름</th>
 			<th>년</th>
 			<th>월</th>
@@ -186,7 +186,7 @@
 
 
 			<tr>
-				<td>${list.emptna_code}</td>
+				
 				<td>${list.employee_name}</td>
 				<td>${list.emptna_year}</td>
 				<td>${list.emptna_month}</td>
@@ -207,28 +207,30 @@
 
 	<br>
 	<br>
-	<div class="row">
-	                  <div class="col-sm-12 col-md-5">
-		                  <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-		              
-		                  </div>
-	                  </div>
-	                  <div class="col-sm-12 col-md-7">
-		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-			                  <ul class="pagination">
-			                  
+	  <div align="center">
+	                  
+	                  <div class="col-sm-12 col-md-7" >
+	                  <br>
+		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate" >
+			                  <ul class="pagination" style="text-align: center; width: 350px !important;" >
+			                 		
+			                 			 <li class="paginate_button page-item " >
+								           <a href="list.cafe?pg=1" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link" >
+					             		   	&lt;&lt;
+					        	         </a>
+			
 			                  		<c:if test="${pg>1}">  <!-- 5>10 : false / 15>10 : true -->
-										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-					              	  		  Previous
-					                	  </a>
+										<li class="paginate_button page-item ">
+								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    &lt;
+					             		    </a>
 					             	    </li>
 									</c:if>
 									<c:if test="${pg<=1}"> <!-- 5<=10 :true / 15<=10:false -->
-										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-						                  <a aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-						              	    Previous
-						                  </a>
+										<li class="paginate_button page-item ">
+						                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    &lt;
+					        	         </a>
 					  	               </li>
 									</c:if>          
 					          <c:forEach begin="${fromPage}" end="${toPage}" var="i">
@@ -250,23 +252,27 @@
 					                 
 					                	       
 					       <c:if test="${pg<allPage}"> 
-					           <li class="paginate_button page-item next disabled" id="dataTable_next">
+					           <li class="paginate_button page-item ">
 					                  <a href="list.cafe?pg=${pg+1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	Next
+					                  	>
 					                  </a>
 				                  </li>
 				            </c:if>      
 				            
 				             <c:if test="${pg>=allPage}"> 
-					           <li class="paginate_button page-item next disabled" id="dataTable_next">
+					           <li class="paginate_button page-item ">
 					                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	Next
+					                  	>
 					                  </a>
 				                  </li>
 				            </c:if>    
 				            
 				 
-				                  
+				               <li class="paginate_button page-item ">
+								           <a href="list.cafe?pg=${allPage}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+					             		    >>
+					        	         </a>
+					           </li>   
 				                  
 				                  
 				                  
@@ -804,7 +810,7 @@
               <div class="form-group">
                 <label for="">급여일</label>
                 <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
-              
+              <small class="text-muted">급여지급일을 1~30(일)안에 해당하는 숫자만 입력하세요</small>
               <br>
              </div>
              </div>

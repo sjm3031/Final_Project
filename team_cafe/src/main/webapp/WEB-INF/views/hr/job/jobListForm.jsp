@@ -161,14 +161,14 @@
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                      <tr>
-			<th>직급코드</th><th>직급</th><th>시급</th><th>월급</th><td></td>
+			<th>직급</th><th>시급</th><th>월급</th><td></td>
 				</tr>
                     </thead>
                     
                    
           <c:forEach items="${list }" var="list">
 			<tr>
-				<td>${list.job_code }</td>
+				
 				<td>${list.job_name }</td>
 				<td>${list.job_tpay }</td>
 				<td>${list.job_mpay }</td>
@@ -616,7 +616,7 @@
               <div class="form-group">
                 <label for="">급여일</label>
                 <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
-              
+              <small class="text-muted">급여지급일을 1~30(일)안에 해당하는 숫자만 입력하세요</small>
               <br>
              </div>
              </div>

@@ -1020,7 +1020,7 @@
     update cafe_emptna set emptna_daytotaltime= round((emptna_endtime - emptna_starttime)*24,1) where emptna_empcode = 3004 and emptna_day = 5 and emptna_month = 8;
     
     
-				
+		commit;		
 				
 					
 							

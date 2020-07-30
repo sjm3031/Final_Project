@@ -1610,3 +1610,5 @@ insert into cafe_ACCOUNTS values(20190731,500000,485000,15000,78, TO_DATE('07-31
  insert into cafe_ACCOUNTS values(20200731,480000,55000,15000,110, TO_DATE('07-31-2020 08:35','MM-DD-YYYY HH24:MI') , TO_DATE('07-31-2020 23:19','MM-DD-YYYY HH24:MI'),(select nvl(max(reserveFund_code),0)+1 from cafe_accounts));
 
  update cafe_accounts set accounts_card = (accounts_total-accounts_cash) where accounts_code > 20190000;
+
+commit;

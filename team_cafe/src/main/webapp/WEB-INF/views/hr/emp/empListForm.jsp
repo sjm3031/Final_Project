@@ -181,7 +181,7 @@
           
                       <tr>
 						<td><input type="hidden" value="${emp.employee_code}">
-						<a href="read.cafe?num=${emp.employee_code}&pg=${pg}">${emp.employee_name}</a></td>
+						${emp.employee_name}</td>
 						<td>${emp.employee_jumin}</td>
 						<td>${emp.employee_phone}</td>
 						<td>${emp.employee_address}</td>
@@ -194,7 +194,10 @@
 						<td>${emp.employee_bankaddress}</td>
 						<td>${emp.employee_jobname}</td>
                         <td><input type="button" value="수정" onclick="location.href='updateForm.cafe?num=${emp.employee_code}&pg=${pg}'" /></td>
-                        <td><input type="button" value="퇴사처리" onclick="location.href='update2.cafe?employee_code=${emp.employee_code}&pg=${pg}'" /></td>
+                        <td>
+                        <c:if test="${emp.employee_enddate eq null}">
+                        	<input type="button" value="퇴사처리" onclick="location.href='update2.cafe?employee_code=${emp.employee_code}&pg=${pg}'" /></td>
+                      	</c:if>
                       </tr>
                       	
                     
@@ -700,7 +703,7 @@
               <div class="form-group">
                 <label for="">급여일</label>
                 <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
-              
+              	<small class="text-muted">급여지급일을 1~30(일)안에 해당하는 숫자만 입력하세요</small>
               <br>
              </div>
              </div>

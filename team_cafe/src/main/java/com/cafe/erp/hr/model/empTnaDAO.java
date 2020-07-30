@@ -37,6 +37,11 @@ public interface empTnaDAO {
 	
 	public int getEmpTnaCount();
 	
+	
+	public int getEmpTnaDayCount(HashMap map);
+	
+	public int getEmpTnaMonthCount(HashMap map);
+	
 	public empTnaDTO selectEmp2(HashMap map);
 	
 }

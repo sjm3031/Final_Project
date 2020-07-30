@@ -178,7 +178,7 @@
 	
 	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 		<tr>
-			<th>급여코드</th>
+			
 			<th>이름</th>
 			<th>직급</th>
 			<th>근무 년</th>
@@ -197,7 +197,7 @@
 
 			<tr>
 				
-				<td>${list.salary_code}</td>
+				
 				<td>${list.employee_name}</td>
 				<td>${list.employee_jobname}</td>
 				<td>${list.salary_year}</td>
@@ -713,7 +713,7 @@
               <div class="form-group">
                 <label for="">급여일</label>
                 <input type="text" class="form-control" name="salary_date" placeholder="급여지급일을 입력하세요" required>
-              
+              <small class="text-muted">급여지급일을 1~30(일)안에 해당하는 숫자만 입력하세요</small>
               <br>
              </div>
              </div>

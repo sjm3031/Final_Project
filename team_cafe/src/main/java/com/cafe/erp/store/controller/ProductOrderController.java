@@ -90,7 +90,7 @@ public class ProductOrderController {
 		//임시 발주 목록을 삭제해서 초기화
 		orderService.deleteorderlistcart();
 //		System.out.println("임시 발주 목록 초기화 완료");
-		return "redirect:stockorderlist.cafe";
+		return "redirect:stockorder.cafe";
 	}
 	
 	

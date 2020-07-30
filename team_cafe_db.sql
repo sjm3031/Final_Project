@@ -362,6 +362,38 @@ INSERT INTO CAFE_POSPASSWORD VALUES ('PASSWORD');
 -- pos 주문과 주문내역 >> erp main 화면의 bestseller 출력을 위해
 INSERT INTO CAFE_ORDER VALUES (1,4000,1,'현금',sysdate,'');
 INSERT INTO CAFE_ORDERList VALUES (1,2,1,1);
+
+ -------account----------
+ insert into cafe_account (account_number, account_name, account_ceoname, account_address, account_email)
+ values(1, 'kosta', '코스', '가산디지털1로 181 더블유센터 3층', 'kosta@kosta.com');
+ insert into cafe_account (account_number, account_name, account_ceoname, account_address, account_email)
+ values(2, 'jino', '김진호', '도봉구 창2동 192-2 1층', 'jino@jino.com');
  
+ -------stock-----------
+ insert into cafe_stock (stock_code, stock_productname, stock_detailname, stock_standard, stock_price, stock_image, account_number)
+ values((select NVL(max(stock_code),0) + 1 from cafe_stock), '음료', '청포도곤약버블티', '300g', 1000, '청포도곤약버블티.jpg', 1);
+ insert into cafe_stock (stock_code, stock_productname, stock_detailname, stock_standard, stock_price, stock_image, account_number)
+ values((select NVL(max(stock_code),0) + 1 from cafe_stock), '원두', '안티구아원두', '500g', 4000, '안티구아원두.jpg', 1);
+ insert into cafe_stock (stock_code, stock_productname, stock_detailname, stock_standard, stock_price, stock_image, account_number)
+ values((select NVL(max(stock_code),0) + 1 from cafe_stock), '재과', '마카롱', '200g', 2000, '마카롱.jpg', 1);
+  insert into cafe_stock (stock_code, stock_productname, stock_detailname, stock_standard, stock_price, stock_image, account_number)
+ values((select NVL(max(stock_code),0) + 1 from cafe_stock), '기타', '빨대', '50g', 200, '빨대.jpg', 2);
+  insert into cafe_stock (stock_code, stock_productname, stock_detailname, stock_standard, stock_price, stock_image, account_number)
+ values((select NVL(max(stock_code),0) + 1 from cafe_stock), '기타', '커피컵', '150개', 2000, '커피컵.jpg', 2);
+
+
+--고객
+insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_pwd,customer_stamp) values(1,'이지우','0101524236','951201','f','12341234',1);
+insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_pwd,customer_stamp) values(2,'김민준','01042568125','960404','m','5124369',6);
+insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_pwd,customer_stamp) values(3,'박서윤','01036259152','970203','f','51236812',4);
+insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_pwd,customer_stamp) values(4,'최서연','01014256845','910812','f','81818181',3);
+insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_pwd,customer_stamp) values(5,'김민서','01082536495','920105','f','5742812',2);
+insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_pwd,customer_stamp) values(6,'박주원','01043624511','950824','m','15151515',1);
+insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_pwd,customer_stamp) values(7,'지하윤','01025258152','830502','f','52520101',3);
+insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_pwd,customer_stamp) values(8,'이시우','01095123574','820405','m','95123578',3);
+insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_pwd,customer_stamp) values(9,'이연우','01001472586','840608','f','14253625',3);
+insert into CAFE_CUSTOMER(customer_code, customer_name,customer_phone,customer_birth,customer_gender,customer_pwd,customer_stamp) values(10,'박민규','01098746512','890712','m','78945123',5);
+
+
 commit;
 

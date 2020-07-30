@@ -68,7 +68,7 @@
     </nav>
     
     <div id="wrapper">
-      <!-- Sidebar -->
+     <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="../../index.cafe">
@@ -133,7 +133,7 @@
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-line-chart"></i>
             <span>
-                매출관리
+             매출관리
               <i class="float-right fa fa-angle-down"></i>
             </span>
           </a>
@@ -165,6 +165,7 @@
             <a class="dropdown-item" href="../../store/orderlist.cafe"> <i class="fa fa-fw fa-calendar"></i> 발주 조회</a>
           </div>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="../../accounting/list.cafe">
             <i class="fa fa-fw fa-money"></i>
@@ -258,8 +259,10 @@
 				
 				
 		
+         </div>         
           <br><br><br>
          <!-- Sticky Footer -->
+         <br><br><br>
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">
@@ -275,15 +278,16 @@
             </div>
           </div>
         </footer>
-      </div>
+      
     </div>
+</div>
   <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top" style="background: #212529 !important;  ">
       <i class="fa fa-angle-up"></i>
     </a>
       
       
-       <!-- Modals -->   
+         <!-- Modals -->   
     <!-- #addCafeProductModal -->
     <div class="modal fade" id="addCafeProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -697,9 +701,10 @@
     
     
     
-      <script src="../../resources/js/jquery.min.js"></script>
-      <script src="../../resources/js/bootstrap.bundle.min.js"></script>
-      <script src="../../resources/js/jquery.easing.min.js"></script>
-      <script src="../../resources/js/rc-pos.min.js"></script>
+    
+      <script src="../../../resources/js/jquery.min.js"></script>
+      <script src="../../../resources/js/bootstrap.bundle.min.js"></script>
+      <script src="../../../resources/js/jquery.easing.min.js"></script>
+      <script src="../../../resources/js/rc-pos.min.js"></script>
     </body>
   </html>

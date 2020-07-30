@@ -199,11 +199,11 @@
 		</td>
 		
 <%-- 	<td align="right"><img alt="제품" src="./resources/img/${b.stock_image}" height="50" width="60"></td> --%>
-		<td align="center"><img alt="제품" src="../store/upload/${b.stock_image}" height="50" width="60"></td>
+		<td align="center"><img alt="제품" src="../../store/upload/${b.stock_image}" height="50" width="60"></td>
 		
 		<td>
 		<input type="hidden" name="stock_code" value="${b.stock_code}">
-		<input type="text" value="0" size="5" id="cart_stock_quantity" name="cart_stock_quantity"/>
+		<input type="number" value="0" size="5" id="cart_stock_quantity" name="cart_stock_quantity"/>
 		<input type="hidden" name="account_number" value="${b.account_number}"/>
 		</td>
 		<td>

@@ -79,22 +79,33 @@ public class OrderController {
    
    //임시 발주 테이블에 담기
    @RequestMapping("/ordercartinsert.cafe")
-   public String ordercartinsert(OrderDTO dto) {
-      int count = orderService.getstockcode(dto.getStock_code());
-      
-      if(count == 0 ) {
-//      System.out.println("등록되어 있지 않음 insert 진행");
-//      System.out.println("insert controller 진입");
-      orderService.insertordercart(dto);
-//      System.out.println("insertordercart 완료");
-      }
-      else if(count == 1) {
-         System.out.println("등록 되어있음 update 진행");
-         orderService.updatecount(dto);
-      }
+   public String ordercartinsert(OrderDTO dto, HttpServletResponse resp) throws Exception{
+//		System.out.println(dto.getCart_stock_detailname() + dto.getCart_stock_quantity());
+		
+		
+		int count = orderService.getstockcode(dto.getStock_code());
+		
+		if(count == 0 ) {
+//		System.out.println("등록되어 있지 않음 insert 진행");
+//		System.out.println("insert controller 진입");
+		orderService.insertordercart(dto);
+//		System.out.println("insertordercart 완료");
+		}
+		else if(count == 1) {
+			System.out.println("등록 되어있음 update 진행");
+			orderService.updatecount(dto);
+		}
 
-      return "redirect:stockorder.cafe";
-   }
+		resp.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		out.print("<script>");
+		out.print("alert('" + dto.getCart_stock_detailname() +" "+ dto.getCart_stock_quantity() +"개 담기 완료');");
+		out.print("location.href='stockorder.cafe'; ");
+		out.print("</script>");
+		out.close();
+//		return "redirect:stockorder.cafe";
+		return null;
+	}
    
    //임시 발주 테이블 목록
    @RequestMapping("/stockorderlist.cafe")

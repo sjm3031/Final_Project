@@ -16,20 +16,7 @@
     <link href="../../resources/css/styles.css" rel="stylesheet">
     
 <script src="../../resources/erp_js/form_validation.js"></script>
-    
-    <script type="text/javascript">
 
-    function ordercart_insert(){
-    	var count = $('#cart_stock_quantity').val();
-//    	var count = document.getElementById('cart_stock_detailname').value
-    	var name = $('#cart_stock_detailname').val();
-    	alert("발주 목록에 " + name +" "+ count + "개를 담았습니다.");
-    	document.getElementById('ordercartinsert').submit();
-    	}
-
-
-</script>  
-    
     
     
     
@@ -199,7 +186,7 @@
                     <tbody>
                     <c:forEach var="b" items="${list}">
 		<tr>
-    	<form action="ordercartinsert.cafe" name="ordercartinsert" id="ordercartinsert" method="post">
+    	<form action="ordercartinsert.cafe" name="ordercartinsert" method="post">
 		<td>
 		${b.stock_productname}
 		<input type="hidden" name="cart_stock_productname" id="cart_stock_productname" value="${b.stock_productname}"/>
@@ -226,7 +213,7 @@
 		<input type="hidden" name="account_number" value="${b.account_number}"/>
 		</td>
 		<td>
-		<input type="button" value="품목담기" class="btn btn-primary" onclick="ordercart_insert()"/>
+		<input type="submit" value="품목담기" class="btn btn-primary"/>
 		</td>
 		</form>
 		</tr>

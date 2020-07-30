@@ -145,7 +145,7 @@
           </div>
         </li>
         
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown active">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-folder"></i>
             <span>
@@ -256,7 +256,6 @@
 				</div>
           <br><br><br>
         <!-- Sticky Footer -->
-        <br><br><br>
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">

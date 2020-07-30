@@ -126,7 +126,7 @@ function stockorderlist_update(){
           </div>
         </li>
         
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown active">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-folder"></i>
             <span>
@@ -187,22 +187,25 @@ function stockorderlist_update(){
 								<label>번호</label><br> 
 								<input type="hidden" name="pg" value="${pg}"/>
 		<input type="hidden" name="cart_number" value="${c.cart_number}"/>
-								 ${c.cart_number}
+		<input type="text" class="form-control" value="${c.cart_number}" disabled="disabled">
+								 
 							</div>
 							
 							<div class="form-group">
 								<label for="">품명</label><br>
-								${c.cart_stock_productname}
-			 
+								<input type="hidden" name="cart_number" value="${c.cart_stock_productname}"/>
+								<input type="text" class="form-control" value="${c.cart_stock_productname}" disabled="disabled">
 							</div>
 
 							<div class="form-group">
 								<label for="">상세명</label><br> 
-								${c.cart_stock_detailname}
+								<input type="hidden" name="cart_number" value="${c.cart_stock_detailname}"/>
+								<input type="text" class="form-control" value="${c.cart_stock_detailname}" disabled="disabled">
 							</div>
 							<div class="form-group">
 								<label for="">금액(원)</label><br> 
-								${c.cart_stock_price}(원)
+								<input type="hidden" name="cart_number" value="${c.cart_stock_price}(원)"/>
+								<input type="text" class="form-control" value="${c.cart_stock_price}(원)" disabled="disabled">
 							</div>
 							
 							<div class="form-group">
@@ -221,7 +224,7 @@ function stockorderlist_update(){
 				</div>
           <br><br><br>
        <!-- Sticky Footer -->
-        <br><br><br>
+
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">

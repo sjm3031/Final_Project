@@ -314,7 +314,6 @@
           </div>
           <br><br><br>
      <!-- Sticky Footer -->
-        <br><br><br>
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto ">

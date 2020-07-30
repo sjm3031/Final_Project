@@ -197,7 +197,7 @@
 						pattern="HH:mm" /></td>
 				<td>${list.emptna_daytotaltime}</td>
 				
-				<td><input type="button" value="수정" onclick="location.href='update2.cafe?emptna_code=${list.emptna_code}&pg=${pg}'"></td>
+				<td><input class="btn btn-primary"  type="button" value="수정" onclick="location.href='update2.cafe?emptna_code=${list.emptna_code}&pg=${pg}'"></td>
 				
 			</tr>
 		</c:forEach>

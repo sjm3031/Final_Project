@@ -193,10 +193,9 @@
 						<td>${emp.employee_bank}</td>
 						<td>${emp.employee_bankaddress}</td>
 						<td>${emp.employee_jobname}</td>
-                        <td><input type="button" value="수정" onclick="location.href='updateForm.cafe?num=${emp.employee_code}&pg=${pg}'" /></td>
-                        <td>
+                        <td><input class="btn btn-primary"  type="button" value="수정" onclick="location.href='updateForm.cafe?num=${emp.employee_code}&pg=${pg}'" /></td>
                         <c:if test="${emp.employee_enddate eq null}">
-                        	<input type="button" value="퇴사처리" onclick="location.href='update2.cafe?employee_code=${emp.employee_code}&pg=${pg}'" /></td>
+                        	<input class="btn btn-primary"  type="button" value="퇴사처리" onclick="location.href='update2.cafe?employee_code=${emp.employee_code}&pg=${pg}'" /></td>
                       	</c:if>
                       </tr>
                       	

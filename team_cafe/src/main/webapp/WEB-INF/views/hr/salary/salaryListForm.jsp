@@ -188,7 +188,7 @@
 			<th>월근무시간</th>
 			<th>총급여</th>
 			<th>월급 지급일</th>
-			
+			<th></th>
 
 		</tr>
 
@@ -209,8 +209,51 @@
 				<td>${list.salary_date}</td>
 				
 				<td> 
-				<input type="button" value="수정" onclick="location.href='update.cafe?salary_code=${list.salary_code}&pg=${pg}'">
-				<%-- 				<input type="button" value="삭제" onclick="location.href='empDelete.cafe?employee_code=${emp.employee_code}&pg=${pg}'"> --%>
+				<input class="btn btn-primary"  type="button" value="수정" onclick="location.href='update.cafe?salary_code=${list.salary_code}&pg=${pg}'">
+				<button class="btn btn-primary"  data-toggle="modal" data-target="#checkPayModal">급여정보확인</button>
+			
+	<!-- #checkPayModal -->
+    <div class="modal fade" id="checkPayModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-tag"></i>
+              급여확인
+            </h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <form class="">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>직원이름</label>
+                <input type="text" class="form-control" value="${list.employee_name}" disabled="disabled" >
+              </div>
+              <div class="form-group">
+                <label>총급여</label>
+                <input type="text" class="form-control" value=" ${list.salary_totalpay}" disabled="disabled" >
+               
+              </div>
+              <div class="form-group">
+                <label for="">은행</label>
+                <input type="text" class="form-control" value=" ${list.employee_bank}" disabled="disabled" >
+              </div>
+              
+              <div class="form-group">
+                <label for="">계좌번호</label>
+                <input type="text" class="form-control" value=" ${list.employee_bankaddress}" disabled="disabled" >
+              </div>
+              </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">확인</button>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> 
 				</td> 
 			</tr>
 		</c:forEach>
@@ -557,7 +600,7 @@
       </div>
     </div>
     
-    
+    <!-- #checkPayModal -->
     
       <!-- #addEmpModal -->
    <div class="modal fade" id="addEmpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -725,7 +768,43 @@
         </div>
       </div>
     </div>
-    
+<!--     #checkPayModal -->
+<!--     <div class="modal fade" id="checkPayModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+<!--       <div class="modal-dialog modal-lg" role="document"> -->
+<!--         <div class="modal-content"> -->
+<!--           <div class="modal-header bg-primary text-white"> -->
+<!--             <h5 class="modal-title" id="exampleModalLabel"> -->
+<!--               <i class="fa fa-tag"></i> -->
+<!--               급여확인 -->
+<!--             </h5> -->
+<!--             <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close"> -->
+<!--               <span aria-hidden="true">×</span> -->
+<!--             </button> -->
+<!--           </div> -->
+<!--           <form class=""> -->
+<!--             <div class="modal-body"> -->
+<!--               <div class="form-group"> -->
+<!--                 <label>직원이름</label> -->
+                
+<!--               </div> -->
+<!--               <div class="form-group"> -->
+<!--                 <label>총급여</label> -->
+<!--                 <input type="text" class="form-control" value=" " disabled="disabled" > -->
+               
+<!--               </div> -->
+<!--               <div class="form-group"> -->
+<!--                 <label for="">은행</label> -->
+                
+<!--               </div> -->
+<!--               </div> -->
+<!--             <div class="modal-footer"> -->
+<!--               <button class="btn btn-secondary" type="button" data-dismiss="modal">확인</button> -->
+              
+<!--             </div> -->
+<!--           </form> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div>  -->
     
     
     

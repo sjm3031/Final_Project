@@ -173,8 +173,8 @@
 				<td>${list.job_tpay }</td>
 				<td>${list.job_mpay }</td>
 				<td>
-					<input type="button" value="수정" onclick="location.href='update.cafe?job_code=${list.job_code}'">
-					<input type="button" value="삭제" onclick="location.href='delete.cafe?job_code=${list.job_code}'">
+					<input class="btn btn-primary"  type="button" value="수정" onclick="location.href='update.cafe?job_code=${list.job_code}'">
+<%-- 					<input type="button" value="삭제" onclick="location.href='delete.cafe?job_code=${list.job_code}'"> --%>
 				</td>
 			</tr>
 		</c:forEach>

@@ -34,7 +34,7 @@
 --				     배정모 가끔 빵꾸
 --				     한현탁 주말데이
 --				     박진수 주말 나이트
-
+    select * from cafe_customer;
     insert into cafe_emptna values ((select nvl(max(emptna_code),0)+1 from cafe_emptna), 1001, 2020, 7, 1, (to_date('07-01-2020 08:53:49','MM-DD-YYYY HH24:MI:SS')), (to_date('07-01-2020, 17:32:28','MM-DD-YYYY HH24:MI:SS')), 1);
     update cafe_emptna set emptna_daytotaltime= round((emptna_endtime - emptna_starttime)*24,1) where emptna_empcode = 1001 and emptna_day = 1;
     

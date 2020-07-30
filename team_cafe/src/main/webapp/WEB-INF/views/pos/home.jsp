@@ -622,8 +622,10 @@ $(document).on('click', '.input-button.numpad-minus', function(){
       <div class="pos">
          <div class="pos-topheader">
             <div class="pos-branding">
-               <img class="pos-logo" src="/point_of_sale/static/src/img/logo.png"
+               <img class="pos-logo" src="/erp/resources/images/logo.png"
                   alt="Logo">
+                  
+                  <span>kostarbucks </span>
             </div>
             <div class="pos-rightheader">
                <div class="order-selector">
@@ -652,6 +654,7 @@ $(document).on('click', '.input-button.numpad-minus', function(){
                </div>
 
                <div class="oe_status">
+               
                   <span class="username"> kostarbucks </span>
                </div>
                <div class="oe_status js_synch">

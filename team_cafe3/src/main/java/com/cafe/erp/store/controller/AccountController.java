@@ -1,10 +1,12 @@
 package com.cafe.erp.store.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -91,8 +93,15 @@ public class AccountController {
 	}
 	
 	@RequestMapping("/accountdelete.cafe")
-	public String deleteaccount(AccountDTO dto, int pg) {
+	public String deleteaccount(AccountDTO dto, int pg, HttpServletResponse resp) throws Exception {
 //		System.out.println("delete controller 진입");
+//		resp.setContentType("text/html; charset=UTF-8");
+//		PrintWriter out = resp.getWriter();
+//		out.print("<script>");
+//		out.print("alert('거래처 삭제시 걸.');");
+//		out.print("</script>");
+//		out.close();
+		
 		int result = accountService.deleteAccount(dto);
 		String res = "redirect:accountlist.cafe?pg=" + pg;
 		if(result == 0) {

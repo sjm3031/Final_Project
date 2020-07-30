@@ -81,6 +81,16 @@ function account_insert(){
 	}
 }
 
+	function order_insert(){
+	if (confirm("발주 신청 하시겠습니까?") == true){    //확인
+	    document.getElementById('orderinsert').submit();
+	}else{   //취소
+	    return;
+	}
+//		}
+//	alert("ㅁㄴㅇㅁㄴㅇ");
+	}
+
 </script>
 
     <meta charset="UTF-8">
@@ -248,7 +258,7 @@ function account_insert(){
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                <form action="orderinsert.cafe" method="post">
+                <form action="orderinsert.cafe" method="post" name="orderinsert" id="orderinsert">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
@@ -295,30 +305,28 @@ function account_insert(){
                     </tbody>
                   </table>
                   
-                   <div align="center">
-	                  
-	                  <div class="col-sm-12 col-md-7" >
-	                  <br>
-		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate" >
-			                  <ul class="pagination" style="text-align: center; width: 350px !important;" >
-			                 		
-			                 			 <li class="paginate_button page-item " >
-								           <a href="list.cafe?pg=1" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link" >
-					             		   	&lt;&lt;
-					        	         </a>
-			
+                  <div class="row">
+	                  <div class="col-sm-12 col-md-5">
+		                  <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+		              
+		                  </div>
+	                  </div>
+                   <div class="col-sm-12 col-md-7">
+		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+			                  <ul class="pagination">
+			                  
 			                  		<c:if test="${pg>1}">  <!-- 5>10 : false / 15>10 : true -->
-										<li class="paginate_button page-item ">
-								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					             		    &lt;
-					             		    </a>
+										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
+								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
+					              	  		  Previous
+					                	  </a>
 					             	    </li>
 									</c:if>
 									<c:if test="${pg<=1}"> <!-- 5<=10 :true / 15<=10:false -->
-										<li class="paginate_button page-item ">
-						                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					             		    &lt;
-					        	         </a>
+										<li class="paginate_button page-item previous disabled" id="dataTable_previous">
+						                  <a aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
+						              	    Previous
+						                  </a>
 					  	               </li>
 									</c:if>          
 					          <c:forEach begin="${fromPage}" end="${toPage}" var="i">
@@ -340,38 +348,34 @@ function account_insert(){
 					                 
 					                	       
 					       <c:if test="${pg<allPage}"> 
-					           <li class="paginate_button page-item ">
+					           <li class="paginate_button page-item next disabled" id="dataTable_next">
 					                  <a href="list.cafe?pg=${pg+1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	>
+					                  	Next
 					                  </a>
 				                  </li>
 				            </c:if>      
 				            
 				             <c:if test="${pg>=allPage}"> 
-					           <li class="paginate_button page-item ">
+					           <li class="paginate_button page-item next disabled" id="dataTable_next">
 					                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	>
+					                  	Next
 					                  </a>
 				                  </li>
 				            </c:if>    
 				            
 				 
-				               <li class="paginate_button page-item ">
-								           <a href="list.cafe?pg=${allPage}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					             		    >>
-					        	         </a>
-					           </li>   
+				                  
 				                  
 				                  
 				                  
 			                  </ul>
 		                  </div>
 	                  </div>
-                  </div>
+                </div>
                   
 					총 금액 : ${cart_total}(원)
 				  <input type="hidden" name="prodectOrder_total" id="prodectOrder_total" value="${cart_total}"/>
-                  <input type="submit" value="발주 신청" class="btn btn-secondary"/>
+                  <input type="button" value="발주 신청" class="btn btn-secondary" id="orderinsert" onclick="order_insert()"/>
                   
                   </form>
                 </div>

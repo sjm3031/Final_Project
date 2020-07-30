@@ -5,6 +5,18 @@
 <!DOCTYPE html>
 <html><head>
 
+<script type="text/javascript">
+
+	function account_delete(){
+		if (confirm("거래처에 포함된 품목도 삭제됨니다.\n정말 삭제하시겠습니까?") == true){    //확인
+		    document.getElementById('accountdelete').submit();
+		}else{   //취소
+		    return;
+		}
+		}
+
+</script>
+
 	<script type="text/javascript">
 		function stock_insert(){
 			
@@ -263,6 +275,7 @@ function account_insert(){
                  
                     <tbody>
     <c:forEach var="c" items="${account_list}"> 
+		<form action="accountdelete.cafe?account_number=${c.account_number}&pg=${pg}" name="accountdelete" id="accountdelete" method="post">
             <tr>
                	<td>${c.account_number}</td>
 				<td>${c.account_name}</td>
@@ -270,10 +283,11 @@ function account_insert(){
 				<td>${c.account_address}</td>
 				<td>${c.account_email}</td>
 				<td>
-				<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='accountdelete.cafe?account_number=${c.account_number}&pg=${pg}'"/>
+				<input type="button" value="삭제" class="btn btn-primary" onclick="account_delete()"/>
 				<input type="button" value="수정" class="btn btn-primary" onclick="location.href='accountupdateform.cafe?account_number=${c.account_number}&pg=${pg}'"/>
 				</td>
            </tr>
+         </form>
      </c:forEach>
                     </tbody>
                   </table>

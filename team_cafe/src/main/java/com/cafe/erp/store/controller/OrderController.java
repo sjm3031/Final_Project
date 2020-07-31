@@ -193,11 +193,22 @@ public class OrderController {
    
    //임시 발주 테이블 목록 삭제
    @RequestMapping("/stockorderdelete.cafe")
-   public String stockorderdelete(OrderDTO dto, int pg) {
+   public String stockorderdelete(OrderDTO dto, int pg, HttpServletResponse resp) throws Exception {
       //System.out.println("stockorderdelete 진입");
       orderService.deleteordercart(dto);
       //System.out.println("stockorderdelete 완료");
-      return "redirect:stockorderlist.cafe?pg=" + pg;
+      String detailname = dto.getCart_stock_detailname();
+
+    	resp.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		out.print("<script>");
+		out.print("alert('" + dto.getCart_stock_detailname() +" "+ "삭제 완료');");
+		out.print("location.href='stockorderlist.cafe'; ");
+		out.print("</script>");
+		out.close();
+
+//    return "redirect:stockorderlist.cafe?pg=" + pg;
+		return null;
    }
    
 

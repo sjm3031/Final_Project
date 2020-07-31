@@ -66,6 +66,9 @@ public class StockController {
 			fs.close();
 		
 			//n.setFileSrc(fname); //파일이름 
+			System.out.println("insert controller 진입");
+			stockService.insertStock(dto);
+			System.out.println("insert 완료");
 		}
 		else {
 		dto.setStock_image("");

@@ -186,8 +186,8 @@ function stockorderlist_update(){
 	
 								<label>번호</label><br> 
 								<input type="hidden" name="pg" value="${pg}"/>
-		<input type="hidden" name="cart_number" value="${c.cart_number}"/>
-		<input type="text" class="form-control" value="${c.cart_number}" disabled="disabled">
+								<input type="hidden" name="cart_number" value="${c.cart_number}"/>
+								<input type="text" class="form-control" value="${c.cart_number}" disabled="disabled">
 								 
 							</div>
 							

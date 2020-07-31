@@ -198,7 +198,7 @@
                     <c:forEach var="c" items="${order_list}">
                       <tr>
                         <td align="center">
-						${c.cart_number}(${c.stock_code})
+						${c.cart_number}
 						<input type="hidden" name="cart_number" id="cart_number" value="${c.cart_number}"/>
 						<input type="hidden" name="stock_code" id="stock_code" value="${c.stock_code}"/>
 						</td>

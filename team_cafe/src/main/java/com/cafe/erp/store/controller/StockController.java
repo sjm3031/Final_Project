@@ -45,7 +45,6 @@ public class StockController {
 	@RequestMapping(value = "/stockinsert.cafe", method = RequestMethod.POST)
 	public String insertstock(StockDTO dto, @RequestParam("stock_upimage") MultipartFile stock_upimage, HttpServletRequest request ) throws Exception {
 //		String stock_image = stock_upimage.getOriginalFilename();
-		System.out.println(dto.getAccount_number());
 //		System.out.println(stock_image);
 //		dto.setStock_image(stock_image);
 		
@@ -53,9 +52,9 @@ public class StockController {
 		if(!stock_upimage.isEmpty()){
 			dto.setStock_image(stock_upimage.getOriginalFilename());
 			String path = request.getServletContext().getRealPath("/store/upload");
-			System.out.println(path);
+//			System.out.println(path);
 			String fpath = path + "\\" + dto.getStock_image();
-			System.out.println(fpath);
+//			System.out.println(fpath);
 			//System.out.println(request.getParameter("title"));
 			//System.out.println("notice : " + n.getTitle() + " / " + n.getContent());
 			//System.out.println("FileInfo : " + fpath);
@@ -66,12 +65,13 @@ public class StockController {
 			fs.close();
 		
 			//n.setFileSrc(fname); //파일이름 
+			stockService.insertStock(dto);
 		}
 		else {
 		dto.setStock_image("");
-		System.out.println("insert controller 진입");
+//		System.out.println("insert controller 진입");
 		stockService.insertStock(dto);
-		System.out.println("insert 완료");
+//		System.out.println("insert 완료");
 		}
 		return "redirect:stocklist.cafe";
 		
@@ -104,7 +104,7 @@ public class StockController {
 		int totalPage = total / rowSize + (total % rowSize == 0 ? 0 : 1);
 		System.out.println("page count : " + allPage);
 
-		int block = 10; // 한페이지에 보여줄 범위 [1][2][3]~~[10]
+		int block = 5; // 한페이지에 보여줄 범위 [1][2][3]~~[10]
 		int fromPage = ((pg - 1) / block * block) + 1; // 보여줄 페이지의 시작
 		int toPage = ((pg - 1) / block * block) + block; // 보여줄 페이지의 끝
 

@@ -8,7 +8,7 @@
 	<select id="pcount" resultType="com.cafe.erp.sell.model.SellDTO">
 		select max(p.cafe_product_name) name, max(p.cafe_product_code) code, count(*) pcount
     	from cafe_product p inner join cafe_orderlist o on p.cafe_product_code = o.cafe_product_code 
-    	group by p.cafe_product_code order by p.cafe_product_code asc
+    	group by p.cafe_product_code order by pcount desc
 	</select>
 	
 	<!-- 총 판매한 건수 -->

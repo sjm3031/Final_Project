@@ -29,7 +29,7 @@
 //    		}
 //    	alert("ㅁㄴㅇㅁㄴㅇ");
     	}
-
+	
 
 </script>
     
@@ -221,7 +221,7 @@
 						</td>
 						<td>
 						<input type="button" value="수정" class="btn btn-primary" onclick="location.href='stockorderupdateform.cafe?cart_number=${c.cart_number}&pg=${pg}'"/>
-						<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='stockorderdelete.cafe?cart_number=${c.cart_number}&pg=${pg}'"/>
+						<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='stockorderdelete.cafe?cart_number=${c.cart_number}&pg=${pg}&cart_stock_detailname=${c.cart_stock_detailname}'"/>
 						</td>
                       </tr>
                     </c:forEach>

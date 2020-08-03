@@ -190,9 +190,9 @@ function account_update(){
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="index.do" style="color: #A95858 !important;">Home</a>
+                <a style="color: #A95858 !important;">거래처</a>
               </li>
-              <li class="breadcrumb-item active">Product Brands</li>
+              <li class="breadcrumb-item active">거래처 조회</li>
             </ol>
             <!-- Page Content -->
             <div class="modal-content">

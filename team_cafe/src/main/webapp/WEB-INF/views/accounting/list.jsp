@@ -140,7 +140,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="index.do" style="color: #A95858 !important;">회계 재무 관리</a>
+                <a style="color: #A95858 !important;">회계 재무 관리</a>
               </li>
               <li class="breadcrumb-item active">일일 정산 조회</li>
             </ol>

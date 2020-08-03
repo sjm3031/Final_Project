@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 
 	public List<AccountsDTO> getAccountsList(HashMap map);				// list 가져오기
 	public Int getAccountsCount();							// 총 갯수 가져오기
+	public List<AccountsDTO> getSearchAccountsList(HashMap map);				// search 결과 가져오기
  -->
 	 
 	<select id="getAccountsList" parameterType="hashmap" resultType="com.cafe.erp.accounting.model.AccountsDTO">
@@ -19,6 +20,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
 	<select id="getAccountsCount" resultType="Integer">
       select count(*) from CAFE_ACCOUNTS
+   </select>
+   
+   <select id="getSearchAccountsList" parameterType="hashmap" resultType="com.cafe.erp.accounting.model.AccountsDTO">
+     select * from
+		( select A.*, rownum r from
+		( select * from CAFE_ACCOUNTS order by accounts_code) A
+		)
+		where to_char(accounts_startsell, 'yyyy')=#{yy} and to_char(accounts_startsell, 'mm')=#{mm}
    </select>
 
 </mapper>

@@ -31,6 +31,13 @@ public class AccountsServiceImpl implements AccountsService {
 		// TODO Auto-generated method stub
 		AccountsDAO dao = sqlSession.getMapper(AccountsDAO.class);
 		return dao.getAccountsCount();
+	}
+
+	@Override
+	public List<AccountsDTO> getSearchAccountsList(HashMap map) {
+		// TODO Auto-generated method stub
+		AccountsDAO dao = sqlSession.getMapper(AccountsDAO.class);
+		return dao.getSearchAccountsList(map);
 	}			
 
 	

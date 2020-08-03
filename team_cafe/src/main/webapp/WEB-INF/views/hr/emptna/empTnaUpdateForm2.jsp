@@ -160,7 +160,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="index.do" style="color: #A95858 !important;">근태</a>
+                <a style="color: #A95858 !important;">근태</a>
               </li>
               <li class="breadcrumb-item active">근태 수정</li>
             </ol>

@@ -156,7 +156,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="index.do" style="color: #A95858 !important;">급여</a>
+                <a style="color: #A95858 !important;">급여</a>
               </li>
               <li class="breadcrumb-item active">급여 수정</li>
             </ol>

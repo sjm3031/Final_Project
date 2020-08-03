@@ -216,7 +216,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="../index.cafe" style="color: #A95858 !important;">Home</a>
+                <a style="color: #A95858 !important;">Home</a>
               </li>
               <li class="breadcrumb-item active">Product Brands</li>
             </ol>

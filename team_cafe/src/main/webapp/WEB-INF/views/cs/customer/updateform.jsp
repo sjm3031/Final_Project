@@ -238,8 +238,7 @@
 			<div class="container-fluid">
 				<!-- Breadcrumbs-->
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.do"
-						style="color: #A95858 !important;">고객관리</a></li>
+					<li class="breadcrumb-item"><a style="color: #A95858 !important;">고객관리</a></li>
 					<li class="breadcrumb-item active">고객정보</li>
 				</ol>
 				 

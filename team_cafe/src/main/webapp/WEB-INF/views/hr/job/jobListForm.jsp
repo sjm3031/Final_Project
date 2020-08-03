@@ -142,7 +142,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="index.do" style="color: #A95858 !important;">직급</a>
+                <a style="color: #A95858 !important;">직급</a>
               </li>
               <li class="breadcrumb-item active">직급조회</li>
             </ol>

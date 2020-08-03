@@ -147,7 +147,7 @@
 			<div class="container-fluid">
 				<!-- Breadcrumbs-->
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.do"
+					<li class="breadcrumb-item"><a
 						style="color: #A95858 !important;">제품관리</a></li>
 					<li class="breadcrumb-item active">판매상품</li>
 				</ol>

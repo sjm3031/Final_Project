@@ -143,7 +143,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="index.do" style="color: #A95858 !important;">직원</a>
+                <a style="color: #A95858 !important;">직원</a>
               </li>
               <li class="breadcrumb-item active">직원조회</li>
             </ol>

@@ -141,14 +141,14 @@
             <span>설정</span></a>
         </li> 
       </ul>
-        <div id="content-wrapper">
+        <div id="content-wrapper" style="margin: 2em;">		
           <div class="container-fluid">
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="../index.cafe">Home</a>
+                <a style="color: #A95858 !important;">매출관리</a>
               </li>
-              <li class="breadcrumb-item active">Sales Reports</li>
+              <li class="breadcrumb-item active">판매 현황</li>
             </ol>
             <!-- Page Content -->
             <!-- Area Chart Example-->

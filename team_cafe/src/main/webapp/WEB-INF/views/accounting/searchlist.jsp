@@ -169,20 +169,71 @@
                 </select>
                 
                 <select name="mm">
-                <c:set var="mm" value="00"/>
-                <c:forEach var="b" items="${selectlist}">
-                 <fmt:formatDate value="${b.accounts_startSell}" var="accounts_startSell" pattern="MM"/>
-                 <c:if test="${accounts_startSell != mm}">
-                	<option value="${ accounts_startSell }">${ accounts_startSell }</option>
-                </c:if>
-                <c:set var="mm" value="${ accounts_startSell }"/>
-                </c:forEach>
+               		<option value="01">01</option>
+               		<option value="02">02</option>
+               		<option value="03">03</option>
+               		<option value="04">04</option>
+               		<option value="05">05</option>
+               		<option value="06">06</option>
+               		<option value="07">07</option>
+               		<option value="08">08</option>
+               		<option value="09">09</option>
+               		<option value="10">10</option>
+               		<option value="11">11</option>
+               		<option value="12">12</option>
                 </select>
                 
                 <input type="submit" value="조회">
 				</form>
 				<br>
                
+               
+                 <b>TOTAL</b>
+		
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>날짜</th>
+                        <th>총 매출액</th>
+                        <th>총 카드 매출액</th>
+                        <th>총 현금 매출액</th>
+                        <th>총 주문량</th>
+                      </tr>
+                    </thead>
+                    
+                   
+          <c:set var="accounts_total" value="${0}"/>
+          <c:set var="accounts_card" value="${0}"/>
+          <c:set var="accounts_cash" value="${0}"/>
+          <c:set var="accounts_saleCount" value="${0}"/>
+          
+          <c:forEach var="b" items="${list}">
+          
+           <fmt:formatDate value="${b.accounts_startSell}" var="accounts_startSell" pattern="yyyy-MM"/>
+           <c:set var="accounts_total" value="${accounts_total + b.accounts_total}"/>
+           <c:set var="accounts_card" value="${accounts_card + b.accounts_total}"/>
+           <c:set var="accounts_cash" value="${accounts_cash + b.accounts_total}"/>
+           <c:set var="accounts_saleCount" value="${accounts_saleCount + b.accounts_total}"/>
+			
+            </c:forEach>   
+            <fmt:formatNumber value="${accounts_total}" var="accounts_total" pattern="#,###"/>
+            <fmt:formatNumber value="${accounts_card}" var="accounts_card" pattern="#,###"/>
+            <fmt:formatNumber value="${accounts_cash}" var="accounts_cash" pattern="#,###"/>
+            <fmt:formatNumber value="${accounts_saleCount}" var="accounts_saleCount" pattern="#,###"/>
+                      <tr>
+                        <td>${y}-${m}</td>
+                        <td>${accounts_total} ₩</td>
+                        <td>${accounts_card} ₩</td>
+                        <td>${accounts_cash} ₩</td>
+                        <td>${accounts_saleCount} 건</td>
+                      </tr>
+                      
+                    
+                      
+                  
+                   
+                  </table>
+                  <br>
                
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -216,81 +267,12 @@
                   </table>
                   
   
-		
-		
+
+                  
 		
                   <div align="center">
 	                  
-	                  <div class="col-sm-12 col-md-7" >
-	                  <br>
-		                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate" >
-			                  <ul class="pagination" style="text-align: center; width: 350px !important;" >
-			                 		
-			                 			 <li class="paginate_button page-item " >
-								           <a href="list.cafe?pg=1" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link" >
-					             		   	&lt;&lt;
-					        	         </a>
-			
-			                  		<c:if test="${pg>1}">  <!-- 5>10 : false / 15>10 : true -->
-										<li class="paginate_button page-item ">
-								           <a href="list.cafe?pg=${pg-1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					             		    &lt;
-					             		    </a>
-					             	    </li>
-									</c:if>
-									<c:if test="${pg<=1}"> <!-- 5<=10 :true / 15<=10:false -->
-										<li class="paginate_button page-item ">
-						                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					             		    &lt;
-					        	         </a>
-					  	               </li>
-									</c:if>          
-					          <c:forEach begin="${fromPage}" end="${toPage}" var="i">
-								<c:if test="${i==pg}">
-					                 <li class="paginate_button page-item active">      
-					                  <a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
-					              	    ${i}
-					                  </a>
-					                 </li>
-					            </c:if>
-					            <c:if test="${i!=pg}">
-		            				  <li class="paginate_button page-item ">
-		            				  	<a href="list.cafe?pg=${i}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					             		    ${i}
-					        	         </a>
-					                 </li>
-					    	       </c:if>
-					           </c:forEach>
-					                 
-					                	       
-					       <c:if test="${pg<allPage}"> 
-					           <li class="paginate_button page-item ">
-					                  <a href="list.cafe?pg=${pg+1}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	>
-					                  </a>
-				                  </li>
-				            </c:if>      
-				            
-				             <c:if test="${pg>=allPage}"> 
-					           <li class="paginate_button page-item ">
-					                  <a aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					                  	>
-					                  </a>
-				                  </li>
-				            </c:if>    
-				            
-				 
-				               <li class="paginate_button page-item ">
-								           <a href="list.cafe?pg=${allPage}" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-					             		    >>
-					        	         </a>
-					           </li>   
-				                  
-				                  
-				                  
-			                  </ul>
-		                  </div>
-	                  </div>
+	                 
                   </div>
                 </div>
               </div>

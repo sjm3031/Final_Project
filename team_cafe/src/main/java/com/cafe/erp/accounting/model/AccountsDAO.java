@@ -7,4 +7,6 @@ public interface AccountsDAO {
 			
 	public List<AccountsDTO> getAccountsList(HashMap map);				// list 가져오기
 	public int getAccountsCount();							// 총 갯수 가져오기
+	
+	public List<AccountsDTO> getSearchAccountsList(HashMap map);				// search 결과 가져오기
 }

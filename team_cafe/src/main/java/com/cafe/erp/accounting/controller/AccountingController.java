@@ -74,8 +74,39 @@ public class AccountingController {
 		  request.setAttribute("fromPage", fromPage);
 		  request.setAttribute("toPage", toPage);
 		
+		  HashMap map2 = new HashMap();
+		  map2.put("start", 1);
+		  map2.put("end", total);
+		  List<AccountsDTO> selectlist =accountsService.getAccountsList(map2);
+		  request.setAttribute("selectlist", selectlist);
+		  
 		return "accounting/list";
 	}
 
+	@RequestMapping("search.cafe")
+	public String search(HttpServletRequest request) {
+		erpController.menuMethod(request);
+		HashMap map = new HashMap();
+		String yy = request.getParameter("yy");
+		String mm = request.getParameter("mm");
+		map.put("yy", yy);
+		map.put("mm", mm);
+		List<AccountsDTO> list =accountsService.getSearchAccountsList(map);
+		request.setAttribute("list", list);
+		
+		 HashMap map2 = new HashMap();
+		  map2.put("start", 1);
+		  int total = accountsService.getAccountsCount();	// 총 record 수 가져오는 함수.. sql문
+		  map2.put("end", total);
+		  List<AccountsDTO> selectlist =accountsService.getAccountsList(map2);
+		  request.setAttribute("selectlist", selectlist);
+		  request.setAttribute("y", yy);
+		  request.setAttribute("m", mm);
+		  System.out.println();
+		  System.out.println(yy);
+		  System.out.println(mm);
+		
+		return "accounting/searchlist";
+	}
 
 }

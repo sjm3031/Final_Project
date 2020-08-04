@@ -183,6 +183,16 @@ $(function(){
    info3 += '</div></div></div>';
    $(".order2").html(info3);   
    $(event.currentTarget).remove();
+
+   if($('.orderline').length == 0){
+      info = '<div class="order-empty">';
+      info += '<i class="fa fa-shopping-cart" role="img" aria-label="Shopping cart" title="Shopping cart"></i>';
+      info += '<h1>물건을 선택하면 리스트에 등록됩니다.</h1></div>';
+      num = 0;
+      cash = 0;
+      $('.order').html(info);
+      $('.order2').hide();
+   }
 });
 
  
@@ -206,7 +216,8 @@ $(document).on('click', '.product.beverage', function(){
             /* 아웃라인 */
             var info2 = '<ul class="orderlines">';
             info2 += '</ul>';
-            $(".order").html(info2);   
+            $(".order").html(info2); 
+            $('.order2').show();  
          }
 
          info = '<li class="orderline">';
@@ -402,10 +413,13 @@ $(document).on('click', '.button.check.coupon', function(){
          if(data.msg == "yes"){
             $('#validCouponText').html('쿠폰 사용 가능합니다.<br>스탬프 : ' + data.count + '개');
             $('#validCouponText').css('color', 'green');
-         } else {
-            $('#validCouponText').html('사용 가능한 쿠폰이 없습니다.<br>스탬프 : ' + data.count + '개');
-            $('#validCouponText').css('color', 'red');
-         }
+         } else if(data.msg == "no"){
+             $('#validCouponText').html('사용 가능한 쿠폰이 없습니다.<br>스탬프 : ' + data.count + '개');
+             $('#validCouponText').css('color', 'red');
+          } else {
+             $('#validCouponText').html('등록된 회원이 없습니다!');
+              $('#validCouponText').css('color', 'red');
+          }
       },
       error: function(error){
          console.log("error");
@@ -419,6 +433,11 @@ $(document).on('click', '.button.confirm.coupon', function(){
    if($('.orderline').length == 0){
           alert('상품을 먼저 등록해주세요!');
          return;
+   }
+
+   if($('.subentry.discount span').text().split(' ')[0] == '5000'){
+      alert('이미 쿠폰이 적용되었습니다.');
+      return;
    }
    
    var phone = $('#phoneCouponInput').val();
@@ -600,6 +619,19 @@ $(document).on('click', '.input-button.numpad-result', function(){
    } else {
       $('.subentry.exchange span').html(exchange);
    }
+
+   var ViewTotal = $('.value').text().split(' ');                        // 보여지는 total값
+   
+   if(cash == 0){
+      $('.subentry.exchange span').html(0);                        // 거스름돈에 쿠폰가격이 출력돠서 넣음
+      }
+  if($('.subentry.exchange span').html().substring(0, 1) =='-'){      // 앞자리가 - 면 0으로 (현금이 0원일때 잔돈이 -로 떠서 넣음)
+      $('.subentry.exchange span').html(0);
+      }
+   if(ViewTotal[0] == 0){                                        // 보여지는 토탈값이 0이면 현금=잔돈
+      $('.subentry.exchange span').html(cash);
+      }
+   
 });
 
 $(document).on('click', '.input-button.numpad-minus', function(){
@@ -608,7 +640,6 @@ $(document).on('click', '.input-button.numpad-minus', function(){
    $('.subentry.cash span').html(cash);
    $('.subentry.exchange span').html(exchange);
 });
-
 
 </script>
         

@@ -102,9 +102,6 @@ public class AccountingController {
 		  request.setAttribute("selectlist", selectlist);
 		  request.setAttribute("y", yy);
 		  request.setAttribute("m", mm);
-		  System.out.println();
-		  System.out.println(yy);
-		  System.out.println(mm);
 		
 		return "accounting/searchlist";
 	}

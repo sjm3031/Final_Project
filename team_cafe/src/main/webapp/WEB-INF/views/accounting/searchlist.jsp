@@ -211,9 +211,9 @@
           
            <fmt:formatDate value="${b.accounts_startSell}" var="accounts_startSell" pattern="yyyy-MM"/>
            <c:set var="accounts_total" value="${accounts_total + b.accounts_total}"/>
-           <c:set var="accounts_card" value="${accounts_card + b.accounts_total}"/>
-           <c:set var="accounts_cash" value="${accounts_cash + b.accounts_total}"/>
-           <c:set var="accounts_saleCount" value="${accounts_saleCount + b.accounts_total}"/>
+           <c:set var="accounts_card" value="${accounts_card + b.accounts_card}"/>
+           <c:set var="accounts_cash" value="${accounts_cash + b.accounts_cash}"/>
+           <c:set var="accounts_saleCount" value="${accounts_saleCount + b.accounts_saleCount}"/>
 			
             </c:forEach>   
             <fmt:formatNumber value="${accounts_total}" var="accounts_total" pattern="#,###"/>
